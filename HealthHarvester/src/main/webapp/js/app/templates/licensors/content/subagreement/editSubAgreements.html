@@ -1,0 +1,33 @@
+<div class="tab-pane" id="costingSubagreementEdit">
+    <div id="editSubagreementLabels" class="labelsStyle">
+        <label style="height: 37px;">Subagreement Name:</label>
+        <label style="height: 37px;">Access Fee:</label>
+        <label style="height: 37px;">Currency:</label>
+        <label style="height: 37px;">Split Ratio Percentage:</label>
+        <label style="height: 37px;">Effective Date:</label>
+        <label style="height: 37px;">Expiry Date:</label>
+    </div>
+    <div class="fieldsStyle">
+        <div data-editors="subagreementKey"></div>
+        <div data-editors="feeValue"></div>
+        <div style="height: 37px;"><b>{{currency}}</b></div>
+        <div>
+            <input id="splitRatioPercentage_left" type="number" class="sliderCls">
+
+            <div id="splitRatioSlider"></div>
+            <input id="splitRatioPercentage_right" type="number" class="sliderCls">
+        </div>
+        <div data-editors="effectiveDate"></div>
+        <div data-editors="expiryDate"></div>
+        <br> <br>
+
+        <div>
+            <button id="editCancelButton" class="btn btn-link btn-primary" style="float: right; margin-right: 10px">
+                Cancel
+            </button>
+            <button id="editSaveButton" class="btn btn-link btn-primary" style="float: right; margin-right: 10px">Save
+            </button>
+            <img style="float:right" id="loadingImage" src='/img/loading.gif'>
+        </div>
+    </div>
+</div>

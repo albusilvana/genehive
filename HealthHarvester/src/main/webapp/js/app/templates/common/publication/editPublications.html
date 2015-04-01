@@ -1,0 +1,29 @@
+<div class="tab-pane" id="costingSubagreementEdit">
+    <div id="editSubagreementLabels" class="labelsStyle">
+        <label style="height: 37px;">Publication Name:</label>
+        <label style="height: 37px;">Licensor Publication Name:</label>
+        <label style="height: 37px;">Licensor source id:</label>
+        <label style="height: 37px;">Click fee:</label>
+        <label style="height: 37px;">Currency:</label>
+        <label style="height: 37px;">Action:</label>
+        <label style="height: 37px;">Channel:</label>
+    </div>
+    <div class="fieldsStyle">
+        <div style="height: 37px;">{{name}}</div>
+        <div style="height: 37px;">{{licensorPublicationName}}</div>
+        <div style="height: 37px;">{{pCode}}</div>
+        <div data-editors="cost"></div>
+        <div style="height: 37px;"><b>{{currency}}</b></div>
+        <div data-editors="actionId"></div>
+        <div data-editors="channelId"></div>
+
+        <div>
+            <button id="editCancelButton" class="btn btn-link btn-primary" style="float: right; margin-right: 10px">
+                Cancel
+            </button>
+            <button id="editSaveButton" class="btn btn-link btn-primary" style="float: right; margin-right: 10px">Save
+            </button>
+            <img style="float:right" id="loadingImage" src='/img/loading.gif'>
+        </div>
+    </div>
+</div>
