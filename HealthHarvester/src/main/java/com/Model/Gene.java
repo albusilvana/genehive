@@ -17,6 +17,10 @@ public class Gene {
         this.name = name;
     }
 
+    public Gene(String geneCode) {
+        this.geneCode = geneCode;
+    }
+
     public String getGeneCode() {
 
         return geneCode;

@@ -12,6 +12,10 @@ public class Disease extends Entity {
         this.characteristics = characteristics;
     }
 
+    public Disease(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

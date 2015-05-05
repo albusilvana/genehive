@@ -9,9 +9,9 @@ import java.util.List;
 public class Entry extends Entity {
     private String lastName;
     private String firstName;
+    private String identificationNumber;
     private String physician;
     private String countryCode;
-    private String zipCode;
     private String city;
     private Date dateOfBirth;
     private Date dateOfDiagnosis;
@@ -19,15 +19,15 @@ public class Entry extends Entity {
     private char gender;
     private List<ProfessionaExposure> professionalExposures;
     private String details;
-    private List<MutationEntry> entries;
+    private List<MutationEntry> mutationEntries;
 
-    public Entry(String lastName, String firstName, String countryCode, String zipCode, String city, Date dateOfBirth,
+    public Entry(String lastName, String firstName, String identificationNumber,String countryCode, String city, Date dateOfBirth,
                  Date dateOfDiagnosis, Date dateOfDeath, char gender, List<ProfessionaExposure> professionalExposures,
                  String details, List<MutationEntry> entries, String physician) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.identificationNumber = identificationNumber;
         this.countryCode = countryCode;
-        this.zipCode = zipCode;
         this.city = city;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDiagnosis = dateOfDiagnosis;
@@ -35,8 +35,14 @@ public class Entry extends Entity {
         this.gender = gender;
         this.professionalExposures = professionalExposures;
         this.details = details;
-        this.entries = entries;
+        this.mutationEntries = entries;
         this.physician = physician;
+    }
+
+    public Entry(String identificationNumber, String countryCode, List<MutationEntry> entries) {
+        this.identificationNumber = identificationNumber;
+        this.countryCode = countryCode;
+        this.mutationEntries = entries;
     }
 
     public Entry() {
@@ -54,6 +60,14 @@ public class Entry extends Entity {
         return firstName;
     }
 
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -64,14 +78,6 @@ public class Entry extends Entity {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
     }
 
     public String getCity() {
@@ -130,12 +136,12 @@ public class Entry extends Entity {
         this.details = details;
     }
 
-    public List<MutationEntry> getEntries() {
-        return entries;
+    public List<MutationEntry> getMutationEntries() {
+        return mutationEntries;
     }
 
-    public void setEntries(List<MutationEntry> entries) {
-        this.entries = entries;
+    public void setMutationEntries(List<MutationEntry> entries) {
+        this.mutationEntries = entries;
     }
 
     public String getPhysician() {

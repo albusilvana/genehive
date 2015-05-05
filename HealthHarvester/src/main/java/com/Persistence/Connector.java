@@ -35,7 +35,7 @@ public class Connector {
 
     public static void main(String[] args) throws Exception {
         connectToCass();
-        ResultSet resultSet = cassQuery("select * from entries_space.entries");
+        ResultSet resultSet = cassQuery("select identificationNumber,countrycode,mutationentries  from Entries_Space.Entries");
 
         System.out.print(resultSet);
 

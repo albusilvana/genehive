@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by silvana.albert on 3/11/15.
  */
-@Path("/hh/patients")
+@Path("/patients")
 public class PatientEndpoint {
 
     public static final String NO_LICENSOR_WAS_FOUND = "No licensor was found!";

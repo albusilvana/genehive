@@ -6,7 +6,7 @@ import com.sun.corba.se.spi.ior.Identifiable;
 /**
  * Created by silvana.albert on 3/11/15.
  */
-public class Entity {
+public class Entity extends BaseEntity {
 
     private Long id;
 

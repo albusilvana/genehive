@@ -5,4 +5,8 @@ package com.Model;
  */
 public class Locus {
     private String possition;
+
+    public Locus(String possition) {
+        this.possition = possition;
+    }
 }

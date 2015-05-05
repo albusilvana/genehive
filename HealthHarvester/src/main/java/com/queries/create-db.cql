@@ -4,9 +4,8 @@ USE Entries_Space;
 CREATE TABLE Entries (
     lastName text,
     firstName text,
+    identificationNumber text,
     countryCode text,
-    epochHours bigint,
-    zipcode text,
     dateOfBirth timestamp,
     dateOfDiagnosis timestamp,
     dateOfDeath timestamp,
@@ -15,7 +14,7 @@ CREATE TABLE Entries (
     details text,
     mutationEntries text,
     physician text,
-    PRIMARY KEY (mutationEntries, countryCode)
+    PRIMARY KEY (identificationNumber, mutationEntries, countryCode)
 ) WITH
     comment='Patients with discovered entries' AND
     caching = 'NONE' AND
@@ -25,4 +24,4 @@ CREATE TABLE Genes (
     geneCode text,
     geneName text,
     PRIMARY KEY (geneCode)
-)
+);
