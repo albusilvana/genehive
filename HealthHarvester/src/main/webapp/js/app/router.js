@@ -1,19 +1,10 @@
 define([
     // Libraries to load
     'require',
-    'mainView',
-    // Views to load
-    'licensorView',
-     'bundlesView',
-    'doctorAppointmentView',
-    'patientAppointmentView',
-    'doctorAdminView'
+    'mainView'
+
 ], function (require) {
-    var LicensorView = require('licensorView'),
-        DoctorAppintmentsView = require('doctorAppointmentView'),
-        PatientAppointmentsView = require('patientAppointmentView'),
-        DoctorAdminView = require('doctorAdminView'),
-        BundlesView = require('bundlesView');
+
 
     var AppRouter = Marionette.AppRouter.extend({
 
