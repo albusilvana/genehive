@@ -26,6 +26,8 @@ public class CassandraEntriesAccessor {
 
     public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutationentries from Entries_Space.Entries";
 
+    public static final String FIND_ALL_MUTATIONS = "select mutationentries from Entries_Space.Entries";
+
     private UtilsService utilsService = new UtilsService();
 
     private Cluster cluster;
@@ -76,9 +78,50 @@ public class CassandraEntriesAccessor {
             String identificationNumber = row.getString(0);
             String mutation = row.getString(1);
             String countryCode = row.getString(2);
-            Entry entry = utilsService.convertToEntity(identificationNumber,countryCode, mutation);
+            Entry entry = utilsService.convertToEntity(identificationNumber, countryCode, mutation);
             results.add(entry);
 
+        }
+        return results;
+    }
+
+    public List<String> readMutationCodes() throws SQLException {
+        if (!active) {
+            LOG.error("CasandraEventsAccessor is not active");
+        }
+        List<String> results = new ArrayList<String>();
+        ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            String mutations = row.getString(0);
+            List<String> mutationList = utilsService.convertToMutations(mutations);
+//            results.add(mutationList);
+
+        }
+        return results;
+    }
+
+    public List<String> readDiagnostics() throws SQLException {
+        if (!active) {
+            LOG.error("CasandraEventsAccessor is not active");
+        }
+        List<String> results = new ArrayList<String>();
+        ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            String mutations = row.getString(0);
+            List<String> mutationList = utilsService.convertToDiagnstics(mutations);
+            for (String mut : mutationList) {
+                if (!results.contains(mut)) {
+                    results.add(mut);
+                }
+            }
         }
         return results;
     }

@@ -32,7 +32,6 @@ public class EntryDTOConvertor implements DTOConverter<Entry, EntryDTO> {
         }
 
         EntryDTO actionDTO = new EntryDTO(entity.getIdentificationNumber(), entity.getCountryCode(), entity.getMutationEntries());
-        actionDTO.setId(entity.getId());
         return actionDTO;
     }
 

@@ -12,4 +12,12 @@ public class Locus {
     public Locus(String possition) {
         this.possition = possition;
     }
+
+    public String getPossition() {
+        return possition;
+    }
+
+    public void setPossition(String possition) {
+        this.possition = possition;
+    }
 }

@@ -6,7 +6,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  * Created by silvana.albert on 3/11/15.
  */
 @JsonSerialize
-public class MutationEntry extends Entity {
+public class MutationEntry {
     private Gene gene;
     private Locus locus;
     private Disease disease;
