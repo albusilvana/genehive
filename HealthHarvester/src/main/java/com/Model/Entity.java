@@ -2,10 +2,12 @@ package com.Model;
 
 import com.google.common.base.Objects;
 import com.sun.corba.se.spi.ior.Identifiable;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * Created by silvana.albert on 3/11/15.
  */
+@JsonSerialize
 public class Entity extends BaseEntity {
 
     private Long id;

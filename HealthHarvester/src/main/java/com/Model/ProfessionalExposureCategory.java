@@ -1,8 +1,11 @@
 package com.Model;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * Created by silvana.albert on 3/11/15.
  */
+@JsonSerialize
 public class ProfessionalExposureCategory {
     private String categoryName;
     private String details;

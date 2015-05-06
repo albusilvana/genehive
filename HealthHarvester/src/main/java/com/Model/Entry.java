@@ -1,11 +1,14 @@
 package com.Model;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by silvana.albert on 3/11/15.
  */
+@JsonSerialize
 public class Entry extends Entity {
     private String lastName;
     private String firstName;

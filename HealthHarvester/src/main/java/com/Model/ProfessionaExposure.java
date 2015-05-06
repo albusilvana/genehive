@@ -1,10 +1,13 @@
 package com.Model;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.sql.Time;
 
 /**
  * Created by silvana.albert on 3/11/15.
  */
+@JsonSerialize
 public class ProfessionaExposure {
     private ProfessionalExposureCategory professionalExposureCategory;
     private Time durationOfExposure;
