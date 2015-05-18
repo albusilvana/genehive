@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Health Harvester</title>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/jquery.fancybox-media.js"></script>
+    <script src="js/google-code-prettify/prettify.js"></script>
+    <script src="js/portfolio/jquery.quicksand.js"></script>
+    <script src="js/portfolio/setting.js"></script>
+    <script src="js/jquery.flexslider.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="utils.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <!--<link href="css/jcarousel.css" rel="stylesheet"/>-->
+    <link href="css/flexslider.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <!-- Theme skin -->
+    <link href="skins/default.css" rel="stylesheet"/>
+    <style type="text/css">
+        ${demo.css}
+    </style>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $.getJSON('http://localhost:9095/hh/API/v1/entries/count/all', function (data) {
+
+                var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
+
+                // Correct UK to GB in data
+                $.each(data, function () {
+                    if (this.code === 'UK') {
+                        this.code = 'GB';
+                    }
+                });
+
+                $('#container').highcharts('Map', {
+                    chart : {
+                        borderWidth : 1
+                    },
+
+                    title: {
+                        text: 'Disorders by country'
+                    },
+
+                    subtitle : {
+                        text : 'Click to see more details'
+                    },
+
+                    legend: {
+                        enabled: false
+                    },
+
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+
+                    series : [{
+                        name: 'Countries',
+                        mapData: mapData,
+                        color: '#E0E0E0',
+                        enableMouseTracking: false
+                    }, {
+                        type: 'mapbubble',
+                        mapData: mapData,
+                        name: 'Mutations',
+                        joinBy: ['iso-a2', 'code'],
+                        data: data,
+                        minSize: 4,
+                        maxSize: '12%',
+                        tooltip: {
+                            pointFormat: '{point.code}: {point.z} '
+                        }
+                    }]
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+<script src="js/highmaps.js"></script>
+<script src="js/modules/data.js"></script>
+<script src="http://code.highcharts.com/mapdata/custom/world.js"></script>
+
+<div id="wrapper">
+    <!-- start header -->
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><span>H</span>ealth<span> H</span>arvester</a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a id="homeTab" onclick="showHome()" href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="statisticsTab" class="dropdown-toggle " data-toggle="dropdown"
+                               data-hover="dropdown"
+                               data-delay="0" onclick="showStatistics()" data-close-others="false">Statistics <b
+                                    class=" icon-angle-down"></b></a>
+                        </li>
+                        <!--<li><a href="portfolio.html">Administration</a></li>-->
+                        <!--<li><a href="contact.html">Contact</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div id="container" style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto">
+
+</div>
+<div>
+    <!--<p class="identificationNumber">The ID is </p>-->
+    <!--<p class="countryCode">The country is: </p></div>-->
+
+    <div id="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright">
+                        <p>
+                            <span>&copy; Health Harvester 2015 All right reserved. </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="social-network">
+                        <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li><a href="#" data-placement="top" title="Pinterest"><i
+                                class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#" data-placement="top" title="Google plus"><i
+                                class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

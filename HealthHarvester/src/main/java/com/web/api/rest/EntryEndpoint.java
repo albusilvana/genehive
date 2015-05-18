@@ -1,5 +1,6 @@
 package com.web.api.rest;
 
+import com.DTO.BasicEntityDTO;
 import com.DTO.EntryDTO;
 import com.Model.Entry;
 import com.Service.EntryService;
@@ -31,10 +32,17 @@ public class EntryEndpoint {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EntryDTO>  getAllLicensors() throws Exception {
+    public List<EntryDTO>  getAll() throws Exception {
         List<EntryDTO> entryDTOList = entryService.getAllEntries();
         return entryDTOList;
     }
 
+    @GET
+    @Path("count/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicEntityDTO>  getCountPerCountry() throws Exception {
+        List<BasicEntityDTO> entryDTOList = entryService.getAllBasicEntitiesDTO();
+        return entryDTOList;
+    }
 
 }

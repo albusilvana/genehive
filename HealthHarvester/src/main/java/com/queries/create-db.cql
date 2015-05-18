@@ -2,8 +2,7 @@ CREATE KEYSPACE Entries_Space with replication ={'class':'SimpleStrategy', 'repl
 USE Entries_Space;
 
 CREATE TABLE Entries (
-    lastName text,
-    firstName text,
+    name text,
     identificationNumber text,
     countryCode text,
     dateOfBirth timestamp,
@@ -25,3 +24,5 @@ CREATE TABLE Genes (
     geneName text,
     PRIMARY KEY (geneCode)
 );
+
+select * from entries_space.entries;

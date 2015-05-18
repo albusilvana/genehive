@@ -3,6 +3,8 @@ package com.accessor;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.DTO.BasicEntityDTO;
+import com.Model.BaseEntity;
 import com.Model.Entity;
 import com.Service.EntryService;
 import com.Service.UtilsService;
@@ -85,21 +87,40 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
-    public List<String> readMutationCodes() throws SQLException {
+    public List<? extends Entity> countEntries() throws SQLException {
         if (!active) {
             LOG.error("CasandraEventsAccessor is not active");
         }
-        List<String> results = new ArrayList<String>();
-        ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS);
+        List<Entry> results = new ArrayList<Entry>();
+        ResultSet resultSet = session.execute(FIND_ALL_ENTRIES);
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             Row row = iter.next();
-            String mutations = row.getString(0);
-            List<String> mutationList = utilsService.convertToMutations(mutations);
-//            results.add(mutationList);
+            String identificationNumber = row.getString(0);
+            String mutation = row.getString(1);
+            String countryCode = row.getString(2);
+            Entry entry = utilsService.convertToEntity(identificationNumber, countryCode, mutation);
+            results.add(entry);
 
+        }
+        return results;
+    }
+
+    public List<BasicEntityDTO> readMutationByContry() throws SQLException {
+        String query = "select countrycode,mutationentries from Entries_Space.Entries";
+        List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
+        ResultSet resultSet = session.execute(query);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            String countryCode = row.getString(0);
+            String mutations = row.getString(1);
+            BasicEntityDTO basicEntityDTO = utilsService.convertToBasicEntityDTO(countryCode, mutations);
+            results.add(basicEntityDTO);
         }
         return results;
     }
