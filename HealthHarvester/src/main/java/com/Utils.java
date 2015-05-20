@@ -9,7 +9,7 @@ import java.util.Random;
 public class Utils {
     Random rand = new Random();
 
-    private String getRandomCnp() {
+    public String getRandomCnp() {
         String result = "";
         for (int i = 0; i < 13; i++) {
             result = result + rand.nextInt(9);
@@ -17,7 +17,7 @@ public class Utils {
         return "'" + result + "'";
     }
 
-    private String getRandomCountryCode() {
+    public String getRandomCountryCode() {
         // create a new locale
         Locale locale = new Locale("en", "US", "WIN");
         // get ISO countries
@@ -25,20 +25,20 @@ public class Utils {
         return "'" + countries[rand.nextInt(countries.length)] + "'";
     }
 
-    private String getRandomName() {
+    public String getRandomName() {
         String[] names = NameUtils.getNames();
         return "'" + names[rand.nextInt(names.length)] + "'";
     }
 
-    private Integer getRandomDateOfBirth() {
+    public Integer getRandomDateOfBirth() {
         return rand.nextInt(1420070462 - 157766462) + 157766462;
     }
 
-    private Integer getRandomDateOfDiagnosis(Integer dateOfBirth) {
+    public Integer getRandomDateOfDiagnosis(Integer dateOfBirth) {
         return rand.nextInt(1420070462 - dateOfBirth) + dateOfBirth;
     }
 
-    private Integer getRandomDateOfDeath(Integer dateOfBirth) {
+    public Integer getRandomDateOfDeath(Integer dateOfBirth) {
         int randomDateOfDeath = rand.nextInt(1420070462 - dateOfBirth) + dateOfBirth;
         if (randomDateOfDeath - dateOfBirth >= 631152000) {
             return randomDateOfDeath;
@@ -47,7 +47,7 @@ public class Utils {
         }
     }
 
-    private String getRandomGender() {
+    public String getRandomGender() {
         int i = rand.nextInt(10000);
         if (i % 2 == 0) {
             return "'F'";
@@ -56,7 +56,7 @@ public class Utils {
         }
     }
 
-    private String getProfessionalExposures() {
+    public String getProfessionalExposures() {
         String[] exposures = ProfessionalExposureUtils.getCategories();
         int i = rand.nextInt(exposures.length);
         if (i % 2 == 0) {
@@ -66,7 +66,7 @@ public class Utils {
         }
     }
 
-    private String getRandomMutation() {
+    public String getRandomMutation() {
         String mutation = "'";
 
         //genes
@@ -92,7 +92,7 @@ public class Utils {
         return mutation + "'";
     }
 
-    private String getRandomExposureTime() {
+    public String getRandomExposureTime() {
         return "" + rand.nextInt(1080000000 - 360000000) + 360000000;
     }
 
@@ -102,7 +102,7 @@ public class Utils {
 //                   'radiation_10000','details','A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer','Oltean Marin');
     public static void main(String[] args) {
         Utils utils = new Utils();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2000; i++) {
             String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);

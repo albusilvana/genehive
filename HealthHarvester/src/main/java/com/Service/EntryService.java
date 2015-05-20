@@ -8,6 +8,7 @@ import com.DTO.EntryDTO;
 import com.Model.Entry;
 import com.accessor.CassandraEntriesAccessor;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,8 +22,17 @@ public class EntryService {
         return entryDAO.getAllEntries();
     }
 
-
-    public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception{
+    public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
         return entryDAO.getBasicEntitiesDto();
+    }
+
+    public List<BasicEntityDTO> getAllEntitiesByGender(String gender) throws Exception {
+        return entryDAO.getBasicEntitiesDtoByGender(gender);
+    }
+
+    public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
+                              String dateOfDeath, String gender, String professionalExposure, String details, String mutationEntries, String physitian) throws Exception {
+        return entryDAO.insertEntry(name, identificationNumber, countryCode, dateOfBirth, dateOfDiagnosis,
+                dateOfDeath, gender, professionalExposure, details, mutationEntries, physitian);
     }
 }

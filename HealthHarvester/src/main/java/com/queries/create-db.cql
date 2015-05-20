@@ -25,4 +25,10 @@ CREATE TABLE Genes (
     PRIMARY KEY (geneCode)
 );
 
-select * from entries_space.entries;
+
+CREATE INDEX Entries
+   ON Entries_Space.Entries (countryCode);
+
+
+select count(*) from entries_space.entries;
+$ ./cqlsh 127.0.0.1 9042

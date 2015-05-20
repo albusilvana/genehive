@@ -108,8 +108,34 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
-    public List<BasicEntityDTO> readMutationByContry() throws SQLException {
-        String query = "select countrycode,mutationentries from Entries_Space.Entries";
+    public List<BasicEntityDTO> readMutationByContry(String countryCode) throws SQLException {
+        String query = "select mutationentries from Entries_Space.Entries where countryCode = '" + countryCode + "';";
+        List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
+        ResultSet resultSet = session.execute(query);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();;
+            String mutations = row.getString(0);
+            BasicEntityDTO basicEntityDTO = utilsService.convertToBasicEntityDTO(countryCode, mutations);
+            results.add(basicEntityDTO);
+        }
+        return results;
+    }
+
+    public boolean insertEntry(String query) throws SQLException {
+        boolean success = true;
+        try{
+            session.execute(query);
+        }catch (Exception e){
+            success = false;
+        }
+        return success;
+    }
+
+    public List<BasicEntityDTO> readMutationByGender(String gender) throws SQLException {
+        String query = "select countryCode,mutationentries from Entries_Space.Entries where gender = '" + gender + "';";
         List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
         ResultSet resultSet = session.execute(query);
         Iterator<Row> iter = resultSet.iterator();

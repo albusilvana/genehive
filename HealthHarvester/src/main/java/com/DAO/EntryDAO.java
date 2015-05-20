@@ -29,7 +29,23 @@ public class EntryDAO {
 
     public List<BasicEntityDTO> getBasicEntitiesDto() throws Exception {
         cassandraEntriesAccessor.activate();
-        List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByContry();
+
+        List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
+        String[] countries = Locale.getISOCountries();
+        for (String country : countries) {
+            List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByContry(country);
+            BasicEntityDTO newEntityDTO = new BasicEntityDTO(country, 0);
+            if (basicEntityDTOList.size() > 0) {
+                newEntityDTO.setZ(basicEntityDTOList.size());
+            }
+            returnList.add(newEntityDTO);
+        }
+        return returnList;
+    }
+
+    public List<BasicEntityDTO> getBasicEntitiesDtoByGender(String gender) throws Exception {
+        cassandraEntriesAccessor.activate();
+        List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);
         List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
         for (String country : countries) {
@@ -43,4 +59,25 @@ public class EntryDAO {
         }
         return returnList;
     }
+
+    public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
+                              String dateOfDeath, String gender, String professionalExposure, String details, String mutationEntries, String physitian) throws Exception {
+        cassandraEntriesAccessor.activate();
+        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
+
+        s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
+                + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath
+                + "," + gender + "," + professionalExposure + "," + details + "," + mutationEntries + "," + physitian + ");");
+
+        boolean result = cassandraEntriesAccessor.insertEntry(s);
+
+        if (result) {
+            return "The entry was successfully inserted.";
+        } else {
+            return "The entry could not be inserted.";
+        }
+    }
+
+
 }
+

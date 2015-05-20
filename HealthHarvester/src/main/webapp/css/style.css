@@ -768,6 +768,9 @@ blockquote cite a:visited 				{ color:#555; }
 	color: #eee;
 }
 
+.selected {
+    background: none repeat scroll 0 0 #000000 !important;
+}
 /* --- list style --- */
 
 ul.general {
@@ -1973,4 +1976,12 @@ article img.pull-right, article .align-right{
 
 @media (max-width: 360px) {
 
+}
+
+input {
+    height: 32px;
+}
+
+select {
+    height: 32px;
 }

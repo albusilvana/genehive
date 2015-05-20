@@ -2,16 +2,13 @@ package com.web.api.rest;
 
 import com.DTO.BasicEntityDTO;
 import com.DTO.EntryDTO;
+import com.DTO.EntryFromUIDTO;
 import com.Model.Entry;
 import com.Service.EntryService;
 import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -32,7 +29,7 @@ public class EntryEndpoint {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EntryDTO>  getAll() throws Exception {
+    public List<EntryDTO> getAll() throws Exception {
         List<EntryDTO> entryDTOList = entryService.getAllEntries();
         return entryDTOList;
     }
@@ -40,9 +37,42 @@ public class EntryEndpoint {
     @GET
     @Path("count/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BasicEntityDTO>  getCountPerCountry() throws Exception {
+    public List<BasicEntityDTO> getCountPerCountry() throws Exception {
         List<BasicEntityDTO> entryDTOList = entryService.getAllBasicEntitiesDTO();
         return entryDTOList;
     }
 
+    @GET
+    @Path("count/byGender")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicEntityDTO> getCountPerCountryByGender(@QueryParam("gender") String gender) throws Exception {
+        List<BasicEntityDTO> entryDTOList = entryService.getAllEntitiesByGender(gender);
+        return entryDTOList;
+    }
+
+    @POST
+    @Path("create")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String createEntry(EntryFromUIDTO entryFromUIDTO) throws Exception {
+        String resp = entryService.insertEntry(entryFromUIDTO.getName(), entryFromUIDTO.getIdentificationNumber(),
+                entryFromUIDTO.getCountryCode(), entryFromUIDTO.getDateOfBirth(), entryFromUIDTO.getDateOfDiagnosis(),
+                entryFromUIDTO.getDateOfDeath(), entryFromUIDTO.getGender(), entryFromUIDTO.getProfessionalExposure(),
+                entryFromUIDTO.getDetails(), entryFromUIDTO.getMutationEntries(), entryFromUIDTO.getPhysitian());
+        return resp;
+    }
+
+//    sample json
+//{
+//    "name": "'Alb Sil'",
+//        "identificationNumber": "'2060834180047'",
+//        "countryCode": "'TH'",
+//        "dateOfBirth": "548704651",
+//        "dateOfDiagnosis": "790564739",
+//        "dateOfDeath": "1332594706",
+//        "gender": "'F'",
+//        "professionalExposure": "'Beryllium_356740475360000000'",
+//        "details": "'some details'",
+//        "mutationEntries": "'KIF5C_KCND3_Nasopharynx Carcinoma'",
+//        "physitian": "'Suzanna Amar'"
+//}
 }
