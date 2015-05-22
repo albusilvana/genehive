@@ -4,11 +4,13 @@ import com.Convertor.core.EntityBaseDTOs;
 import com.Convertor.core.EntryDTOConvertor;
 import com.DAO.EntryDAO;
 import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.EntryDTO;
 import com.Model.Entry;
 import com.accessor.CassandraEntriesAccessor;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +26,14 @@ public class EntryService {
 
     public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
         return entryDAO.getBasicEntitiesDto();
+    }
+
+    public List<EnhancedBasicEntityDTO> getAllEnhancedEntitiesDTO() throws Exception {
+        return entryDAO.getEnhancedBasicEntitiesDto();
+    }
+
+    public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
+        return entryDAO.getEnhancedBasicEntitiesDtoByGender(gender);
     }
 
     public List<BasicEntityDTO> getAllEntitiesByGender(String gender) throws Exception {

@@ -1,6 +1,7 @@
 package com.web.api.rest;
 
 import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.EntryDTO;
 import com.DTO.EntryFromUIDTO;
 import com.Model.Entry;
@@ -39,6 +40,22 @@ public class EntryEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public List<BasicEntityDTO> getCountPerCountry() throws Exception {
         List<BasicEntityDTO> entryDTOList = entryService.getAllBasicEntitiesDTO();
+        return entryDTOList;
+    }
+
+    @GET
+    @Path("count/enhanced/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountry() throws Exception {
+        List<EnhancedBasicEntityDTO> entryDTOList = entryService.getAllEnhancedEntitiesDTO();
+        return entryDTOList;
+    }
+
+    @GET
+    @Path("count/enhanced/byGender")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountryByGender(@QueryParam("gender") String gender) throws Exception {
+        List<EnhancedBasicEntityDTO> entryDTOList = entryService.getEnhancedBasicEntitiesDtoByGender(gender);
         return entryDTOList;
     }
 

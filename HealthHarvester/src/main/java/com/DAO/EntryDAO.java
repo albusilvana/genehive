@@ -2,8 +2,10 @@ package com.DAO;
 
 import com.Convertor.core.EntryDTOConvertor;
 import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.EntryDTO;
 import com.Model.Entry;
+import com.Service.CountryService;
 import com.accessor.CassandraEntriesAccessor;
 
 import java.sql.SQLException;
@@ -43,6 +45,24 @@ public class EntryDAO {
         return returnList;
     }
 
+    public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDto() throws Exception {
+        cassandraEntriesAccessor.activate();
+
+        List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
+        String[] countries = Locale.getISOCountries();
+        for (String country : countries) {
+            List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByContry(country);
+            EnhancedBasicEntityDTO newEntityDTO = new EnhancedBasicEntityDTO();
+            if (basicEntityDTOList.size() > 0) {
+                newEntityDTO.setCode(country);
+                newEntityDTO.setName(CountryService.getCountryNameByCode(country));
+                newEntityDTO.setValue(basicEntityDTOList.size());
+            }
+            returnList.add(newEntityDTO);
+        }
+        return returnList;
+    }
+
     public List<BasicEntityDTO> getBasicEntitiesDtoByGender(String gender) throws Exception {
         cassandraEntriesAccessor.activate();
         List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);
@@ -53,6 +73,25 @@ public class EntryDAO {
             for (BasicEntityDTO basicEntityDTO : basicEntityDTOList) {
                 if (basicEntityDTO.getCode().equals(country)) {
                     newEntityDTO.setZ(newEntityDTO.getZ() + basicEntityDTO.getZ());
+                }
+            }
+            returnList.add(newEntityDTO);
+        }
+        return returnList;
+    }
+
+    public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
+        cassandraEntriesAccessor.activate();
+        List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);
+        List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
+        String[] countries = Locale.getISOCountries();
+        for (String country : countries) {
+            EnhancedBasicEntityDTO newEntityDTO = new EnhancedBasicEntityDTO();
+            for (BasicEntityDTO basicEntityDTO : basicEntityDTOList) {
+                if (basicEntityDTO.getCode().equals(country)) {
+                    newEntityDTO.setCode(country);
+                    newEntityDTO.setName(CountryService.getCountryNameByCode(country));
+                    newEntityDTO.setValue(newEntityDTO.getValue() + basicEntityDTO.getZ());
                 }
             }
             returnList.add(newEntityDTO);

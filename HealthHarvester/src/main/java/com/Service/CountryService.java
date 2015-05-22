@@ -22,5 +22,15 @@ public class CountryService {
         for (int i = 0; i < countries.length; i++) {
             System.out.println(i + ":" + countries[i]);
         }
+
+        CountryService.getCountryNameByCode("RO");
+    }
+
+    public static String getCountryNameByCode(String countryCode) {
+
+        Locale obj = new Locale("", countryCode);
+
+        return obj.getDisplayCountry();
+
     }
 }
