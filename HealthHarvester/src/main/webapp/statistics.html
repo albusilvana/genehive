@@ -132,6 +132,11 @@ function saveEntry() {
 }
 
 $(document).ready(function () {
+    if(!localStorage.getItem("isUserLoggedIn")){
+        localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
+        window.location = "http://localhost:9095/hh/login.html";
+
+    }
     showStatistics();
     refreshWithAll();
 });
@@ -282,6 +287,7 @@ function loadClusterData(url) {
                 </button>
                 <a class="navbar-brand" href="index.html"><span>H</span>ealth<span> H</span>arvester</a>
             </div>
+            <a href="login.html">Log out</a>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
                     <li class="active"><a id="homeTab" onclick="showHome()" href="#">Home</a></li>
@@ -293,9 +299,14 @@ function loadClusterData(url) {
                     </li>
                     <li class="active"><a id="insertTab" onclick="showInsert()" href="#">Insert Entry</a>
                     </li>
-                    <!--<li><a href="portfolio.html">Administration</a></li>-->
-                    <!--<li><a href="contact.html">Contact</a></li>-->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">My account <b class=" icon-angle-down"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" href="login.html">Log out</a></li>
+                        </ul>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </div>
