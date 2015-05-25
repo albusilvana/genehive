@@ -1,9 +1,12 @@
 package com.accessor;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.*;
 
 import com.DTO.BasicEntityDTO;
+import com.DTO.TrainingModelDTO;
+import com.DateUtils;
 import com.Model.BaseEntity;
 import com.Model.Entity;
 import com.Service.EntryService;
@@ -29,6 +32,8 @@ public class CassandraEntriesAccessor {
     public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutationentries from Entries_Space.Entries";
 
     public static final String FIND_ALL_MUTATIONS = "select mutationentries from Entries_Space.Entries";
+
+    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select countryCode,mutationentries,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath from Entries_Space.Entries";
 
     private UtilsService utilsService = new UtilsService();
 
@@ -103,6 +108,34 @@ public class CassandraEntriesAccessor {
             String countryCode = row.getString(2);
             Entry entry = utilsService.convertToEntity(identificationNumber, countryCode, mutation);
             results.add(entry);
+
+        }
+        return results;
+    }
+
+    public List<TrainingModelDTO> getCSVEntries() throws SQLException {
+        if (!active) {
+            LOG.error("CasandraEventsAccessor is not active");
+        }
+        List<TrainingModelDTO> results = new ArrayList<TrainingModelDTO>();
+        ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS_FOR_CSV);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            String countryCode = row.getString(0);
+            String mutationentries = row.getString(1);
+            String gender = row.getString(2);
+            Date dateOfBirth = row.getDate(3);
+           Date dateOfDiagnosis = row.getDate(4);
+            Date dateOfDeath =  row.getDate(5);
+            int dateOfDeathAge = 100;
+            if(dateOfDeath!=null){
+                dateOfDeathAge = DateUtils.getAge(dateOfDeath);
+            }
+            TrainingModelDTO trainingModelDTO = new TrainingModelDTO(countryCode, mutationentries, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge);
+            results.add(trainingModelDTO);
 
         }
         return results;

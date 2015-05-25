@@ -30,47 +30,60 @@ public class EntryEndpoint {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EntryDTO> getAll() throws Exception {
-        List<EntryDTO> entryDTOList = entryService.getAllEntries();
-        return entryDTOList;
+    public List<EntryDTO> getAll(@QueryParam("token") String token) throws Exception {
+        if (token != "") {
+            List<EntryDTO> entryDTOList = entryService.getAllEntries();
+            return entryDTOList;
+        } else return null;
+
     }
 
     @GET
     @Path("count/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BasicEntityDTO> getCountPerCountry() throws Exception {
-        List<BasicEntityDTO> entryDTOList = entryService.getAllBasicEntitiesDTO();
-        return entryDTOList;
+    public List<BasicEntityDTO> getCountPerCountry(@QueryParam("token") String token) throws Exception {
+        if (token != "") {
+            List<BasicEntityDTO> entryDTOList = entryService.getAllBasicEntitiesDTO();
+            return entryDTOList;
+        } else return null;
     }
 
     @GET
     @Path("count/enhanced/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountry() throws Exception {
-        List<EnhancedBasicEntityDTO> entryDTOList = entryService.getAllEnhancedEntitiesDTO();
-        return entryDTOList;
+    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountry(@QueryParam("token") String token) throws Exception {
+        if( token != ""){
+            List<EnhancedBasicEntityDTO> entryDTOList = entryService.getAllEnhancedEntitiesDTO();
+            return entryDTOList;
+        } else return null;
     }
 
     @GET
     @Path("count/enhanced/byGender")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountryByGender(@QueryParam("gender") String gender) throws Exception {
-        List<EnhancedBasicEntityDTO> entryDTOList = entryService.getEnhancedBasicEntitiesDtoByGender(gender);
-        return entryDTOList;
+    public List<EnhancedBasicEntityDTO> getEnhancedCountPerCountryByGender(@QueryParam("gender") String gender, @QueryParam("token") String token) throws Exception {
+        if (token != "") {
+            List<EnhancedBasicEntityDTO> entryDTOList = entryService.getEnhancedBasicEntitiesDtoByGender(gender);
+            return entryDTOList;
+        } else return null;
     }
 
     @GET
     @Path("count/byGender")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BasicEntityDTO> getCountPerCountryByGender(@QueryParam("gender") String gender) throws Exception {
-        List<BasicEntityDTO> entryDTOList = entryService.getAllEntitiesByGender(gender);
-        return entryDTOList;
+    public List<BasicEntityDTO> getCountPerCountryByGender(@QueryParam("gender") String gender, @QueryParam("token") String token) throws Exception {
+        if (token != "") {
+            List<BasicEntityDTO> entryDTOList = entryService.getAllEntitiesByGender(gender);
+            return entryDTOList;
+        } else {
+            return null;
+        }
     }
 
     @POST
     @Path("create")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String createEntry(EntryFromUIDTO entryFromUIDTO) throws Exception {
+    public String createEntry(EntryFromUIDTO entryFromUIDTO, @QueryParam("token") String token) throws Exception {
         String resp = entryService.insertEntry(entryFromUIDTO.getName(), entryFromUIDTO.getIdentificationNumber(),
                 entryFromUIDTO.getCountryCode(), entryFromUIDTO.getDateOfBirth(), entryFromUIDTO.getDateOfDiagnosis(),
                 entryFromUIDTO.getDateOfDeath(), entryFromUIDTO.getGender(), entryFromUIDTO.getProfessionalExposure(),

@@ -1,6 +1,7 @@
 import com.DTO.EntryDTO;
 import com.Service.EntryService;
 import com.Utils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class TestEntryService {
     }
 
     @Test
+    @Ignore
     public void testInsertEntries() throws Exception {
 //        for (int i=0;i<1000; i++){
             Utils utils = new Utils();

@@ -48,13 +48,22 @@
             }
         });
         function submitLogin(){
-            if( $("#username").val() == "admin" && $("#password").val() == "admin"){
-                localStorage.setItem("isUserLoggedIn", true);
-                window.location = "http://localhost:9095/hh/statistics.html";
-            }else{
-                document.getElementById("errors").innerHTML="The username or password is incorrect. Please try again.";
-                document.getElementById("errors").style.display = "block";
-            }
+            $.ajax({
+                url: "http://localhost:9095/hh/API/v1/authenticate/withCredentials?username="+$("#username").val()+"&password="+$("#password").val(),
+                context: document.body
+            }).done(function(resp) {
+                if(resp != ""){
+                    localStorage.setItem("isUserLoggedIn", true);
+                    localStorage.setItem("token", resp);
+                    window.location = "http://localhost:9095/hh/statistics.html";
+                }
+                else{
+                    document.getElementById("errors").innerHTML="The username or password is incorrect. Please try again.";
+                    document.getElementById("errors").style.display = "block";
+                }
+            });
+
+
         }
     </script>
 </head>

@@ -4,6 +4,7 @@ import com.Convertor.core.EntryDTOConvertor;
 import com.DTO.BasicEntityDTO;
 import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.EntryDTO;
+import com.DTO.TrainingModelDTO;
 import com.Model.Entry;
 import com.Service.CountryService;
 import com.accessor.CassandraEntriesAccessor;
@@ -27,6 +28,13 @@ public class EntryDAO {
         List<Entry> entities = (List<Entry>) cassandraEntriesAccessor.readEntries();
 
         return entryDTOConvertor.toDTOList(entities);
+    }
+
+    public List<TrainingModelDTO> getAllTrainingModels() throws Exception {
+        cassandraEntriesAccessor.activate();
+        List<TrainingModelDTO> entities = cassandraEntriesAccessor.getCSVEntries();
+
+        return entities;
     }
 
     public List<BasicEntityDTO> getBasicEntitiesDto() throws Exception {

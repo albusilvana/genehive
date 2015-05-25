@@ -91,9 +91,9 @@ function showStatistics() {
 function refreshWithAll() {
     var selectedVal = $('input[name=mapType]:checked').val();
     if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/all');
+        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/all?token='+localStorage.getItem("token"));
     } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/all');
+        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/all?token='+localStorage.getItem("token"));
     }
     $("#all").addClass("selected");
     $("#women").removeClass("selected");
@@ -107,9 +107,9 @@ function refreshWithMen() {
 
     var selectedVal = $('input[name=mapType]:checked').val();
     if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=M');
+        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=M&token='+localStorage.getItem("token"));
     } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=M');
+        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=M&token='+localStorage.getItem("token"));
     }
 
 }
@@ -121,9 +121,9 @@ function refreshWithWomen() {
 
     var selectedVal = $('input[name=mapType]:checked').val();
     if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=F');
+        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=F&token='+localStorage.getItem("token"));
     } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=F');
+        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=F&token='+localStorage.getItem("token"));
     }
 
 }
@@ -135,7 +135,6 @@ $(document).ready(function () {
     if(!localStorage.getItem("isUserLoggedIn")){
         localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
         window.location = "http://localhost:9095/hh/login.html";
-
     }
     showStatistics();
     refreshWithAll();
@@ -287,7 +286,6 @@ function loadClusterData(url) {
                 </button>
                 <a class="navbar-brand" href="index.html"><span>H</span>ealth<span> H</span>arvester</a>
             </div>
-            <a href="login.html">Log out</a>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
                     <li class="active"><a id="homeTab" onclick="showHome()" href="#">Home</a></li>
