@@ -125,6 +125,11 @@ public class EntryDAO {
         }
     }
 
+    public long getMutationCount() throws Exception {
+        cassandraEntriesAccessor.activate();
+        return  cassandraEntriesAccessor.readMutationCount();
+    }
+
 
 }
 

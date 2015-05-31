@@ -80,6 +80,18 @@ public class EntryEndpoint {
         }
     }
 
+    @GET
+    @Path("total/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public long getTotalCount( @QueryParam("token") String token) throws Exception {
+        if (token != "") {
+           long no = entryService.getMutationCount();
+            return no;
+        } else {
+            return 0;
+        }
+    }
+
     @POST
     @Path("create")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -90,6 +102,8 @@ public class EntryEndpoint {
                 entryFromUIDTO.getDetails(), entryFromUIDTO.getMutationEntries(), entryFromUIDTO.getPhysitian());
         return resp;
     }
+
+
 
 //    sample json
 //{

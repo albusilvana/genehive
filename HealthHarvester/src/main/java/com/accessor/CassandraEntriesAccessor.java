@@ -128,10 +128,10 @@ public class CassandraEntriesAccessor {
             String mutationentries = row.getString(1);
             String gender = row.getString(2);
             Date dateOfBirth = row.getDate(3);
-           Date dateOfDiagnosis = row.getDate(4);
-            Date dateOfDeath =  row.getDate(5);
+            Date dateOfDiagnosis = row.getDate(4);
+            Date dateOfDeath = row.getDate(5);
             int dateOfDeathAge = 100;
-            if(dateOfDeath!=null){
+            if (dateOfDeath != null) {
                 dateOfDeathAge = DateUtils.getAge(dateOfDeath);
             }
             TrainingModelDTO trainingModelDTO = new TrainingModelDTO(countryCode, mutationentries, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge);
@@ -149,7 +149,8 @@ public class CassandraEntriesAccessor {
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
-            Row row = iter.next();;
+            Row row = iter.next();
+            ;
             String mutations = row.getString(0);
             BasicEntityDTO basicEntityDTO = utilsService.convertToBasicEntityDTO(countryCode, mutations);
             results.add(basicEntityDTO);
@@ -157,11 +158,26 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
+    public long readMutationCount() throws SQLException {
+        String query = "select count(*) from Entries_Space.Entries;";
+        long no = 0;
+        ResultSet resultSet = session.execute(query);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            ;
+            no = row.getLong(0);
+        }
+        return no;
+    }
+
     public boolean insertEntry(String query) throws SQLException {
         boolean success = true;
-        try{
+        try {
             session.execute(query);
-        }catch (Exception e){
+        } catch (Exception e) {
             success = false;
         }
         return success;

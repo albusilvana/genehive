@@ -18,16 +18,16 @@ public class TestEntryService {
     @Test
     public void testGetEntries() throws Exception {
 
-//        List<EntryDTO> entities = entryService.getAllEntries();
-//
-//        assertEquals(216, entities.size());
+        long entities = entryService.getMutationCount();
+
+        assertEquals(17380, entities);
 
     }
 
     @Test
     @Ignore
     public void testInsertEntries() throws Exception {
-//        for (int i=0;i<1000; i++){
+        for (int i=0;i<2000; i++){
             Utils utils = new Utils();
             String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
             Integer dateOfBirth = utils.getRandomDateOfBirth();
@@ -48,7 +48,7 @@ public class TestEntryService {
             } else {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth +"", dateOfDiagnosis+"",
                         "''", gender, professionalExposure, "''", mutationEntries, physitian);
-//            }
+            }
 
             assertEquals(result, "The entry was successfully inserted.");
         }

@@ -1,272 +1,40 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Health Harvester</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Health Harvester</title>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.fancybox.pack.js"></script>
-<script src="js/jquery.fancybox-media.js"></script>
-<script src="js/google-code-prettify/prettify.js"></script>
-<script src="js/portfolio/jquery.quicksand.js"></script>
-<script src="js/portfolio/setting.js"></script>
-<script src="js/jquery.flexslider.js"></script>
-<script src="js/animate.js"></script>
-<script src="js/custom.js"></script>
-<script src="utils.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/jquery.fancybox-media.js"></script>
+    <script src="js/google-code-prettify/prettify.js"></script>
+    <script src="js/portfolio/jquery.quicksand.js"></script>
+    <script src="js/portfolio/setting.js"></script>
+    <script src="js/jquery.flexslider.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="utils.js"></script>
 
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
-<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<!--<link href="css/jcarousel.css" rel="stylesheet"/>-->
-<link href="css/flexslider.css" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <!--<link href="css/jcarousel.css" rel="stylesheet"/>-->
+    <link href="css/flexslider.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="utils.css" rel="stylesheet"/>
 
-<!-- Theme skin -->
-<link href="skins/default.css" rel="stylesheet"/>
+    <!-- Theme skin -->
+    <link href="skins/default.css" rel="stylesheet"/>
 
-<style type="text/css">
-    .cont {
-        width: 500px;
-        clear: both;
-    }
+    <style type="text/css">
 
-    .cont input {
-        width: 100%;
-        clear: both;
-    }
+    </style>
 
-    .cont select {
-        width: 100%;
-        clear: both;
-    }
-
-    .highcharts-tooltip > span {
-        padding: 10px;
-        white-space: normal !important;
-        width: 200px;
-    }
-
-    .loading {
-        margin-top: 10em;
-        text-align: center;
-        color: gray;
-    }
-
-    .f32 .flag {
-        vertical-align: middle !important;
-    }
-</style>
-
-<style type="text/css">
-    ${demo.css}
-</style>
-<script type="text/javascript">
-function insertProfesionalExposure() {
-    var exposures = "Arsenic,Asbestos,Asphalt fumes,Benzene,Beryllium,1-Bromopropane,13-Butadiene,Cadmium,Chromium,Diacetyl,Diesel exhaust,Ethylene oxide,Formaldehyde,Hexavalent chromium,Hydrogen sulfide,Isocyanates,Lead,Mercury,Metals toxic,Metalworking fluids,Methylene chloride,SilicaCrystalline,Solvents,Synthetic mineral fibers,Toluene".split(",");
-    for (var i = 0; i < exposures.length; i++) {
-        $("#profestionalExposure").append($("<option />").val(exposures[i]).text(exposures[i]));
-
-    }
-}
-function showInsert() {
-    $("#insertContent").show();
-    $("#statisticsContent").hide()
-    $("#homeContent").hide();
-    insertProfesionalExposure();
-}
-function showHome() {
-    $("#homeContent").show();
-    $("#statisticsContent").hide();
-    $("#insertContent").hide();
-}
-function showStatistics() {
-    $("#homeContent").hide();
-    $("#statisticsContent").show();
-    $("#insertContent").hide();
-}
-
-function refreshWithAll() {
-    var selectedVal = $('input[name=mapType]:checked').val();
-    if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/all?token='+localStorage.getItem("token"));
-    } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/all?token='+localStorage.getItem("token"));
-    }
-    $("#all").addClass("selected");
-    $("#women").removeClass("selected");
-    $("#men").removeClass("selected");
-}
-function refreshWithMen() {
-
-    $("#all").removeClass("selected");
-    $("#women").removeClass("selected");
-    $("#men").addClass("selected");
-
-    var selectedVal = $('input[name=mapType]:checked').val();
-    if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=M&token='+localStorage.getItem("token"));
-    } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=M&token='+localStorage.getItem("token"));
-    }
-
-}
-function refreshWithWomen() {
-
-    $("#all").removeClass("selected");
-    $("#women").addClass("selected");
-    $("#men").removeClass("selected");
-
-    var selectedVal = $('input[name=mapType]:checked').val();
-    if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=F&token='+localStorage.getItem("token"));
-    } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=F&token='+localStorage.getItem("token"));
-    }
-
-}
-function saveEntry() {
-
-}
-
-$(document).ready(function () {
-    if(!localStorage.getItem("isUserLoggedIn")){
-        localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
-        window.location = "http://localhost:9095/hh/login.html";
-    }
-    showStatistics();
-    refreshWithAll();
-});
-function loadHighLightData(url) {
-
-    $.getJSON(url, function (data) {
-        $.each(data, function () {
-            this.flag = this.code.replace('UK', 'GB').toLowerCase();
-        });
-
-        // Initiate the chart
-        $('#container').highcharts('Map', {
-
-            title: {
-                text: 'Disorders by country'
-            },
-
-            legend: {
-                title: {
-                    text: 'Mutations number',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                    }
-                }
-            },
-
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-
-            tooltip: {
-                backgroundColor: 'none',
-                borderWidth: 0,
-                shadow: false,
-                useHTML: true,
-                padding: 0,
-                pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>'
-                        + ' {point.name}: <b>{point.value}</b>',
-                positioner: function () {
-                    return { x: 0, y: 250 };
-                }
-            },
-
-            colorAxis: {
-                min: 1,
-                max: 1000,
-                type: 'logarithmic'
-            },
-
-            series: [
-                {
-                    data: data,
-                    mapData: Highcharts.maps['custom/world'],
-                    joinBy: ['iso-a2', 'code'],
-                    name: 'Mutation count',
-                    states: {
-                        hover: {
-                            color: '#BADA55'
-                        }
-                    }
-                }
-            ]
-        });
-    })
-}
-function loadClusterData(url) {
-
-    $.getJSON(url, function (data) {
-
-        var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
-
-        // Correct UK to GB in data
-        $.each(data, function () {
-            if (this.code === 'UK') {
-                this.code = 'GB';
-            }
-        });
-
-        $('#container').highcharts('Map', {
-            chart: {
-                borderWidth: 1
-            },
-
-            title: {
-                text: 'Disorders by country'
-            },
-
-            subtitle: {
-                text: 'Click to see more details'
-            },
-
-            legend: {
-                enabled: false
-            },
-
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-
-            series: [
-                {
-                    name: 'Countries',
-                    mapData: mapData,
-                    color: '#E0E0E0',
-                    enableMouseTracking: false
-                },
-                {
-                    type: 'mapbubble',
-                    mapData: mapData,
-                    name: 'Mutation count',
-                    joinBy: ['iso-a2', 'code'],
-                    data: data,
-                    minSize: 4,
-                    maxSize: '12%',
-                    tooltip: {
-                        pointFormat: '{point.code}: {point.z} '
-                    }
-                }
-            ]
-        });
-
-    });
-}
-;
-</script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
 </head>
 <body>
 <script src="js/highmaps.js"></script>
@@ -277,7 +45,7 @@ function loadClusterData(url) {
 <!-- start header -->
 <header>
     <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container" style="width:1900px !important; border-bottom:1px solid #68a4c4">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -298,9 +66,11 @@ function loadClusterData(url) {
                     <li class="active"><a id="insertTab" onclick="showInsert()" href="#">Insert Entry</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">My account <b class=" icon-angle-down"></b></a>
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+                           data-close-others="false">My account <b class=" icon-angle-down"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" href="login.html">Log out</a></li>
+                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" href="login.html">Log
+                                out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -311,21 +81,65 @@ function loadClusterData(url) {
 </header>
 
 <div id="homeContent">Hoome</div>
-<div id="statisticsContent">
-    <div class="cta-text" style="margin-bottom: 20px">
+<div id="statisticsContent" style="width:100%; padding-top:50px; height:800px;">
+    <div style="display:inline; width:40%; float:left;margin-left: 30px;padding-bottom:20px; ">
+        <div style="margin-bottom: 20px">
 
-        View <input style="height: auto;width: auto" type="radio" name="mapType" onchange="refreshWithAll()"
-                    value="cluster"> Cluster
-        <input type="radio" style="height: auto; width: auto;" name="mapType" onchange="refreshWithAll()"
-               value="highlight" checked> Highlight
-        <h2><span>Filter</span> by gender</h2>
-        <button id="all" onclick="refreshWithAll()" class="btn btn-theme">All</button>
-        <button id="women" onclick="refreshWithWomen()" class="btn btn-theme">Only Women</button>
-        <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
+
+            <label>View</label><input type="radio" value="cluster" onchange="refreshWithAll()" name="mapType" style="height: auto;width: auto"> Cluster
+            <input type="radio" checked="" value="highlight" onchange="refreshWithAll()" name="mapType" style="height: auto; width: auto;"> Highlight
+            <br><br>
+            <label><span>Filter</span> by gender</label>
+            <button id="all" onclick="refreshWithAll()" class="btn btn-theme">All</button>
+            <button id="women" onclick="refreshWithWomen()" class="btn btn-theme">Only Women</button>
+            <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
+            <br>
+
+            <div style="padding:10px 0;"><label>Date of birth:</label> <input type="date" name="birthDay"></div>
+            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <input type="date" name="diagnosticDay">
+            </div>
+            <div style="padding:10px 0;"><label>Date of death:</label> <input type="date" name="deathDay"></div>
+            <div style="padding:10px 0;"><label>Gender:</label> <input style="height: auto;width: auto" type="radio"
+                                                                       name="sex"
+                                                                       value="M" checked> Male <input type="radio"
+                                                                                                      style="height: auto; width: auto;"
+                                                                                                      name="sex"
+                                                                                                      value="F">
+                Female
+                <br></div>
+            <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
+                    id="profestionalExposure1"></select>
+                from: <input style="width:100px"
+                        type="date" name="startDay"> to <input style="width:100px"
+                        type="date" name="endDay"></div>
+            <div style="padding:10px 0;"><label>Physician: </label><input class="inputText"></div>
+            <div style="padding:10px 0;"><label>Mutation:</label><input class="inputText"></div>
+
+
+            <div style="padding:10px 0;"><label>Locus: </label><input
+                    class="inputText"></div>
+            <div style="padding:10px 0;"><label>Disorder: </label><input></div>
+
+            <button id="search" onclick="refreshMap()" class="btn btn-theme" style="
+    margin-left: 340px;width:250px;   margin-bottom: 10px;">Search in current entries</button>
+
+            <div style="width: 650px;padding-top:30px;border-top: 1px solid #68a4c4">
+                <div><label>Select date:</label> <input type="date" name="birthDay"> <button class="btn btn-theme" style="width:250px" onclick="refreshMapWithPrediction()">Search in predicted results</button></div>
+
+            </div>
+        </div>
+    </div>
+    <div style="display:inline; width:60%">
+        <div id="container" style="height: 600px;width:650px; min-width: 810px; max-width: 100px; margin: 0 auto;position:absolute;margin-left:700px;margin-top: 80px;">
+        </div>
+    </div>
+    <div style="display:inline;float:right">
         <br>
+        <button class="btn btn-theme" onclick="refreshMap()">Download results as csv</button>
+        <button class="btn btn-theme" onclick="refreshMap()">Download results as pdf</button>
+        <button class="btn btn-theme" onclick="refreshMap()">Download results as xml</button>
     </div>
-    <div id="container" style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto">
-    </div>
+
 </div>
 <div id="insertContent" style="width: 100%">
 <div class="pricing-box-alt cont" style="margin-left:38%">

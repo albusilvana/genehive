@@ -45,4 +45,8 @@ public class EntryService {
         return entryDAO.insertEntry(name, identificationNumber, countryCode, dateOfBirth, dateOfDiagnosis,
                 dateOfDeath, gender, professionalExposure, details, mutationEntries, physitian);
     }
+
+    public long getMutationCount() throws Exception {
+        return  entryDAO.getMutationCount();
+    }
 }

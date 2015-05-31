@@ -22,7 +22,8 @@ public class Utils {
         Locale locale = new Locale("en", "US", "WIN");
         // get ISO countries
         String[] countries = Locale.getISOCountries();
-        return "'" + countries[rand.nextInt(countries.length)] + "'";
+//        return "'" + countries[rand.nextInt(countries.length)] + "'";
+        return "'FI'";
     }
 
     public String getRandomName() {
@@ -77,7 +78,7 @@ public class Utils {
         //locus
         String[] locus = LocusUtils.getLocuses();
         int m = rand.nextInt(locus.length);
-        String locus_pos = genes[m];
+        String locus_pos = locus[m];
 
         //disorders
         String[] disorders = DisorderUtils.getDisorders();
@@ -102,7 +103,7 @@ public class Utils {
 //                   'radiation_10000','details','A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer','Oltean Marin');
     public static void main(String[] args) {
         Utils utils = new Utils();
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 10000; i++) {
             String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
