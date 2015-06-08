@@ -1,10 +1,2191 @@
-package com;
+package com.Utils;
 
 /**
  * Created by silvana.albert on 5/18/15.
  */
 public class GeneUtils {
-    private static String genes = "3.8-1.2\n" +
+    private static String geneName =
+            "HLA complex group 26 non-protein coding pseudogene\n" +
+            "alpha-1-B glycoprotein\n" +
+            "APOBEC1 complementation factor\n" +
+            "alpha-2-macroglobulin\n" +
+            "alpha-2-macroglobulin-like 1\n" +
+            "alpha 1,4-galactosyltransferase\n" +
+            "Alopecia areata 1\n" +
+            "Alopecia areata 2\n" +
+            "aortic aneurysm, familial abdominal 1\n" +
+            "Aortic aneurysm, familial abdominal 2\n" +
+            "Aneurysm, familial abdominal 3\n" +
+            "Aortic aneurysm, familial abdominal, 4\n" +
+            "achalasia, adrenocortical insufficiency, alacrimia\n" +
+            "acetoacetyl-CoA synthetase\n" +
+            "arylacetamide deacetylase\n" +
+            "aminoadipate aminotransferase\n" +
+            "alpha- and gamma-adaptin binding protein\n" +
+            "angio-associated, migratory cell protein\n" +
+            "aralkylamine N-acetyltransferase\n" +
+            "alanyl-tRNA synthetase\n" +
+            "alanyl-tRNA synthetase 2, mitochondrial\n" +
+            "aminoadipate-semialdehyde synthase\n" +
+            "Allergic/atopic asthma related QTL 1\n" +
+            "Allergic/atopic asthma related QTL 10\n" +
+            "Allergic/atopic asthma related QTL 11\n" +
+            "Allergic/atopic asthma related QTL 12\n" +
+            "Allergic/atopic asthma related QTL 13\n" +
+            "Allergic/atopic asthma related QTL 14\n" +
+            "Allergic/atopic asthma related QTL 15\n" +
+            "Allergic/atopic asthma related QTL 16\n" +
+            "Allergic/atopic asthma related QTL 17\n" +
+            "Allergic/atopic asthma related QTL 18\n" +
+            "Allergic/atopic asthma related QTL 2\n" +
+            "Allergic/atopic asthma related QTL 20\n" +
+            "Allergic/atopic asthma related QTL 21\n" +
+            "Allergic/atopic asthma related QTL 22\n" +
+            "Allergic/atopic asthma related QTL 23\n" +
+            "Allergic/atopic asthma related QTL 24\n" +
+            "Allergic/atopic asthma related QTL 25\n" +
+            "Allergic/atopic asthma related QTL 25\n" +
+            "Allergic/atopic asthma related QTL 27\n" +
+            "Allergic/Atopic asthma related QTL 28\n" +
+            "Allergic/Atopic asthma related QTL 29\n" +
+            "Allergic/atopic asthma related QTL 30\n" +
+            "Allergic/Atopic asthma related QTL 32\n" +
+            "Allergic/atopic asthma related QTL 33\n" +
+            "Allergic/atopic asthma related QTL 34\n" +
+            "Allergic/atopic asthma related QTL 35\n" +
+            "Allergic/atopic asthma related QTL 36\n" +
+            "Allergic/atopic asthma related QTL 37\n" +
+            "Allergic/atopic asthma related QTL 38\n" +
+            "Allergic/atopic asthma related QTL 39\n" +
+            "Allergic/atopic asthma related QTL 4\n" +
+            "Allergic/atopic asthma related QTL 40\n" +
+            "Allergic/Atopic asthma related QTL 41\n" +
+            "Allergic/atopic asthma related QTL 42\n" +
+            "Allergic/atopic asthma related QTL 43\n" +
+            "Allergic/atopic asthma related QTL 44\n" +
+            "Allergic/atopic asthma related QTL 47\n" +
+            "Allergic/atopic asthma related QTL 48\n" +
+            "Allergic/atopic asthma related QTL 49\n" +
+            "Allergic/atopic asthma related QTL 5\n" +
+            "Allergic/atopic asthma related QTL 50\n" +
+            "Allergic/atopic asthma related QTL 51\n" +
+            "Allergic/atopic asthma related QTL 52\n" +
+            "Allergic/atopic asthma related QTL 53\n" +
+            "Allergic/atopic asthma related QTL 54\n" +
+            "Allergic/atopic asthma related QTL 5\n" +
+            "Allergic/Atopic asthma related QTL 56\n" +
+            "Allergic/atopic asthma related QTL 6\n" +
+            "Allergic/atopic asthma related QTL 7\n" +
+            "Allergic/atopic asthma related QTL 8\n" +
+            "Allergic/atopic asthma related QTL 9\n" +
+            "Aortic aneurysm, familial thoracic 1\n" +
+            "Aortic aneurysm, familial thoracic 2\n" +
+            "apoptosis-associated tyrosine kinase\n" +
+            "adeno-associated virus integration site 1\n" +
+            "4-aminobutyrate aminotransferase\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 1\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 12\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 2\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 3\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 4\n" +
+            "ATP-binding cassette, sub-family A ABC1, member 5\n" +
+            "ATP-binding cassette, sub-family B MDR/TAP, member 1\n" +
+            "ATP-binding cassette, sub-family B MDR/TAP, member 11\n" +
+            "ATP-binding cassette, sub-family B MDR/TAP, member 4\n" +
+            "ATP-binding cassette, sub-family B MDR/TAP, member 6\n" +
+            "ATP-binding cassette, sub-family B MDR/TAP, member 7\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 1\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 10\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 11\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 12\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 2\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 3\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 4\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 5\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 6\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 8\n" +
+            "ATP-binding cassette, sub-family C CFTR/MRP, member 9\n" +
+            "ATP-binding cassette, sub-family D ALD, member 1\n" +
+            "ATP-binding cassette, sub-family D ALD, member 2\n" +
+            "ATP-binding cassette, sub-family D ALD, member 3\n" +
+            "ATP-binding cassette, sub-family D ALD, member 4\n" +
+            "ATP-binding cassette, sub-family F GCN20, member 2\n" +
+            "ATP-binding cassette, sub-family G WHITE, member 1\n" +
+            "ATP-binding cassette, sub-family G WHITE, member 2\n" +
+            "ATP-binding cassette, sub-family G WHITE, member 5\n" +
+            "ATP-binding cassette, sub-family G WHITE, member 8\n" +
+            "abhydrolase domain containing 11\n" +
+            "abhydrolase domain containing 12\n" +
+            "abhydrolase domain containing 5\n" +
+            "abl-interactor 1\n" +
+            "c-abl oncogene 1, non-receptor tyrosine kinase\n" +
+            "c-abl oncogene 2, non-receptor tyrosine kinase\n" +
+            "ABO blood group transferase A, alpha 1-3-N-acetylgalactosaminyltransferase; transferase B, alpha 1-3-galactosyltransferase\n" +
+            "active BCR-related\n" +
+            "actin-binding Rho activating protein\n" +
+            "activator of basal transcription 1\n" +
+            "uncharacterized LOC101927269\n" +
+            "uncharacterized LOC728730\n" +
+            "uncharacterized LOC100129434\n" +
+            "uncharacterized LOC285626\n" +
+            "uncharacterized LOC349160\n" +
+            "uncharacterized LOC101927027\n" +
+            "uncharacterized LOC101927630\n" +
+            "uncharacterized LOC100506725\n" +
+            "uncharacterized LOC102659288\n" +
+            "uncharacterized LOC151121\n" +
+            "uncharacterized LOC285696\n" +
+            "uncharacterized LOC654841\n" +
+            "acetyl-CoA acyltransferase 1\n" +
+            "acetyl-CoA acyltransferase 2\n" +
+            "acetyl-CoA carboxylase alpha\n" +
+            "acetyl-CoA carboxylase beta\n" +
+            "acyl-CoA dehydrogenase family, member 11\n" +
+            "acyl-CoA dehydrogenase family, member 8\n" +
+            "acyl-CoA dehydrogenase family, member 9\n" +
+            "acyl-CoA dehydrogenase, long chain\n" +
+            "acyl-CoA dehydrogenase, C-4 to C-12 straight chain\n" +
+            "acyl-CoA dehydrogenase, C-2 to C-3 short chain\n" +
+            "acyl-CoA dehydrogenase, short/branched chain\n" +
+            "acyl-CoA dehydrogenase, very long chain\n" +
+            "aggrecan\n" +
+            "acetyl-CoA acetyltransferase 1\n" +
+            "acetyl-CoA acetyltransferase 2\n" +
+            "acyl-CoA binding domain containing 5\n" +
+            "adrenocortical dysplasia homolog mouse\n" +
+            "angiotensin I converting enzyme\n" +
+            "angiotensin I converting enzyme 2\n" +
+            "alkaline ceramidase 1\n" +
+            "alkaline ceramidase 2\n" +
+            "alkaline ceramidase 3\n" +
+            "Asymmetric crying facies Cayler cardiofacial syndrome\n" +
+            "acetylcholinesterase Yt blood group\n" +
+            "apoptotic chromatin condensation inducer 1\n" +
+            "atypical chemokine receptor 3\n" +
+            "atypical chemokine receptor 4\n" +
+            "acrocallosal syndrome\n" +
+            "aconitase 1, soluble\n" +
+            "aconitase 2, mitochondrial\n" +
+            "acyl-CoA thioesterase 11\n" +
+            "acyl-CoA thioesterase 13\n" +
+            "acyl-CoA thioesterase 7\n" +
+            "acyl-CoA oxidase 1, palmitoyl\n" +
+            "acyl-CoA oxidase 3, pristanoyl\n" +
+            "acid phosphatase 1, soluble\n" +
+            "acid phosphatase 2, lysosomal\n" +
+            "acid phosphatase 5, tartrate resistant\n" +
+            "acid phosphatase 6, lysophosphatidic\n" +
+            "acid phosphatase, prostate\n" +
+            "acid phosphatase, testicular\n" +
+            "acrosin\n" +
+            "acrosin binding protein\n" +
+            "acidic repeat containing\n" +
+            "Acropectoral syndrome\n" +
+            "Acropectorovertebral dysplasia F syndrome\n" +
+            "acrosomal vesicle protein 1\n" +
+            "acyl-CoA synthetase family member 3\n" +
+            "acyl-CoA synthetase long-chain family member 3\n" +
+            "acyl-CoA synthetase long-chain family member 4\n" +
+            "acyl-CoA synthetase long-chain family member 5\n" +
+            "acyl-CoA synthetase long-chain family member 6\n" +
+            "acyl-CoA synthetase medium-chain family member 3\n" +
+            "acyl-CoA synthetase short-chain family member 3\n" +
+            "actin-like protein ACT gene\n" +
+            "actin, alpha 1, skeletal muscle\n" +
+            "actin, alpha 2, smooth muscle, aorta\n" +
+            "actin, beta\n" +
+            "actin, alpha, cardiac muscle 1\n" +
+            "actin, gamma 1\n" +
+            "actin, gamma 2, smooth muscle, enteric\n" +
+            "actin-like 7A\n" +
+            "actin-like 7B\n" +
+            "actin-like 9\n" +
+            "actinin, alpha 1\n" +
+            "actinin, alpha 2\n" +
+            "actinin, alpha 3 gene/pseudogene\n" +
+            "actinin, alpha 4\n" +
+            "ARP2 actin-related protein 2 homolog yeast\n" +
+            "ACTR3B pseudogene 6\n" +
+            "ARP3 actin-related protein 3 homolog C yeast\n" +
+            "activin A receptor, type I\n" +
+            "activin A receptor, type IB\n" +
+            "activin A receptor, type IC\n" +
+            "activin A receptor, type IIA\n" +
+            "activin A receptor, type IIB\n" +
+            "activin A receptor type II-like 1\n" +
+            "aminoacylase 1\n" +
+            "aspartoacylase aminocyclase 3\n" +
+            "Alzheimer disease-10\n" +
+            "Alzheimer disease-11\n" +
+            "Alzheimer disease 12\n" +
+            "Alzheimer disease-13\n" +
+            "Alzheimer disease 14\n" +
+            "Alzheimer disease-15\n" +
+            "Alzheimer disease 16\n" +
+            "Alzheimer disease 17\n" +
+            "Alzheimer disease 5\n" +
+            "Alzheimer disease 6\n" +
+            "Alzheimer disease 7\n" +
+            "Alzheimer disease 8\n" +
+            "Alzheimer disease 9\n" +
+            "adenosine deaminase\n" +
+            "adenosine deaminase-like\n" +
+            "ADAM metallopeptidase domain 10\n" +
+            "ADAM metallopeptidase domain 11\n" +
+            "ADAM metallopeptidase domain 17\n" +
+            "ADAM metallopeptidase domain 21 pseudogene 1\n" +
+            "ADAM metallopeptidase domain 22\n" +
+            "ADAM metallopeptidase domain 33\n" +
+            "ADAM metallopeptidase domain 3A pseudogene\n" +
+            "ADAM metallopeptidase domain 7\n" +
+            "ADAM metallopeptidase domain 8\n" +
+            "ADAM metallopeptidase domain 9\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 1\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 10\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 13\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 17\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 18\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 2\n" +
+            "ADAM metallopeptidase with thrombospondin type 1 motif, 20\n" +
+            "ADAMTS-like 1\n" +
+            "ADAMTS-like 2\n" +
+            "ADAMTS-like 3\n" +
+            "ADAMTS-like 4\n" +
+            "ArfGAP with dual PH domains 2\n" +
+            "adenosine deaminase, RNA-specific\n" +
+            "adenosine deaminase, tRNA-specific 3\n" +
+            "aarF domain containing kinase 2\n" +
+            "aarF domain containing kinase 3\n" +
+            "aarF domain containing kinase 4\n" +
+            "adenylate cyclase 1 brain\n" +
+            "adenylate cyclase 10 soluble\n" +
+            "adenylate cyclase 2 brain\n" +
+            "adenylate cyclase 3\n" +
+            "adenylate cyclase 4\n" +
+            "adenylate cyclase 5\n" +
+            "adenylate cyclase 6\n" +
+            "adenylate cyclase 7\n" +
+            "adenylate cyclase 8 brain\n" +
+            "adenylate cyclase 9\n" +
+            "adenylate cyclase activating polypeptide 1 pituitary\n" +
+            "adenylate cyclase activating polypeptide 1 pituitary receptor type I\n" +
+            "adducin 1 alpha\n" +
+            "adducin 2 beta\n" +
+            "adducin 3 gamma\n" +
+            "albinism-deafness syndrome\n" +
+            "alcohol dehydrogenase 1A class I, alpha polypeptide\n" +
+            "alcohol dehydrogenase 1B class I, beta polypeptide\n" +
+            "alcohol dehydrogenase 1C class I, gamma polypeptide\n" +
+            "alcohol dehydrogenase 4 class II, pi polypeptide\n" +
+            "alcohol dehydrogenase 5 class III, chi polypeptide\n" +
+            "alcohol dehydrogenase 5 class III, chi polypeptide, pseudogene 4\n" +
+            "alcohol dehydrogenase 6 class V\n" +
+            "alcohol dehydrogenase 7 class IV, mu or sigma polypeptide\n" +
+            "Attention deficit-hyperactivity disorder, susceptibility to, 1\n" +
+            "Attention deficit-hyperactivity disorder, susceptibility to, 2\n" +
+            "Attention deficit-hyperactivity disorder, susceptibility to, 2\n" +
+            "Attention deficit-hyperactivity disorder, susceptibility to, 4\n" +
+            "adiponectin, C1Q and collagen domain containing\n" +
+            "adiponectin receptor 1\n" +
+            "adiponectin receptor 2\n" +
+            "Circulating adiponectin QTL on chromosome 5\n" +
+            "Circulating adiponectin QTL on chromosome 14\n" +
+            "Adiponectin, serum level of, QTL4\n" +
+            "Adiponectin, serum level of, QTL5\n" +
+            "adipogenesis regulatory factor\n" +
+            "adenosine kinase\n" +
+            "adrenomedullin\n" +
+            "activity-dependent neuroprotector homeobox\n" +
+            "adenosine A1 receptor\n" +
+            "adenosine A2a receptor\n" +
+            "adenosine A2b receptor\n" +
+            "adenosine A3 receptor\n" +
+            "ADP-dependent glucokinase\n" +
+            "ADP-ribosylarginine hydrolase\n" +
+            "adrenoceptor alpha 1A\n" +
+            "adrenoceptor alpha 1B\n" +
+            "adrenoceptor alpha 1D\n" +
+            "adrenoceptor alpha 2A\n" +
+            "adrenoceptor alpha 2B\n" +
+            "adrenoceptor alpha 2C\n" +
+            "adrenoceptor beta 1\n" +
+            "adrenoceptor beta 2, surface\n" +
+            "adrenoceptor beta 3\n" +
+            "adrenergic, beta, receptor kinase 2\n" +
+            "adenylosuccinate lyase\n" +
+            "adenylosuccinate synthase\n" +
+            "AE binding protein 1\n" +
+            "amino-terminal enhancer of split\n" +
+            "ankyloblepharon filiforme adnatum\n" +
+            "Alopecia, androgenetic\n" +
+            "actin filament associated protein 1-like 1\n" +
+            "acrofacial dysostosis 1, Nager type\n" +
+            "AF4/FMR2 family, member 1\n" +
+            "AF4/FMR2 family, member 2\n" +
+            "AF4/FMR2 family, member 3\n" +
+            "AF4/FMR2 family, member 4\n" +
+            "AFG3-like AAA ATPase 2\n" +
+            "afamin\n" +
+            "alpha-fetoprotein\n" +
+            "aspartylglucosaminidase\n" +
+            "Alopecia, androgenetic, 2\n" +
+            "Alopecia, androgenetic, 3\n" +
+            "ArfGAP with GTPase domain, ankyrin repeat and PH domain 2\n" +
+            "ATP/GTP binding protein-like 1\n" +
+            "advanced glycosylation end product-specific receptor\n" +
+            "ArfGAP with FG repeats 1\n" +
+            "ArfGAP with FG repeats 2\n" +
+            "angiogenic factor with G patch and FHA domains 1\n" +
+            "acylglycerol kinase\n" +
+            "amylo-alpha-1, 6-glucosidase, 4-alpha-glucanotransferase\n" +
+            "agammaglobulinemia, X-linked 2 with growth hormone deficiency\n" +
+            "1-acylglycerol-3-phosphate O-acyltransferase 2\n" +
+            "1-acylglycerol-3-phosphate O-acyltransferase 9\n" +
+            "alkylglycerone phosphate synthase\n" +
+            "anterior gradient 3\n" +
+            "agrin\n" +
+            "agouti related protein homolog mouse\n" +
+            "Angio serpiginosum\n" +
+            "angiotensinogen serpin peptidase inhibitor, clade A, member 8\n" +
+            "angiotensin II receptor, type 1\n" +
+            "angiotensin II receptor, type 2\n" +
+            "alanine-glyoxylate aminotransferase\n" +
+            "alanine--glyoxylate aminotransferase 2\n" +
+            "adenosylhomocysteinase\n" +
+            "AT hook, DNA binding motif, containing 1\n" +
+            "Abelson helper integration site 1\n" +
+            "AHNAK nucleoprotein 2\n" +
+            "aryl hydrocarbon receptor\n" +
+            "AHA1, activator of heat shock 90kDa protein ATPase homolog 1 yeast\n" +
+            "alpha-2-HS-glycoprotein\n" +
+            "alpha hemoglobin stabilizing protein\n" +
+            "Aicardi syndrome\n" +
+            "activation-induced cytidine deaminase\n" +
+            "allograft inflammatory factor 1\n" +
+            "apoptosis-inducing factor, mitochondrion-associated, 1\n" +
+            "apoptosis-inducing factor, mitochondrion-associated, 2\n" +
+            "androgen-induced 1\n" +
+            "amelogenesis imperfecta 3, hypomaturation or hypoplastic type\n" +
+            "absent in melanoma 1\n" +
+            "absent in melanoma 2\n" +
+            "aminoacyl tRNA synthetase complex-interacting multifunctional protein 1\n" +
+            "aryl hydrocarbon receptor interacting protein\n" +
+            "aryl hydrocarbon receptor interacting protein-like 1\n" +
+            "Acute insulin response 2\n" +
+            "autoimmune regulator\n" +
+            "autoimmune susceptibility 1\n" +
+            "autoimmune susceptibility 2\n" +
+            "autoimmune susceptibility 3 vitiligo specific\n" +
+            "autoimmune disease, susceptibility to, 4\n" +
+            "Autoimmune thyroid disease, susceptibility to, 1\n" +
+            "Autoimmune thyroid disease, susceptibility to, 2\n" +
+            "Autoimmune thyroid disease, susceptibility to, 4\n" +
+            "adenylate kinase 1\n" +
+            "adenylate kinase 2\n" +
+            "adenylate kinase 5\n" +
+            "adenylate kinase 7\n" +
+            "A kinase PRKA anchor protein 10\n" +
+            "A kinase PRKA anchor protein 12\n" +
+            "A kinase PRKA anchor protein 13\n" +
+            "A kinase PRKA anchor protein 17A\n" +
+            "A kinase PRKA anchor protein 5\n" +
+            "A kinase PRKA anchor protein 9\n" +
+            "A kinase PRKA interacting protein 1\n" +
+            "aldo-keto reductase family 1, member A1 aldehyde reductase\n" +
+            "aldo-keto reductase family 1, member B1 aldose reductase\n" +
+            "aldo-keto reductase family 1, member B10 aldose reductase\n" +
+            "aldo-keto reductase family 1, member B1 pseudogene 2\n" +
+            "aldo-keto reductase family 1, member C2\n" +
+            "aldo-keto reductase family 1, member C3\n" +
+            "aldo-keto reductase family 1, member C4\n" +
+            "aldo-keto reductase family 1, member D1\n" +
+            "aldo-keto reductase family 7, member A2 aflatoxin aldehyde reductase\n" +
+            "aldo-keto reductase family 7, member A3 aflatoxin aldehyde reductase\n" +
+            "v-akt murine thymoma viral oncogene homolog 1\n" +
+            "v-akt murine thymoma viral oncogene homolog 2\n" +
+            "v-akt murine thymoma viral oncogene homolog 3\n" +
+            "AKT interacting protein\n" +
+            "uncharacterized LOC100129027\n" +
+            "aminolevulinate dehydratase\n" +
+            "aminolevulinate, delta-, synthase 1\n" +
+            "aminolevulinate, delta-, synthase 2\n" +
+            "albumin\n" +
+            "aldehyde dehydrogenase 16 family, member A1\n" +
+            "aldehyde dehydrogenase 18 family, member A1\n" +
+            "aldehyde dehydrogenase 1 family, member A1\n" +
+            "aldehyde dehydrogenase 1 family, member A2\n" +
+            "aldehyde dehydrogenase 1 family, member A3\n" +
+            "aldehyde dehydrogenase 1 family, member B1\n" +
+            "aldehyde dehydrogenase 1 family, member L1\n" +
+            "aldehyde dehydrogenase 2 family mitochondrial\n" +
+            "aldehyde dehydrogenase 3 family, member A1\n" +
+            "aldehyde dehydrogenase 3 family, member A2\n" +
+            "aldehyde dehydrogenase 3 family, member B1\n" +
+            "aldehyde dehydrogenase 4 family, member A1\n" +
+            "aldehyde dehydrogenase 5 family, member A1\n" +
+            "aldehyde dehydrogenase 6 family, member A1\n" +
+            "aldehyde dehydrogenase 7 family, member A1\n" +
+            "aldehyde dehydrogenase 9 family, member A1\n" +
+            "aldolase A, fructose-bisphosphate\n" +
+            "aldolase B, fructose-bisphosphate\n" +
+            "aldolase C, fructose-bisphosphate\n" +
+            "ALG1, chitobiosyldiphosphodolichol beta-mannosyltransferase\n" +
+            "ALG10, alpha-1,2-glucosyltransferase\n" +
+            "ALG10B, alpha-1,2-glucosyltransferase\n" +
+            "ALG11, alpha-1,2-mannosyltransferase\n" +
+            "ALG12, alpha-1,6-mannosyltransferase\n" +
+            "ALG13, UDP-N-acetylglucosaminyltransferase subunit\n" +
+            "ALG14, UDP-N-acetylglucosaminyltransferase subunit\n" +
+            "ALG2, alpha-1,3/1,6-mannosyltransferase\n" +
+            "ALG3, alpha-1,3- mannosyltransferase\n" +
+            "ALG6, alpha-1,3-glucosyltransferase\n" +
+            "ALG8, alpha-1,3-glucosyltransferase\n" +
+            "ALG9, alpha-1,2-mannosyltransferase\n" +
+            "anaplastic lymphoma receptor tyrosine kinase\n" +
+            "alkB, alkylation repair homolog 3 E. coli\n" +
+            "Leukemia, acute lymphocytic, susceptibility to, 1\n" +
+            "Leukemia, acute lymphoblastic, susceptibility to, 2\n" +
+            "allantoicase\n" +
+            "Alstrom syndrome 1\n" +
+            "Alstrom syndrome 1 pseudogene\n" +
+            "arachidonate 12-lipoxygenase\n" +
+            "arachidonate 12-lipoxygenase, 12R type\n" +
+            "arachidonate 15-lipoxygenase\n" +
+            "arachidonate 15-lipoxygenase, type B\n" +
+            "arachidonate 5-lipoxygenase\n" +
+            "arachidonate 5-lipoxygenase-activating protein\n" +
+            "arachidonate lipoxygenase 3\n" +
+            "alkaline phosphatase, intestinal\n" +
+            "alkaline phosphatase, liver/bone/kidney\n" +
+            "alkaline phosphatase, placental\n" +
+            "alkaline phosphatase, placental-like 2\n" +
+            "Alkaline phosphatase, plasma level of, QTL 2\n" +
+            "Allergic rhinitis\n" +
+            "amyotrophic lateral sclerosis 2 juvenile\n" +
+            "ALS2 C-terminal like\n" +
+            "amyotrophic lateral sclerosis 3 autosomal dominant\n" +
+            "amyotrophic lateral sclerosis 5\n" +
+            "apolipoprotein E\n" +
+            "apolipoprotein F\n" +
+            "apolipoprotein H beta-2-glycoprotein I\n" +
+            "apolipoprotein L, 1\n" +
+            "apolipoprotein L, 2\n" +
+            "apolipoprotein L, 4\n" +
+            "apolipoprotein L domain containing 1\n" +
+            "apolipoprotein M\n" +
+            "apoptogenic 1, mitochondrial\n" +
+            "amyloid beta A4 precursor protein\n" +
+            "amyloid beta precursor protein cytoplasmic tail binding protein 2\n" +
+            "adaptor protein, phosphotyrosine interaction, PH domain and leucine zipper containing 1\n" +
+            "adaptor protein, phosphotyrosine interaction, PH domain and leucine zipper containing 2\n" +
+            "adenine phosphoribosyltransferase\n" +
+            "aprataxin\n" +
+            "aquaporin 1 Colton blood group\n" +
+            "aquaporin 12B\n" +
+            "aquaporin 2 collecting duct\n" +
+            "aquaporin 3 Gill blood group\n" +
+            "aquaporin 4\n" +
+            "aquaporin 5\n" +
+            "aquaporin 6, kidney specific\n" +
+            "aquaporin 7\n" +
+            "aquaporin 8\n" +
+            "aquaporin 9\n" +
+            "laeverin\n" +
+            "androgen receptor\n" +
+            "v-raf murine sarcoma 3611 viral oncogene homolog\n" +
+            "ArfGAP with RhoGAP domain, ankyrin repeat and PH domain 2\n" +
+            "activity-regulated cytoskeleton-associated protein\n" +
+            "Ichthyosis, congenital, autosomal recessive 7\n" +
+            "Ichthyosis, congenital, autosomal recessive 9\n" +
+            "amphiregulin\n" +
+            "amphiregulin B\n" +
+            "ADP-ribosylation factor 1\n" +
+            "ADP-ribosylation factor 1 pseudogene 1\n" +
+            "ADP-ribosylation factor 3\n" +
+            "ADP-ribosylation factor 4\n" +
+            "ADP-ribosylation factor 5\n" +
+            "ADP-ribosylation factor 6\n" +
+            "ADP-ribosylation factor guanine nucleotide-exchange factor 2 brefeldin A-inhibited\n" +
+            "ADP-ribosylation factor related protein 1\n" +
+            "arginase 1\n" +
+            "arginase 2\n" +
+            "Rho GTPase activating protein 1\n" +
+            "Rho GTPase activating protein 17\n" +
+            "Rho GTPase activating protein 23\n" +
+            "Rho GTPase activating protein 24\n" +
+            "Rho GTPase activating protein 26\n" +
+            "Rho GTPase activating protein 31\n" +
+            "Rho GTPase activating protein 32\n" +
+            "Rho GTPase activating protein 33\n" +
+            "Rho GTPase activating protein 4\n" +
+            "Rho GTPase activating protein 6\n" +
+            "Rho GDP dissociation inhibitor GDI alpha\n" +
+            "Rho guanine nucleotide exchange factor GEF 1\n" +
+            "Rho guanine nucleotide exchange factor GEF 10\n" +
+            "Rho guanine nucleotide exchange factor GEF 12\n" +
+            "Rho guanine nucleotide exchange factor GEF 16\n" +
+            "Rho guanine nucleotide exchange factor GEF 19\n" +
+            "Rho guanine nucleotide exchange factor GEF 3\n" +
+            "Rac/Cdc42 guanine nucleotide exchange factor GEF 6\n" +
+            "Rho guanine nucleotide exchange factor GEF 7\n" +
+            "Cdc42 guanine nucleotide exchange factor GEF 9\n" +
+            "Age-related hearing impairment 1\n" +
+            "Age-related hearing impairment 2\n" +
+            "AT rich interactive domain 1A SWI-like\n" +
+            "AT rich interactive domain 1B SWI1-like\n" +
+            "AT rich interactive domain 3B BRIGHT-like\n" +
+            "AT rich interactive domain 4A RBP1-like\n" +
+            "AT rich interactive domain 4B RBP1-like\n" +
+            "AT rich interactive domain 5A MRF1-like\n" +
+            "AT rich interactive domain 5B MRF1-like\n" +
+            "ADP-ribosylation factor-like 1\n" +
+            "ADP-ribosylation factor-like 11\n" +
+            "ADP-ribosylation factor-like 13B\n" +
+            "ADP-ribosylation factor-like 14\n" +
+            "ADP-ribosylation factor-like 17A\n" +
+            "ADP-ribosylation factor-like 2\n" +
+            "ADP-ribosylation factor-like 2 binding protein\n" +
+            "ADP-ribosylation factor-like 3\n" +
+            "ADP-ribosylation factor-like 4D\n" +
+            "ADP-ribosylation factor-like 5A\n" +
+            "ADP-ribosylation factor-like 6\n" +
+            "ADP-ribosylation factor-like 6 interacting protein 1\n" +
+            "armadillo repeat containing 10\n" +
+            "armadillo repeat containing 4\n" +
+            "armadillo repeat containing 5\n" +
+            "armadillo repeat containing 9\n" +
+            "age-related maculopathy susceptibility 2\n" +
+            "aryl hydrocarbon receptor nuclear translocator\n" +
+            "aryl-hydrocarbon receptor nuclear translocator 2\n" +
+            "aryl hydrocarbon receptor nuclear translocator-like 2\n" +
+            "actin related protein 2/3 complex, subunit 5-like\n" +
+            "arrestin 3, retinal X-arrestin\n" +
+            "arrestin, beta 1\n" +
+            "arrestin, beta 2\n" +
+            "arylsulfatase A\n" +
+            "arylsulfatase B\n" +
+            "arylsulfatase D\n" +
+            "arylsulfatase E chondrodysplasia punctata 1\n" +
+            "arylsulfatase family, member H\n" +
+            "arylsulfatase family, member I\n" +
+            "ADP-ribosyltransferase 1\n" +
+            "ADP-ribosyltransferase 4 Dombrock blood group\n" +
+            "artemin\n" +
+            "armadillo repeat gene deleted in velocardiofacial syndrome\n" +
+            "arrhythmogenic right ventricular dysplasia 3\n" +
+            "arrhythmogenic right ventricular dysplasia 4\n" +
+            "arrhythmogenic right ventricular dysplasia 6\n" +
+            "aristaless related homeobox\n" +
+            "N-acylsphingosine amidohydrolase acid ceramidase 1\n" +
+            "N-acylsphingosine amidohydrolase non-lysosomal ceramidase 2\n" +
+            "ArfGAP with SH3 domain, ankyrin repeat and PH domain 2\n" +
+            "ArfGAP with SH3 domain, ankyrin repeat and PH domain 3\n" +
+            "ankyrin repeat and SOCS box containing 10\n" +
+            "ankyrin repeat and SOCS box containing 14\n" +
+            "ASB16 antisense RNA 1\n" +
+            "ankyrin repeat and SOCS box containing 2\n" +
+            "activating signal cointegrator 1 complex subunit 1\n" +
+            "achaete-scute family bHLH transcription factor 1\n" +
+            "atrial septal defect 1\n" +
+            "anal sphincter dysplasia\n" +
+            "asialoglycoprotein receptor 1\n" +
+            "asialoglycoprotein receptor 2\n" +
+            "acid-sensing proton-gated ion channel family member 5\n" +
+            "agouti signaling protein\n" +
+            "argininosuccinate lyase\n" +
+            "anterior segment mesenchymal dysgenesis\n" +
+            "acetylserotonin O-methyltransferase\n" +
+            "acetylserotonin O-methyltransferase-like\n" +
+            "arsA arsenite transporter, ATP-binding, homolog 1 bacterial\n" +
+            "asparagine synthetase glutamine-hydrolyzing\n" +
+            "aspartoacylase\n" +
+            "Asperger syndrome, susceptibility to, 1\n" +
+            "Asperger syndrome, susceptibility to, 2\n" +
+            "Asperger syndrome, susceptibility to, 3\n" +
+            "Asperger syndrome, susceptibility to, 4\n" +
+            "aspartate beta-hydroxylase\n" +
+            "asp abnormal spindle homolog, microcephaly associated Drosophila\n" +
+            "asporin\n" +
+            "alveolar soft part sarcoma chromosome region, candidate 1\n" +
+            "asparaginase like 1\n" +
+            "Asthma-related traits, susceptibility to, 3\n" +
+            "Asthma-related traits, susceptibility to, 4\n" +
+            "Asthma-related traits, susceptibility to, 6\n" +
+            "Asthma-related traits, susceptibility to, 8\n" +
+            "argininosuccinate synthase 1\n" +
+            "argininosuccinate synthetase 1 pseudogene 7\n" +
+            "argininosuccinate synthetase 1 pseudogene 8\n" +
+            "asteroid homolog 1 Drosophila\n" +
+            "astrotactin 2\n" +
+            "additional sex combs like 1 Drosophila\n" +
+            "additional sex combs like 3 Drosophila\n" +
+            "ATPase family, AAA domain containing 2\n" +
+            "ataxia, cerebellar, Cayman type\n" +
+            "asphixiating thoracic dystrophy chondroectodermal dysplasia-like syndrome\n" +
+            "activating transcription factor 1\n" +
+            "activating transcription factor 2\n" +
+            "activating transcription factor 3\n" +
+            "activating transcription factor 4\n" +
+            "activating transcription factor 5\n" +
+            "activating transcription factor 6\n" +
+            "Atrial fibrillation, familial 1\n" +
+            "familial atrial fibrillation 2\n" +
+            "Atrial fibrillation, familial, 5\n" +
+            "Atrial fibrillation, familial, 8\n" +
+            "autophagy related 14\n" +
+            "autophagy related 16-like 1 S. cerevisiae\n" +
+            "autophagy related 4C, cysteine peptidase\n" +
+            "autophagy related 9B\n" +
+            "atherosclerosis susceptibility lipoprotein associated\n" +
+            "5-aminoimidazole-4-carboxamide ribonucleotide formyltransferase/IMP cyclohydrolase\n" +
+            "atlastin GTPase 1\n" +
+            "atlastin GTPase 2\n" +
+            "atlastin GTPase 3\n" +
+            "ataxia telangiectasia mutated\n" +
+            "atrophin 1\n" +
+            "Dermatitis, atopic\n" +
+            "Dermatitis, atopic, 3\n" +
+            "Dermatitis, atopic, 5\n" +
+            "Dermatitis, atopic, 6\n" +
+            "Dermatitis, atopic, susceptibility to, 7\n" +
+            "atonal homolog 1 Drosophila\n" +
+            "atonal homolog 7 Drosophila\n" +
+            "ATPase, class V, type 10A\n" +
+            "ATPase, class VI, type 11A\n" +
+            "ATPase, H+/K+ transporting, nongastric, alpha polypeptide\n" +
+            "ATPase type 13A2\n" +
+            "ATPase type 13A4\n" +
+            "ATPase, Na+/K+ transporting, alpha 1 polypeptide\n" +
+            "ATPase, Na+/K+ transporting, alpha 2 polypeptide\n" +
+            "ATPase, Na+/K+ transporting, alpha 3 polypeptide\n" +
+            "ATPase, Na+/K+ transporting, beta 1 polypeptide\n" +
+            "ATPase, Na+/K+ transporting, beta 2 polypeptide\n" +
+            "ATPase, Na+/K+ transporting, beta 4 polypeptide\n" +
+            "ATPase, Ca++ transporting, cardiac muscle, fast twitch 1\n" +
+            "ATPase, Ca++ transporting, cardiac muscle, slow twitch 2\n" +
+            "ATPase, Ca++ transporting, ubiquitous\n" +
+            "ATPase, Ca++ transporting, plasma membrane 2\n" +
+            "ATPase, Ca++ transporting, plasma membrane 3\n" +
+            "ATPase, Ca++ transporting, type 2C, member 1\n" +
+            "ATPase, Ca++ transporting, type 2C, member 2\n" +
+            "ATPase, H+/K+ exchanging, alpha polypeptide\n" +
+            "ATP synthase, H+ transporting, mitochondrial F1 complex, alpha subunit 1, cardiac muscle\n" +
+            "ATP synthase, H+ transporting, mitochondrial F1 complex, epsilon subunit\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit C1 subunit 9\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit C2 subunit 9\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit C2 subunit 9 pseudogene 2\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit C3 subunit 9\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit d\n" +
+            "ATP synthase, H+ transporting, mitochondrial Fo complex, subunit g, pseudogene 5\n" +
+            "ATP synthase, H+ transporting, mitochondrial F1 complex, O subunit\n" +
+            "ATPase, H+ transporting, lysosomal accessory protein 2\n" +
+            "ATPase, H+ transporting, lysosomal V0 subunit a2\n" +
+            "ATPase, H+ transporting, lysosomal V0 subunit a4\n" +
+            "ATPase, H+ transporting, lysosomal 21kDa, V0 subunit b\n" +
+            "ATPase, H+ transporting V0 subunit e2\n" +
+            "ATPase, H+ transporting, lysosomal 70kDa, V1 subunit A\n" +
+            "ATPase, H+ transporting, lysosomal 56/58kDa, V1 subunit B1\n" +
+            "ATPase, H+ transporting, lysosomal 56/58kDa, V1 subunit B2\n" +
+            "ATPase, H+ transporting, lysosomal 31kDa, V1 subunit E1\n" +
+            "ATP6V1G2-DDX39B readthrough NMD candidate\n" +
+            "ATPase, Cu++ transporting, alpha polypeptide\n" +
+            "ATPase, Cu++ transporting, beta polypeptide\n" +
+            "ATPase, aminophospholipid transporter, class I, type 8A, member 2\n" +
+            "ATPase, aminophospholipid transporter, class I, type 8A, member 2 pseudogene 3\n" +
+            "ATPase, aminophospholipid transporter, class I, type 8B, member 1\n" +
+            "ATP synthase mitochondrial F1 complex assembly factor 1\n" +
+            "ATP synthase mitochondrial F1 complex assembly factor 2\n" +
+            "antiphospholipid syndrome, familial\n" +
+            "ataxia telangiectasia and Rad3 related\n" +
+            "ATR interacting protein\n" +
+            "attractin\n" +
+            "attractin-like 1\n" +
+            "alpha thalassemia/mental retardation syndrome X-linked\n" +
+            "ataxin 1\n" +
+            "ataxin 10\n" +
+            "ataxin 2\n" +
+            "ataxin 3\n" +
+            "ataxin 3-like\n" +
+            "ataxin 7\n" +
+            "ataxin 8\n" +
+            "ATXN8 opposite strand non-protein coding\n" +
+            "AU RNA binding protein/enoyl-CoA hydratase\n" +
+            "auditory neuropathy, X-linked recessive 1\n" +
+            "aurora kinase A\n" +
+            "aurora kinase A interacting protein 1\n" +
+            "aurora kinase B\n" +
+            "aurora kinase C\n" +
+            "autism susceptibility 1\n" +
+            "Autism, susceptibility to, 11\n" +
+            "autism, susceptibility to, 12\n" +
+            "autism, susceptibility to, 13\n" +
+            "autism susceptibility candidate 2\n" +
+            "Autism, susceptibility to, 3\n" +
+            "Autism, susceptibility to, 5\n" +
+            "Autism, susceptibility to, 6\n" +
+            "Autism, susceptibility to, 7\n" +
+            "Autism, susceptibility to, 8\n" +
+            "apoptosis, caspase activation inhibitor\n" +
+            "advillin\n" +
+            "arginine vasopressin\n" +
+            "arginine vasopressin receptor 1A\n" +
+            "arginine vasopressin receptor 1B\n" +
+            "arginine vasopressin receptor 2\n" +
+            "atrioventricular septal defect 1\n" +
+            "axin 1\n" +
+            "axin 2\n" +
+            "AXL receptor tyrosine kinase\n" +
+            "azoospermia factor 1\n" +
+            "alpha-2-glycoprotein 1, zinc-binding\n" +
+            "azurocidin 1\n" +
+            "beta-2-microglobulin\n" +
+            "beta-1,3-N-acetylgalactosaminyltransferase 1 globoside blood group\n" +
+            "beta-1,3-N-acetylgalactosaminyltransferase 2\n" +
+            "UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 2\n" +
+            "UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 4\n" +
+            "UDP-Gal:betaGal beta 1,3-galactosyltransferase polypeptide 6\n" +
+            "beta 1,3-galactosyltransferase-like\n" +
+            "beta-1,3-glucuronyltransferase 1 glucuronosyltransferase P\n" +
+            "beta-1,3-glucuronyltransferase 3 glucuronosyltransferase I\n" +
+            "UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 1\n" +
+            "UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 4\n" +
+            "beta-1,4-N-acetyl-galactosaminyl transferase 1\n" +
+            "beta-1,4-N-acetyl-galactosaminyl transferase 2\n" +
+            "UDP-Gal:betaGlcNAc beta 1,4- galactosyltransferase, polypeptide 1\n" +
+            "UDP-Gal:betaGlcNAc beta 1,4- galactosyltransferase, polypeptide 5\n" +
+            "UDP-Gal:betaGlcNAc beta 1,4- galactosyltransferase, polypeptide 6\n" +
+            "xylosylprotein beta 1,4-galactosyltransferase, polypeptide 7\n" +
+            "Vitamin B6 plasma level QTL 1\n" +
+            "B9 protein domain 1\n" +
+            "B9 protein domain 2\n" +
+            "melanoma antigen pseudogene\n" +
+            "brain and acute leukemia, cytoplasmic\n" +
+            "bile acid CoA: amino acid N-acyltransferase glycine N-choloyltransferase\n" +
+            "beta-site APP-cleaving enzyme 1\n" +
+            "BACE1 antisense RNA\n" +
+            "beta-site APP-cleaving enzyme 2\n" +
+            "BTB and CNC homology 1, basic leucine zipper transcription factor 1\n" +
+            "BCL2-associated agonist of cell death\n" +
+            "BCL2-associated athanogene\n" +
+            "BCL2-associated athanogene 2\n" +
+            "BCL2-associated athanogene 3\n" +
+            "BCL2-associated athanogene 4\n" +
+            "BCL2-associated athanogene 5\n" +
+            "BCL2-associated athanogene 6\n" +
+            "B melanoma antigen\n" +
+            "bromo adjacent homology domain containing 1\n" +
+            "brain-specific angiogenesis inhibitor 1\n" +
+            "BAI1-associated protein 2-like 1\n" +
+            "BCL2-antagonist/killer 1\n" +
+            "BMP and activin membrane-bound inhibitor\n" +
+            "barrier to autointegration factor 1\n" +
+            "B-cell scaffold protein with ankyrin repeats 1\n" +
+            "BRCA1 associated protein-1 ubiquitin carboxy-terminal hydrolase\n" +
+            "BRCA1 associated RING domain 1\n" +
+            "BARX homeobox 1\n" +
+            "basic leucine zipper transcription factor, ATF-like 2\n" +
+            "BCL2-associated X protein\n" +
+            "bromodomain adjacent to zinc finger domain, 1A\n" +
+            "bromodomain adjacent to zinc finger domain, 1B\n" +
+            "BCL2 binding component 3\n" +
+            "BBSome interacting protein 1\n" +
+            "butyrobetaine gamma, 2-oxoglutarate dioxygenase gamma-butyrobetaine hydroxylase 1\n" +
+            "Bardet-Biedl syndrome 1\n" +
+            "Bardet-Biedl syndrome 10\n" +
+            "Bardet-Biedl syndrome 12\n" +
+            "Bardet-Biedl syndrome 2\n" +
+            "Bardet-Biedl syndrome 4\n" +
+            "Bardet-Biedl syndrome 5\n" +
+            "Bardet-Biedl syndrome 7\n" +
+            "Bardet-Biedl syndrome 9\n" +
+            "bobby sox homolog Drosophila\n" +
+            "basal cell adhesion molecule Lutheran blood group\n" +
+            "B-cell receptor-associated protein 31\n" +
+            "breast cancer anti-estrogen resistance 1\n" +
+            "breast cancer anti-estrogen resistance 3\n" +
+            "breast cancer anti-estrogen resistance 4 non-protein coding\n" +
+            "breast carcinoma amplified sequence 1\n" +
+            "breast carcinoma amplified sequence 2\n" +
+            "breast carcinoma amplified sequence 3\n" +
+            "breast carcinoma amplified sequence 4\n" +
+            "branched chain amino-acid transaminase 1, cytosolic\n" +
+            "branched chain amino-acid transaminase 2, mitochondrial\n" +
+            "Basal cell carcinoma, susceptibility to, 1\n" +
+            "Basal cell carcinoma, susceptibility to, 2\n" +
+            "Basal cell carcinoma, susceptibility to, 3\n" +
+            "Basal cell carcinoma, susceptibility to, 4\n" +
+            "Basal cell carcinoma, susceptibility to, 5\n" +
+            "Basal cell carcinoma, susceptibility to, 6\n" +
+            "BCDIN3D antisense RNA 1\n" +
+            "butyrylcholinesterase\n" +
+            "branched chain keto acid dehydrogenase E1, alpha polypeptide\n" +
+            "branched chain keto acid dehydrogenase E1, beta polypeptide\n" +
+            "branched chain ketoacid dehydrogenase kinase\n" +
+            "B-cell CLL/lymphoma 10\n" +
+            "B-cell CLL/lymphoma 11A zinc finger protein\n" +
+            "B-cell CLL/lymphoma 2\n" +
+            "BCL2-related protein A1\n" +
+            "BCL2-like 1\n" +
+            "BCL2-like 10 apoptosis facilitator\n" +
+            "BCL2-like 11 apoptosis facilitator\n" +
+            "BCL2-like 12 proline rich\n" +
+            "BCL2-like 13 apoptosis facilitator\n" +
+            "BCL2-like 2\n" +
+            "B-cell CLL/lymphoma 3\n" +
+            "B-cell CLL/lymphoma 6\n" +
+            "B-cell CLL/lymphoma 7A\n" +
+            "B-cell CLL/lymphoma 7B\n" +
+            "B-cell CLL/lymphoma 7C\n" +
+            "B-cell CLL/lymphoma 9\n" +
+            "B-cell CLL/lymphoma 9-like\n" +
+            "beta-carotene 15,15'-monooxygenase 1\n" +
+            "BCL6 corepressor\n" +
+            "Breast cancer-related regulator of TP53\n" +
+            "breakpoint cluster region\n" +
+            "BC1 ubiquinol-cytochrome c reductase synthesis-like\n" +
+            "Brachydactyly, type A1, locus B\n" +
+            "Bleeding disorder, east Texas type\n" +
+            "3-hydroxybutyrate dehydrogenase, type 1\n" +
+            "bradykinin receptor B1\n" +
+            "bradykinin receptor B2\n" +
+            "brain-derived neurotrophic factor\n" +
+            "brain expressed, associated with NEDD4, 1\n" +
+            "beclin 1, autophagy related\n" +
+            "Bornholm eye disease\n" +
+            "cancer/testis antigen 1B\n" +
+            "cancer/testis antigen 2\n" +
+            "cutaneous T-cell lymphoma-associated antigen 1\n" +
+            "CTAGE family, member 12, pseudogene\n" +
+            "CTAGE family, member 5\n" +
+            "CTAGE family, member 7, pseudogene\n" +
+            "CTBP1 antisense RNA\n" +
+            "CTS telomere maintenance complex component 1\n" +
+            "CCCTC-binding factor zinc finger protein\n" +
+            "Coats disease\n" +
+            "CTD carboxy-terminal domain, RNA polymerase II, polypeptide A phosphatase, subunit 1\n" +
+            "CTD carboxy-terminal domain, RNA polymerase II, polypeptide A small phosphatase 2\n" +
+            "Pulmonary hypertension, chronic thromboembolic, without deep vein thrombosis, susceptibility to\n" +
+            "cardiotrophin 1\n" +
+            "connective tissue growth factor\n" +
+            "cystathionase cystathionine gamma-lyase\n" +
+            "cono-truncal heart malformation\n" +
+            "collagen triple helix repeat containing 1\n" +
+            "cytotoxic T-lymphocyte-associated protein 4\n" +
+            "catenin cadherin-associated protein, alpha 1, 102kDa\n" +
+            "catenin cadherin-associated protein, alpha 2\n" +
+            "catenin cadherin-associated protein, alpha 3\n" +
+            "catenin cadherin-associated protein, beta 1, 88kDa\n" +
+            "catenin, beta like 1\n" +
+            "catenin cadherin-associated protein, delta 1\n" +
+            "catenin cadherin-associated protein, delta 2\n" +
+            "cystinosin, lysosomal cystine transporter\n" +
+            "Cataract, posterior polar\n" +
+            "Cataract, posterior polar, 5\n" +
+            "CTP synthase 1\n" +
+            "chymotrypsinogen B1\n" +
+            "chymotrypsin C caldecrin\n" +
+            "Cataract, central pouch-like, with sutural opacities\n" +
+            "Cataract, congenital, nuclear progressive\n" +
+            "Cataract 28\n" +
+            "Cataract 29, coralliform\n" +
+            "Cataract, autosomal recessive congenital 3\n" +
+            "cataract, congenital nuclear, autosomal recessive\n" +
+            "Cataract, congenital cerulean type, 5\n" +
+            "chymotrypsin-like\n" +
+            "cathepsin A\n" +
+            "cathepsin B\n" +
+            "cathepsin C\n" +
+            "cathepsin D\n" +
+            "cathepsin E\n" +
+            "cathepsin F\n" +
+            "cathepsin G\n" +
+            "cathepsin H\n" +
+            "cathepsin K\n" +
+            "cathepsin L\n" +
+            "cathepsin S\n" +
+            "cathepsin V\n" +
+            "cathepsin W\n" +
+            "cortactin\n" +
+            "cortactin binding protein 2\n" +
+            "cytosolic thiouridylase subunit 2 homolog S. pombe\n" +
+            "cortexin 1\n" +
+            "cortexin 2\n" +
+            "cubilin intrinsic factor-cobalamin receptor\n" +
+            "cullin 1\n" +
+            "cullin 2\n" +
+            "cullin 3\n" +
+            "cullin 4A\n" +
+            "cullin 4B\n" +
+            "cullin 5\n" +
+            "cullin 7\n" +
+            "Syndactyly, type I\n" +
+            "cut-like homeobox 1\n" +
+            "cubitus valgus with mental retardation and unusual facies\n" +
+            "CWC15 spliceosome-associated protein homolog S. cerevisiae\n" +
+            "CWC22 spliceosome-associated protein homolog S. cerevisiae\n" +
+            "CWC27 spliceosome-associated protein homolog S. cerevisiae\n" +
+            "chemokine C-X3-C motif ligand 1\n" +
+            "chemokine C-X3-C motif receptor 1\n" +
+            "coxsackie virus and adenovirus receptor\n" +
+            "chemokine C-X-C motif ligand 1 melanoma growth stimulating activity, alpha\n" +
+            "chemokine C-X-C motif ligand 10\n" +
+            "chemokine C-X-C motif ligand 11\n" +
+            "chemokine C-X-C motif ligand 12\n" +
+            "chemokine C-X-C motif ligand 13\n" +
+            "chemokine C-X-C motif ligand 14\n" +
+            "chemokine C-X-C motif ligand 16\n" +
+            "chemokine C-X-C motif ligand 17\n" +
+            "chemokine C-X-C motif ligand 2\n" +
+            "chemokine C-X-C motif ligand 3\n" +
+            "chemokine C-X-C motif ligand 5\n" +
+            "chemokine C-X-C motif ligand 6\n" +
+            "chemokine C-X-C motif ligand 9\n" +
+            "chemokine C-X-C motif receptor 1\n" +
+            "chemokine C-X-C motif receptor 2\n" +
+            "chemokine C-X-C motif receptor 3\n" +
+            "chemokine C-X-C motif receptor 4\n" +
+            "chemokine C-X-C motif receptor 5\n" +
+            "chemokine C-X-C motif receptor 6\n" +
+            "chromosome X open reading frame 40A\n" +
+            "CXXC finger protein 4\n" +
+            "immunoglobulin lambda light chain-like\n" +
+            "cytochrome b5 type A microsomal\n" +
+            "cytochrome b5 reductase 1\n" +
+            "cytochrome b5 reductase 2\n" +
+            "cytochrome b5 reductase 3\n" +
+            "cytochrome b5 reductase 4\n" +
+            "cytochrome b5 reductase-like\n" +
+            "cytochrome b-245, alpha polypeptide\n" +
+            "cytochrome b-245, beta polypeptide\n" +
+            "cytochrome c-1\n" +
+            "cytochrome c, somatic\n" +
+            "cytochrome c, somatic pseudogene 12\n" +
+            "cytoplasmic FMR1 interacting protein 1\n" +
+            "cytoglobin\n" +
+            "cylindromatosis turban tumor syndrome\n" +
+            "cystoid macular dystrophy\n" +
+            "cytochrome P450, family 11, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 11, subfamily B, polypeptide 1\n" +
+            "cytochrome P450, family 11, subfamily B, polypeptide 2\n" +
+            "cytochrome P450, family 17, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 19, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 1, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 1, subfamily A, polypeptide 2\n" +
+            "cytochrome P450, family 1, subfamily B, polypeptide 1\n" +
+            "cytochrome P450, family 20, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 21, subfamily A, polypeptide 1 pseudogene\n" +
+            "cytochrome P450, family 21, subfamily A, polypeptide 2\n" +
+            "cytochrome P450, family 24, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 26, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 26, subfamily B, polypeptide 1\n" +
+            "cytochrome P450, family 26, subfamily C, polypeptide 1\n" +
+            "cytochrome P450, family 27, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 27, subfamily B, polypeptide 1\n" +
+            "cytochrome P450, family 2, subfamily A\n" +
+            "cytochrome P450, family 2, subfamily A, polypeptide 13\n" +
+            "cytochrome P450, family 2, subfamily A, polypeptide 6\n" +
+            "cytochrome P450, family 2, subfamily B, polypeptide 6\n" +
+            "cytochrome P450, family 2, subfamily C, polypeptide 19\n" +
+            "cytochrome P450, family 2, subfamily C, polypeptide 8\n" +
+            "cytochrome P450, family 2, subfamily C, polypeptide 9\n" +
+            "cytochrome P450, family 2, subfamily D, polypeptide 6\n" +
+            "cytochrome P450, family 2, subfamily E, polypeptide 1\n" +
+            "cytochrome P450, family 2, subfamily R, polypeptide 1\n" +
+            "cytochrome P450, family 2, subfamily U, polypeptide 1\n" +
+            "cytochrome P450, family 3, subfamily A, polypeptide 4\n" +
+            "cytochrome P450, family 3, subfamily A, polypeptide 5\n" +
+            "cytochrome P450, family 46, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 4, subfamily F, polypeptide 2\n" +
+            "cytochrome P450, family 4, subfamily F, polypeptide 22\n" +
+            "cytochrome P450, family 4, subfamily F, polypeptide 3\n" +
+            "cytochrome P450, family 4, subfamily V, polypeptide 2\n" +
+            "cytochrome P450, family 51, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 7, subfamily A, polypeptide 1\n" +
+            "cytochrome P450, family 7, subfamily B, polypeptide 1\n" +
+            "cysteine-rich, angiogenic inducer, 61\n" +
+            "cystin 1\n" +
+            "cysteinyl leukotriene receptor 1\n" +
+            "cysteinyl leukotriene receptor 2\n" +
+            "D-2-hydroxyglutarate dehydrogenase\n" +
+            "Dab, reelin signal transducer, homolog 1 Drosophila\n" +
+            "dachshund family transcription factor 1\n" +
+            "dachshund family transcription factor 2\n" +
+            "dishevelled-binding antagonist of beta-catenin 1\n" +
+            "dishevelled-binding antagonist of beta-catenin 3\n" +
+            "dystroglycan 1 dystrophin-associated glycoprotein 1\n" +
+            "diacylglycerol lipase, alpha\n" +
+            "DAN domain family member 5, BMP antagonist\n" +
+            "D-amino-acid oxidase\n" +
+            "D-amino acid oxidase activator\n" +
+            "death-associated protein kinase 1\n" +
+            "death-associated protein kinase 3\n" +
+            "Duffy blood group, atypical chemokine receptor\n" +
+            "aspartyl-tRNA synthetase\n" +
+            "aspartyl-tRNA synthetase 2, mitochondrial\n" +
+            "deleted in azoospermia 1\n" +
+            "deleted in azoospermia 2\n" +
+            "deleted in azoospermia 3\n" +
+            "deleted in azoospermia 4\n" +
+            "DAZ associated protein 1\n" +
+            "DAZ associated protein 2\n" +
+            "deleted in azoospermia-like\n" +
+            "Diamond-Blackfan anemia 2\n" +
+            "dopamine beta-hydroxylase dopamine beta-monooxygenase\n" +
+            "diazepam binding inhibitor GABA receptor modulator, acyl-CoA binding protein\n" +
+            "drebrin 1\n" +
+            "D site of albumin promoter albumin D-box binding protein\n" +
+            "dihydrolipoamide branched chain transacylase E2\n" +
+            "DDB1 and CUL4 associated factor 17\n" +
+            "DDB1 and CUL4 associated factor 5\n" +
+            "DDB1 and CUL4 associated factor 8\n" +
+            "deleted in colorectal carcinoma\n" +
+            "dermcidin\n" +
+            "doublecortin domain containing 2\n" +
+            "desmosterol-to-cholesterol enzyme\n" +
+            "dachsous cadherin-related 1\n" +
+            "deoxycytidine kinase\n" +
+            "DNA cross-link repair 1C\n" +
+            "decorin\n" +
+            "Down syndrome chromosome region\n" +
+            "dopachrome tautomerase\n" +
+            "dynactin 1\n" +
+            "dynactin 2 p50\n" +
+            "dynactin 4 p62\n" +
+            "doublecortin\n" +
+            "dicarbonyl/L-xylulose reductase\n" +
+            "damage-specific DNA binding protein 1, 127kDa\n" +
+            "damage-specific DNA binding protein 2, 48kDa\n" +
+            "dopa decarboxylase aromatic L-amino acid decarboxylase\n" +
+            "Dowling-Degos disease 3\n" +
+            "Developmental dysplasia of the hip 2\n" +
+            "DDHD domain containing 1\n" +
+            "DDHD domain containing 2\n" +
+            "DNA-damage-inducible transcript 3\n" +
+            "DNA-damage-inducible transcript 4-like\n" +
+            "dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit non-catalytic\n" +
+            "discoidin domain receptor tyrosine kinase 2\n" +
+            "D-dopachrome tautomerase\n" +
+            "DEAD Asp-Glu-Ala-Asp box helicase 1\n" +
+            "DEAD/H Asp-Glu-Ala-Asp/His box helicase 11\n" +
+            "DEAD/H Asp-Glu-Ala-Asp/His box helicase 11 like 8\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 20\n" +
+            "DEAD Asp-Glu-Ala-Asp box helicase 21\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 23\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 39B\n" +
+            "DEAD Asp-Glu-Ala-Asp box helicase 3, X-linked\n" +
+            "DEAD Asp-Glu-Ala-Asp box helicase 3, Y-linked\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 43\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 53\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 58\n" +
+            "DEAD Asp-Glu-Ala-Asp box polypeptide 59\n" +
+            "DEAD Asp-Glu-Ala-Asp box helicase 6 pseudogene 2\n" +
+            "DEAF1 transcription factor\n" +
+            "deleted in esophageal cancer 1\n" +
+            "2,4-dienoyl CoA reductase 1, mitochondrial\n" +
+            "death effector domain containing\n" +
+            "defensin, alpha 1\n" +
+            "defensin, alpha 1 and alpha 3, variable copy number locus\n" +
+            "defensin, alpha 3, neutrophil-specific\n" +
+            "defensin, alpha 4, corticostatin\n" +
+            "defensin, alpha 5, Paneth cell-specific\n" +
+            "defensin, alpha 6, Paneth cell-specific\n" +
+            "defensin, beta 1\n" +
+            "defensin, beta 103A\n" +
+            "defensin, beta 103B\n" +
+            "defensin, beta 104A\n" +
+            "defensin, beta 118\n" +
+            "defensin, beta 119\n" +
+            "defensin, beta 126\n" +
+            "defensin, beta 127\n" +
+            "defensin, beta 4A\n" +
+            "defensin, theta 1 pseudogene\n" +
+            "defensin, theta 1 pseudogene 2\n" +
+            "delta4-desaturase, sphingolipid 1\n" +
+            "DEK oncogene\n" +
+            "Chromosome 10q deletion syndrome\n" +
+            "Wilms tumor, aniridia, genitourinary anomalies and mental retardation syndrome\n" +
+            "Chromosome 11p15-p14 deletion syndrome\n" +
+            "Chromosome 13q14 deletion syndrome\n" +
+            "Chromosome 14q11-q22 deletion syndrome\n" +
+            "Chromosome 15q11.2 deletion syndrome\n" +
+            "Chromosome 15q13.3 microdeletion syndrome\n" +
+            "Deafness and male infertility\n" +
+            "Chromosome 15q24 deletion syndrome\n" +
+            "Chromosome 15q25 deletion syndrome\n" +
+            "Chromosome 15q26-qter deletion syndrome\n" +
+            "autism, susceptibility to, 14\n" +
+            "Chromosome 16p12.2-p11.2 deletion syndrome\n" +
+            "Chromosome 16p13.3 deletion syndrome\n" +
+            "Chromosome 17p13.1 deletion syndrome\n" +
+            "chromosome 17q11.2 deletion syndrome\n" +
+            "Chromosome 17q12 deletion syndrome\n" +
+            "Chromosome 17q23.1-q23.2 deletion syndrome\n" +
+            "Chromosome 18p deletion syndrome\n" +
+            "Chromosome 18q deletion syndrome\n" +
+            "Chromosome 19p13.13 deletion syndrome\n" +
+            "Chromosome 19q13.11 deletion syndrome\n" +
+            "Chromosome 1p32-p31 deletion syndrome\n" +
+            "Chromosome 1p36 deletion syndrome\n" +
+            "Chromosome 1q21.1 deletion syndrome\n" +
+            "Chromosome 1q41-q42 deletion syndrome\n" +
+            "Chromosome 1q42-q44 deletion syndrome\n" +
+            "Chromosome 22q11.2 deletion syndrome, distal\n" +
+            "Chromosome 2p12-p11.2 deletion syndrome\n" +
+            "Chromosome 2p16.1-p15 deletion syndrome\n" +
+            "Hypotonia-cystinuria syndrome\n" +
+            "Chromosome 2q31.2 deletion syndrome\n" +
+            "3p- syndrome\n" +
+            "Chromosome 3q13.31 deletion syndrome\n" +
+            "Chromosome 3q29 microdeletion syndrome\n" +
+            "Chromosome 4q21 deletion syndrome\n" +
+            "Chromosome 5q12 deletion sydrome\n" +
+            "Chromosome 6pter deletion syndrome\n" +
+            "Chromosome 6q11-q14 deletion syndrome\n" +
+            "Chromosome 6q25-q25 deletion syndrome\n" +
+            "Chromosome 7q11.23 deletion syndrome, distal, 1.2Mb\n" +
+            "Bor-Duane hydrocephalus contiguous gene syndrome\n" +
+            "Mesomelia-synostoses syndrome\n" +
+            "Chromosome 8q21.11 deletion syndrome\n" +
+            "Chromosome 9p deletion syndrome\n" +
+            "Chromosome Xp11.3 deletion syndrome\n" +
+            "Chromosome Xp21 deletion syndrome\n" +
+            "Autism, X-linked, susceptibility to, 4\n" +
+            "Choroideremia, deafness, and mental retardation\n" +
+            "Sertoli cell-only syndrome, Y-linked\n" +
+            "density-regulated protein\n" +
+            "DEP domain containing 1B\n" +
+            "DEP domain containing 5\n" +
+            "Emanuel syndrome\n" +
+            "Supernumerary der22t8-22 syndrome\n" +
+            "deoxyribose-phosphate aldolase putative\n" +
+            "derlin 1\n" +
+            "derlin 2\n" +
+            "desmin\n" +
+            "Deafness, cataract, retinitis pigmentosa, and sperm abnormalities\n" +
+            "DNA fragmentation factor, 40kDa, beta polypeptide caspase-activated DNase\n" +
+            "deafness, X-linked 5\n" +
+            "deafness, X-linked 8\n" +
+            "deafness, autosomal dominant 16\n" +
+            "deafness, autosomal dominant 18\n" +
+            "deafness, autosomal dominant 21\n" +
+            "deafness, autosomal dominant 24\n" +
+            "deafness, autosomal dominant 27\n" +
+            "deafness, autosomal dominant 30\n" +
+            "deafness, autosomal dominant 31\n" +
+            "deafness, autosomal dominant 33\n" +
+            "deafness, autosomal dominant 40\n" +
+            "deafness, autosomal dominant 41\n" +
+            "deafness, autosomal dominant 42\n" +
+            "deafness, autosomal dominant 43\n" +
+            "deafness, autosomal dominant 47\n" +
+            "deafness, autosomal dominant 49\n" +
+            "deafness, autosomal dominant 5\n" +
+            "deafness, autosomal dominant 52\n" +
+            "deafness, autosomal dominant 53\n" +
+            "deafness, autosomal dominant 54\n" +
+            "deafness, autosomal dominant 55\n" +
+            "deafness, autosomal dominant 58\n" +
+            "deafness, autosomal dominant 59\n" +
+            "deafness, autosomal dominant 7\n" +
+            "deafness, autosomal recessive 13\n" +
+            "deafness, autosomal recessive 14\n" +
+            "deafness, autosomal recessive 17\n" +
+            "deafness, autosomal recessive 20\n" +
+            "deafness, autosomal recessive 26\n" +
+            "deafness, autosomal recessive 27\n" +
+            "deafness, autosomal recessive 31\n" +
+            "deafness, autosomal recessive 32\n" +
+            "deafness, autosomal recessive 33\n" +
+            "deafness, autosomal recessive 38\n" +
+            "deafness, autosomal recessive 40\n" +
+            "deafness, autosomal recessive 44\n" +
+            "deafness, autosomal recessive 45\n" +
+            "deafness, autosomal recessive 46\n" +
+            "deafness, autosomal recessive 47\n" +
+            "deafness, autosomal recessive 5\n" +
+            "deafness, autosomal recessive 51\n" +
+            "deafness, autosomal recessive 55\n" +
+            "deafness, autosomal recessive 59\n" +
+            "deafness, autosomal recessive 62\n" +
+            "deafness, autosomal recessive 65\n" +
+            "deafness, autosomal recessive 66\n" +
+            "deafness, autosomal recessive 68\n" +
+            "deafness, autosomal recessive 71\n" +
+            "deafness, autosomal recessive 74\n" +
+            "deafness, autosomal recessive 81\n" +
+            "deafness, autosomal recessive 83\n" +
+            "deafness, autosomal recessive 85\n" +
+            "deafness, autosomal recessive 93\n" +
+            "deafness, autosomal recessive 96\n" +
+            "deafness recessive, nonsyndromic modifier 1\n" +
+            "deafness, X-linked 3\n" +
+            "deafness, Y-linked 1\n" +
+            "diacylglycerol O-acyltransferase 1\n" +
+            "diacylglycerol O-acyltransferase 2-like 6\n" +
+            "DiGeorge syndrome chromosome region\n" +
+            "DiGeorge syndrome critical region gene 10 non-protein coding\n" +
+            "DiGeorge syndrome critical region gene 11 non-protein coding\n" +
+            "DiGeorge syndrome critical region gene 14\n" +
+            "DiGeorge syndrome critical region gene 2\n" +
+            "DiGeorge syndrome critical region gene 6\n" +
+            "DiGeorge syndrome critical region gene 6-like\n" +
+            "DGCR8 microprocessor complex subunit\n" +
+            "diacylglycerol kinase, epsilon 64kDa\n" +
+            "diacylglycerol kinase, gamma 90kDa\n" +
+            "diacylglycerol kinase, theta 110kDa\n" +
+            "DiGeorge syndrome/velocardiofacial syndrome complex 2\n" +
+            "deoxyguanosine kinase\n" +
+            "24-dehydrocholesterol reductase\n" +
+            "7-dehydrocholesterol reductase\n" +
+            "dehydrodolichyl diphosphate synthase\n" +
+            "dihydrodiol dehydrogenase dimeric\n" +
+            "dihydrofolate reductase\n" +
+            "dihydrofolate reductase-like 1\n" +
+            "dihydrofolate reductase pseudogene 2\n" +
+            "desert hedgehog\n" +
+            "dihydroorotate dehydrogenase quinone\n" +
+            "deoxyhypusine synthase\n" +
+            "dehydrogenase/reductase SDR family member 9\n" +
+            "dehydrated hereditary stomatocytosis\n" +
+            "dehydrogenase E1 and transketolase domain containing 1\n" +
+            "DEAH Asp-Glu-Ala-His box polypeptide 34\n" +
+            "DEAH Asp-Glu-Ala-His box polypeptide 40\n" +
+            "DEAH Asp-Glu-Ala-His box polypeptide 8\n" +
+            "DEAH Asp-Glu-Ala-His box helicase 9\n" +
+            "diablo, IAP-binding mitochondrial protein\n" +
+            "diabetic nephropathy\n" +
+            "diaphanous-related formin 1\n" +
+            "diaphanous-related formin 2\n" +
+            "diaphanous-related formin 3\n" +
+            "dicer 1, ribonuclease type III\n" +
+            "diaphragmatic hernia 1\n" +
+            "Hernia, congenital diaphragmatic 2\n" +
+            "deiodinase, iodothyronine, type I\n" +
+            "deiodinase, iodothyronine, type II\n" +
+            "deiodinase, iodothyronine, type III\n" +
+            "DIP2 disco-interacting protein 2 homolog B Drosophila\n" +
+            "DIRAS family, GTP-binding RAS-like 1\n" +
+            "disrupted in renal carcinoma 2\n" +
+            "disrupted in renal carcinoma 3\n" +
+            "DIS3 like 3'-5' exoribonuclease 2\n" +
+            "disrupted in schizophrenia 1\n" +
+            "disrupted in schizophrenia 2 non-protein coding\n" +
+            "dispatched homolog 1 Drosophila\n" +
+            "Dyskeratosis, hereditary benign intraepithelial\n" +
+            "dyskeratosis congenita 1, dyskerin\n" +
+            "dickkopf WNT signaling pathway inhibitor 1\n" +
+            "dickkopf WNT signaling pathway inhibitor 4\n" +
+            "dihydrolipoamide S-acetyltransferase\n" +
+            "deleted in liver cancer 1\n" +
+            "dihydrolipoamide dehydrogenase\n" +
+            "deleted in lung and esophageal cancer 1\n" +
+            "deleted in lung and esophageal cancer 1 pseudogene 1\n" +
+            "deleted in lymphocytic leukemia 1 non-protein coding\n" +
+            "deleted in lymphocytic leukemia 2 non-protein coding\n" +
+            "deleted in lymphocytic leukemia 2-like\n" +
+            "discs, large homolog 1 Drosophila\n" +
+            "discs, large homolog 2 Drosophila\n" +
+            "discs, large homolog 3 Drosophila\n" +
+            "discs, large homolog 4 Drosophila\n" +
+            "discs, large Drosophila homolog-associated protein 1\n" +
+            "discs, large Drosophila homolog-associated protein 3\n" +
+            "delta-like 1 homolog Drosophila\n" +
+            "delta-like 1 Drosophila\n" +
+            "delta-like 3 Drosophila\n" +
+            "dihydrolipoamide S-succinyltransferase E2 component of 2-oxo-glutarate complex\n" +
+            "distal-less homeobox 1\n" +
+            "distal-less homeobox 2\n" +
+            "distal-less homeobox 3\n" +
+            "distal-less homeobox 4\n" +
+            "distal-less homeobox 5\n" +
+            "distal-less homeobox 6\n" +
+            "DNA methyltransferase 1 associated protein 1\n" +
+            "deleted in malignant brain tumors 1\n" +
+            "dystrophin\n" +
+            "dimethylglycine dehydrogenase\n" +
+            "dentin matrix acidic phosphoprotein 1\n" +
+            "dystrophia myotonica-protein kinase\n" +
+            "doublesex and mab-3 related transcription factor 1\n" +
+            "doublesex and mab-3 related transcription factor 2\n" +
+            "DMRT-like family C1\n" +
+            "cyclin D binding myb-like transcription factor 1\n" +
+            "DNA replication helicase/nuclease 2\n" +
+            "dynein, axonemal, assembly factor 1\n" +
+            "dynein, axonemal, assembly factor 2\n" +
+            "dynein, axonemal, assembly factor 3\n" +
+            "dynein, axonemal, heavy chain 1\n" +
+            "dynein, axonemal, heavy chain 11\n" +
+            "dynein, axonemal, heavy chain 17\n" +
+            "dynein, axonemal, heavy chain 5\n" +
+            "dynein, axonemal, heavy chain 8\n" +
+            "dynein, axonemal, intermediate chain 1\n" +
+            "dynein, axonemal, intermediate chain 2\n" +
+            "DnaJ Hsp40 homolog, subfamily A, member 1\n" +
+            "DnaJ Hsp40 homolog, subfamily A, member 2\n" +
+            "DnaJ Hsp40 homolog, subfamily A, member 3\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 1\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 12\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 2\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 4\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 6\n" +
+            "DnaJ Hsp40 homolog, subfamily B, member 8\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 12\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 13\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 14\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 15\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 19\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 28\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 30\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 4\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 5\n" +
+            "DnaJ Hsp40 homolog, subfamily C, member 6\n" +
+            "dynein, axonemal, light chain 1\n" +
+            "dynein, axonemal, light chain 4\n" +
+            "deoxyribonuclease I\n" +
+            "deoxyribonuclease I-like 1\n" +
+            "deoxyribonuclease I-like 3\n" +
+            "deoxyribonuclease II beta\n" +
+            "DND microRNA-mediated repression inhibitor 1\n" +
+            "dynamin 1\n" +
+            "dynamin 1-like\n" +
+            "dynamin 2\n" +
+            "dynamin 3\n" +
+            "DNA cytosine-5--methyltransferase 1\n" +
+            "DNA cytosine-5--methyltransferase 3 alpha\n" +
+            "DNA cytosine-5--methyltransferase 3 beta\n" +
+            "DNA cytosine-5--methyltransferase 3-like\n" +
+            "DNA nucleotidylexotransferase\n" +
+            "deoxynucleotidyltransferase, terminal, interacting protein 2\n" +
+            "dedicator of cytokinesis 3\n" +
+            "dedicator of cytokinesis 6\n" +
+            "dedicator of cytokinesis 7\n" +
+            "dedicator of cytokinesis 8\n" +
+            "deoxyhypusine hydroxylase/monooxygenase\n" +
+            "docking protein 1, 62kDa downstream of tyrosine kinase 1\n" +
+            "docking protein 7\n" +
+            "dolichol kinase\n" +
+            "dolichyl-phosphate UDP-N-acetylglucosamine N-acetylglucosaminephosphotransferase 1 GlcNAc-1-P transferase\n" +
+            "diffuse panbronchiolitis critical region 1\n" +
+            "dipeptidase 1 renal\n" +
+            "D4, zinc and double PHD fingers family 2\n" +
+            "diphthamide biosynthesis 1\n" +
+            "DPH2 homolog S. cerevisiae\n" +
+            "diphthamide biosynthesis 3\n" +
+            "dolichyl-phosphate mannosyltransferase polypeptide 1, catalytic subunit\n" +
+            "dolichyl-phosphate mannosyltransferase polypeptide 2, regulatory subunit\n" +
+            "dolichyl-phosphate mannosyltransferase polypeptide 3\n" +
+            "dipeptidyl-peptidase 10 non-functional\n" +
+            "dipeptidyl-peptidase 3\n" +
+            "dipeptidyl-peptidase 4\n" +
+            "dipeptidyl-peptidase 6\n" +
+            "dipeptidyl-peptidase 7\n" +
+            "dipeptidyl-peptidase 9\n" +
+            "developmental pluripotency associated 3\n" +
+            "dermatopontin\n" +
+            "dpy-19-like 2 C. elegans\n" +
+            "dihydropyrimidine dehydrogenase\n" +
+            "dihydropyrimidinase\n" +
+            "dihydropyrimidinase-like 2\n" +
+            "dihydropyrimidinase-like 5\n" +
+            "down-regulator of transcription 1, TBP-binding negative cofactor 2\n" +
+            "dynein regulatory complex subunit 1 homolog Chlamydomonas\n" +
+            "dopamine receptor D1\n" +
+            "dopamine receptor D2\n" +
+            "dopamine receptor D3\n" +
+            "dopamine receptor D4\n" +
+            "dopamine receptor D5\n" +
+            "desmocollin 1\n" +
+            "desmocollin 2\n" +
+            "desmocollin 3\n" +
+            "Down syndrome cell adhesion molecule\n" +
+            "Down syndrome cell adhesion molecule like 1\n" +
+            "Down syndrome critical region gene 10 non-protein coding\n" +
+            "Down syndrome critical region gene 3\n" +
+            "Down syndrome critical region gene 4\n" +
+            "Down syndrome critical region gene 8\n" +
+            "dermatan sulfate epimerase\n" +
+            "desmoglein 1\n" +
+            "desmoglein 2\n" +
+            "desmoglein 3\n" +
+            "desmoglein 4\n" +
+            "desmoplakin\n" +
+            "dentin sialophosphoprotein\n" +
+            "dystonin\n" +
+            "dual serine/threonine and tyrosine protein kinase\n" +
+            "dystrobrevin, alpha\n" +
+            "dystrobrevin binding protein 1\n" +
+            "Dyschromatosis universalis hereditaria\n" +
+            "Dyschromatosis universalis hereditaria 2\n" +
+            "dual oxidase 1\n" +
+            "dual oxidase 2\n" +
+            "dual oxidase maturation factor 1\n" +
+            "dual oxidase maturation factor 2\n" +
+            "Chromosome 16p11.2 duplication syndrome\n" +
+            "Chromosome 16p13.3 duplication syndrome\n" +
+            "Chromosome 17p13.3 duplication syndrome\n" +
+            "Chromosome 17q12 duplication syndrome\n" +
+            "Chromosome 17q21.31 duplication syndrome\n" +
+            "Chromosome 17q23.1-q23.2 duplication syndrome\n" +
+            "Chromosome 18 pericentric inversion\n" +
+            "Chromosome 1q21.1 duplication syndrome\n" +
+            "Chromosome 22q11.2 microduplication syndrome\n" +
+            "Chromosome 22q13 duplication syndrome\n" +
+            "Chromosome 2q31.1 duplication syndrome\n" +
+            "chromosome 3q29 microduplication syndrome\n" +
+            "Chromosome 5p13 duplication syndrome\n" +
+            "Chromosome 7q11.23 duplication syndrome\n" +
+            "Dupuytren contracture 1\n" +
+            "Chromosome Xp11.23-p11.22 duplication syndrome\n" +
+            "Chromosome Xq27.3-q28 duplication syndrome\n" +
+            "Chromosome Xq28 duplication syndrome\n" +
+            "Duane retraction syndrome 1\n" +
+            "dihydrouridine synthase 2\n" +
+            "dual specificity phosphatase 1\n" +
+            "dual specificity phosphatase 10\n" +
+            "dual specificity phosphatase 13\n" +
+            "dual specificity phosphatase 15\n" +
+            "dual specificity phosphatase 19\n" +
+            "dual specificity phosphatase 2\n" +
+            "dual specificity phosphatase 21\n" +
+            "dual specificity phosphatase 22\n" +
+            "dual specificity phosphatase 23\n" +
+            "dual specificity phosphatase 26 putative\n" +
+            "dual specificity phosphatase 3\n" +
+            "dual specificity phosphatase 5\n" +
+            "dual specificity phosphatase 6\n" +
+            "dual specificity phosphatase 8\n" +
+            "deoxyuridine triphosphatase\n" +
+            "double homeobox 4\n" +
+            "dishevelled segment polarity protein 1\n" +
+            "dishevelled segment polarity protein 2\n" +
+            "dishevelled segment polarity protein 3\n" +
+            "dandy-walker syndrome\n" +
+            "DPY30 domain containing 1\n" +
+            "DPY30 domain containing 2\n" +
+            "dymeclin\n" +
+            "dynein, cytoplasmic 1, heavy chain 1\n" +
+            "dynein, cytoplasmic 1, intermediate chain 2\n" +
+            "dynein, cytoplasmic 2, heavy chain 1\n" +
+            "dynein, light chain, Tctex-type 3\n" +
+            "dual-specificity tyrosine-Y-phosphorylation regulated kinase 1A\n" +
+            "dual-specificity tyrosine-Y-phosphorylation regulated kinase 1B\n" +
+            "dysferlin\n" +
+            "dystonia 10\n" +
+            "dystonia 13, torsion\n" +
+            "dystonia 15, myoclonic\n" +
+            "dystonia 17\n" +
+            "dystonia 2, torsion autosomal recessive\n" +
+            "dystonia 21, torsion autosomal dominant\n" +
+            "dystonia 7, torsion autosomal dominant\n" +
+            "dyslexia susceptibility 1\n" +
+            "dyslexia susceptibility 1 candidate 1\n" +
+            "DYX1C1-CCPG1 readthrough NMD candidate\n" +
+            "dyslexia susceptibility 2\n" +
+            "dyslexia susceptibility 3\n" +
+            "dyslexia susceptibility 5\n" +
+            "dyslexia susceptibility 6\n" +
+            "dyslexia susceptibility 8\n" +
+            "dyslexia susceptibility 9\n" +
+            "E2F transcription factor 1\n" +
+            "E2F transcription factor 2\n" +
+            "E2F transcription factor 3\n" +
+            "E2F transcription factor 8\n" +
+            "E4F transcription factor 1\n" +
+            "Episodic ataxia, type 3\n" +
+            "Episodic ataxia, type 7\n" +
+            "ELL associated factor 1\n" +
+            "EAF1 antisense RNA 1\n";
+
+    private static String secondName =      "bestrophin 1\n" +
+            "bestrophin 2\n" +
+            "bestrophin 3\n" +
+            "bestrophin 4\n" +
+            "Bet1 golgi vesicular membrane trafficking protein\n" +
+            "Bet1 golgi vesicular membrane trafficking protein-like\n" +
+            "brain expressed, X-linked 1\n" +
+            "brain expressed X-linked 2\n" +
+            "Benign familial infantile convulsions-2\n" +
+            "benign familial infantile convulsions\n" +
+            "Convulsions, benign familial infantile, 4\n" +
+            "beaded filament structural protein 1, filensin\n" +
+            "beaded filament structural protein 2, phakinin\n" +
+            "bone gamma-carboxyglutamate gla protein\n" +
+            "biglycan\n" +
+            "Beukes familial hip dysplasia\n" +
+            "basic helix-loop-helix family, member a9\n" +
+            "basic helix-loop-helix family, member e41\n" +
+            "betaine--homocysteine S-methyltransferase\n" +
+            "betaine--homocysteine S-methyltransferase 2\n" +
+            "BicC family RNA binding protein 1\n" +
+            "cell division cycle 5-like\n" +
+            "cell division cycle 6\n" +
+            "cell division cycle 73\n" +
+            "cell division cycle associated 2\n" +
+            "cell division cycle associated 3\n" +
+            "cell division cycle associated 4\n" +
+            "cell division cycle associated 5\n" +
+            "cell division cycle associated 7\n" +
+            "cell division cycle associated 8\n" +
+            "cadherin 1, type 1, E-cadherin epithelial\n" +
+            "cadherin 11, type 2, OB-cadherin osteoblast\n" +
+            "cadherin 12, type 2 N-cadherin 2\n" +
+            "cadherin 13\n" +
+            "cadherin 15, type 1, M-cadherin myotubule\n" +
+            "cadherin 16, KSP-cadherin\n" +
+            "cadherin 19, type 2\n" +
+            "cadherin 2, type 1, N-cadherin neuronal\n" +
+            "cadherin-related 23\n" +
+            "cadherin 3, type 1, P-cadherin placental\n" +
+            "cadherin 5, type 2 vascular endothelium\n" +
+            "cadherin 7, type 2\n" +
+            "cadherin 8, type 2\n" +
+            "cadherin 9, type 2 T1-cadherin\n" +
+            "cadherin-related family member 1\n" +
+            "CDP-diacylglycerol--inositol 3-phosphatidyltransferase\n" +
+            "cyclin-dependent kinase 1\n" +
+            "cyclin-dependent kinase 10\n" +
+            "cyclin-dependent kinase 11A\n" +
+            "cyclin-dependent kinase 11B\n" +
+            "cyclin-dependent kinase 15\n" +
+            "cyclin-dependent kinase 2\n" +
+            "cyclin-dependent kinase 20\n" +
+            "cyclin-dependent kinase 2 associated protein 1\n" +
+            "cyclin-dependent kinase 2 associated protein 2\n" +
+            "cyclin-dependent kinase 4\n" +
+            "cyclin-dependent kinase 5\n" +
+            "cyclin-dependent kinase 5, regulatory subunit 1 p35\n" +
+            "CDK5 regulatory subunit associated protein 1\n" +
+            "CDK5 regulatory subunit associated protein 2\n" +
+            "cyclin-dependent kinase 6\n" +
+            "cyclin-dependent kinase 7\n" +
+            "cyclin-dependent kinase 9\n" +
+            "CDK5 regulatory subunit associated protein 1-like 1\n" +
+            "cyclin-dependent kinase-like 3\n" +
+            "cyclin-dependent kinase-like 5\n" +
+            "cyclin-dependent kinase inhibitor 1A p21, Cip1\n" +
+            "cyclin-dependent kinase inhibitor 1B p27, Kip1\n" +
+            "cyclin-dependent kinase inhibitor 1C p57, Kip2\n" +
+            "cyclin-dependent kinase inhibitor 2A\n" +
+            "cyclin-dependent kinase inhibitor 2B p15, inhibits CDK4\n" +
+            "CDKN2B antisense RNA 1\n" +
+            "cyclin-dependent kinase inhibitor 2C p18, inhibits CDK4\n" +
+            "cyclin-dependent kinase inhibitor 2D p19, inhibits CDK4\n" +
+            "cyclin-dependent kinase inhibitor 3\n" +
+            "Cornelia de Lange syndrome 1\n" +
+            "Cornelia de Lange syndrome 2\n" +
+            "cysteine dioxygenase type 1\n" +
+            "cell adhesion associated, oncogene regulated\n" +
+            "cerebellar degeneration-related protein 1, 34kDa\n" +
+            "cerebellar degeneration-related protein 2, 62kDa\n" +
+            "Cerebellar degeneration-related autoantigen-3\n" +
+            "CDP-diacylglycerol synthase phosphatidate cytidylyltransferase 1\n" +
+            "corneodesmosin\n" +
+            "chromatin licensing and DNA replication factor 1\n" +
+            "caudal type homeobox 1\n" +
+            "caudal type homeobox 2\n" +
+            "caudal type homeobox 4\n" +
+            "chromodomain protein, Y-linked, 1\n" +
+            "chromodomain protein, Y-linked, 2A\n" +
+            "chromodomain protein, Y-like\n" +
+            "chromodomain protein, Y-like 2\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 1 biliary glycoprotein\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 16\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 3\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 4\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 5\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 6 non-specific cross reacting antigen\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 7\n" +
+            "carcinoembryonic antigen-related cell adhesion molecule 8\n" +
+            "CCAAT/enhancer binding protein C/EBP, alpha\n" +
+            "CCAAT/enhancer binding protein C/EBP, beta\n" +
+            "CCAAT/enhancer binding protein C/EBP, epsilon\n" +
+            "CCAAT/enhancer binding protein C/EBP, zeta\n" +
+            "cat eye syndrome chromosome region\n" +
+            "cat eye syndrome chromosome region, candidate 1\n" +
+            "cat eye syndrome chromosome region, candidate 2\n" +
+            "cat eye syndrome chromosome region, candidate 3 non-protein coding\n" +
+            "cat eye syndrome chromosome region, candidate 5\n" +
+            "CECR5 antisense RNA 1\n" +
+            "cat eye syndrome chromosome region, candidate 6\n" +
+            "cat eye syndrome chromosome region, candidate 7 non-protein coding\n" +
+            "cat eye syndrome chromosome region, candidate 9 non-protein coding\n" +
+            "carboxyl ester lipase\n" +
+            "chymotrypsin-like elastase family, member 1\n" +
+            "chymotrypsin-like elastase family, member 3B\n" +
+            "CUGBP, Elav-like family member 1\n" +
+            "CUGBP, Elav-like family member 2\n" +
+            "CUGBP, Elav-like family member 4\n" +
+            "Celiac disease, susceptibility to, 10\n" +
+            "Celiac disease, susceptibility to, 11\n" +
+            "Celiac disease, susceptibility to, 12\n" +
+            "Celiac disease, susceptibility to, 13\n" +
+            "celiac disease 2\n" +
+            "Celiac disease, susceptibility to, 5\n" +
+            "Celiac disease, susceptibility to, 6\n" +
+            "Celiac disease, susceptibility to, 7\n" +
+            "Celiac disease, susceptibility to, 8\n" +
+            "Celiac disease, susceptibility to, 9\n" +
+            "cadherin, EGF LAG seven-pass G-type receptor 1\n" +
+            "cadherin, EGF LAG seven-pass G-type receptor 2\n" +
+            "cell migration inducing protein, hyaluronan binding\n" +
+            "cementum protein 1\n" +
+            "cell cycle exit and neuronal differentiation 1\n" +
+            "centromere protein B, 80kDa\n" +
+            "centromere protein C\n" +
+            "centromere protein C pseudogene 1\n" +
+            "centromere protein E, 312kDa\n" +
+            "centromere protein J\n" +
+            "centromere protein V\n" +
+            "centrosomal protein 135kDa\n" +
+            "centrosomal protein 152kDa\n" +
+            "centrosomal protein 164kDa\n" +
+            "centrosomal protein 19kDa\n" +
+            "centrosomal protein 290kDa\n" +
+            "centrosomal protein 41kDa\n" +
+            "centrosomal protein 55kDa\n" +
+            "centrosomal protein 57kDa\n" +
+            "centrosomal protein 63kDa\n" +
+            "centrosomal protein 76kDa\n" +
+            "centrosomal protein 83kDa\n" +
+            "centrosomal protein 85kDa-like\n" +
+            "centrosomal protein 89kDa\n" +
+            "cerberus 1, DAN family BMP antagonist\n" +
+            "ceramide kinase\n" +
+            "ceramide kinase-like\n" +
+            "ceramide synthase 3\n" +
+            "carboxylesterase 1\n" +
+            "carboxylesterase 2\n" +
+            "carboxylesterase 3\n" +
+            "centrin, EF-hand protein, 2\n" +
+            "cholesteryl ester transfer protein, plasma\n" +
+            "complement factor B\n" +
+            "cripto, FRL-1, cryptic family 1\n" +
+            "complement factor D adipsin\n" +
+            "complement factor H\n" +
+            "complement factor H-related 1\n" +
+            "complement factor H-related 2\n" +
+            "complement factor H-related 3\n" +
+            "complement factor H-related 4\n" +
+            "complement factor H-related 5\n" +
+            "complement factor I\n" +
+            "cofilin 1 non-muscle\n" +
+            "cofilin 2 muscle\n" +
+            "CASP8 and FADD-like apoptosis regulator\n" +
+            "cystic fibrosis modifier 1\n" +
+            "cystic fibrosis modifier 2\n" +
+            "complement factor properdin\n" +
+            "craniofacioskeletal syndrome\n" +
+            "Myopathy, congenital, with fiber-type disproportion, X-linked\n" +
+            "cystic fibrosis transmembrane conductance regulator ATP-binding cassette sub-family C, member 7\n" +
+            "cystic fibrosis transmembrane conductance regulator pseudogene 1\n" +
+            "glycoprotein hormones, alpha polypeptide\n" +
+            "chorionic gonadotropin, beta polypeptide\n" +
+            "chorionic gonadotropin, beta polypeptide 5\n" +
+            "chorionic gonadotropin, beta polypeptide 7\n" +
+            "chorionic gonadotropin, beta polypeptide 8\n" +
+            "cingulin-like 1\n" +
+            "cholesterol 25-hydroxylase\n" +
+            "choline O-acetyltransferase\n" +
+            "coiled-coil-helix-coiled-coil-helix domain containing 10\n" +
+            "chromodomain helicase DNA binding protein 1-like\n" +
+            "chromodomain helicase DNA binding protein 2\n" +
+            "chromodomain helicase DNA binding protein 3\n" +
+            "chromodomain helicase DNA binding protein 4\n" +
+            "chromodomain helicase DNA binding protein 5\n" +
+            "chromodomain helicase DNA binding protein 6\n" +
+            "chromodomain helicase DNA binding protein 7\n" +
+            "chromodomain helicase DNA binding protein 8\n" +
+            "Chordoma\n" +
+            "Coronary heart disease, susceptibility to, 1\n" +
+            "Coronary heart disease, susceptibility to, 2\n" +
+            "Coronary heart disease, susceptibility to, 3\n" +
+            "Coronary heart disease, susceptibility to, 4\n" +
+            "Coronary heart disease, susceptibility to, 8\n" +
+            "Coronary heart disease, suscpetibility to, 9\n" +
+            "Congenital heart defects, multiple types, 3\n" +
+            "corneal endothelial dystrophy 1 autosomal dominant\n" +
+            "checkpoint kinase 1\n" +
+            "checkpoint kinase 2\n" +
+            "calcium homeostasis endoplasmic reticulum protein\n" +
+            "checkpoint suppressor 1-like 1\n" +
+            "chromogranin A parathyroid secretory protein 1\n" +
+            "chromogranin B secretogranin 1\n" +
+            "chitinase 3-like 1 cartilage glycoprotein-39\n" +
+            "chitinase, acidic\n" +
+            "cysteine-rich hydrophobic domain 2\n" +
+            "chitinase 1 chitotriosidase\n" +
+            "choline kinase alpha\n" +
+            "choline kinase beta\n" +
+            "cell adhesion molecule L1-like\n" +
+            "choroideremia Rab escort protein 1\n" +
+            "choroideremia-like Rab escort protein 2\n" +
+            "charged multivesicular body protein 1A\n" +
+            "charged multivesicular body protein 2A\n" +
+            "charged multivesicular body protein 2B\n" +
+            "charged multivesicular body protein 3\n" +
+            "charged multivesicular body protein 4B\n" +
+            "chimerin 1\n" +
+            "chimerin 2\n" +
+            "Hypothyroidism, congenital, nongoitrous, 3\n" +
+            "cysteine and histidine-rich domain CHORD containing 1\n" +
+            "calcineurin-like EF-hand protein 2\n" +
+            "chondroitin polymerizing factor 2\n" +
+            "choline phosphotransferase 1\n" +
+            "chordin-like 1\n" +
+            "CHRNA7 cholinergic receptor, nicotinic, alpha 7, exons 5-10 and FAM7A family with sequence similarity 7A, exons A-E fusion\n" +
+            "cholinergic receptor, muscarinic 1\n" +
+            "cholinergic receptor, muscarinic 2\n" +
+            "cholinergic receptor, muscarinic 3\n" +
+            "cholinergic receptor, muscarinic 5\n" +
+            "cholinergic receptor, nicotinic, alpha 1 muscle\n" +
+            "cholinergic receptor, nicotinic, alpha 2 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 3 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 4 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 5 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 6 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 7 neuronal\n" +
+            "cholinergic receptor, nicotinic, alpha 9 neuronal\n" +
+            "cholinergic receptor, nicotinic, beta 1 muscle\n" +
+            "cholinergic receptor, nicotinic, beta 2 neuronal\n" +
+            "cholinergic receptor, nicotinic, beta 3 neuronal\n" +
+            "cholinergic receptor, nicotinic, beta 4 neuronal\n" +
+            "cholinergic receptor, nicotinic, delta muscle\n" +
+            "cholinergic receptor, nicotinic, epsilon muscle\n" +
+            "cholinergic receptor, nicotinic, gamma muscle\n" +
+            "carbohydrate keratan sulfate Gal-6 sulfotransferase 1\n" +
+            "carbohydrate chondroitin 4 sulfotransferase 11\n" +
+            "carbohydrate N-acetylgalactosamine 4-0 sulfotransferase 14\n" +
+            "carbohydrate chondroitin 6 sulfotransferase 3\n" +
+            "carbohydrate N-acetylglucosamine 6-O sulfotransferase 5\n" +
+            "carbohydrate N-acetylglucosamine 6-O sulfotransferase 6\n" +
+            "carbohydrate N-acetylgalactosamine 4-0 sulfotransferase 8\n" +
+            "chondroitin sulfate synthase 1\n" +
+            "CTF8, chromosome transmission fidelity factor 8 homolog S. cerevisiae\n" +
+            "conserved helix-loop-helix ubiquitous kinase\n" +
+            "calcium and integrin binding 1 calmyrin\n" +
+            "calcium and integrin binding family member 2\n" +
+            "capicua transcriptional repressor\n" +
+            "cell death-inducing DFFA-like effector a\n" +
+            "cell death-inducing DFFA-like effector c\n" +
+            "hearing loss, cisplatin-induced, susceptibility to\n" +
+            "class II, major histocompatibility complex, transactivator\n" +
+            "ciliary dyskinesia, primary 2\n" +
+            "Ciliary dyskinesia, primary, 4\n" +
+            "Ciliary dyskinesia, primary, 8\n" +
+            "cartilage intermediate layer protein, nucleotide pyrophosphohydrolase\n" +
+            "Carotid intimal medial thickness\n" +
+            "cyclin-dependent kinase 2 interacting protein\n" +
+            "cirrhosis, autosomal recessive 1A cirhin\n" +
+            "CDGSH iron sulfur domain 1\n" +
+            "CDGSH iron sulfur domain 2\n" +
+            "cytokine inducible SH2-containing protein\n" +
+            "citron rho-interacting, serine/threonine kinase 21\n" +
+            "Cbp/p300-interacting transactivator, with Glu/Asp-rich carboxy-terminal domain, 2\n" +
+            "CDKN1A interacting zinc finger protein 1\n" +
+            "cytoskeleton associated protein 2\n" +
+            "cytoskeleton-associated protein 4\n" +
+            "creatine kinase, brain\n" +
+            "chemokine-like factor\n" +
+            "creatine kinase, muscle\n" +
+            "creatine kinase, mitochondrial 1A\n" +
+            "creatine kinase, mitochondrial 1B\n" +
+            "creatine kinase, mitochondrial 2 sarcomeric\n" +
+            "CDC28 protein kinase regulatory subunit 1B\n" +
+            "CDC28 protein kinase regulatory subunit 1B pseudogene 2\n" +
+            "cerebellar ataxia 3 cerebellar parenchyma disorder 1\n" +
+            "cerebellar atrophy with progressive microcephaly\n" +
+            "Charcot-Leyden crystal galectin\n" +
+            "chloride channel accessory 1\n" +
+            "chloride channel accessory 2\n" +
+            "chloride channel accessory 4\n" +
+            "cardiotrophin-like cytokine factor 1\n" +
+            "chloride channel, voltage-sensitive 1\n" +
+            "chloride channel, voltage-sensitive 2\n" +
+            "chloride channel, voltage-sensitive 4\n" +
+            "chloride channel, voltage-sensitive 5\n" +
+            "chloride channel, voltage-sensitive 7\n" +
+            "chloride channel, voltage-sensitive Ka\n" +
+            "chloride channel, voltage-sensitive Kb\n" +
+            "claudin 1\n" +
+            "claudin 10\n" +
+            "claudin 11\n" +
+            "claudin 14\n" +
+            "claudin 15\n" +
+            "claudin 16\n" +
+            "claudin 18\n" +
+            "claudin 19\n" +
+            "claudin 23\n" +
+            "claudin 3\n" +
+            "claudin 4\n" +
+            "claudin 5\n" +
+            "claudin 6\n" +
+            "claudin 7\n" +
+            "claudin 8\n" +
+            "claudin 9\n" +
+            "C-type lectin domain family 11, member A\n" +
+            "C-type lectin domain family 12, member A\n" +
+            "C-type lectin domain family 16, member A\n" +
+            "C-type lectin domain family 1, member B\n" +
+            "C-type lectin domain family 2, member A\n" +
+            "C-type lectin domain family 3, member A\n" +
+            "C-type lectin domain family 3, member B\n" +
+            "C-type lectin domain family 4, member A\n" +
+            "C-type lectin domain family 4, member E\n" +
+            "C-type lectin domain family 4, member G\n" +
+            "C-type lectin domain family 4, member M\n" +
+            "C-type lectin domain family 5, member A\n" +
+            "C-type lectin domain family 7, member A\n" +
+            "calmegin\n" +
+            "chloride intracellular channel 2\n" +
+            "chloride intracellular channel 4\n" +
+            "chloride intracellular channel 5\n" +
+            "clathrin interactor 1\n" +
+            "CAP-GLY domain containing linker protein 1\n" +
+            "CAP-GLY domain containing linker protein 2\n" +
+            "CDC-like kinase 1\n" +
+            "Leukemia, chronic lymphocytic, susceptibility to, 1\n" +
+            "Disrupted in B-cell neoplasia\n" +
+            "Leukemia, chronic lymphocytic, susceptibility to, 3\n" +
+            "Leukemia, chronic lymphocytic susceptibility to, 4\n" +
+            "Leukemia, chronic lymphocytic susceptiblity to, 5\n" +
+            "chronic lymphocytic leukemia up-regulated 1\n" +
+            "chronic lymphocytic leukemia up-regulated 1 opposite strand\n" +
+            "CXADR-like membrane protein\n" +
+            "ceroid-lipofuscinosis, neuronal 3\n" +
+            "ceroid-lipofuscinosis, neuronal 5\n" +
+            "ceroid-lipofuscinosis, neuronal 6, late infantile, variant\n" +
+            "ceroid-lipofuscinosis, neuronal 8 epilepsy, progressive with mental retardation\n" +
+            "cytokine-dependent hematopoietic cell linker\n" +
+            "clock circadian regulator\n" +
+            "cleavage and polyadenylation factor I subunit 1\n" +
+            "ClpB caseinolytic peptidase B homolog E. coli\n" +
+            "caseinolytic mitochondrial matrix peptidase proteolytic subunit\n" +
+            "colipase, pancreatic\n" +
+            "cleft lip and palate associated transmembrane protein 1\n" +
+            "CLPTM1-like\n" +
+            "clarin 1\n" +
+            "CLRN1 antisense RNA 1\n" +
+            "clarin 3\n" +
+            "clathrin, heavy chain Hc\n" +
+            "clathrin, heavy chain-like 1\n" +
+            "clusterin\n" +
+            "clusterin-like 1 retinal\n" +
+            "clavesin 1\n" +
+            "chymase 1, mast cell\n" +
+            "cytidine monophospho-N-acetylneuraminic acid hydroxylase, pseudogene\n" +
+            "Capillary malformations, hereditary\n" +
+            "cytidine monophosphate N-acetylneuraminic acid synthetase\n" +
+            "C-x9-C motif containing 1\n" +
+            "cardiomyopathy, dilated 1B autosomal dominant\n" +
+            "cardiomyopathy, dilated 1C autosomal dominant\n" +
+            "cardiomyopathy, dilated 1F autosomal dominant\n" +
+            "cardiomyopathy, dilated 1H autosomal dominant\n" +
+            "cardiomyopathy, dilated 1K autosomal dominant\n" +
+            "cardiomyopathy, dilated 1Q autosomal dominant\n" +
+            "Craniometaphyseal dysplasia, autosomal recessive\n" +
+            "Cardiomyopathy, familial hypertrophic, 21\n" +
+            "cutaneous malignant melanoma/dysplastic nevus\n" +
+            "Melanoma, cutaneous malignant, 4\n" +
+            "Melanoma, cutaneous malignant, susceptibility to, 7\n" +
+            "myasthenia gravis, familial infantile, 1\n" +
+            "Charcot-Marie-Tooth neuropathy 1A greatly reduced nerve conduction velocity, hereditary motor sensory neuropathy Ia\n" +
+            "Charcot-Marie-Tooth neuropathy 2B\n" +
+            "Charcot-Marie-Tooth disease, axonal, type 2G\n" +
+            "Charcot-Marie-Tooth disease, dominant intermediate 2\n" +
+            "CKLF-like MARVEL transmembrane domain containing 5\n" +
+            "Charcot-Marie-Tooth neuropathy, X-linked 2 recessive\n" +
+            "Charcot-Marie-Tooth neuropathy, X-linked 3 dominant\n" +
+            "CCHC-type zinc finger, nucleic acid binding protein\n" +
+            "Carney complex type 2, multiple neoplasia and lentiginosis\n" +
+            "Corneal dermoids\n" +
+            "carnosine dipeptidase 1 metallopeptidase M20 family\n" +
+            "CNDP dipeptidase 2 metallopeptidase M20 family\n" +
+            "cyclic nucleotide gated channel alpha 1\n" +
+            "cyclic nucleotide gated channel alpha 2\n" +
+            "cyclic nucleotide gated channel alpha 3\n" +
+            "cyclic nucleotide gated channel beta 1\n" +
+            "cyclic nucleotide gated channel beta 3\n" +
+            "cyclin M1\n" +
+            "cyclin M2\n" +
+            "cyclin M4\n" +
+            "CCR4-NOT transcription complex, subunit 3\n" +
+            "CCR4-NOT transcription complex, subunit 8\n" +
+            "2',3'-cyclic nucleotide 3' phosphodiesterase\n" +
+            "canopy FGF signaling regulator 3\n" +
+            "cannabinoid receptor 1 brain\n" +
+            "cannabinoid receptor 2 macrophage\n" +
+            "Carnosinemia carnosinase\n" +
+            "ciliary neurotrophic factor\n" +
+            "ciliary neurotrophic factor receptor\n" +
+            "contactin 1\n" +
+            "contactin 2 axonal\n" +
+            "contactin 4\n" +
+            "contactin associated protein 1\n" +
+            "contactin associated protein-like 2\n" +
+            "centriolin\n" +
+            "cytochrome c oxidase assembly factor 5\n" +
+            "CoA synthase\n" +
+            "cochlin\n" +
+            "cone dystrophy 2 X-linked\n" +
+            "Cavitary optic disc anomalies\n" +
+            "component of oligomeric golgi complex 1\n" +
+            "component of oligomeric golgi complex 2\n" +
+            "component of oligomeric golgi complex 4\n" +
+            "component of oligomeric golgi complex 5\n" +
+            "component of oligomeric golgi complex 6\n" +
+            "component of oligomeric golgi complex 7\n" +
+            "component of oligomeric golgi complex 8\n" +
+            "Cohen syndrome QTL 1\n" +
+            "Cohen syndrome QTL 2\n" +
+            "coilin\n" +
+            "collagen, type X, alpha 1\n" +
+            "collagen, type XI, alpha 1\n" +
+            "collagen, type XI, alpha 2\n" +
+            "collagen, type XII, alpha 1\n" +
+            "collagen, type XIV, alpha 1\n" +
+            "collagen, type XVII, alpha 1\n" +
+            "collagen, type XVIII, alpha 1\n" +
+            "collagen, type I, alpha 1\n" +
+            "collagen, type I, alpha 2\n" +
+            "collagen, type XXV, alpha 1\n" +
+            "collagen, type XXVI, alpha 1\n" +
+            "collagen, type XXVII, alpha 1\n" +
+            "collagen, type II, alpha 1\n" +
+            "collagen, type III, alpha 1\n" +
+            "collagen, type IV, alpha 1\n" +
+            "collagen, type IV, alpha 2\n" +
+            "collagen, type IV, alpha 3 Goodpasture antigen\n" +
+            "collagen, type IV, alpha 3 Goodpasture antigen binding protein\n" +
+            "collagen, type IV, alpha 4\n" +
+            "collagen, type IV, alpha 5\n" +
+            "collagen, type IV, alpha 6\n" +
+            "collagen, type V, alpha 1\n" +
+            "collagen, type V, alpha 2\n" +
+            "collagen, type V, alpha 3\n" +
+            "collagen, type VI, alpha 1\n" +
+            "collagen, type VI, alpha 2\n" +
+            "collagen, type VI, alpha 3\n" +
+            "collagen, type VI, alpha 5\n" +
+            "collagen, type VII, alpha 1\n" +
+            "collagen, type VIII, alpha 1\n" +
+            "collagen, type VIII, alpha 2\n" +
+            "collagen, type IX, alpha 1\n" +
+            "collagen, type IX, alpha 2\n" +
+            "collagen, type IX, alpha 3\n" +
+            "colorectal cancer associated 1\n" +
+            "colorectal cancer associated 2\n" +
+            "collectin sub-family member 11\n" +
+            "collagen-like tail subunit single strand of homotrimer of asymmetric acetylcholinesterase\n" +
+            "Cogan-type congential oculomotor apraxia\n" +
+            "copper metabolism Murr1 domain containing 1\n" +
+            "COMM domain containing 5\n" +
+            "cartilage oligomeric matrix protein\n" +
+            "catechol-O-methyltransferase\n" +
+            "coatomer protein complex, subunit beta 1\n" +
+            "Pulmonary disease, chronic obstructive, severe early-onset\n" +
+            "Chronic obstructive pulmonary disease QTL 1\n" +
+            "Chronic obstructive pulmonary disease QTL 10\n" +
+            "Chronic obstructive pulmonary disease QTL 11\n" +
+            "Chronic obstructive pulmonary disease QTL 12\n" +
+            "Chronic obstructive pulmonary disease QTL 13\n" +
+            "Chronic obstructive pulmonary disease QTL 14\n" +
+            "Chronic obstructive pulmonary disease QTL 15\n" +
+            "Chronic obstructive pulmonary disease QTL 16\n" +
+            "Chronic obstructive pulmonary disease QTL 17\n" +
+            "Chronic obstructive pulmonary disease QTL 18\n" +
+            "Chronic obstructive pulmonary disease QTL 19\n" +
+            "Chronic obstructive pulmonary disease QTL 2\n" +
+            "Chronic obstructive pulmonary disease QTL 20\n" +
+            "Chronic obstructive pulmonary disease QTL 21\n" +
+            "Chronic obstructive pulmonary disease QTL 22\n" +
+            "Chronic obstructive pulmonary disease QTL 23\n" +
+            "Chronic obstructive pulmonary disease QTL 24\n" +
+            "Chronic obstructive pulmonary disease QTL 25\n" +
+            "Chronic obstructive pulmonary disease QTL 26\n" +
+            "Chronic obstructive pulmonary disease QTL 27\n" +
+            "Chronic obstructive pulmonary disease QTL 28\n" +
+            "Chronic obstructive pulmonary disease QTL 29\n" +
+            "Chronic obstructive pulmonary disease QTL 3\n" +
+            "Chronic obstructive pulmonary disease QTL 4\n" +
+            "Chronic obstructive pulmonary disease QTL 5\n" +
+            "Chronic obstructive pulmonary disease QTL 6\n" +
+            "Chronic obstructive pulmonary disease QTL 7\n" +
+            "Chronic obstructive pulmonary disease QTL 8\n" +
+            "Chronic obstructive pulmonary disease QTL 9\n" +
+            "COP9 signalosome subunit 2\n" +
+            "COP9 signalosome subunit 5\n" +
+            "COP9 signalosome subunit 6\n" +
+            "coenzyme Q10 homolog A S. cerevisiae\n" +
+            "coenzyme Q2 4-hydroxybenzoate polyprenyltransferase\n" +
+            "coenzyme Q6 monooxygenase\n" +
+            "coenzyme Q9\n" +
+            "cone rod dystrophy 1 autosomal dominant\n" +
+            "cone rod dystrophy 17 autosomal dominant\n" +
+            "cone rod dystrophy 8\n" +
+            "corin, serine peptidase\n" +
+            "coronin, actin binding protein, 1A\n" +
+            "coronin, actin binding protein, 1B\n" +
+            "coronin, actin binding protein, 1C\n" +
+            "cortistatin\n" +
+            "COTL1 pseudogene 1\n" +
+            "cytochrome c oxidase assembly homolog 10 yeast\n" +
+            "cytochrome c oxidase assembly homolog 11 yeast\n" +
+            "cytochrome c oxidase assembly homolog 14 S. cerevisiae\n" +
+            "cytochrome c oxidase assembly homolog 15 yeast\n" +
+            "COX16 cytochrome c oxidase assembly homolog S. cerevisiae\n" +
+            "COX17 cytochrome c oxidase copper chaperone\n" +
+            "COX20 cytochrome C oxidase assembly factor\n" +
+            "cytochrome c oxidase subunit IV isoform 1\n" +
+            "cytochrome c oxidase subunit IV isoform 2 lung\n" +
+            "cytochrome c oxidase subunit Va\n" +
+            "cytochrome c oxidase subunit VIa polypeptide 1\n" +
+            "cytochrome c oxidase subunit VIb polypeptide 1 ubiquitous\n" +
+            "cytochrome c oxidase subunit VIc\n" +
+            "cytochrome c oxidase subunit VIIa polypeptide 2 liver\n" +
+            "cytochrome c oxidase subunit VIIa polypeptide 2 like\n" +
+            "cytochrome c oxidase subunit VIIb\n" +
+            "cytochrome c oxidase subunit VIIIC\n" +
+            "ceruloplasmin ferroxidase\n" +
+            "Lymphocyte cytosolic protein, molecular weight 20kD\n" +
+            "carboxypeptidase A1 pancreatic\n" +
+            "carboxypeptidase A4\n" +
+            "carboxypeptidase A6\n" +
+            "cerebral palsy, ataxic 1\n" +
+            "carboxypeptidase B1 tissue\n" +
+            "carboxypeptidase B2 plasma\n" +
+            "Chondrodysplasia with platyspondyly, distinctive brachydactyly, hydrocephaly, and microphthalmia\n" +
+            "carboxypeptidase D\n" +
+            "carboxypeptidase E\n" +
+            "complexin 1\n" +
+            "complexin 2\n" +
+            "complexin 3\n" +
+            "carboxypeptidase N, polypeptide 1\n" +
+            "carboxypeptidase O\n" +
+            "coproporphyrinogen oxidase\n" +
+            "ceruloplasmin ferroxidase pseudogene\n" +
+            "carboxypeptidase Q\n" +
+            "carbamoyl-phosphate synthase 1, mitochondrial\n" +
+            "cleavage and polyadenylation specific factor 2, 100kDa\n" +
+            "cleavage and polyadenylation specific factor 3-like\n" +
+            "cleavage and polyadenylation specific factor 4, 30kDa\n" +
+            "carnitine palmitoyltransferase 1A liver\n" +
+            "carnitine palmitoyltransferase 1B muscle\n" +
+            "carnitine palmitoyltransferase 2\n" +
+            "Ventricular tachycardia, catecholaminergic polymorphic, 3\n" +
+            "CPX chromosome region, candidate 1\n" +
+            "carboxypeptidase Z\n" +
+            "complement component 3b/4b receptor 1 Knops blood group\n" +
+            "complement component 3d/Epstein Barr virus receptor 2\n" +
+            "cellular retinoic acid binding protein 1\n" +
+            "cellular retinoic acid binding protein 2\n" +
+            "colorectal adenoma and carcinoma 1\n" +
+            "CASP2 and RIPK1 domain containing adaptor with death domain\n" +
+            "carnitine O-acetyltransferase\n" +
+            "crumbs family member 1, photoreceptor morphogenesis associated\n" +
+            "cereblon\n" +
+            "Creatinine clearance QTL\n" +
+            "Colorectal cancer, susceptibility to, 10\n" +
+            "Colorectal cancer, susceptibility to, 11\n" +
+            "Colorectal cancer, susceptibility to, 2\n" +
+            "Colorectal cancer, susceptibility to, 5\n" +
+            "colorectal cancer, susceptibility to, 6\n" +
+            "colorectal cancer, susceptibility to, 7\n" +
+            "Colorectal cancer, susceptibility to, 8\n" +
+            "colorectal cancer, susceptibility to, 9\n" +
+            "cAMP responsive element binding protein 1\n" +
+            "cAMP responsive element binding protein 3\n" +
+            "cAMP responsive element binding protein 3-like 1\n" +
+            "cAMP responsive element binding protein 3-like 2\n" +
+            "cAMP responsive element binding protein 3-like 3\n" +
+            "CREB binding protein\n" +
+            "cysteine-rich with EGF-like domains 1\n" +
+            "cysteine-rich with EGF-like domains 2\n" +
+            "corticotropin releasing hormone\n" +
+            "corticotropin releasing hormone binding protein\n" +
+            "corticotropin releasing hormone receptor 1\n" +
+            "cysteine-rich PDZ-binding protein\n" +
+            "cysteine-rich secretory protein 2\n" +
+            "cysteine-rich secretory protein 3\n" +
+            "v-crk avian sarcoma virus CT10 oncogene homolog\n" +
+            "v-crk avian sarcoma virus CT10 oncogene homolog-like\n" +
+            "cytokine receptor-like factor 1\n" +
+            "cytokine receptor-like factor 2\n" +
+            "cytokine receptor-like factor 3\n" +
+            "cardiolipin synthase 1\n" +
+            "cornulin\n" +
+            "ciliary rootlet coiled-coil, rootletin\n" +
+            "C-reactive protein, pentraxin-related\n" +
+            "Craniosynostosis, Adelaide type\n" +
+            "cartilage acidic protein 1\n" +
+            "cartilage associated protein\n" +
+            "CREB regulated transcription coactivator 1\n" +
+            "CREB regulated transcription coactivator 2\n" +
+            "CREB regulated transcription coactivator 3\n" +
+            "cone-rod homeobox\n" +
+            "crystallin, alpha A\n" +
+            "crystallin, alpha B\n" +
+            "crystallin, beta A1\n" +
+            "crystallin, beta A2\n" +
+            "crystallin, beta A4\n" +
+            "crystallin, beta B1\n" +
+            "crystallin, beta B2\n" +
+            "crystallin, beta B2 pseudogene 1\n" +
+            "crystallin, beta B3\n" +
+            "crystallin, gamma B\n" +
+            "crystallin, gamma C\n" +
+            "crystallin, gamma D\n" +
+            "crystallin, gamma S\n" +
+            "crystallin, mu\n" +
+            "citrate synthase\n" +
+            "cysteine sulfinic acid decarboxylase\n" +
+            "chondrosarcoma associated gene 1\n" +
+            "CSAG family, member 2\n" +
+            "CSAG family, member 3\n" +
+            "choreoathetosis/spasticity, episodic paroxysmal choreoathetosis/spasticity\n" +
+            "colony stimulating factor 1 macrophage\n" +
+            "colony stimulating factor 1 receptor\n" +
+            "colony stimulating factor 2 granulocyte-macrophage\n" +
+            "colony stimulating factor 2 receptor, alpha, low-affinity granulocyte-macrophage\n" +
+            "colony stimulating factor 2 receptor, beta, low-affinity granulocyte-macrophage\n" +
+            "colony stimulating factor 3 granulocyte\n" +
+            "colony stimulating factor 3 receptor granulocyte\n" +
+            "chorionic somatomammotropin hormone 1 placental lactogen\n" +
+            "chorionic somatomammotropin hormone 2\n" +
+            "chorionic somatomammotropin hormone-like 1\n" +
+            "CUB and Sushi multiple domains 2\n" +
+            "CUB and Sushi multiple domains 3\n" +
+            "casein alpha s1\n" +
+            "casein beta\n" +
+            "casein kappa\n" +
+            "casein kinase 1, alpha 1\n" +
+            "casein kinase 1, alpha 1-like\n" +
+            "casein kinase 1, delta\n" +
+            "casein kinase 1, epsilon\n" +
+            "casein kinase 2, alpha 1 polypeptide\n" +
+            "casein kinase 2, alpha prime polypeptide\n" +
+            "casein kinase 2, alpha 3 polypeptide\n" +
+            "casein kinase 2, beta polypeptide\n" +
+            "chondroitin sulfate proteoglycan 4\n" +
+            "chondroitin sulfate proteoglycan 5 neuroglycan C\n" +
+            "centrosome and spindle pole associated protein 1\n" +
+            "cysteine-serine-rich nuclear protein 3\n" +
+            "cysteine and glycine-rich protein 1\n" +
+            "cysteine and glycine-rich protein 3 cardiac LIM protein\n" +
+            "cystatin SN\n" +
+            "cystatin SA\n" +
+            "cystatin C\n" +
+            "cystatin S\n" +
+            "cystatin E/M\n" +
+            "cystatin 9 testatin\n" +
+            "cystatin A stefin A\n" +
+            "cystatin B stefin B\n" +
+            "cleavage stimulation factor, 3' pre-RNA, subunit 2, 64kDa\n" +
+            "cancer/testis antigen family 45, member A1\n" +
+            "cancer/testis antigen 83\n" +
+            "cataract, anterior polar 1\n" +
+            "cataract, anterior polar 2\n" +
+            "cancer/testis antigen 1A\n" ;
+    private static String genes =
             "A1BG\n" +
             "A1CF\n" +
             "A2M\n" +
@@ -5344,5 +7525,10 @@ public class GeneUtils {
 
     public static String[] getGenes(){
         return genes.split("\n");
+    }
+
+
+    public static String[] getGenesNames(){
+        return geneName.split("\n");
     }
 }

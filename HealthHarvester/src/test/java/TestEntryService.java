@@ -1,10 +1,8 @@
-import com.DTO.EntryDTO;
+import com.Utils.GeneUtils;
 import com.Service.EntryService;
-import com.Utils;
+import com.Utils.Utils;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +14,7 @@ public class TestEntryService {
     private EntryService entryService = new EntryService();
 
     @Test
+    @Ignore
     public void testGetEntries() throws Exception {
 
         long entities = entryService.getMutationCount();
@@ -27,9 +26,8 @@ public class TestEntryService {
     @Test
     @Ignore
     public void testInsertEntries() throws Exception {
-        for (int i=0;i<2000; i++){
+        for (int i = 0; i < 2000; i++) {
             Utils utils = new Utils();
-            String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
             String name = utils.getRandomName();
@@ -42,16 +40,34 @@ public class TestEntryService {
             String physitian = utils.getRandomName();
 
             String result;
-            if(dateOfDeath > 0){
-                result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth +"", dateOfDiagnosis+"",
-                        dateOfDeath +"", gender, professionalExposure, "''", mutationEntries, physitian);
+            if (dateOfDeath > 0) {
+                result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
+                        dateOfDeath + "", gender, professionalExposure, "''", mutationEntries, physitian);
             } else {
-                result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth +"", dateOfDiagnosis+"",
+                result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
                         "''", gender, professionalExposure, "''", mutationEntries, physitian);
             }
 
             assertEquals(result, "The entry was successfully inserted.");
         }
 
+    }
+
+    @Test
+    @Ignore
+    public void insertGenes() throws Exception {
+        String[] gene = GeneUtils.getGenes();
+        String[] name = GeneUtils.getGenesNames();
+        int limit = 0;
+        if (gene.length < name.length) {
+            limit = gene.length;
+        } else {
+            limit = name.length;
+        }
+        String result;
+        for (int i = 0; i < limit; i++) {
+            result = entryService.insertGene("'" + gene[i] + "'", "'" + name[i] + "'");
+            assertEquals(result, "The entry was successfully inserted.");
+        }
     }
 }

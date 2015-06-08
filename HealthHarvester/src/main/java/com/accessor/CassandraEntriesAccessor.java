@@ -1,15 +1,12 @@
 package com.accessor;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.*;
 
 import com.DTO.BasicEntityDTO;
-import com.DTO.TrainingModelDTO;
-import com.DateUtils;
-import com.Model.BaseEntity;
+import com.DTO.ExportEntityDTO;
+import com.Utils.DateUtils;
 import com.Model.Entity;
-import com.Service.EntryService;
 import com.Service.UtilsService;
 import com.datastax.driver.core.*;
 import org.slf4j.Logger;
@@ -33,7 +30,7 @@ public class CassandraEntriesAccessor {
 
     public static final String FIND_ALL_MUTATIONS = "select mutationentries from Entries_Space.Entries";
 
-    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select countryCode,mutationentries,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath from Entries_Space.Entries";
+    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select name,identificationNumber,countryCode,mutationentries,professionalExposures,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries";
 
     private UtilsService utilsService = new UtilsService();
 
@@ -113,28 +110,32 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
-    public List<TrainingModelDTO> getCSVEntries() throws SQLException {
+    public List<ExportEntityDTO> getCSVEntries() throws SQLException {
         if (!active) {
             LOG.error("CasandraEventsAccessor is not active");
         }
-        List<TrainingModelDTO> results = new ArrayList<TrainingModelDTO>();
+        List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
         ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS_FOR_CSV);
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             Row row = iter.next();
-            String countryCode = row.getString(0);
-            String mutationentries = row.getString(1);
-            String gender = row.getString(2);
-            Date dateOfBirth = row.getDate(3);
-            Date dateOfDiagnosis = row.getDate(4);
-            Date dateOfDeath = row.getDate(5);
+            String name = row.getString(0);
+            String identificationNumber = row.getString(1);
+            String countryCode = row.getString(2);
+            String mutationentries = row.getString(3);
+            String professionalExposures = row.getString(4);
+            String gender = row.getString(5);
+            Date dateOfBirth = row.getDate(6);
+            Date dateOfDiagnosis = row.getDate(7);
+            Date dateOfDeath = row.getDate(8);
+            String physician = row.getString(9);
             int dateOfDeathAge = 100;
             if (dateOfDeath != null) {
                 dateOfDeathAge = DateUtils.getAge(dateOfDeath);
             }
-            TrainingModelDTO trainingModelDTO = new TrainingModelDTO(countryCode, mutationentries, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge);
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name,identificationNumber,countryCode, mutationentries,professionalExposures, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }

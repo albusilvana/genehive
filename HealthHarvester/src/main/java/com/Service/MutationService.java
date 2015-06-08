@@ -1,11 +1,13 @@
 package com.Service;
 
-import com.Model.Disease;
-import com.Model.Gene;
-import com.Model.Locus;
-import com.Model.MutationEntry;
+import com.Model.*;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,5 +28,19 @@ public class MutationService {
             mutationEntryList.add(mutationEntry);
         }
         return mutationEntryList;
+    }
+
+    public List<String> convertToExposure(String exposure) {
+        List<String> mutationEntryList = new ArrayList<String>();
+        String[] mutationArray = exposure.split(",");
+        for (int i = 0; i < mutationArray.length; i++) {
+//            A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer
+            String[] pieces = mutationArray[i].split("_");
+            String name = pieces[0];
+
+            mutationEntryList.add(name);
+        }
+        return mutationEntryList;
+
     }
 }

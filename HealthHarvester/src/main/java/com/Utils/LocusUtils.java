@@ -1,4 +1,4 @@
-package com;
+package com.Utils;
 
 /**
  * Created by silvana.albert on 5/18/15.

@@ -1,14 +1,4 @@
-$(document).ready(function() {
-//    $.ajax({
-//        url: "http://localhost:9095/hh/API/v1/entries/all"
-//    }).then(function(data) {
-//        for(var i=0; i<data.length; data ++){
-//            $('.countryCode').append(data[i].countryCode);
-//            $('.identificationNumber').append(data[i].identificationNumber);
-//        }
-//    });
-    insertProfesionalExposure();
-})
+
     function insertProfesionalExposure() {
         var exposures = "Arsenic,Asbestos,Asphalt fumes,Benzene,Beryllium,1-Bromopropane,13-Butadiene,Cadmium,Chromium,Diacetyl,Diesel exhaust,Ethylene oxide,Formaldehyde,Hexavalent chromium,Hydrogen sulfide,Isocyanates,Lead,Mercury,Metals toxic,Metalworking fluids,Methylene chloride,SilicaCrystalline,Solvents,Synthetic mineral fibers,Toluene".split(",");
         for (var i = 0; i < exposures.length; i++) {
@@ -21,17 +11,27 @@ $(document).ready(function() {
         $("#insertContent").show();
         $("#statisticsContent").hide()
         $("#homeContent").hide();
+        $("#homeLi").removeClass("active");
+        $("#statsLi").removeClass("active");
+        $("#insertLi").addClass("active");
         insertProfesionalExposure();
     }
     function showHome() {
         $("#homeContent").show();
         $("#statisticsContent").hide();
         $("#insertContent").hide();
+        $("#homeLi").addClass("active");
+        $("#statsLi").removeClass("active");
+        $("#insertLi").removeClass("active");
+
     }
     function showStatistics() {
         $("#homeContent").hide();
         $("#statisticsContent").show();
         $("#insertContent").hide();
+        $("#homeLi").removeClass("active");
+        $("#statsLi").addClass("active");
+        $("#insertLi").removeClass("active");
     }
 
     function refreshWithAll() {
@@ -82,7 +82,13 @@ $(document).ready(function() {
             localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
             window.location = "http://localhost:9095/hh/login.html";
         }
-        showStatistics();
+        showHome();
+        $.ajax({
+            url: "http://localhost:9095/hh/API/v1/entries/total/all?token=dsf"
+        }).then(function(data) {
+            $("#currentEntriesCount").append(data);
+        });
+        insertProfesionalExposure();
         refreshWithAll();
     });
     function loadHighLightData(url) {

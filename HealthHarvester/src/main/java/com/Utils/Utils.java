@@ -1,4 +1,4 @@
-package com;
+package com.Utils;
 
 import java.util.Locale;
 import java.util.Random;
@@ -22,8 +22,7 @@ public class Utils {
         Locale locale = new Locale("en", "US", "WIN");
         // get ISO countries
         String[] countries = Locale.getISOCountries();
-//        return "'" + countries[rand.nextInt(countries.length)] + "'";
-        return "'FI'";
+        return "'" + countries[rand.nextInt(countries.length)] + "'";
     }
 
     public String getRandomName() {
@@ -72,7 +71,7 @@ public class Utils {
 
         //genes
         String[] genes = GeneUtils.getGenes();
-        int k = rand.nextInt(genes.length);
+        int k = rand.nextInt(833);
         String gene = genes[k];
 
         //locus

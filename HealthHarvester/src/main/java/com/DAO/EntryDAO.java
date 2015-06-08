@@ -1,10 +1,7 @@
 package com.DAO;
 
 import com.Convertor.core.EntryDTOConvertor;
-import com.DTO.BasicEntityDTO;
-import com.DTO.EnhancedBasicEntityDTO;
-import com.DTO.EntryDTO;
-import com.DTO.TrainingModelDTO;
+import com.DTO.*;
 import com.Model.Entry;
 import com.Service.CountryService;
 import com.accessor.CassandraEntriesAccessor;
@@ -30,9 +27,9 @@ public class EntryDAO {
         return entryDTOConvertor.toDTOList(entities);
     }
 
-    public List<TrainingModelDTO> getAllTrainingModels() throws Exception {
+    public List<ExportEntityDTO> getAllTrainingModels() throws Exception {
         cassandraEntriesAccessor.activate();
-        List<TrainingModelDTO> entities = cassandraEntriesAccessor.getCSVEntries();
+        List<ExportEntityDTO> entities = cassandraEntriesAccessor.getCSVEntries();
 
         return entities;
     }
@@ -125,9 +122,25 @@ public class EntryDAO {
         }
     }
 
+    public String insertGene(String geneCode, String name) throws Exception {
+        cassandraEntriesAccessor.activate();
+        String s = "INSERT INTO genes (genecode,genename)VALUES(";
+
+        s = s.concat(geneCode + "," + name + ");");
+
+        boolean result = cassandraEntriesAccessor.insertEntry(s);
+
+        if (result) {
+            return "The entry was successfully inserted.";
+        } else {
+            return "The entry could not be inserted.";
+        }
+    }
+
+
     public long getMutationCount() throws Exception {
         cassandraEntriesAccessor.activate();
-        return  cassandraEntriesAccessor.readMutationCount();
+        return cassandraEntriesAccessor.readMutationCount();
     }
 
 

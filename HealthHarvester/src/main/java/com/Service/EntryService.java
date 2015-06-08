@@ -46,7 +46,11 @@ public class EntryService {
                 dateOfDeath, gender, professionalExposure, details, mutationEntries, physitian);
     }
 
+    public String insertGene(String code, String name) throws Exception {
+        return entryDAO.insertGene(code, name);
+    }
+
     public long getMutationCount() throws Exception {
-        return  entryDAO.getMutationCount();
+        return entryDAO.getMutationCount();
     }
 }
