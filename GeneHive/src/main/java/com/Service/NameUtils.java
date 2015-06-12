@@ -1,4 +1,4 @@
-package com.Utils;
+package com.Service;
 
 /**
  * Created by silvana.albert on 5/17/15.

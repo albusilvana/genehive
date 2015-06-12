@@ -1,4 +1,4 @@
-package com.Utils;
+package com.Service;
 
 import java.util.Locale;
 import java.util.Random;

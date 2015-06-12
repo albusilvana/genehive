@@ -1,8 +1,10 @@
-import com.Utils.GeneUtils;
+import com.Service.GeneUtils;
 import com.Service.EntryService;
-import com.Utils.Utils;
+import com.Service.Utils;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,9 +26,10 @@ public class TestEntryService {
     }
 
     @Test
-    @Ignore
     public void testInsertEntries() throws Exception {
-        for (int i = 0; i < 2000; i++) {
+        System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes()+ ":"+ new Date().getSeconds());
+        System.out.print("Now it is inserting: "+ 10000 + " results");
+        for (int i = 0; i < 10000; i++) {
             Utils utils = new Utils();
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
@@ -39,7 +42,7 @@ public class TestEntryService {
             String mutationEntries = utils.getRandomMutation();
             String physitian = utils.getRandomName();
 
-            String result;
+            String result ;
             if (dateOfDeath > 0) {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
                         dateOfDeath + "", gender, professionalExposure, "''", mutationEntries, physitian);
@@ -50,6 +53,7 @@ public class TestEntryService {
 
             assertEquals(result, "The entry was successfully inserted.");
         }
+        System.out.println("Time after insert " + new Date().getHours() + ":" + new Date().getMinutes()+ ":"+ new Date().getSeconds());
 
     }
 

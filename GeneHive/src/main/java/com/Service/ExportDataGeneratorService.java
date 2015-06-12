@@ -1,14 +1,14 @@
 package com.Service;
 
-import com.Utils.CSVFileWriter;
 import com.DAO.EntryDAO;
-import com.Utils.PDFFileWriter;
 
 /**
  * Created by silvana.albert on 5/23/15.
  */
 public class ExportDataGeneratorService {
     private static EntryDAO entryDAO = new EntryDAO();
+    CSVFileWriter csvFileWriter = new CSVFileWriter();
+    PDFFileWriter pdfFileWriter = new PDFFileWriter();
 
     public static void generateCsv() throws Exception {
         CSVFileWriter.writeCsvFile("exportData.csv", entryDAO.getAllTrainingModels());
