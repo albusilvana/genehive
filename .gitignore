@@ -3,4 +3,5 @@
 .settings/
 *.iml
 .idea
-
+target/
+*.log
