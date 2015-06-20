@@ -1,0 +1,990 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (os_bsd.cpp:1015), pid=25236, tid=0
+#  guarantee(thread_id != 0) failed: thread id missing from pthreads
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_67-b01) (build 1.7.0_67-b01)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.65-b04 mixed mode bsd-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fd44d310000):  JavaThread "Unknown thread" [_thread_new, id=0, stack(0x0000000000000000,0x0000000000000000)]
+
+Stack: [0x0000000000000000,0x0000000000000000],  sp=0x0000000137e7cc40,  free space=5110259k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.dylib+0x52b19d]
+V  [libjvm.dylib+0x1ecfd5]
+V  [libjvm.dylib+0x4206b9]
+C  [libsystem_pthread.dylib+0x1899]  _pthread_body+0x8a
+C  [libsystem_pthread.dylib+0x172a]  _pthread_struct_init+0x0
+C  [libsystem_pthread.dylib+0x5fc9]  thread_start+0xd
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fd44d30f000 JavaThread "New I/O worker #486" [_thread_in_native, id=305155, stack(0x0000000137c7a000,0x0000000137d7a000)]
+  0x00007fd44c210800 JavaThread "New I/O worker #485" [_thread_in_native, id=304643, stack(0x0000000137b77000,0x0000000137c77000)]
+  0x00007fd44d38e800 JavaThread "New I/O worker #484" [_thread_in_native, id=304131, stack(0x0000000137a74000,0x0000000137b74000)]
+  0x00007fd44fa71800 JavaThread "New I/O worker #483" [_thread_in_native, id=303619, stack(0x0000000137971000,0x0000000137a71000)]
+  0x00007fd44d0d0800 JavaThread "New I/O worker #481" [_thread_in_native, id=303107, stack(0x000000013786e000,0x000000013796e000)]
+  0x00007fd44bff0000 JavaThread "New I/O worker #482" [_thread_in_native, id=302595, stack(0x000000013776b000,0x000000013786b000)]
+  0x00007fd44bfef000 JavaThread "New I/O worker #480" [_thread_in_native, id=302083, stack(0x0000000137668000,0x0000000137768000)]
+  0x00007fd44d0d0000 JavaThread "New I/O worker #479" [_thread_in_native, id=301571, stack(0x0000000137565000,0x0000000137665000)]
+  0x00007fd44d923000 JavaThread "New I/O worker #478" [_thread_in_native, id=301059, stack(0x0000000137462000,0x0000000137562000)]
+  0x00007fd44d922800 JavaThread "New I/O worker #477" [_thread_in_native, id=300547, stack(0x000000013735f000,0x000000013745f000)]
+  0x00007fd44f386000 JavaThread "Cassandra Java Driver worker-0" [_thread_blocked, id=300035, stack(0x000000013725c000,0x000000013735c000)]
+  0x00007fd44d924000 JavaThread "Cassandra Java Driver worker-0" [_thread_blocked, id=299523, stack(0x0000000137159000,0x0000000137259000)]
+  0x00007fd44bfec800 JavaThread "Hashed wheel timer #54" [_thread_blocked, id=299011, stack(0x0000000137056000,0x0000000137156000)]
+  0x00007fd44bfeb800 JavaThread "Hashed wheel timer #53" [_thread_blocked, id=298499, stack(0x0000000136f53000,0x0000000137053000)]
+  0x00007fd44d30e800 JavaThread "Hashed wheel timer #56" [_thread_blocked, id=297987, stack(0x0000000136e50000,0x0000000136f50000)]
+  0x00007fd44bfeb000 JavaThread "Hashed wheel timer #55" [_thread_blocked, id=297475, stack(0x0000000136d4d000,0x0000000136e4d000)]
+  0x00007fd44e947800 JavaThread "New I/O boss #476" [_thread_in_native, id=296963, stack(0x0000000136c4a000,0x0000000136d4a000)]
+  0x00007fd44d30d800 JavaThread "New I/O worker #475" [_thread_in_native, id=296451, stack(0x0000000136b47000,0x0000000136c47000)]
+  0x00007fd44cadd800 JavaThread "New I/O boss #474" [_thread_in_native, id=295939, stack(0x0000000136a44000,0x0000000136b44000)]
+  0x00007fd44d30b000 JavaThread "New I/O worker #473" [_thread_in_native, id=295427, stack(0x0000000136941000,0x0000000136a41000)]
+  0x00007fd44faab000 JavaThread "New I/O worker #472" [_thread_in_native, id=294915, stack(0x000000013683e000,0x000000013693e000)]
+  0x00007fd44f40f800 JavaThread "New I/O worker #471" [_thread_in_native, id=294403, stack(0x000000013673b000,0x000000013683b000)]
+  0x00007fd44cadd000 JavaThread "New I/O worker #470" [_thread_in_native, id=293891, stack(0x0000000136638000,0x0000000136738000)]
+  0x00007fd44f3fd000 JavaThread "New I/O worker #469" [_thread_in_native, id=293379, stack(0x0000000136535000,0x0000000136635000)]
+  0x00007fd44bfc8000 JavaThread "New I/O worker #468" [_thread_in_native, id=292867, stack(0x0000000136432000,0x0000000136532000)]
+  0x00007fd44cbad800 JavaThread "New I/O worker #467" [_thread_in_native, id=292355, stack(0x000000013632f000,0x000000013642f000)]
+  0x00007fd44f324800 JavaThread "New I/O worker #466" [_thread_in_native, id=291843, stack(0x000000013622c000,0x000000013632c000)]
+  0x00007fd44bfb5800 JavaThread "New I/O worker #464" [_thread_in_native, id=291331, stack(0x0000000136129000,0x0000000136229000)]
+  0x00007fd44f323800 JavaThread "New I/O worker #465" [_thread_in_native, id=290819, stack(0x0000000136026000,0x0000000136126000)]
+  0x00007fd44f323000 JavaThread "New I/O worker #463" [_thread_in_native, id=290307, stack(0x0000000135f23000,0x0000000136023000)]
+  0x00007fd44bfb4800 JavaThread "New I/O worker #462" [_thread_in_native, id=289795, stack(0x0000000135e20000,0x0000000135f20000)]
+  0x00007fd44cbad000 JavaThread "New I/O worker #461" [_thread_in_native, id=289283, stack(0x0000000135d1d000,0x0000000135e1d000)]
+  0x00007fd44bfa2000 JavaThread "New I/O worker #460" [_thread_in_native, id=288771, stack(0x0000000135c1a000,0x0000000135d1a000)]
+  0x00007fd44bf9f000 JavaThread "New I/O worker #459" [_thread_in_native, id=288259, stack(0x0000000135b17000,0x0000000135c17000)]
+  0x00007fd44bf9e800 JavaThread "New I/O worker #458" [_thread_in_native, id=287747, stack(0x0000000135a14000,0x0000000135b14000)]
+  0x00007fd44f8f8000 JavaThread "New I/O worker #457" [_thread_in_native, id=287235, stack(0x0000000135911000,0x0000000135a11000)]
+  0x00007fd44bf9b800 JavaThread "New I/O worker #456" [_thread_in_native, id=286723, stack(0x000000013580e000,0x000000013590e000)]
+  0x00007fd4508cf800 JavaThread "New I/O worker #455" [_thread_in_native, id=286211, stack(0x000000013570b000,0x000000013580b000)]
+  0x00007fd44f8f7800 JavaThread "New I/O worker #454" [_thread_in_native, id=285699, stack(0x0000000135608000,0x0000000135708000)]
+  0x00007fd4500c1800 JavaThread "New I/O worker #453" [_thread_in_native, id=285187, stack(0x0000000135505000,0x0000000135605000)]
+  0x00007fd44f8f4800 JavaThread "New I/O worker #452" [_thread_in_native, id=284675, stack(0x0000000135402000,0x0000000135502000)]
+  0x00007fd4500c4800 JavaThread "New I/O worker #451" [_thread_in_native, id=284163, stack(0x00000001352ff000,0x00000001353ff000)]
+  0x00007fd4508e5000 JavaThread "New I/O worker #450" [_thread_in_native, id=283651, stack(0x00000001351fc000,0x00000001352fc000)]
+  0x00007fd44f1ec000 JavaThread "New I/O worker #449" [_thread_in_native, id=283139, stack(0x00000001350f9000,0x00000001351f9000)]
+  0x00007fd4508e4800 JavaThread "New I/O worker #448" [_thread_in_native, id=260615, stack(0x0000000134ff6000,0x00000001350f6000)]
+  0x00007fd44f8f4000 JavaThread "New I/O worker #447" [_thread_in_native, id=261127, stack(0x0000000134ef3000,0x0000000134ff3000)]
+  0x00007fd44f8f3000 JavaThread "New I/O worker #446" [_thread_in_native, id=282119, stack(0x0000000132578000,0x0000000132678000)]
+  0x00007fd44e9cc800 JavaThread "New I/O worker #445" [_thread_in_native, id=282631, stack(0x0000000132475000,0x0000000132575000)]
+  0x00007fd44e8ed800 JavaThread "New I/O worker #444" [_thread_in_native, id=23815, stack(0x000000012d894000,0x000000012d994000)]
+  0x00007fd44d473800 JavaThread "New I/O worker #443" [_thread_in_native, id=222475, stack(0x0000000114d4f000,0x0000000114e4f000)]
+  0x00007fd44f375800 JavaThread "Hashed wheel timer #51" [_thread_blocked, id=281603, stack(0x0000000134df0000,0x0000000134ef0000)]
+  0x00007fd44fa88800 JavaThread "Hashed wheel timer #52" [_thread_blocked, id=281091, stack(0x0000000134ced000,0x0000000134ded000)]
+  0x00007fd45199c800 JavaThread "New I/O boss #442" [_thread_in_native, id=280579, stack(0x0000000134bea000,0x0000000134cea000)]
+  0x00007fd44f315000 JavaThread "New I/O worker #441" [_thread_in_native, id=280067, stack(0x0000000134ae7000,0x0000000134be7000)]
+  0x00007fd44f312800 JavaThread "New I/O worker #440" [_thread_in_native, id=279555, stack(0x00000001349e4000,0x0000000134ae4000)]
+  0x00007fd44c1b6000 JavaThread "New I/O worker #439" [_thread_in_native, id=279043, stack(0x00000001348e1000,0x00000001349e1000)]
+  0x00007fd44d472800 JavaThread "New I/O worker #438" [_thread_in_native, id=278531, stack(0x00000001347de000,0x00000001348de000)]
+  0x00007fd44e86e800 JavaThread "New I/O worker #437" [_thread_in_native, id=278019, stack(0x00000001346db000,0x00000001347db000)]
+  0x00007fd44f217000 JavaThread "New I/O worker #436" [_thread_in_native, id=277507, stack(0x00000001345d8000,0x00000001346d8000)]
+  0x00007fd44f216000 JavaThread "New I/O worker #435" [_thread_in_native, id=276995, stack(0x00000001344d5000,0x00000001345d5000)]
+  0x00007fd45117f800 JavaThread "New I/O worker #434" [_thread_in_native, id=276483, stack(0x00000001343d2000,0x00000001344d2000)]
+  0x00007fd44fa87800 JavaThread "New I/O worker #433" [_thread_in_native, id=275971, stack(0x00000001342cf000,0x00000001343cf000)]
+  0x00007fd44fa85000 JavaThread "New I/O worker #432" [_thread_in_native, id=275459, stack(0x00000001341cc000,0x00000001342cc000)]
+  0x00007fd44f8fd000 JavaThread "New I/O worker #431" [_thread_in_native, id=274947, stack(0x00000001340c9000,0x00000001341c9000)]
+  0x00007fd44f1ef800 JavaThread "New I/O worker #430" [_thread_in_native, id=274435, stack(0x0000000133fc6000,0x00000001340c6000)]
+  0x00007fd44c211800 JavaThread "New I/O worker #429" [_thread_in_native, id=273923, stack(0x0000000133ec3000,0x0000000133fc3000)]
+  0x00007fd44f1ef000 JavaThread "New I/O worker #428" [_thread_in_native, id=273411, stack(0x0000000133dc0000,0x0000000133ec0000)]
+  0x00007fd44db54800 JavaThread "New I/O worker #427" [_thread_in_native, id=272899, stack(0x0000000133cbd000,0x0000000133dbd000)]
+  0x00007fd44e86e000 JavaThread "New I/O worker #426" [_thread_in_native, id=272387, stack(0x0000000133bba000,0x0000000133cba000)]
+  0x00007fd44f8f9000 JavaThread "Hashed wheel timer #49" [_thread_blocked, id=271875, stack(0x0000000133ab7000,0x0000000133bb7000)]
+  0x00007fd45116c800 JavaThread "Hashed wheel timer #50" [_thread_blocked, id=271363, stack(0x00000001339b4000,0x0000000133ab4000)]
+  0x00007fd44db53800 JavaThread "New I/O boss #425" [_thread_in_native, id=270851, stack(0x00000001338b1000,0x00000001339b1000)]
+  0x00007fd45116c000 JavaThread "New I/O worker #424" [_thread_in_native, id=270339, stack(0x00000001337ae000,0x00000001338ae000)]
+  0x00007fd451159000 JavaThread "New I/O worker #423" [_thread_in_native, id=269827, stack(0x00000001336ab000,0x00000001337ab000)]
+  0x00007fd451146800 JavaThread "New I/O worker #422" [_thread_in_native, id=269315, stack(0x00000001335a8000,0x00000001336a8000)]
+  0x00007fd45111b800 JavaThread "New I/O worker #421" [_thread_in_native, id=268803, stack(0x00000001334a5000,0x00000001335a5000)]
+  0x00007fd451118800 JavaThread "New I/O worker #420" [_thread_in_native, id=268291, stack(0x00000001333a2000,0x00000001334a2000)]
+  0x00007fd451106000 JavaThread "New I/O worker #419" [_thread_in_native, id=267779, stack(0x000000013329f000,0x000000013339f000)]
+  0x00007fd4510f3000 JavaThread "New I/O worker #418" [_thread_in_native, id=267267, stack(0x000000013319c000,0x000000013329c000)]
+  0x00007fd4510e0800 JavaThread "New I/O worker #417" [_thread_in_native, id=266755, stack(0x0000000133099000,0x0000000133199000)]
+  0x00007fd4510cd800 JavaThread "New I/O worker #416" [_thread_in_native, id=266243, stack(0x0000000132f96000,0x0000000133096000)]
+  0x00007fd4510bb000 JavaThread "New I/O worker #415" [_thread_in_native, id=265731, stack(0x0000000132e93000,0x0000000132f93000)]
+  0x00007fd4510a8000 JavaThread "New I/O worker #414" [_thread_in_native, id=265219, stack(0x0000000132d90000,0x0000000132e90000)]
+  0x00007fd451095800 JavaThread "New I/O worker #413" [_thread_in_native, id=264707, stack(0x0000000132c8d000,0x0000000132d8d000)]
+  0x00007fd45199e000 JavaThread "New I/O worker #412" [_thread_in_native, id=264195, stack(0x0000000132b8a000,0x0000000132c8a000)]
+  0x00007fd451082800 JavaThread "New I/O worker #411" [_thread_in_native, id=263683, stack(0x0000000132a87000,0x0000000132b87000)]
+  0x00007fd451070000 JavaThread "New I/O worker #410" [_thread_in_native, id=263171, stack(0x0000000132984000,0x0000000132a84000)]
+  0x00007fd45199d800 JavaThread "New I/O worker #409" [_thread_in_native, id=262659, stack(0x0000000132881000,0x0000000132981000)]
+  0x00007fd45105d000 JavaThread "qtp1858456369-507" [_thread_in_native, id=262147, stack(0x000000013277e000,0x000000013287e000)]
+  0x00007fd45105c800 JavaThread "qtp1858456369-506" [_thread_in_native, id=261635, stack(0x000000013267b000,0x000000013277b000)]
+  0x00007fd45105b800 JavaThread "Hashed wheel timer #46" [_thread_blocked, id=260099, stack(0x0000000132372000,0x0000000132472000)]
+  0x00007fd451999800 JavaThread "Hashed wheel timer #48" [_thread_blocked, id=259587, stack(0x000000013226f000,0x000000013236f000)]
+  0x00007fd44f9fe000 JavaThread "Hashed wheel timer #45" [_thread_blocked, id=259075, stack(0x000000013216c000,0x000000013226c000)]
+  0x00007fd451999000 JavaThread "Hashed wheel timer #47" [_thread_blocked, id=258563, stack(0x0000000132069000,0x0000000132169000)]
+  0x00007fd45105b000 JavaThread "New I/O boss #408" [_thread_in_native, id=258051, stack(0x0000000131f66000,0x0000000132066000)]
+  0x00007fd44dcdb800 JavaThread "New I/O worker #407" [_thread_in_native, id=257539, stack(0x0000000131e63000,0x0000000131f63000)]
+  0x00007fd44dcdb000 JavaThread "New I/O worker #406" [_thread_in_native, id=257027, stack(0x0000000131d60000,0x0000000131e60000)]
+  0x00007fd4509d5000 JavaThread "New I/O boss #405" [_thread_in_native, id=256515, stack(0x0000000131c5d000,0x0000000131d5d000)]
+  0x00007fd4509d4000 JavaThread "New I/O worker #404" [_thread_in_native, id=256003, stack(0x0000000131b5a000,0x0000000131c5a000)]
+  0x00007fd4509c1800 JavaThread "New I/O worker #403" [_thread_in_native, id=255491, stack(0x0000000131a57000,0x0000000131b57000)]
+  0x00007fd4509ae800 JavaThread "New I/O worker #402" [_thread_in_native, id=254979, stack(0x0000000131954000,0x0000000131a54000)]
+  0x00007fd451034000 JavaThread "New I/O worker #401" [_thread_in_native, id=254467, stack(0x0000000131851000,0x0000000131951000)]
+  0x00007fd44dcd8000 JavaThread "New I/O worker #400" [_thread_in_native, id=253955, stack(0x000000013174e000,0x000000013184e000)]
+  0x00007fd44dcd7800 JavaThread "New I/O worker #399" [_thread_in_native, id=253443, stack(0x000000013164b000,0x000000013174b000)]
+  0x00007fd45099c000 JavaThread "New I/O worker #398" [_thread_in_native, id=252931, stack(0x0000000131548000,0x0000000131648000)]
+  0x00007fd44dcd6800 JavaThread "New I/O worker #397" [_thread_in_native, id=252419, stack(0x0000000131445000,0x0000000131545000)]
+  0x00007fd44f1eb800 JavaThread "New I/O worker #396" [_thread_in_native, id=251907, stack(0x0000000131342000,0x0000000131442000)]
+  0x00007fd45054c800 JavaThread "New I/O worker #395" [_thread_in_native, id=251395, stack(0x000000013123f000,0x000000013133f000)]
+  0x00007fd45054c000 JavaThread "New I/O worker #394" [_thread_in_native, id=250883, stack(0x000000013113c000,0x000000013123c000)]
+  0x00007fd44c20e000 JavaThread "New I/O worker #393" [_thread_in_native, id=250371, stack(0x0000000131039000,0x0000000131139000)]
+  0x00007fd44c20d000 JavaThread "New I/O worker #392" [_thread_in_native, id=249859, stack(0x0000000130f36000,0x0000000131036000)]
+  0x00007fd450965000 JavaThread "New I/O worker #391" [_thread_in_native, id=249347, stack(0x0000000130e33000,0x0000000130f33000)]
+  0x00007fd44f05f000 JavaThread "New I/O worker #390" [_thread_in_native, id=248835, stack(0x0000000130d30000,0x0000000130e30000)]
+  0x00007fd44f9fd000 JavaThread "New I/O worker #389" [_thread_in_native, id=248323, stack(0x0000000130c2d000,0x0000000130d2d000)]
+  0x00007fd44db05000 JavaThread "New I/O worker #388" [_thread_in_native, id=247811, stack(0x0000000130b2a000,0x0000000130c2a000)]
+  0x00007fd45054b000 JavaThread "New I/O worker #387" [_thread_in_native, id=247299, stack(0x0000000130a27000,0x0000000130b27000)]
+  0x00007fd44c20c800 JavaThread "New I/O worker #386" [_thread_in_native, id=246787, stack(0x0000000130924000,0x0000000130a24000)]
+  0x00007fd450043800 JavaThread "New I/O worker #385" [_thread_in_native, id=246275, stack(0x0000000130821000,0x0000000130921000)]
+  0x00007fd45091c800 JavaThread "New I/O worker #384" [_thread_in_native, id=245763, stack(0x000000013071e000,0x000000013081e000)]
+  0x00007fd450042800 JavaThread "New I/O worker #383" [_thread_in_native, id=245251, stack(0x000000013061b000,0x000000013071b000)]
+  0x00007fd44db04000 JavaThread "New I/O worker #382" [_thread_in_native, id=244739, stack(0x0000000130518000,0x0000000130618000)]
+  0x00007fd44c012000 JavaThread "New I/O worker #381" [_thread_in_native, id=244227, stack(0x0000000130415000,0x0000000130515000)]
+  0x00007fd44d90e800 JavaThread "New I/O worker #380" [_thread_in_native, id=243715, stack(0x0000000130312000,0x0000000130412000)]
+  0x00007fd44be42800 JavaThread "New I/O worker #379" [_thread_in_native, id=243203, stack(0x000000013020f000,0x000000013030f000)]
+  0x00007fd44c1b5800 JavaThread "New I/O worker #378" [_thread_in_native, id=26887, stack(0x000000013010c000,0x000000013020c000)]
+  0x00007fd44d8e7000 JavaThread "New I/O worker #377" [_thread_in_native, id=242183, stack(0x0000000130009000,0x0000000130109000)]
+  0x00007fd44db7f800 JavaThread "New I/O worker #376" [_thread_in_native, id=242695, stack(0x0000000115582000,0x0000000115682000)]
+  0x00007fd450547800 JavaThread "New I/O worker #375" [_thread_in_native, id=24847, stack(0x0000000115176000,0x0000000115276000)]
+  0x00007fd44f9fb800 JavaThread "Hashed wheel timer #43" [_thread_blocked, id=241667, stack(0x000000012ff06000,0x0000000130006000)]
+  0x00007fd44f8a7000 JavaThread "Hashed wheel timer #44" [_thread_blocked, id=241155, stack(0x000000012fe03000,0x000000012ff03000)]
+  0x00007fd44d90e000 JavaThread "New I/O boss #374" [_thread_in_native, id=240643, stack(0x000000012fd00000,0x000000012fe00000)]
+  0x00007fd44c1b4800 JavaThread "New I/O worker #373" [_thread_in_native, id=240131, stack(0x000000012fbfd000,0x000000012fcfd000)]
+  0x00007fd44c201000 JavaThread "New I/O worker #372" [_thread_in_native, id=239619, stack(0x000000012fafa000,0x000000012fbfa000)]
+  0x00007fd44d472000 JavaThread "New I/O worker #371" [_thread_in_native, id=239107, stack(0x000000012f9f7000,0x000000012faf7000)]
+  0x00007fd4508c7000 JavaThread "New I/O worker #370" [_thread_in_native, id=238595, stack(0x000000012f8f4000,0x000000012f9f4000)]
+  0x00007fd44d46f000 JavaThread "New I/O worker #369" [_thread_in_native, id=238083, stack(0x000000012f7f1000,0x000000012f8f1000)]
+  0x00007fd44d46c800 JavaThread "New I/O worker #368" [_thread_in_native, id=237571, stack(0x000000012f6ee000,0x000000012f7ee000)]
+  0x00007fd44d0e5000 JavaThread "New I/O worker #367" [_thread_in_native, id=237059, stack(0x000000012f5eb000,0x000000012f6eb000)]
+  0x00007fd44d0e2000 JavaThread "New I/O worker #366" [_thread_in_native, id=236547, stack(0x000000012f4e8000,0x000000012f5e8000)]
+  0x00007fd450552800 JavaThread "New I/O worker #365" [_thread_in_native, id=236035, stack(0x000000012f3e5000,0x000000012f4e5000)]
+  0x00007fd44e8c2800 JavaThread "New I/O worker #364" [_thread_in_native, id=235523, stack(0x000000012f2e2000,0x000000012f3e2000)]
+  0x00007fd4520b7000 JavaThread "New I/O worker #363" [_thread_in_native, id=235011, stack(0x000000012f1df000,0x000000012f2df000)]
+  0x00007fd4508b4000 JavaThread "New I/O worker #362" [_thread_in_native, id=234499, stack(0x000000012f0dc000,0x000000012f1dc000)]
+  0x00007fd44db33000 JavaThread "New I/O worker #361" [_thread_in_native, id=233987, stack(0x000000012efd9000,0x000000012f0d9000)]
+  0x00007fd44db32800 JavaThread "New I/O worker #360" [_thread_in_native, id=233475, stack(0x000000012eed6000,0x000000012efd6000)]
+  0x00007fd4520b4000 JavaThread "New I/O worker #359" [_thread_in_native, id=232963, stack(0x000000012edd3000,0x000000012eed3000)]
+  0x00007fd44d0c5000 JavaThread "New I/O worker #358" [_thread_in_native, id=232451, stack(0x000000012ecd0000,0x000000012edd0000)]
+  0x00007fd44e8bf800 JavaThread "Hashed wheel timer #41" [_thread_blocked, id=231939, stack(0x000000012ebcd000,0x000000012eccd000)]
+  0x00007fd44c1b0000 JavaThread "Hashed wheel timer #42" [_thread_blocked, id=231427, stack(0x000000012eaca000,0x000000012ebca000)]
+  0x00007fd44d11e800 JavaThread "New I/O boss #357" [_thread_in_native, id=230915, stack(0x000000012e9c7000,0x000000012eac7000)]
+  0x00007fd44db31800 JavaThread "New I/O worker #356" [_thread_in_native, id=230403, stack(0x000000012e8c4000,0x000000012e9c4000)]
+  0x00007fd44db2f000 JavaThread "New I/O worker #355" [_thread_in_native, id=229891, stack(0x000000012e7c1000,0x000000012e8c1000)]
+  0x00007fd44db2c000 JavaThread "New I/O worker #354" [_thread_in_native, id=229379, stack(0x000000012e6be000,0x000000012e7be000)]
+  0x00007fd44dc2a800 JavaThread "New I/O worker #353" [_thread_in_native, id=228867, stack(0x000000012e5bb000,0x000000012e6bb000)]
+  0x00007fd44dc28000 JavaThread "New I/O worker #352" [_thread_in_native, id=228355, stack(0x000000012e4b8000,0x000000012e5b8000)]
+  0x00007fd44d81e000 JavaThread "New I/O worker #351" [_thread_in_native, id=227843, stack(0x000000012e3b5000,0x000000012e4b5000)]
+  0x00007fd44be25000 JavaThread "New I/O worker #350" [_thread_in_native, id=227331, stack(0x000000012e2b2000,0x000000012e3b2000)]
+  0x00007fd44be24000 JavaThread "New I/O worker #349" [_thread_in_native, id=226819, stack(0x000000012e1af000,0x000000012e2af000)]
+  0x00007fd44baa4000 JavaThread "New I/O worker #348" [_thread_in_native, id=226307, stack(0x000000012e0ac000,0x000000012e1ac000)]
+  0x00007fd44d81b800 JavaThread "New I/O worker #347" [_thread_in_native, id=225795, stack(0x000000012dfa9000,0x000000012e0a9000)]
+  0x00007fd44da3e800 JavaThread "New I/O worker #346" [_thread_in_native, id=225283, stack(0x000000012dea6000,0x000000012dfa6000)]
+  0x00007fd44d8ec000 JavaThread "New I/O worker #345" [_thread_in_native, id=224771, stack(0x000000012dda3000,0x000000012dea3000)]
+  0x00007fd44da3e000 JavaThread "New I/O worker #344" [_thread_in_native, id=224259, stack(0x000000012dca0000,0x000000012dda0000)]
+  0x00007fd44baa3000 JavaThread "New I/O worker #343" [_thread_in_native, id=223747, stack(0x000000012db9d000,0x000000012dc9d000)]
+  0x00007fd44d11d800 JavaThread "New I/O worker #342" [_thread_in_native, id=223235, stack(0x000000012da9a000,0x000000012db9a000)]
+  0x00007fd450550000 JavaThread "New I/O worker #341" [_thread_in_native, id=222723, stack(0x000000012d997000,0x000000012da97000)]
+  0x00007fd44e8ec800 JavaThread "qtp1858456369-424" [_thread_in_native, id=222215, stack(0x000000012d791000,0x000000012d891000)]
+  0x00007fd44cd81800 JavaThread "Hashed wheel timer #38" [_thread_blocked, id=221187, stack(0x000000012d68e000,0x000000012d78e000)]
+  0x00007fd44da39800 JavaThread "Hashed wheel timer #40" [_thread_blocked, id=220675, stack(0x000000012d58b000,0x000000012d68b000)]
+  0x00007fd44c1fe000 JavaThread "Hashed wheel timer #37" [_thread_blocked, id=220163, stack(0x000000012d488000,0x000000012d588000)]
+  0x00007fd45057e000 JavaThread "New I/O boss #340" [_thread_in_native, id=219651, stack(0x000000012d385000,0x000000012d485000)]
+  0x00007fd45057b800 JavaThread "New I/O worker #339" [_thread_in_native, id=219139, stack(0x000000012d282000,0x000000012d382000)]
+  0x00007fd45057a800 JavaThread "Hashed wheel timer #39" [_thread_blocked, id=218627, stack(0x000000012d17f000,0x000000012d27f000)]
+  0x00007fd45057a000 JavaThread "New I/O worker #338" [_thread_in_native, id=218115, stack(0x000000012d07c000,0x000000012d17c000)]
+  0x00007fd450567000 JavaThread "New I/O worker #337" [_thread_in_native, id=217603, stack(0x000000012cf79000,0x000000012d079000)]
+  0x00007fd450532800 JavaThread "New I/O worker #336" [_thread_in_native, id=217091, stack(0x000000012ce76000,0x000000012cf76000)]
+  0x00007fd44baa0800 JavaThread "New I/O worker #335" [_thread_in_native, id=216579, stack(0x000000012cd73000,0x000000012ce73000)]
+  0x00007fd44f8a6000 JavaThread "New I/O worker #334" [_thread_in_native, id=216067, stack(0x000000012cc70000,0x000000012cd70000)]
+  0x00007fd44f8a5800 JavaThread "New I/O worker #333" [_thread_in_native, id=215555, stack(0x000000012cb6d000,0x000000012cc6d000)]
+  0x00007fd44f9a5800 JavaThread "New I/O worker #332" [_thread_in_native, id=215043, stack(0x000000012ca6a000,0x000000012cb6a000)]
+  0x00007fd44ba9d800 JavaThread "New I/O worker #331" [_thread_in_native, id=214531, stack(0x000000012c967000,0x000000012ca67000)]
+  0x00007fd44f9a4800 JavaThread "New I/O boss #329" [_thread_in_native, id=214019, stack(0x000000012c864000,0x000000012c964000)]
+  0x00007fd44ba9b000 JavaThread "New I/O worker #330" [_thread_in_native, id=213507, stack(0x000000012c761000,0x000000012c861000)]
+  0x00007fd44c1fd800 JavaThread "New I/O worker #328" [_thread_in_native, id=212995, stack(0x000000012c65e000,0x000000012c75e000)]
+  0x00007fd44b9e2800 JavaThread "New I/O worker #327" [_thread_in_native, id=212483, stack(0x000000012c55b000,0x000000012c65b000)]
+  0x00007fd44b9e2000 JavaThread "New I/O worker #326" [_thread_in_native, id=211971, stack(0x000000012c458000,0x000000012c558000)]
+  0x00007fd45051e000 JavaThread "New I/O worker #325" [_thread_in_native, id=211459, stack(0x000000012c355000,0x000000012c455000)]
+  0x00007fd44cd81000 JavaThread "New I/O worker #324" [_thread_in_native, id=210947, stack(0x000000012c252000,0x000000012c352000)]
+  0x00007fd44b9dd000 JavaThread "New I/O worker #323" [_thread_in_native, id=210435, stack(0x000000012c14f000,0x000000012c24f000)]
+  0x00007fd44f8aa000 JavaThread "New I/O worker #322" [_thread_in_native, id=209923, stack(0x000000012c04c000,0x000000012c14c000)]
+  0x00007fd44c93f800 JavaThread "New I/O worker #321" [_thread_in_native, id=209411, stack(0x000000012bf49000,0x000000012c049000)]
+  0x00007fd44cdd4800 JavaThread "New I/O worker #320" [_thread_in_native, id=208899, stack(0x000000012be46000,0x000000012bf46000)]
+  0x00007fd44bdeb800 JavaThread "New I/O worker #319" [_thread_in_native, id=208387, stack(0x000000012bd43000,0x000000012be43000)]
+  0x00007fd44d74c800 JavaThread "New I/O worker #318" [_thread_in_native, id=207875, stack(0x000000012bc40000,0x000000012bd40000)]
+  0x00007fd44c813000 JavaThread "New I/O worker #317" [_thread_in_native, id=207363, stack(0x000000012bb3d000,0x000000012bc3d000)]
+  0x00007fd44cc5f000 JavaThread "New I/O worker #316" [_thread_in_native, id=206851, stack(0x000000012ba3a000,0x000000012bb3a000)]
+  0x00007fd44ce60000 JavaThread "New I/O worker #315" [_thread_in_native, id=206339, stack(0x000000012b937000,0x000000012ba37000)]
+  0x00007fd44d119800 JavaThread "New I/O worker #314" [_thread_in_native, id=205827, stack(0x000000012b834000,0x000000012b934000)]
+  0x00007fd44bde8800 JavaThread "New I/O worker #313" [_thread_in_native, id=205315, stack(0x000000012b731000,0x000000012b831000)]
+  0x00007fd44bce5800 JavaThread "New I/O worker #312" [_thread_in_native, id=204803, stack(0x000000012b62e000,0x000000012b72e000)]
+  0x00007fd44bce3000 JavaThread "New I/O worker #311" [_thread_in_native, id=204291, stack(0x000000012b52b000,0x000000012b62b000)]
+  0x00007fd44d988800 JavaThread "New I/O worker #310" [_thread_in_native, id=183303, stack(0x000000012b428000,0x000000012b528000)]
+  0x00007fd44d987800 JavaThread "New I/O worker #309" [_thread_in_native, id=183815, stack(0x000000012b325000,0x000000012b425000)]
+  0x00007fd451af1000 JavaThread "New I/O worker #308" [_thread_in_native, id=203271, stack(0x0000000128cb3000,0x0000000128db3000)]
+  0x00007fd451aea800 JavaThread "New I/O worker #307" [_thread_in_native, id=203783, stack(0x0000000128bb0000,0x0000000128cb0000)]
+  0x00007fd450402000 JavaThread "Hashed wheel timer #34" [_thread_blocked, id=202755, stack(0x000000012b222000,0x000000012b322000)]
+  0x00007fd44c209800 JavaThread "Hashed wheel timer #33" [_thread_blocked, id=202243, stack(0x000000012b11f000,0x000000012b21f000)]
+  0x00007fd44d0c0800 JavaThread "Hashed wheel timer #36" [_thread_blocked, id=201731, stack(0x000000012b01c000,0x000000012b11c000)]
+  0x00007fd44f213800 JavaThread "Hashed wheel timer #35" [_thread_blocked, id=201219, stack(0x000000012af19000,0x000000012b019000)]
+  0x00007fd44d43b000 JavaThread "New I/O boss #306" [_thread_in_native, id=200707, stack(0x000000012ae16000,0x000000012af16000)]
+  0x00007fd451aea000 JavaThread "New I/O boss #305" [_thread_in_native, id=200195, stack(0x000000012ad13000,0x000000012ae13000)]
+  0x00007fd44d43a800 JavaThread "New I/O worker #304" [_thread_in_native, id=199683, stack(0x000000012ac10000,0x000000012ad10000)]
+  0x00007fd44c209000 JavaThread "New I/O worker #303" [_thread_in_native, id=199171, stack(0x000000012ab0d000,0x000000012ac0d000)]
+  0x00007fd44f212800 JavaThread "New I/O worker #302" [_thread_in_native, id=198659, stack(0x000000012aa0a000,0x000000012ab0a000)]
+  0x00007fd45051c000 JavaThread "New I/O worker #301" [_thread_in_native, id=198147, stack(0x000000012a907000,0x000000012aa07000)]
+  0x00007fd44f195000 JavaThread "New I/O worker #300" [_thread_in_native, id=197635, stack(0x000000012a804000,0x000000012a904000)]
+  0x00007fd44f194800 JavaThread "New I/O worker #299" [_thread_in_native, id=197123, stack(0x000000012a701000,0x000000012a801000)]
+  0x00007fd44f193800 JavaThread "New I/O worker #298" [_thread_in_native, id=196611, stack(0x000000012a5fe000,0x000000012a6fe000)]
+  0x00007fd44e8e8800 JavaThread "New I/O worker #297" [_thread_in_native, id=196099, stack(0x000000012a4fb000,0x000000012a5fb000)]
+  0x00007fd44e8e7800 JavaThread "New I/O worker #296" [_thread_in_native, id=195587, stack(0x000000012a3f8000,0x000000012a4f8000)]
+  0x00007fd44f193000 JavaThread "New I/O worker #295" [_thread_in_native, id=195075, stack(0x000000012a2f5000,0x000000012a3f5000)]
+  0x00007fd44d3ce800 JavaThread "New I/O worker #294" [_thread_in_native, id=194563, stack(0x000000012a1f2000,0x000000012a2f2000)]
+  0x00007fd45030f800 JavaThread "New I/O worker #293" [_thread_in_native, id=194051, stack(0x000000012a0ef000,0x000000012a1ef000)]
+  0x00007fd44c206000 JavaThread "New I/O worker #292" [_thread_in_native, id=193539, stack(0x0000000129fec000,0x000000012a0ec000)]
+  0x00007fd4519c7800 JavaThread "New I/O worker #291" [_thread_in_native, id=193027, stack(0x0000000129ee9000,0x0000000129fe9000)]
+  0x00007fd4519c6800 JavaThread "New I/O worker #290" [_thread_in_native, id=192515, stack(0x0000000129de6000,0x0000000129ee6000)]
+  0x00007fd44e8ab000 JavaThread "New I/O worker #289" [_thread_in_native, id=192003, stack(0x0000000129ce3000,0x0000000129de3000)]
+  0x00007fd44d3ca000 JavaThread "New I/O worker #288" [_thread_in_native, id=191491, stack(0x0000000129be0000,0x0000000129ce0000)]
+  0x00007fd44e967000 JavaThread "New I/O worker #287" [_thread_in_native, id=190979, stack(0x0000000129add000,0x0000000129bdd000)]
+  0x00007fd44f192000 JavaThread "New I/O worker #286" [_thread_in_native, id=190467, stack(0x00000001299da000,0x0000000129ada000)]
+  0x00007fd44f191800 JavaThread "New I/O worker #285" [_thread_in_native, id=189955, stack(0x00000001298d7000,0x00000001299d7000)]
+  0x00007fd44c205800 JavaThread "New I/O worker #284" [_thread_in_native, id=189443, stack(0x00000001297d4000,0x00000001298d4000)]
+  0x00007fd44c204800 JavaThread "New I/O worker #283" [_thread_in_native, id=188931, stack(0x00000001296d1000,0x00000001297d1000)]
+  0x00007fd44f190800 JavaThread "New I/O worker #282" [_thread_in_native, id=188419, stack(0x00000001295ce000,0x00000001296ce000)]
+  0x00007fd44ddc2000 JavaThread "New I/O worker #281" [_thread_in_native, id=187907, stack(0x00000001294cb000,0x00000001295cb000)]
+  0x00007fd44d29d000 JavaThread "New I/O worker #280" [_thread_in_native, id=187395, stack(0x00000001293c8000,0x00000001294c8000)]
+  0x00007fd44ddc1800 JavaThread "New I/O worker #279" [_thread_in_native, id=186883, stack(0x00000001292c5000,0x00000001293c5000)]
+  0x00007fd45030f000 JavaThread "New I/O worker #278" [_thread_in_native, id=186371, stack(0x00000001291c2000,0x00000001292c2000)]
+  0x00007fd44d29a800 JavaThread "New I/O worker #277" [_thread_in_native, id=185859, stack(0x00000001290bf000,0x00000001291bf000)]
+  0x00007fd44d11f800 JavaThread "New I/O worker #276" [_thread_in_native, id=185347, stack(0x0000000128fbc000,0x00000001290bc000)]
+  0x00007fd44f8a4800 JavaThread "New I/O worker #275" [_thread_in_native, id=184835, stack(0x0000000128eb9000,0x0000000128fb9000)]
+  0x00007fd44dd24000 JavaThread "New I/O worker #274" [_thread_in_native, id=184323, stack(0x0000000128db6000,0x0000000128eb6000)]
+  0x00007fd44f190000 JavaThread "New I/O worker #273" [_thread_in_native, id=144391, stack(0x0000000123ecc000,0x0000000123fcc000)]
+  0x00007fd44bce0000 JavaThread "Hashed wheel timer #30" [_thread_blocked, id=182787, stack(0x0000000128aad000,0x0000000128bad000)]
+  0x00007fd44d118800 JavaThread "Hashed wheel timer #29" [_thread_blocked, id=182275, stack(0x00000001289aa000,0x0000000128aaa000)]
+  0x00007fd44d14c800 JavaThread "Hashed wheel timer #32" [_thread_blocked, id=181763, stack(0x00000001288a7000,0x00000001289a7000)]
+  0x00007fd44c1fa000 JavaThread "Hashed wheel timer #31" [_thread_blocked, id=181251, stack(0x00000001287a4000,0x00000001288a4000)]
+  0x00007fd44c1f9000 JavaThread "New I/O boss #271" [_thread_in_native, id=180739, stack(0x00000001286a1000,0x00000001287a1000)]
+  0x00007fd44c1f8800 JavaThread "New I/O boss #272" [_thread_in_native, id=180227, stack(0x000000012859e000,0x000000012869e000)]
+  0x00007fd44c1bf800 JavaThread "New I/O worker #270" [_thread_in_native, id=179715, stack(0x000000012849b000,0x000000012859b000)]
+  0x00007fd44e8a6000 JavaThread "New I/O worker #269" [_thread_in_native, id=179203, stack(0x0000000128398000,0x0000000128498000)]
+  0x00007fd44db7c800 JavaThread "New I/O worker #268" [_thread_in_native, id=178691, stack(0x0000000128295000,0x0000000128395000)]
+  0x00007fd44d14a000 JavaThread "New I/O worker #267" [_thread_in_native, id=178179, stack(0x0000000128192000,0x0000000128292000)]
+  0x00007fd44e912800 JavaThread "New I/O worker #266" [_thread_in_native, id=177667, stack(0x000000012808f000,0x000000012818f000)]
+  0x00007fd44d535000 JavaThread "New I/O worker #265" [_thread_in_native, id=177155, stack(0x0000000127f8c000,0x000000012808c000)]
+  0x00007fd44d534800 JavaThread "New I/O worker #264" [_thread_in_native, id=176643, stack(0x0000000127e89000,0x0000000127f89000)]
+  0x00007fd44ea8f800 JavaThread "New I/O worker #263" [_thread_in_native, id=176131, stack(0x0000000127d86000,0x0000000127e86000)]
+  0x00007fd44c1bf000 JavaThread "New I/O worker #262" [_thread_in_native, id=175619, stack(0x0000000127c83000,0x0000000127d83000)]
+  0x00007fd44ea8d000 JavaThread "New I/O worker #261" [_thread_in_native, id=175107, stack(0x0000000127b80000,0x0000000127c80000)]
+  0x00007fd44f887800 JavaThread "New I/O worker #260" [_thread_in_native, id=174595, stack(0x0000000127a7d000,0x0000000127b7d000)]
+  0x00007fd44ea8c000 JavaThread "New I/O worker #259" [_thread_in_native, id=174083, stack(0x000000012797a000,0x0000000127a7a000)]
+  0x00007fd44d40e000 JavaThread "New I/O worker #258" [_thread_in_native, id=173571, stack(0x0000000127877000,0x0000000127977000)]
+  0x00007fd44ea89800 JavaThread "New I/O worker #257" [_thread_in_native, id=173059, stack(0x0000000127774000,0x0000000127874000)]
+  0x00007fd451af6000 JavaThread "New I/O worker #256" [_thread_in_native, id=172547, stack(0x0000000127671000,0x0000000127771000)]
+  0x00007fd44b9d8800 JavaThread "New I/O worker #255" [_thread_in_native, id=172035, stack(0x000000012756e000,0x000000012766e000)]
+  0x00007fd44ea88800 JavaThread "New I/O worker #254" [_thread_in_native, id=171523, stack(0x000000012746b000,0x000000012756b000)]
+  0x00007fd44eb44800 JavaThread "New I/O worker #253" [_thread_in_native, id=171011, stack(0x0000000127368000,0x0000000127468000)]
+  0x00007fd44b9d7800 JavaThread "New I/O worker #252" [_thread_in_native, id=170499, stack(0x0000000127265000,0x0000000127365000)]
+  0x00007fd44f887000 JavaThread "New I/O worker #251" [_thread_in_native, id=169987, stack(0x0000000127162000,0x0000000127262000)]
+  0x00007fd451d08800 JavaThread "New I/O worker #250" [_thread_in_native, id=169475, stack(0x000000012705f000,0x000000012715f000)]
+  0x00007fd44c1be000 JavaThread "New I/O worker #249" [_thread_in_native, id=168963, stack(0x0000000126f5c000,0x000000012705c000)]
+  0x00007fd44bb42000 JavaThread "New I/O worker #248" [_thread_in_native, id=168451, stack(0x0000000126e59000,0x0000000126f59000)]
+  0x00007fd44d409000 JavaThread "New I/O worker #247" [_thread_in_native, id=167939, stack(0x0000000126d56000,0x0000000126e56000)]
+  0x00007fd44eb44000 JavaThread "New I/O worker #246" [_thread_in_native, id=167427, stack(0x0000000126c53000,0x0000000126d53000)]
+  0x00007fd451a3a800 JavaThread "New I/O worker #245" [_thread_in_native, id=166915, stack(0x0000000126b50000,0x0000000126c50000)]
+  0x00007fd44bb41000 JavaThread "New I/O worker #244" [_thread_in_native, id=166403, stack(0x0000000126a4d000,0x0000000126b4d000)]
+  0x00007fd44bb40800 JavaThread "New I/O worker #243" [_thread_in_native, id=165891, stack(0x000000012694a000,0x0000000126a4a000)]
+  0x00007fd44d5dd000 JavaThread "New I/O worker #242" [_thread_in_native, id=143879, stack(0x0000000126847000,0x0000000126947000)]
+  0x00007fd44c1bb800 JavaThread "New I/O worker #241" [_thread_in_native, id=155143, stack(0x000000012540b000,0x000000012550b000)]
+  0x00007fd44bb3f800 JavaThread "New I/O worker #240" [_thread_in_native, id=165383, stack(0x0000000123dc9000,0x0000000123ec9000)]
+  0x00007fd44d5da000 JavaThread "New I/O worker #239" [_thread_in_native, id=25351, stack(0x0000000115279000,0x0000000115379000)]
+  0x00007fd44e8bf000 JavaThread "Hashed wheel timer #27" [_thread_blocked, id=164867, stack(0x0000000126744000,0x0000000126844000)]
+  0x00007fd44e8be000 JavaThread "Hashed wheel timer #28" [_thread_blocked, id=164355, stack(0x0000000126641000,0x0000000126741000)]
+  0x00007fd44d311800 JavaThread "New I/O boss #238" [_thread_in_native, id=163843, stack(0x000000012653e000,0x000000012663e000)]
+  0x00007fd451d07800 JavaThread "New I/O worker #237" [_thread_in_native, id=163331, stack(0x000000012643b000,0x000000012653b000)]
+  0x00007fd451d07000 JavaThread "New I/O worker #236" [_thread_in_native, id=162819, stack(0x0000000126338000,0x0000000126438000)]
+  0x00007fd44d311000 JavaThread "New I/O worker #235" [_thread_in_native, id=162307, stack(0x0000000126235000,0x0000000126335000)]
+  0x00007fd451d04000 JavaThread "New I/O worker #234" [_thread_in_native, id=161795, stack(0x0000000126132000,0x0000000126232000)]
+  0x00007fd44d120800 JavaThread "New I/O worker #233" [_thread_in_native, id=161283, stack(0x000000012602f000,0x000000012612f000)]
+  0x00007fd44d2a2800 JavaThread "New I/O worker #232" [_thread_in_native, id=160771, stack(0x0000000125f2c000,0x000000012602c000)]
+  0x00007fd451d01800 JavaThread "New I/O worker #231" [_thread_in_native, id=160259, stack(0x0000000125e29000,0x0000000125f29000)]
+  0x00007fd451c9a800 JavaThread "New I/O worker #230" [_thread_in_native, id=159747, stack(0x0000000125d26000,0x0000000125e26000)]
+  0x00007fd44d5e0000 JavaThread "New I/O worker #229" [_thread_in_native, id=159235, stack(0x0000000125c23000,0x0000000125d23000)]
+  0x00007fd451c98000 JavaThread "New I/O worker #228" [_thread_in_native, id=158723, stack(0x0000000125b20000,0x0000000125c20000)]
+  0x00007fd451807800 JavaThread "New I/O worker #227" [_thread_in_native, id=158211, stack(0x0000000125a1d000,0x0000000125b1d000)]
+  0x00007fd44ea90800 JavaThread "New I/O worker #226" [_thread_in_native, id=157699, stack(0x000000012591a000,0x0000000125a1a000)]
+  0x00007fd451806800 JavaThread "New I/O worker #225" [_thread_in_native, id=157187, stack(0x0000000125817000,0x0000000125917000)]
+  0x00007fd44e968800 JavaThread "New I/O worker #224" [_thread_in_native, id=156675, stack(0x0000000125714000,0x0000000125814000)]
+  0x00007fd4519de800 JavaThread "New I/O worker #223" [_thread_in_native, id=156163, stack(0x0000000125611000,0x0000000125711000)]
+  0x00007fd44d6d4000 JavaThread "New I/O worker #222" [_thread_in_native, id=155651, stack(0x000000012550e000,0x000000012560e000)]
+  0x00007fd44f047000 JavaThread "Hashed wheel timer #25" [_thread_blocked, id=154627, stack(0x0000000125308000,0x0000000125408000)]
+  0x00007fd44f046800 JavaThread "Hashed wheel timer #26" [_thread_blocked, id=154115, stack(0x0000000125205000,0x0000000125305000)]
+  0x00007fd44d6d3000 JavaThread "New I/O boss #221" [_thread_in_native, id=153603, stack(0x0000000125102000,0x0000000125202000)]
+  0x00007fd44d269000 JavaThread "New I/O worker #220" [_thread_in_native, id=153091, stack(0x0000000124fff000,0x00000001250ff000)]
+  0x00007fd44d268800 JavaThread "New I/O worker #219" [_thread_in_native, id=152579, stack(0x0000000124efc000,0x0000000124ffc000)]
+  0x00007fd45030e000 JavaThread "New I/O worker #218" [_thread_in_native, id=152067, stack(0x0000000124df9000,0x0000000124ef9000)]
+  0x00007fd45030b800 JavaThread "New I/O worker #217" [_thread_in_native, id=151555, stack(0x0000000124cf6000,0x0000000124df6000)]
+  0x00007fd450308800 JavaThread "New I/O worker #216" [_thread_in_native, id=151043, stack(0x0000000124bf3000,0x0000000124cf3000)]
+  0x00007fd44d093800 JavaThread "New I/O worker #215" [_thread_in_native, id=150531, stack(0x0000000124af0000,0x0000000124bf0000)]
+  0x00007fd4504e3000 JavaThread "New I/O worker #214" [_thread_in_native, id=150019, stack(0x00000001249ed000,0x0000000124aed000)]
+  0x00007fd4504e0800 JavaThread "New I/O worker #213" [_thread_in_native, id=149507, stack(0x00000001248ea000,0x00000001249ea000)]
+  0x00007fd44f045800 JavaThread "New I/O worker #212" [_thread_in_native, id=148995, stack(0x00000001247e7000,0x00000001248e7000)]
+  0x00007fd44f16f800 JavaThread "New I/O worker #211" [_thread_in_native, id=148483, stack(0x00000001246e4000,0x00000001247e4000)]
+  0x00007fd44f16e800 JavaThread "New I/O worker #210" [_thread_in_native, id=147971, stack(0x00000001245e1000,0x00000001246e1000)]
+  0x00007fd44f218000 JavaThread "New I/O worker #209" [_thread_in_native, id=147459, stack(0x00000001244de000,0x00000001245de000)]
+  0x00007fd4504dd800 JavaThread "New I/O worker #208" [_thread_in_native, id=146947, stack(0x00000001243db000,0x00000001244db000)]
+  0x00007fd44d093000 JavaThread "New I/O worker #207" [_thread_in_native, id=146435, stack(0x00000001242d8000,0x00000001243d8000)]
+  0x00007fd44d092000 JavaThread "New I/O worker #206" [_thread_in_native, id=145923, stack(0x00000001241d5000,0x00000001242d5000)]
+  0x00007fd44e967800 JavaThread "New I/O worker #205" [_thread_in_native, id=145411, stack(0x00000001240d2000,0x00000001241d2000)]
+  0x00007fd44d08f800 JavaThread "qtp1858456369-263" [_thread_in_vm, id=144899, stack(0x0000000123fcf000,0x00000001240cf000)]
+  0x00007fd44e992800 JavaThread "Hashed wheel timer #23" [_thread_blocked, id=143363, stack(0x0000000123cc6000,0x0000000123dc6000)]
+  0x00007fd44e991800 JavaThread "Hashed wheel timer #24" [_thread_blocked, id=142851, stack(0x0000000123bc3000,0x0000000123cc3000)]
+  0x00007fd44b9d3000 JavaThread "New I/O boss #204" [_thread_in_native, id=142339, stack(0x0000000123ac0000,0x0000000123bc0000)]
+  0x00007fd44d08e800 JavaThread "New I/O worker #203" [_thread_in_native, id=141827, stack(0x00000001239bd000,0x0000000123abd000)]
+  0x00007fd44bbcf000 JavaThread "New I/O worker #202" [_thread_in_native, id=141315, stack(0x00000001238ba000,0x00000001239ba000)]
+  0x00007fd44d1f0800 JavaThread "New I/O worker #201" [_thread_in_native, id=140803, stack(0x00000001237b7000,0x00000001238b7000)]
+  0x00007fd44d1ef800 JavaThread "New I/O worker #200" [_thread_in_native, id=140291, stack(0x00000001236b4000,0x00000001237b4000)]
+  0x00007fd44bbcc000 JavaThread "New I/O worker #199" [_thread_in_native, id=139779, stack(0x00000001235b1000,0x00000001236b1000)]
+  0x00007fd44d0a9000 JavaThread "New I/O worker #198" [_thread_in_native, id=139267, stack(0x00000001234ae000,0x00000001235ae000)]
+  0x00007fd44f886000 JavaThread "New I/O worker #197" [_thread_in_native, id=138755, stack(0x00000001233ab000,0x00000001234ab000)]
+  0x00007fd44b98a800 JavaThread "New I/O worker #196" [_thread_in_native, id=138243, stack(0x00000001232a8000,0x00000001233a8000)]
+  0x00007fd44b988000 JavaThread "New I/O worker #195" [_thread_in_native, id=137731, stack(0x00000001231a5000,0x00000001232a5000)]
+  0x00007fd44d0a8000 JavaThread "New I/O worker #194" [_thread_in_native, id=137219, stack(0x00000001230a2000,0x00000001231a2000)]
+  0x00007fd44bb42800 JavaThread "New I/O worker #193" [_thread_in_native, id=136707, stack(0x0000000122f9f000,0x000000012309f000)]
+  0x00007fd44bb3f000 JavaThread "New I/O worker #192" [_thread_in_native, id=136195, stack(0x0000000122e9c000,0x0000000122f9c000)]
+  0x00007fd451cd8000 JavaThread "New I/O worker #191" [_thread_in_native, id=135683, stack(0x0000000122d99000,0x0000000122e99000)]
+  0x00007fd44d252000 JavaThread "New I/O worker #190" [_thread_in_native, id=135171, stack(0x0000000122c96000,0x0000000122d96000)]
+  0x00007fd44d251800 JavaThread "New I/O worker #189" [_thread_in_native, id=134151, stack(0x0000000122b93000,0x0000000122c93000)]
+  0x00007fd44f8ee000 JavaThread "New I/O worker #188" [_thread_in_native, id=134663, stack(0x0000000122a90000,0x0000000122b90000)]
+  0x00007fd44bb3c000 JavaThread "Hashed wheel timer #20" [_thread_blocked, id=133635, stack(0x000000012298d000,0x0000000122a8d000)]
+  0x00007fd44bb3b800 JavaThread "Hashed wheel timer #19" [_thread_blocked, id=133123, stack(0x000000012288a000,0x000000012298a000)]
+  0x00007fd44e991000 JavaThread "Hashed wheel timer #21" [_thread_blocked, id=132611, stack(0x0000000122787000,0x0000000122887000)]
+  0x00007fd44f16c000 JavaThread "Hashed wheel timer #22" [_thread_blocked, id=132099, stack(0x0000000122684000,0x0000000122784000)]
+  0x00007fd44f16b000 JavaThread "New I/O boss #187" [_thread_in_native, id=131587, stack(0x0000000122581000,0x0000000122681000)]
+  0x00007fd44b9ab000 JavaThread "New I/O boss #186" [_thread_in_native, id=131075, stack(0x000000012247e000,0x000000012257e000)]
+  0x00007fd44e990000 JavaThread "New I/O worker #185" [_thread_in_native, id=130563, stack(0x000000012237b000,0x000000012247b000)]
+  0x00007fd44f881800 JavaThread "New I/O worker #184" [_thread_in_native, id=130051, stack(0x0000000122278000,0x0000000122378000)]
+  0x00007fd44e98d800 JavaThread "New I/O worker #183" [_thread_in_native, id=129539, stack(0x0000000122175000,0x0000000122275000)]
+  0x00007fd44f87e800 JavaThread "New I/O worker #182" [_thread_in_native, id=129027, stack(0x0000000122072000,0x0000000122172000)]
+  0x00007fd44e92a000 JavaThread "New I/O worker #181" [_thread_in_native, id=128515, stack(0x0000000121f6f000,0x000000012206f000)]
+  0x00007fd44b9aa800 JavaThread "New I/O worker #180" [_thread_in_native, id=128003, stack(0x0000000121e6c000,0x0000000121f6c000)]
+  0x00007fd44f801800 JavaThread "New I/O worker #179" [_thread_in_native, id=127491, stack(0x0000000121d69000,0x0000000121e69000)]
+  0x00007fd44f800800 JavaThread "New I/O worker #178" [_thread_in_native, id=126979, stack(0x0000000121c66000,0x0000000121d66000)]
+  0x00007fd44d3e4000 JavaThread "New I/O worker #177" [_thread_in_native, id=126467, stack(0x0000000121b63000,0x0000000121c63000)]
+  0x00007fd44e925800 JavaThread "New I/O worker #176" [_thread_in_native, id=125955, stack(0x0000000121a60000,0x0000000121b60000)]
+  0x00007fd44f829000 JavaThread "New I/O worker #175" [_thread_in_native, id=125443, stack(0x000000012195d000,0x0000000121a5d000)]
+  0x00007fd44f168800 JavaThread "New I/O worker #174" [_thread_in_native, id=124931, stack(0x000000012185a000,0x000000012195a000)]
+  0x00007fd44d3e3800 JavaThread "New I/O worker #173" [_thread_in_native, id=124419, stack(0x0000000121757000,0x0000000121857000)]
+  0x00007fd44e82d000 JavaThread "New I/O worker #172" [_thread_in_native, id=123907, stack(0x0000000121654000,0x0000000121754000)]
+  0x00007fd44d2ec000 JavaThread "New I/O worker #171" [_thread_in_native, id=123395, stack(0x0000000121551000,0x0000000121651000)]
+  0x00007fd44d2eb000 JavaThread "New I/O worker #170" [_thread_in_native, id=122883, stack(0x000000012144e000,0x000000012154e000)]
+  0x00007fd44c19d000 JavaThread "New I/O worker #169" [_thread_in_native, id=122371, stack(0x000000012134b000,0x000000012144b000)]
+  0x00007fd44c19c800 JavaThread "New I/O worker #168" [_thread_in_native, id=121859, stack(0x0000000121248000,0x0000000121348000)]
+  0x00007fd44f828800 JavaThread "New I/O worker #167" [_thread_in_native, id=121347, stack(0x0000000121145000,0x0000000121245000)]
+  0x00007fd44c189800 JavaThread "New I/O worker #166" [_thread_in_native, id=120835, stack(0x0000000121042000,0x0000000121142000)]
+  0x00007fd44d2a7800 JavaThread "New I/O worker #165" [_thread_in_native, id=120323, stack(0x0000000120f3f000,0x000000012103f000)]
+  0x00007fd44b9a9800 JavaThread "New I/O worker #164" [_thread_in_native, id=119811, stack(0x0000000120e3c000,0x0000000120f3c000)]
+  0x00007fd44b9a9000 JavaThread "New I/O worker #163" [_thread_in_native, id=119299, stack(0x0000000120d39000,0x0000000120e39000)]
+  0x00007fd44b9a8000 JavaThread "New I/O worker #162" [_thread_in_native, id=118787, stack(0x0000000120c36000,0x0000000120d36000)]
+  0x00007fd44c07c000 JavaThread "New I/O worker #161" [_thread_in_native, id=118275, stack(0x0000000120b33000,0x0000000120c33000)]
+  0x00007fd44c07b800 JavaThread "New I/O worker #160" [_thread_in_native, id=117763, stack(0x0000000120a30000,0x0000000120b30000)]
+  0x00007fd44c0d4800 JavaThread "New I/O worker #159" [_thread_in_native, id=117251, stack(0x000000012092d000,0x0000000120a2d000)]
+  0x00007fd44c0d3800 JavaThread "New I/O worker #158" [_thread_in_native, id=116739, stack(0x000000012082a000,0x000000012092a000)]
+  0x00007fd44d195000 JavaThread "New I/O worker #157" [_thread_in_native, id=116227, stack(0x0000000120727000,0x0000000120827000)]
+  0x00007fd44c0d9000 JavaThread "New I/O worker #156" [_thread_in_native, id=115715, stack(0x0000000120624000,0x0000000120724000)]
+  0x00007fd44f8fe000 JavaThread "New I/O worker #155" [_thread_in_native, id=114951, stack(0x0000000120521000,0x0000000120621000)]
+  0x00007fd44e832000 JavaThread "New I/O worker #154" [_thread_in_native, id=114695, stack(0x000000012041e000,0x000000012051e000)]
+  0x00007fd4519c5000 JavaThread "Hashed wheel timer #16" [_thread_blocked, id=114179, stack(0x000000012031b000,0x000000012041b000)]
+  0x00007fd44f219000 JavaThread "Hashed wheel timer #18" [_thread_blocked, id=113667, stack(0x0000000120218000,0x0000000120318000)]
+  0x00007fd44f04c800 JavaThread "Hashed wheel timer #15" [_thread_blocked, id=113155, stack(0x0000000120115000,0x0000000120215000)]
+  0x00007fd44c169000 JavaThread "Hashed wheel timer #17" [_thread_blocked, id=112643, stack(0x0000000120012000,0x0000000120112000)]
+  0x00007fd4503e9800 JavaThread "New I/O boss #153" [_thread_in_native, id=112131, stack(0x000000011ff0f000,0x000000012000f000)]
+  0x00007fd4503d6800 JavaThread "New I/O worker #152" [_thread_in_native, id=111619, stack(0x000000011fe0c000,0x000000011ff0c000)]
+  0x00007fd44bccf800 JavaThread "New I/O worker #150" [_thread_in_native, id=111107, stack(0x000000011fd09000,0x000000011fe09000)]
+  0x00007fd4503c4000 JavaThread "New I/O boss #151" [_thread_in_native, id=110595, stack(0x000000011fc06000,0x000000011fd06000)]
+  0x00007fd44c168000 JavaThread "New I/O worker #149" [_thread_in_native, id=110083, stack(0x000000011fb03000,0x000000011fc03000)]
+  0x00007fd4519c4000 JavaThread "New I/O worker #148" [_thread_in_native, id=109571, stack(0x000000011fa00000,0x000000011fb00000)]
+  0x00007fd44bcca800 JavaThread "New I/O worker #147" [_thread_in_native, id=109059, stack(0x000000011f8fd000,0x000000011f9fd000)]
+  0x00007fd44c155800 JavaThread "New I/O worker #146" [_thread_in_native, id=108547, stack(0x000000011f7fa000,0x000000011f8fa000)]
+  0x00007fd44f04b800 JavaThread "New I/O worker #145" [_thread_in_native, id=108035, stack(0x000000011f6f7000,0x000000011f7f7000)]
+  0x00007fd44c142800 JavaThread "New I/O worker #144" [_thread_in_native, id=107523, stack(0x000000011f5f4000,0x000000011f6f4000)]
+  0x00007fd4503b1000 JavaThread "New I/O worker #143" [_thread_in_native, id=107011, stack(0x000000011f4f1000,0x000000011f5f1000)]
+  0x00007fd44f049000 JavaThread "New I/O worker #142" [_thread_in_native, id=106499, stack(0x000000011f3ee000,0x000000011f4ee000)]
+  0x00007fd44f048000 JavaThread "New I/O worker #141" [_thread_in_native, id=105987, stack(0x000000011f2eb000,0x000000011f3eb000)]
+  0x00007fd44c11e000 JavaThread "New I/O worker #140" [_thread_in_native, id=105475, stack(0x000000011f1e8000,0x000000011f2e8000)]
+  0x00007fd45038c800 JavaThread "New I/O worker #139" [_thread_in_native, id=104963, stack(0x000000011f0e5000,0x000000011f1e5000)]
+  0x00007fd44c0a9800 JavaThread "New I/O worker #138" [_thread_in_native, id=104451, stack(0x000000011efe2000,0x000000011f0e2000)]
+  0x00007fd45037b800 JavaThread "New I/O worker #137" [_thread_in_native, id=103939, stack(0x000000011eedf000,0x000000011efdf000)]
+  0x00007fd44c0a7000 JavaThread "New I/O worker #136" [_thread_in_native, id=103427, stack(0x000000011eddc000,0x000000011eedc000)]
+  0x00007fd44d194800 JavaThread "New I/O worker #135" [_thread_in_native, id=102915, stack(0x000000011ecd9000,0x000000011edd9000)]
+  0x00007fd44c0a6000 JavaThread "New I/O worker #134" [_thread_in_native, id=102403, stack(0x000000011ebd6000,0x000000011ecd6000)]
+  0x00007fd44d3d6000 JavaThread "New I/O worker #132" [_thread_in_native, id=101891, stack(0x000000011ead3000,0x000000011ebd3000)]
+  0x00007fd44f173000 JavaThread "New I/O worker #133" [_thread_in_native, id=101379, stack(0x000000011e9d0000,0x000000011ead0000)]
+  0x00007fd44c0a5800 JavaThread "New I/O worker #131" [_thread_in_native, id=100867, stack(0x000000011e8cd000,0x000000011e9cd000)]
+  0x00007fd45037b000 JavaThread "New I/O worker #130" [_thread_in_native, id=100355, stack(0x000000011e7ca000,0x000000011e8ca000)]
+  0x00007fd4519e0800 JavaThread "New I/O worker #129" [_thread_in_native, id=99843, stack(0x000000011e6c7000,0x000000011e7c7000)]
+  0x00007fd4519df800 JavaThread "New I/O worker #128" [_thread_in_native, id=99331, stack(0x000000011e5c4000,0x000000011e6c4000)]
+  0x00007fd44f172800 JavaThread "New I/O worker #127" [_thread_in_native, id=98819, stack(0x000000011e4c1000,0x000000011e5c1000)]
+  0x00007fd450368000 JavaThread "New I/O worker #126" [_thread_in_native, id=98307, stack(0x000000011e3be000,0x000000011e4be000)]
+  0x00007fd450355800 JavaThread "New I/O worker #125" [_thread_in_native, id=97795, stack(0x000000011e2bb000,0x000000011e3bb000)]
+  0x00007fd450342800 JavaThread "New I/O worker #124" [_thread_in_native, id=97283, stack(0x000000011e1b8000,0x000000011e2b8000)]
+  0x00007fd4501f4800 JavaThread "New I/O worker #123" [_thread_in_native, id=96771, stack(0x000000011e0b5000,0x000000011e1b5000)]
+  0x00007fd4501f4000 JavaThread "New I/O worker #122" [_thread_in_native, id=96259, stack(0x000000011dfb2000,0x000000011e0b2000)]
+  0x00007fd4502c0000 JavaThread "New I/O worker #121" [_thread_in_native, id=95747, stack(0x000000011deaf000,0x000000011dfaf000)]
+  0x00007fd44f1ca800 JavaThread "New I/O worker #120" [_thread_in_native, id=95239, stack(0x000000011ddac000,0x000000011deac000)]
+  0x00007fd4519f9800 JavaThread "Hashed wheel timer #13" [_thread_blocked, id=94723, stack(0x000000011dca9000,0x000000011dda9000)]
+  0x00007fd44d3d5800 JavaThread "Hashed wheel timer #14" [_thread_blocked, id=94211, stack(0x000000011dba6000,0x000000011dca6000)]
+  0x00007fd4502bf000 JavaThread "New I/O boss #119" [_thread_in_native, id=93699, stack(0x000000011daa3000,0x000000011dba3000)]
+  0x00007fd4502bc800 JavaThread "New I/O worker #118" [_thread_in_native, id=93187, stack(0x000000011d9a0000,0x000000011daa0000)]
+  0x00007fd4502b9800 JavaThread "New I/O worker #117" [_thread_in_native, id=92675, stack(0x000000011d89d000,0x000000011d99d000)]
+  0x00007fd4502a7000 JavaThread "New I/O worker #116" [_thread_in_native, id=92163, stack(0x000000011d79a000,0x000000011d89a000)]
+  0x00007fd4501c3800 JavaThread "New I/O worker #115" [_thread_in_native, id=91651, stack(0x000000011d697000,0x000000011d797000)]
+  0x00007fd44d2e8800 JavaThread "New I/O worker #114" [_thread_in_native, id=91139, stack(0x000000011d594000,0x000000011d694000)]
+  0x00007fd451cae000 JavaThread "New I/O worker #113" [_thread_in_native, id=90627, stack(0x000000011d491000,0x000000011d591000)]
+  0x00007fd451cad800 JavaThread "New I/O worker #112" [_thread_in_native, id=90115, stack(0x000000011d38e000,0x000000011d48e000)]
+  0x00007fd4501f6000 JavaThread "New I/O worker #111" [_thread_in_native, id=89603, stack(0x000000011d28b000,0x000000011d38b000)]
+  0x00007fd4501f5800 JavaThread "New I/O worker #110" [_thread_in_native, id=89091, stack(0x000000011d188000,0x000000011d288000)]
+  0x00007fd44c0d2000 JavaThread "New I/O worker #109" [_thread_in_native, id=88579, stack(0x000000011d085000,0x000000011d185000)]
+  0x00007fd44d2e7800 JavaThread "New I/O worker #108" [_thread_in_native, id=88067, stack(0x000000011cf82000,0x000000011d082000)]
+  0x00007fd44d279800 JavaThread "New I/O worker #107" [_thread_in_native, id=87555, stack(0x000000011ce7f000,0x000000011cf7f000)]
+  0x00007fd451a3b000 JavaThread "New I/O worker #106" [_thread_in_native, id=87043, stack(0x000000011cd7c000,0x000000011ce7c000)]
+  0x00007fd451874000 JavaThread "New I/O worker #105" [_thread_in_native, id=86531, stack(0x000000011cc79000,0x000000011cd79000)]
+  0x00007fd44c0bf800 JavaThread "New I/O worker #104" [_thread_in_native, id=86019, stack(0x000000011cb76000,0x000000011cc76000)]
+  0x00007fd44c0ac800 JavaThread "New I/O worker #103" [_thread_in_native, id=85511, stack(0x000000011ca73000,0x000000011cb73000)]
+  0x00007fd451800000 JavaThread "Hashed wheel timer #11" [_thread_blocked, id=84995, stack(0x000000011c970000,0x000000011ca70000)]
+  0x00007fd44c076800 JavaThread "Hashed wheel timer #12" [_thread_blocked, id=84483, stack(0x000000011c86d000,0x000000011c96d000)]
+  0x00007fd4501f3000 JavaThread "New I/O boss #102" [_thread_in_native, id=83971, stack(0x000000011c76a000,0x000000011c86a000)]
+  0x00007fd450094000 JavaThread "New I/O worker #101" [_thread_in_native, id=83459, stack(0x000000011c667000,0x000000011c767000)]
+  0x00007fd44f064000 JavaThread "New I/O worker #100" [_thread_in_native, id=82947, stack(0x000000011c564000,0x000000011c664000)]
+  0x00007fd44f061000 JavaThread "New I/O worker #99" [_thread_in_native, id=82435, stack(0x000000011c461000,0x000000011c561000)]
+  0x00007fd450093000 JavaThread "New I/O worker #98" [_thread_in_native, id=81923, stack(0x000000011c35e000,0x000000011c45e000)]
+  0x00007fd450090800 JavaThread "New I/O worker #97" [_thread_in_native, id=81411, stack(0x000000011c25b000,0x000000011c35b000)]
+  0x00007fd44b9b3000 JavaThread "New I/O worker #96" [_thread_in_native, id=80899, stack(0x000000011c158000,0x000000011c258000)]
+  0x00007fd44b9b2000 JavaThread "New I/O worker #95" [_thread_in_native, id=80387, stack(0x000000011c055000,0x000000011c155000)]
+  0x00007fd44bf5a800 JavaThread "New I/O worker #94" [_thread_in_native, id=79875, stack(0x000000011bf52000,0x000000011c052000)]
+  0x00007fd44bbd4000 JavaThread "New I/O worker #93" [_thread_in_native, id=79363, stack(0x000000011be4f000,0x000000011bf4f000)]
+  0x00007fd44be3d000 JavaThread "New I/O worker #92" [_thread_in_native, id=78851, stack(0x000000011bd4c000,0x000000011be4c000)]
+  0x00007fd44bb43800 JavaThread "New I/O worker #91" [_thread_in_native, id=78339, stack(0x000000011bc49000,0x000000011bd49000)]
+  0x00007fd44f114000 JavaThread "New I/O worker #90" [_thread_in_native, id=77827, stack(0x000000011bb46000,0x000000011bc46000)]
+  0x00007fd4500c3000 JavaThread "New I/O worker #89" [_thread_in_native, id=77315, stack(0x000000011ba43000,0x000000011bb43000)]
+  0x00007fd44ba73800 JavaThread "New I/O worker #88" [_thread_in_native, id=76803, stack(0x000000011b940000,0x000000011ba40000)]
+  0x00007fd451caa800 JavaThread "New I/O worker #87" [_thread_in_native, id=76291, stack(0x000000011b83d000,0x000000011b93d000)]
+  0x00007fd44e811800 JavaThread "New I/O worker #86" [_thread_in_native, id=75783, stack(0x000000011b73a000,0x000000011b83a000)]
+  0x00007fd44d279000 JavaThread "Hashed wheel timer #9" [_thread_blocked, id=75267, stack(0x000000011b637000,0x000000011b737000)]
+  0x00007fd44d138000 JavaThread "Hashed wheel timer #10" [_thread_blocked, id=74755, stack(0x000000011b534000,0x000000011b634000)]
+  0x00007fd450256000 JavaThread "New I/O boss #85" [_thread_in_native, id=74243, stack(0x000000011b431000,0x000000011b531000)]
+  0x00007fd44d0fd800 JavaThread "New I/O worker #84" [_thread_in_native, id=73731, stack(0x000000011b32e000,0x000000011b42e000)]
+  0x00007fd450253800 JavaThread "New I/O worker #83" [_thread_in_native, id=73219, stack(0x000000011b22b000,0x000000011b32b000)]
+  0x00007fd450240800 JavaThread "New I/O worker #82" [_thread_in_native, id=72707, stack(0x000000011b128000,0x000000011b228000)]
+  0x00007fd44d07e800 JavaThread "New I/O worker #81" [_thread_in_native, id=72195, stack(0x000000011b025000,0x000000011b125000)]
+  0x00007fd44d0ba800 JavaThread "New I/O worker #80" [_thread_in_native, id=71683, stack(0x000000011af22000,0x000000011b022000)]
+  0x00007fd44c076000 JavaThread "New I/O worker #79" [_thread_in_native, id=71171, stack(0x000000011ae1f000,0x000000011af1f000)]
+  0x00007fd451ca8000 JavaThread "New I/O worker #78" [_thread_in_native, id=70659, stack(0x000000011ad1c000,0x000000011ae1c000)]
+  0x00007fd451cfc800 JavaThread "New I/O worker #77" [_thread_in_native, id=70147, stack(0x000000011ac19000,0x000000011ad19000)]
+  0x00007fd451cbf000 JavaThread "New I/O worker #76" [_thread_in_native, id=69635, stack(0x000000011ab16000,0x000000011ac16000)]
+  0x00007fd45022e000 JavaThread "New I/O worker #75" [_thread_in_native, id=69123, stack(0x000000011aa13000,0x000000011ab13000)]
+  0x00007fd45021b000 JavaThread "New I/O worker #74" [_thread_in_native, id=68611, stack(0x000000011a910000,0x000000011aa10000)]
+  0x00007fd4501cb000 JavaThread "New I/O worker #73" [_thread_in_native, id=68099, stack(0x000000011a80d000,0x000000011a90d000)]
+  0x00007fd4501ca800 JavaThread "New I/O worker #72" [_thread_in_native, id=67587, stack(0x000000011a70a000,0x000000011a80a000)]
+  0x00007fd45003e000 JavaThread "New I/O worker #71" [_thread_in_native, id=67075, stack(0x000000011a607000,0x000000011a707000)]
+  0x00007fd451cbe000 JavaThread "New I/O worker #70" [_thread_in_native, id=66563, stack(0x000000011a504000,0x000000011a604000)]
+  0x00007fd44c018000 JavaThread "New I/O worker #69" [_thread_in_native, id=66055, stack(0x000000011a401000,0x000000011a501000)]
+  0x00007fd451c81000 JavaThread "Hashed wheel timer #7" [_thread_blocked, id=65539, stack(0x000000011a2fe000,0x000000011a3fe000)]
+  0x00007fd44c017800 JavaThread "Hashed wheel timer #8" [_thread_blocked, id=65027, stack(0x000000011a1fb000,0x000000011a2fb000)]
+  0x00007fd451c80000 JavaThread "New I/O boss #68" [_thread_in_native, id=64515, stack(0x000000011a0f8000,0x000000011a1f8000)]
+  0x00007fd44f8b6800 JavaThread "New I/O worker #67" [_thread_in_native, id=64003, stack(0x0000000119ff5000,0x000000011a0f5000)]
+  0x00007fd44be38800 JavaThread "New I/O worker #66" [_thread_in_native, id=63491, stack(0x0000000119ef2000,0x0000000119ff2000)]
+  0x00007fd44be65800 JavaThread "New I/O worker #65" [_thread_in_native, id=62979, stack(0x0000000119def000,0x0000000119eef000)]
+  0x00007fd44bb5c800 JavaThread "New I/O worker #64" [_thread_in_native, id=62467, stack(0x0000000119cec000,0x0000000119dec000)]
+  0x00007fd451d0b800 JavaThread "New I/O worker #63" [_thread_in_native, id=61955, stack(0x0000000119be9000,0x0000000119ce9000)]
+  0x00007fd44f907000 JavaThread "New I/O worker #62" [_thread_in_native, id=61443, stack(0x0000000119ae6000,0x0000000119be6000)]
+  0x00007fd451cd6800 JavaThread "New I/O worker #61" [_thread_in_native, id=60931, stack(0x00000001199e3000,0x0000000119ae3000)]
+  0x00007fd451cd5800 JavaThread "New I/O worker #60" [_thread_in_native, id=60419, stack(0x00000001198e0000,0x00000001199e0000)]
+  0x00007fd44bb5b800 JavaThread "New I/O worker #59" [_thread_in_native, id=59907, stack(0x00000001197dd000,0x00000001198dd000)]
+  0x00007fd44c015800 JavaThread "New I/O worker #58" [_thread_in_native, id=59395, stack(0x00000001196da000,0x00000001197da000)]
+  0x00007fd451cd3000 JavaThread "New I/O worker #57" [_thread_in_native, id=58883, stack(0x00000001195d7000,0x00000001196d7000)]
+  0x00007fd44b937000 JavaThread "New I/O worker #56" [_thread_in_native, id=58371, stack(0x00000001194d4000,0x00000001195d4000)]
+  0x00007fd44b936800 JavaThread "New I/O worker #55" [_thread_in_native, id=57859, stack(0x00000001193d1000,0x00000001194d1000)]
+  0x00007fd451c8d000 JavaThread "New I/O worker #54" [_thread_in_native, id=57347, stack(0x00000001192ce000,0x00000001193ce000)]
+  0x00007fd451d00800 JavaThread "New I/O worker #53" [_thread_in_native, id=56835, stack(0x00000001191cb000,0x00000001192cb000)]
+  0x00007fd451d00000 JavaThread "New I/O worker #52" [_thread_in_native, id=56327, stack(0x00000001190c8000,0x00000001191c8000)]
+  0x00007fd451cc9000 JavaThread "Hashed wheel timer #5" [_thread_blocked, id=55811, stack(0x0000000118fc5000,0x00000001190c5000)]
+  0x00007fd44e811000 JavaThread "Hashed wheel timer #6" [_thread_blocked, id=55299, stack(0x0000000118ec2000,0x0000000118fc2000)]
+  0x00007fd451829800 JavaThread "New I/O boss #51" [_thread_in_native, id=54787, stack(0x0000000118dbf000,0x0000000118ebf000)]
+  0x00007fd44d197000 JavaThread "New I/O worker #50" [_thread_in_native, id=54275, stack(0x0000000118cbc000,0x0000000118dbc000)]
+  0x00007fd45019d000 JavaThread "New I/O worker #49" [_thread_in_native, id=53763, stack(0x0000000118bb9000,0x0000000118cb9000)]
+  0x00007fd45001d800 JavaThread "New I/O worker #48" [_thread_in_native, id=53251, stack(0x0000000118ab6000,0x0000000118bb6000)]
+  0x00007fd45001b000 JavaThread "New I/O worker #47" [_thread_in_native, id=52739, stack(0x00000001189b3000,0x0000000118ab3000)]
+  0x00007fd450018000 JavaThread "New I/O worker #46" [_thread_in_native, id=52227, stack(0x00000001188b0000,0x00000001189b0000)]
+  0x00007fd450038000 JavaThread "New I/O worker #45" [_thread_in_native, id=51715, stack(0x00000001187ad000,0x00000001188ad000)]
+  0x00007fd450037000 JavaThread "New I/O worker #44" [_thread_in_native, id=51203, stack(0x00000001186aa000,0x00000001187aa000)]
+  0x00007fd450036800 JavaThread "New I/O worker #43" [_thread_in_native, id=50691, stack(0x00000001185a7000,0x00000001186a7000)]
+  0x00007fd450033800 JavaThread "New I/O worker #42" [_thread_in_native, id=50179, stack(0x00000001184a4000,0x00000001185a4000)]
+  0x00007fd450031000 JavaThread "New I/O worker #41" [_thread_in_native, id=49667, stack(0x00000001183a1000,0x00000001184a1000)]
+  0x00007fd450040000 JavaThread "New I/O worker #40" [_thread_in_native, id=49155, stack(0x000000011829e000,0x000000011839e000)]
+  0x00007fd45003f000 JavaThread "New I/O worker #39" [_thread_in_native, id=48643, stack(0x000000011819b000,0x000000011829b000)]
+  0x00007fd450095000 JavaThread "New I/O worker #38" [_thread_in_native, id=48131, stack(0x0000000118098000,0x0000000118198000)]
+  0x00007fd451c92000 JavaThread "New I/O worker #37" [_thread_in_native, id=47619, stack(0x0000000117f95000,0x0000000118095000)]
+  0x00007fd451ce7800 JavaThread "New I/O worker #36" [_thread_in_native, id=47107, stack(0x0000000117e92000,0x0000000117f92000)]
+  0x00007fd451ce7000 JavaThread "New I/O worker #35" [_thread_in_native, id=46599, stack(0x0000000117d8f000,0x0000000117e8f000)]
+  0x00007fd44b9e9800 JavaThread "Hashed wheel timer #3" [_thread_blocked, id=46083, stack(0x0000000117c8c000,0x0000000117d8c000)]
+  0x00007fd44b9e9000 JavaThread "Hashed wheel timer #4" [_thread_blocked, id=45571, stack(0x0000000117b89000,0x0000000117c89000)]
+  0x00007fd44f112800 JavaThread "New I/O boss #34" [_thread_in_native, id=45059, stack(0x0000000117a86000,0x0000000117b86000)]
+  0x00007fd44f10f800 JavaThread "New I/O worker #33" [_thread_in_native, id=44547, stack(0x0000000117983000,0x0000000117a83000)]
+  0x00007fd44f014800 JavaThread "New I/O worker #32" [_thread_in_native, id=44035, stack(0x0000000117880000,0x0000000117980000)]
+  0x00007fd44f014000 JavaThread "New I/O worker #31" [_thread_in_native, id=43523, stack(0x000000011777d000,0x000000011787d000)]
+  0x00007fd44f058800 JavaThread "New I/O worker #30" [_thread_in_native, id=43011, stack(0x000000011767a000,0x000000011777a000)]
+  0x00007fd44f058000 JavaThread "New I/O worker #29" [_thread_in_native, id=42499, stack(0x0000000117577000,0x0000000117677000)]
+  0x00007fd44f057000 JavaThread "New I/O worker #28" [_thread_in_native, id=41987, stack(0x0000000117474000,0x0000000117574000)]
+  0x00007fd44f054800 JavaThread "New I/O worker #27" [_thread_in_native, id=41475, stack(0x0000000117371000,0x0000000117471000)]
+  0x00007fd44f051800 JavaThread "New I/O worker #26" [_thread_in_native, id=40963, stack(0x000000011726e000,0x000000011736e000)]
+  0x00007fd44f089000 JavaThread "New I/O worker #25" [_thread_in_native, id=40451, stack(0x000000011716b000,0x000000011726b000)]
+  0x00007fd44f086000 JavaThread "New I/O worker #24" [_thread_in_native, id=39939, stack(0x0000000117068000,0x0000000117168000)]
+  0x00007fd45003d000 JavaThread "New I/O worker #23" [_thread_in_native, id=39427, stack(0x0000000116f65000,0x0000000117065000)]
+  0x00007fd44f8ed000 JavaThread "New I/O worker #22" [_thread_in_native, id=38915, stack(0x0000000116e62000,0x0000000116f62000)]
+  0x00007fd44f8c8000 JavaThread "New I/O worker #21" [_thread_in_native, id=38403, stack(0x0000000116d5f000,0x0000000116e5f000)]
+  0x00007fd44f8c5800 JavaThread "New I/O worker #20" [_thread_in_native, id=37891, stack(0x0000000116ac1000,0x0000000116bc1000)]
+  0x00007fd44f826000 JavaThread "New I/O worker #19" [_thread_in_native, id=37379, stack(0x00000001169be000,0x0000000116abe000)]
+  0x00007fd450057000 JavaThread "New I/O worker #18" [_thread_in_native, id=36871, stack(0x00000001149df000,0x0000000114adf000)]
+  0x00007fd451cc2000 JavaThread "Hashed wheel timer #1" [_thread_blocked, id=36355, stack(0x00000001168bb000,0x00000001169bb000)]
+  0x00007fd44f007800 JavaThread "Hashed wheel timer #2" [_thread_blocked, id=35843, stack(0x00000001167b8000,0x00000001168b8000)]
+  0x00007fd44d196000 JavaThread "New I/O boss #17" [_thread_in_native, id=35331, stack(0x00000001166b5000,0x00000001167b5000)]
+  0x00007fd44b9e6000 JavaThread "New I/O worker #16" [_thread_in_native, id=34819, stack(0x00000001165b2000,0x00000001166b2000)]
+  0x00007fd44d181800 JavaThread "New I/O worker #15" [_thread_in_native, id=34307, stack(0x00000001164af000,0x00000001165af000)]
+  0x00007fd44d255000 JavaThread "New I/O worker #14" [_thread_in_native, id=33795, stack(0x00000001163ac000,0x00000001164ac000)]
+  0x00007fd44d314800 JavaThread "New I/O worker #13" [_thread_in_native, id=33283, stack(0x00000001162a9000,0x00000001163a9000)]
+  0x00007fd44d2aa800 JavaThread "New I/O worker #12" [_thread_in_native, id=32771, stack(0x00000001161a6000,0x00000001162a6000)]
+  0x00007fd44b959800 JavaThread "New I/O worker #11" [_thread_in_native, id=32259, stack(0x00000001160a3000,0x00000001161a3000)]
+  0x00007fd44b818800 JavaThread "New I/O worker #10" [_thread_in_native, id=31747, stack(0x0000000115fa0000,0x00000001160a0000)]
+  0x00007fd44d220000 JavaThread "New I/O worker #9" [_thread_in_native, id=31235, stack(0x0000000115e9d000,0x0000000115f9d000)]
+  0x00007fd44d336800 JavaThread "New I/O worker #8" [_thread_in_native, id=30723, stack(0x0000000115d9a000,0x0000000115e9a000)]
+  0x00007fd44d336000 JavaThread "New I/O worker #7" [_thread_in_native, id=30211, stack(0x0000000115c97000,0x0000000115d97000)]
+  0x00007fd44d200000 JavaThread "New I/O worker #6" [_thread_in_native, id=29699, stack(0x0000000115b94000,0x0000000115c94000)]
+  0x00007fd44d1ff800 JavaThread "New I/O worker #5" [_thread_in_native, id=29187, stack(0x0000000115a91000,0x0000000115b91000)]
+  0x00007fd4500a8800 JavaThread "New I/O worker #4" [_thread_in_native, id=28675, stack(0x000000011598e000,0x0000000115a8e000)]
+  0x00007fd450056000 JavaThread "New I/O worker #3" [_thread_in_native, id=28163, stack(0x000000011588b000,0x000000011598b000)]
+  0x00007fd45005a000 JavaThread "New I/O worker #2" [_thread_in_native, id=15623, stack(0x0000000115788000,0x0000000115888000)]
+  0x00007fd4500c3800 JavaThread "New I/O worker #1" [_thread_in_native, id=17419, stack(0x0000000114f4f000,0x000000011504f000)]
+  0x00007fd44ddc9800 JavaThread "qtp1858456369-21" [_thread_blocked, id=27395, stack(0x0000000115685000,0x0000000115785000)]
+  0x00007fd44e834000 JavaThread "qtp1858456369-19" [_thread_blocked, id=26371, stack(0x000000011547f000,0x000000011557f000)]
+  0x00007fd44e833800 JavaThread "qtp1858456369-18" [_thread_in_native, id=25859, stack(0x000000011537c000,0x000000011547c000)]
+  0x00007fd450096000 JavaThread "qtp1858456369-15 Acceptor0 SocketConnector@0.0.0.0:9095" [_thread_in_native, id=24323, stack(0x0000000115073000,0x0000000115173000)]
+  0x00007fd4500ae800 JavaThread "com.google.inject.internal.util.$Finalizer" daemon [_thread_blocked, id=23299, stack(0x0000000114c4c000,0x0000000114d4c000)]
+  0x00007fd44d06b800 JavaThread "HashSessionScavenger-0" daemon [_thread_blocked, id=22787, stack(0x0000000114b49000,0x0000000114c49000)]
+  0x00007fd44d85c000 JavaThread "Monitor Ctrl-Break" daemon [_thread_in_native, id=22275, stack(0x0000000113ee6000,0x0000000113fe6000)]
+  0x00007fd44d021800 JavaThread "Service Thread" daemon [_thread_blocked, id=21251, stack(0x0000000113c8d000,0x0000000113d8d000)]
+  0x00007fd44d020800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=20739, stack(0x0000000113b8a000,0x0000000113c8a000)]
+  0x00007fd44d837800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=20227, stack(0x0000000113a87000,0x0000000113b87000)]
+  0x00007fd44d801000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=19715, stack(0x0000000113984000,0x0000000113a84000)]
+  0x00007fd44d837000 JavaThread "Finalizer" daemon [_thread_blocked, id=14595, stack(0x0000000113733000,0x0000000113833000)]
+  0x00007fd44c80f000 JavaThread "Reference Handler" daemon [_thread_blocked, id=14083, stack(0x0000000113630000,0x0000000113730000)]
+  0x00007fd44d800000 JavaThread "main" [_thread_blocked, id=6403, stack(0x00000001028b7000,0x00000001029b7000)]
+
+Other Threads:
+  0x00007fd44c80e800 VMThread [stack: 0x000000011352d000,0x000000011362d000] [id=13571]
+  0x00007fd44e80a800 WatcherThread [stack: 0x0000000113d90000,0x0000000113e90000] [id=21763]
+
+=>0x00007fd44d310000 (exited) JavaThread "Unknown thread" [_thread_new, id=0, stack(0x0000000000000000,0x0000000000000000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fd44b4040e0] Threads_lock - owner thread: 0x00007fd44d08f800
+
+Heap
+ PSYoungGen      total 445952K, used 172903K [0x00000007aaa80000, 0x00000007c8400000, 0x0000000800000000)
+  eden space 408064K, 36% used [0x00000007aaa80000,0x00000007b3bc5ea8,0x00000007c3900000)
+  from space 37888K, 63% used [0x00000007c5f00000,0x00000007c7693dd0,0x00000007c8400000)
+  to   space 38400K, 0% used [0x00000007c3900000,0x00000007c3900000,0x00000007c5e80000)
+ ParOldGen       total 174592K, used 40273K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 23% used [0x0000000700000000,0x0000000702754698,0x000000070aa80000)
+ PSPermGen       total 34816K, used 34654K [0x00000006fae00000, 0x00000006fd000000, 0x0000000700000000)
+  object space 34816K, 99% used [0x00000006fae00000,0x00000006fcfd7a10,0x00000006fd000000)
+
+Card table byte_map: [0x0000000107528000,0x0000000107d52000] byte_map_base: 0x0000000103d51000
+
+Polling page: 0x00000001029f6000
+
+Code Cache  [0x0000000104468000, 0x0000000104778000, 0x0000000107468000)
+ total_blobs=1464 nmethods=1116 adapters=301 free_code_cache=46153Kb largest_free_block=47184576
+
+Compilation events (10 events):
+Event: 3738.688 Thread 0x00007fd44d020800 1233             com.datastax.driver.core.HostConnectionPool::borrowConnection (335 bytes)
+Event: 3738.710 Thread 0x00007fd44d020800 nmethod 1233 0x00000001047657d0 code [0x0000000104765b80, 0x0000000104766d58]
+Event: 3738.832 Thread 0x00007fd44d837800 1234   !         java.util.concurrent.locks.AbstractQueuedSynchronizer::doAcquireSharedInterruptibly (103 bytes)
+Event: 3738.838 Thread 0x00007fd44d837800 nmethod 1234 0x00000001047601d0 code [0x0000000104760380, 0x0000000104760890]
+Event: 3906.280 Thread 0x00007fd44d020800 1235             org.eclipse.jetty.io.BufferUtil::putDecLong (147 bytes)
+Event: 3906.284 Thread 0x00007fd44d020800 nmethod 1235 0x000000010475f8d0 code [0x000000010475fa60, 0x000000010475fdb8]
+Event: 3906.788 Thread 0x00007fd44d837800 1236             com.datastax.driver.core.CassandraTypeParser$Parser::isBlank (24 bytes)
+Event: 3906.788 Thread 0x00007fd44d837800 nmethod 1236 0x0000000104755810 code [0x0000000104755940, 0x0000000104755998]
+Event: 3907.043 Thread 0x00007fd44d020800 1237             java.nio.DirectByteBuffer::address (5 bytes)
+Event: 3907.044 Thread 0x00007fd44d020800 nmethod 1237 0x0000000104755550 code [0x0000000104755680, 0x00000001047556d8]
+
+GC Heap History (10 events):
+Event: 5.327 GC heap before
+{Heap before GC invocations=6 (full 0):
+ PSYoungGen      total 76800K, used 76770K [0x00000007aaa80000, 0x00000007b6080000, 0x0000000800000000)
+  eden space 66048K, 100% used [0x00000007aaa80000,0x00000007aeb00000,0x00000007aeb00000)
+  from space 10752K, 99% used [0x00000007aeb00000,0x00000007af578830,0x00000007af580000)
+  to   space 27136K, 0% used [0x00000007b4600000,0x00000007b4600000,0x00000007b6080000)
+ ParOldGen       total 174592K, used 24257K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 13% used [0x0000000700000000,0x00000007017b07b8,0x000000070aa80000)
+ PSPermGen       total 21504K, used 19242K [0x00000006fae00000, 0x00000006fc300000, 0x0000000700000000)
+  object space 21504K, 89% used [0x00000006fae00000,0x00000006fc0cab68,0x00000006fc300000)
+Event: 5.353 GC heap after
+Heap after GC invocations=6 (full 0):
+ PSYoungGen      total 154624K, used 25729K [0x00000007aaa80000, 0x00000007b6980000, 0x0000000800000000)
+  eden space 127488K, 0% used [0x00000007aaa80000,0x00000007aaa80000,0x00000007b2700000)
+  from space 27136K, 94% used [0x00000007b4600000,0x00000007b5f206d0,0x00000007b6080000)
+  to   space 31744K, 0% used [0x00000007b2700000,0x00000007b2700000,0x00000007b4600000)
+ ParOldGen       total 174592K, used 24265K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 13% used [0x0000000700000000,0x00000007017b27b8,0x000000070aa80000)
+ PSPermGen       total 21504K, used 19242K [0x00000006fae00000, 0x00000006fc300000, 0x0000000700000000)
+  object space 21504K, 89% used [0x00000006fae00000,0x00000006fc0cab68,0x00000006fc300000)
+}
+Event: 6.267 GC heap before
+{Heap before GC invocations=7 (full 0):
+ PSYoungGen      total 154624K, used 153217K [0x00000007aaa80000, 0x00000007b6980000, 0x0000000800000000)
+  eden space 127488K, 100% used [0x00000007aaa80000,0x00000007b2700000,0x00000007b2700000)
+  from space 27136K, 94% used [0x00000007b4600000,0x00000007b5f206d0,0x00000007b6080000)
+  to   space 31744K, 0% used [0x00000007b2700000,0x00000007b2700000,0x00000007b4600000)
+ ParOldGen       total 174592K, used 24265K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 13% used [0x0000000700000000,0x00000007017b27b8,0x000000070aa80000)
+ PSPermGen       total 21504K, used 19251K [0x00000006fae00000, 0x00000006fc300000, 0x0000000700000000)
+  object space 21504K, 89% used [0x00000006fae00000,0x00000006fc0ccfc8,0x00000006fc300000)
+Event: 6.311 GC heap after
+Heap after GC invocations=7 (full 0):
+ PSYoungGen      total 159232K, used 31731K [0x00000007aaa80000, 0x00000007bf580000, 0x0000000800000000)
+  eden space 127488K, 0% used [0x00000007aaa80000,0x00000007aaa80000,0x00000007b2700000)
+  from space 31744K, 99% used [0x00000007b2700000,0x00000007b45fcf38,0x00000007b4600000)
+  to   space 41984K, 0% used [0x00000007bcc80000,0x00000007bcc80000,0x00000007bf580000)
+ ParOldGen       total 174592K, used 33808K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 19% used [0x0000000700000000,0x0000000702104208,0x000000070aa80000)
+ PSPermGen       total 21504K, used 19251K [0x00000006fae00000, 0x00000006fc300000, 0x0000000700000000)
+  object space 21504K, 89% used [0x00000006fae00000,0x00000006fc0ccfc8,0x00000006fc300000)
+}
+Event: 7.685 GC heap before
+{Heap before GC invocations=8 (full 0):
+ PSYoungGen      total 159232K, used 159219K [0x00000007aaa80000, 0x00000007bf580000, 0x0000000800000000)
+  eden space 127488K, 100% used [0x00000007aaa80000,0x00000007b2700000,0x00000007b2700000)
+  from space 31744K, 99% used [0x00000007b2700000,0x00000007b45fcf38,0x00000007b4600000)
+  to   space 41984K, 0% used [0x00000007bcc80000,0x00000007bcc80000,0x00000007bf580000)
+ ParOldGen       total 174592K, used 33808K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 19% used [0x0000000700000000,0x0000000702104208,0x000000070aa80000)
+ PSPermGen       total 26624K, used 26587K [0x00000006fae00000, 0x00000006fc800000, 0x0000000700000000)
+  object space 26624K, 99% used [0x00000006fae00000,0x00000006fc7f6c70,0x00000006fc800000)
+Event: 7.712 GC heap after
+Heap after GC invocations=8 (full 0):
+ PSYoungGen      total 292864K, used 20881K [0x00000007aaa80000, 0x00000007bf180000, 0x0000000800000000)
+  eden space 254976K, 0% used [0x00000007aaa80000,0x00000007aaa80000,0x00000007ba380000)
+  from space 37888K, 55% used [0x00000007bcc80000,0x00000007be0e4760,0x00000007bf180000)
+  to   space 39936K, 0% used [0x00000007ba380000,0x00000007ba380000,0x00000007bca80000)
+ ParOldGen       total 174592K, used 37928K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 21% used [0x0000000700000000,0x000000070250a348,0x000000070aa80000)
+ PSPermGen       total 26624K, used 26587K [0x00000006fae00000, 0x00000006fc800000, 0x0000000700000000)
+  object space 26624K, 99% used [0x00000006fae00000,0x00000006fc7f6c70,0x00000006fc800000)
+}
+Event: 421.634 GC heap before
+{Heap before GC invocations=9 (full 0):
+ PSYoungGen      total 292864K, used 275857K [0x00000007aaa80000, 0x00000007bf180000, 0x0000000800000000)
+  eden space 254976K, 100% used [0x00000007aaa80000,0x00000007ba380000,0x00000007ba380000)
+  from space 37888K, 55% used [0x00000007bcc80000,0x00000007be0e4760,0x00000007bf180000)
+  to   space 39936K, 0% used [0x00000007ba380000,0x00000007ba380000,0x00000007bca80000)
+ ParOldGen       total 174592K, used 37928K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 21% used [0x0000000700000000,0x000000070250a348,0x000000070aa80000)
+ PSPermGen       total 34816K, used 34443K [0x00000006fae00000, 0x00000006fd000000, 0x0000000700000000)
+  object space 34816K, 98% used [0x00000006fae00000,0x00000006fcfa2d70,0x00000006fd000000)
+Event: 421.655 GC heap after
+Heap after GC invocations=9 (full 0):
+ PSYoungGen      total 294912K, used 23781K [0x00000007aaa80000, 0x00000007c8500000, 0x0000000800000000)
+  eden space 254976K, 0% used [0x00000007aaa80000,0x00000007aaa80000,0x00000007ba380000)
+  from space 39936K, 59% used [0x00000007ba380000,0x00000007bbab9638,0x00000007bca80000)
+  to   space 38912K, 0% used [0x00000007c5f00000,0x00000007c5f00000,0x00000007c8500000)
+ ParOldGen       total 174592K, used 38080K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 21% used [0x0000000700000000,0x0000000702530348,0x000000070aa80000)
+ PSPermGen       total 34816K, used 34443K [0x00000006fae00000, 0x00000006fd000000, 0x0000000700000000)
+  object space 34816K, 98% used [0x00000006fae00000,0x00000006fcfa2d70,0x00000006fd000000)
+}
+Event: 1965.749 GC heap before
+{Heap before GC invocations=10 (full 0):
+ PSYoungGen      total 294912K, used 278757K [0x00000007aaa80000, 0x00000007c8500000, 0x0000000800000000)
+  eden space 254976K, 100% used [0x00000007aaa80000,0x00000007ba380000,0x00000007ba380000)
+  from space 39936K, 59% used [0x00000007ba380000,0x00000007bbab9638,0x00000007bca80000)
+  to   space 38912K, 0% used [0x00000007c5f00000,0x00000007c5f00000,0x00000007c8500000)
+ ParOldGen       total 174592K, used 38080K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 21% used [0x0000000700000000,0x0000000702530348,0x000000070aa80000)
+ PSPermGen       total 34816K, used 34593K [0x00000006fae00000, 0x00000006fd000000, 0x0000000700000000)
+  object space 34816K, 99% used [0x00000006fae00000,0x00000006fcfc85d0,0x00000006fd000000)
+Event: 1965.774 GC heap after
+Heap after GC invocations=10 (full 0):
+ PSYoungGen      total 445952K, used 24143K [0x00000007aaa80000, 0x00000007c8400000, 0x0000000800000000)
+  eden space 408064K, 0% used [0x00000007aaa80000,0x00000007aaa80000,0x00000007c3900000)
+  from space 37888K, 63% used [0x00000007c5f00000,0x00000007c7693dd0,0x00000007c8400000)
+  to   space 38400K, 0% used [0x00000007c3900000,0x00000007c3900000,0x00000007c5e80000)
+ ParOldGen       total 174592K, used 40273K [0x0000000700000000, 0x000000070aa80000, 0x00000007aaa80000)
+  object space 174592K, 23% used [0x0000000700000000,0x0000000702754698,0x000000070aa80000)
+ PSPermGen       total 34816K, used 34593K [0x00000006fae00000, 0x00000006fd000000, 0x0000000700000000)
+  object space 34816K, 99% used [0x00000006fae00000,0x00000006fcfc85d0,0x00000006fd000000)
+}
+
+Deoptimization events (10 events):
+Event: 352.465 Thread 0x00007fd44e833800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000104728f38 method=java.util.concurrent.locks.ReentrantReadWriteLock$Sync.tryAcquire(I)Z @ 66
+Event: 352.465 Thread 0x00007fd44e833800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000104728f38 method=java.util.concurrent.locks.ReentrantReadWriteLock$Sync.tryAcquire(I)Z @ 66
+Event: 352.466 Thread 0x00007fd451829800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000010470b668 method=org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue()V @ 9
+Event: 352.466 Thread 0x00007fd451ce7000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000010470b668 method=org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue()V @ 9
+Event: 352.474 Thread 0x00007fd451ce7000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000104682fb8 method=com.datastax.driver.core.CBUtil.readValue(Lorg/jboss/netty/buffer/ChannelBuffer;)Ljava/nio/ByteBuffer; @ 22
+Event: 352.475 Thread 0x00007fd451ce7000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000104682fb8 method=com.datastax.driver.core.CBUtil.readValue(Lorg/jboss/netty/buffer/ChannelBuffer;)Ljava/nio/ByteBuffer; @ 22
+Event: 352.498 Thread 0x00007fd451829800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000010470b668 method=org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue()V @ 9
+Event: 352.498 Thread 0x00007fd451ce7800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000010470b668 method=org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue()V @ 9
+Event: 1146.701 Thread 0x00007fd44e834000 Uncommon trap: reason=unreached action=reinterpret pc=0x0000000104549270 method=org.eclipse.jetty.util.URIUtil.encodePath(Ljava/lang/StringBuilder;Ljava/lang/String;)Ljava/lang/StringBuilder; @ 239
+Event: 3906.848 Thread 0x00007fd44f1ec000 Uncommon trap: reason=unreached action=reinterpret pc=0x00000001046c467c method=java.util.concurrent.locks.AbstractQueuedSynchronizer.doReleaseShared()V @ 69
+
+Internal exceptions (10 events):
+Event: 2060.341 Thread 0x00007fd44e8ec800 Threw 0x00000007ae824900 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3784.688 Thread 0x00007fd44bf5b800 Threw 0x00000007acd59f30 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3785.136 Thread 0x00007fd44e8ed800 Threw 0x00000007af0d1fb0 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3786.384 Thread 0x00007fd44d08f800 Threw 0x00000007b046f648 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3797.552 Thread 0x00007fd45105d000 Threw 0x00000007b0491748 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3797.682 Thread 0x00007fd44ddc9800 Threw 0x00000007ac8dcc28 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3797.682 Thread 0x00007fd45105c800 Threw 0x00000007b0487290 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3797.768 Thread 0x00007fd44e8ec800 Threw 0x00000007b0624408 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3798.045 Thread 0x00007fd44e833800 Threw 0x00000007b0900568 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 3799.283 Thread 0x00007fd44e834000 Threw 0x00000007b1f63708 at /HUDSON/workspace/7u-2-build-macosx-x86_64/jdk7u67/1368/hotspot/src/share/vm/prims/jni.cpp:743
+
+Events (10 events):
+Event: 3924.034 Thread 0x00007fd44d922800 Thread added: 0x00007fd44d922800
+Event: 3924.035 Thread 0x00007fd44d923000 Thread added: 0x00007fd44d923000
+Event: 3924.035 Thread 0x00007fd44d0d0000 Thread added: 0x00007fd44d0d0000
+Event: 3924.035 Thread 0x00007fd44bfef000 Thread added: 0x00007fd44bfef000
+Event: 3924.036 Thread 0x00007fd44bff0000 Thread added: 0x00007fd44bff0000
+Event: 3924.036 Thread 0x00007fd44d0d0800 Thread added: 0x00007fd44d0d0800
+Event: 3924.036 Thread 0x00007fd44fa71800 Thread added: 0x00007fd44fa71800
+Event: 3924.036 Thread 0x00007fd44d38e800 Thread added: 0x00007fd44d38e800
+Event: 3924.036 Thread 0x00007fd44c210800 Thread added: 0x00007fd44c210800
+Event: 3924.036 Thread 0x00007fd44d30f000 Thread added: 0x00007fd44d30f000
+
+
+Dynamic libraries:
+0x00000000016a5000 	/System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa
+0x00000000016a5000 	/System/Library/Frameworks/Security.framework/Versions/A/Security
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices
+0x00000000016a5000 	/usr/lib/libz.1.dylib
+0x00000000016a5000 	/usr/lib/libSystem.B.dylib
+0x00000000016a5000 	/usr/lib/libobjc.A.dylib
+0x00000000016a5000 	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+0x00000000016a5000 	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+0x00000000016a5000 	/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+0x00000000016a5000 	/System/Library/Frameworks/CoreData.framework/Versions/A/CoreData
+0x00000000016a5000 	/System/Library/PrivateFrameworks/RemoteViewServices.framework/Versions/A/RemoteViewServices
+0x00000000016a5000 	/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+0x00000000016a5000 	/System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit
+0x00000000016a5000 	/System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/DataDetectorsCore
+0x00000000016a5000 	/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+0x00000000016a5000 	/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition
+0x00000000016a5000 	/usr/lib/libauto.dylib
+0x00000000016a5000 	/usr/lib/libicucore.A.dylib
+0x00000000016a5000 	/usr/lib/libxml2.2.dylib
+0x00000000016a5000 	/System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/CoreUI
+0x00000000016a5000 	/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+0x00000000016a5000 	/System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+0x00000000016a5000 	/usr/lib/liblangid.dylib
+0x00000000016a5000 	/System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+0x00000000016a5000 	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x00000000016a5000 	/usr/lib/libDiagnosticMessagesClient.dylib
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+0x00000000016a5000 	/System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/PerformanceAnalysis
+0x00000000016a5000 	/System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/GenerationalStorage
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Sharing.framework/Versions/A/Sharing
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+0x00000000016a5000 	/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+0x00000000016a5000 	/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Backup.framework/Versions/A/Backup
+0x00000000016a5000 	/System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+0x00000000016a5000 	/System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+0x00000000016a5000 	/usr/lib/libCRFSuite.dylib
+0x00000000016a5000 	/usr/lib/libc++.1.dylib
+0x00000000016a5000 	/usr/lib/libc++abi.dylib
+0x00000000016a5000 	/usr/lib/system/libcache.dylib
+0x00000000016a5000 	/usr/lib/system/libcommonCrypto.dylib
+0x00000000016a5000 	/usr/lib/system/libcompiler_rt.dylib
+0x00000000016a5000 	/usr/lib/system/libcopyfile.dylib
+0x00000000016a5000 	/usr/lib/system/libcorecrypto.dylib
+0x00000000016a5000 	/usr/lib/system/libdispatch.dylib
+0x00000000016a5000 	/usr/lib/system/libdyld.dylib
+0x00000000016a5000 	/usr/lib/system/libkeymgr.dylib
+0x00000000016a5000 	/usr/lib/system/liblaunch.dylib
+0x00000000016a5000 	/usr/lib/system/libmacho.dylib
+0x00000000016a5000 	/usr/lib/system/libquarantine.dylib
+0x00000000016a5000 	/usr/lib/system/libremovefile.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_asl.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_blocks.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_c.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_configuration.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_dnssd.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_info.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_kernel.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_m.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_malloc.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_network.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_notify.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_platform.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_pthread.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_sandbox.dylib
+0x00000000016a5000 	/usr/lib/system/libsystem_stats.dylib
+0x00000000016a5000 	/usr/lib/system/libunc.dylib
+0x00000000016a5000 	/usr/lib/system/libunwind.dylib
+0x00000000016a5000 	/usr/lib/system/libxpc.dylib
+0x00000000016a5000 	/usr/lib/libbsm.0.dylib
+0x00000000016a5000 	/usr/lib/libsqlite3.dylib
+0x00000000016a5000 	/usr/lib/libxar.1.dylib
+0x00000000016a5000 	/usr/lib/libpam.2.dylib
+0x00000000016a5000 	/usr/lib/libOpenScriptingUtil.dylib
+0x00000000016a5000 	/usr/lib/libbz2.1.0.dylib
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+0x00000000016a5000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+0x00000000016a5000 	/System/Library/Frameworks/NetFS.framework/Versions/A/NetFS
+0x00000000016a5000 	/usr/lib/system/libkxld.dylib
+0x00000000016a5000 	/System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth
+0x00000000016a5000 	/System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+0x00000000016a5000 	/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+0x00000000016a5000 	/System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement
+0x00000000016a5000 	/usr/lib/libxslt.1.dylib
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+0x00000000016a5000 	/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+0x00000000016a5000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontParser.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+0x00000000016a5000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+0x00000000016a5000 	/usr/lib/libcups.2.dylib
+0x00000000016a5000 	/System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+0x00000000016a5000 	/System/Library/Frameworks/GSS.framework/Versions/A/GSS
+0x00000000016a5000 	/usr/lib/libresolv.9.dylib
+0x00000000016a5000 	/usr/lib/libiconv.2.dylib
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+0x00000000016a5000 	/System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent
+0x00000000016a5000 	/usr/lib/libheimdal-asn1.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+0x00000000016a5000 	/System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+0x00000000016a5000 	/System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Bom.framework/Versions/A/Bom
+0x00000000016a5000 	/System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+0x00000000016a5000 	/System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/CoreImage.framework/Versions/A/CoreImage
+0x00000000016a5000 	/System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/ScalableUserInterface.framework/Versions/A/ScalableUserInterface
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+0x00000000016a5000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+0x00000000016a5000 	/System/Library/PrivateFrameworks/FaceCore.framework/Versions/A/FaceCore
+0x00000000016a5000 	/System/Library/PrivateFrameworks/CrashReporterSupport.framework/Versions/A/CrashReporterSupport
+0x00000000016a5000 	/System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL
+0x00000000016a5000 	/System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Ubiquity.framework/Versions/A/Ubiquity
+0x00000000016a5000 	/System/Library/PrivateFrameworks/IconServices.framework/Versions/A/IconServices
+0x00000000016a5000 	/System/Library/PrivateFrameworks/ChunkingLibrary.framework/Versions/A/ChunkingLibrary
+0x00000000016a5000 	/System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/CoreSymbolication
+0x00000000016a5000 	/System/Library/PrivateFrameworks/Symbolication.framework/Versions/A/Symbolication
+0x00000000016a5000 	/System/Library/PrivateFrameworks/DebugSymbols.framework/Versions/A/DebugSymbols
+0x0000000103a00000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/server/libjvm.dylib
+0x00000000016a5000 	/usr/lib/libstdc++.6.dylib
+0x00000001029b9000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libverify.dylib
+0x00000001029c6000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libjava.dylib
+0x000000010445f000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libzip.dylib
+0x0000000113835000 	/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/JavaRuntimeSupport
+0x000000011384d000 	/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/JavaNativeFoundation
+0x0000000113862000 	/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon
+0x000000011386f000 	/System/Library/PrivateFrameworks/JavaLaunching.framework/Versions/A/JavaLaunching
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CommonPanels.framework/Versions/A/CommonPanels
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Help.framework/Versions/A/Help
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/ImageCapture.framework/Versions/A/ImageCapture
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/OpenScripting.framework/Versions/A/OpenScripting
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Print.framework/Versions/A/Print
+0x00000000016a5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SecurityHI.framework/Versions/A/SecurityHI
+0x0000000113ee2000 	/Applications/IntelliJ IDEA 13.app/Contents/bin/libbreakgen64.jnilib
+0x0000000113fe8000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libnet.dylib
+0x00000001141be000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libnio.dylib
+0x000000011387b000 	/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/libmanagement.dylib
+
+VM Arguments:
+jvm_args: -Dmaven.home=/usr/local/Cellar/maven/3.2.3/libexec -Dclassworlds.conf=/usr/local/Cellar/maven/3.2.3/libexec/bin/m2.conf -Didea.launcher.port=7532 -Didea.launcher.bin.path=/Applications/IntelliJ IDEA 13.app/Contents/bin -Dfile.encoding=UTF-8 
+java_command: com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=13.1.5 org.mortbay.jetty:jetty-maven-plugin:8.1.9.v20130131:run
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: [libjvm.dylib+0x52b6c9], sa_mask[0]=0xfffefeff, sa_flags=0x00000043
+SIGBUS: [libjvm.dylib+0x52b6c9], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGFPE: [libjvm.dylib+0x41deaa], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGPIPE: [libjvm.dylib+0x41deaa], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGXFSZ: [libjvm.dylib+0x41deaa], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGILL: [libjvm.dylib+0x41deaa], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000002
+SIGUSR2: [libjvm.dylib+0x41d99c], sa_mask[0]=0x00000004, sa_flags=0x00000042
+SIGHUP: [libjvm.dylib+0x41bc2d], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGINT: [libjvm.dylib+0x41bc2d], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGTERM: [libjvm.dylib+0x41bc2d], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+SIGQUIT: [libjvm.dylib+0x41bc2d], sa_mask[0]=0xfffefeff, sa_flags=0x00000042
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Bsduname:Darwin 13.3.0 Darwin Kernel Version 13.3.0: Tue Jun  3 21:27:35 PDT 2014; root:xnu-2422.110.17~1/RELEASE_X86_64 x86_64
+rlimit: STACK 8192k, CORE 0k, NPROC 709, NOFILE 10240, AS infinity
+load average:3.14 3.43 3.52
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 70 stepping 1, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 16777216k(4194304k free)
+
+/proc/meminfo:
+
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.65-b04) for bsd-amd64 JRE (1.7.0_67-b01), built on Jul 25 2014 08:51:51 by "java_re" with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+
+time: Mon Jun  1 13:43:43 2015
+elapsed time: 3924 seconds
+
