@@ -22,6 +22,7 @@
     <script src="js/animate.js"></script>
     <script src="js/custom.js"></script>
     <script src="utils.js"></script>
+    <script src="autocompleteUtils.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
@@ -35,7 +36,7 @@
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet"/>
 
-    
+
 
     <style type="text/css">
         ${demo.css}
@@ -139,10 +140,6 @@
             <button id="women" onclick="refreshWithWomen()" class="btn btn-theme">Only Women</button>
             <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
             <br>
-            <!--<div class="ui-widget">-->
-            <!--<label for="tags">Tags: </label>-->
-            <!--<input id="tags">-->
-            <!--</div>-->
 
             <div style="padding:10px 0;"><label>Date of birth:</label> <input type="date" name="birthDay"></div>
             <div style="padding:10px 0;"><label>Date of diagnosis:</label> <input type="date" name="diagnosticDay">
@@ -157,7 +154,7 @@
                 Female
                 <br></div>
             <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
-                    id="profestionalExposure1"></select>
+                    id="profestionalExposure"></select>
                 from: <input style="width:100px"
                              type="date" name="startDay"> to <input style="width:100px"
                                                                     type="date" name="endDay"></div>
@@ -166,8 +163,8 @@
                 <input id="geneName" onclick="loadNames()" title="type &quot;a&quot;">
             </div>
 
-            <div style="padding:10px 0;"><label>Locus: </label><input
-                    class="inputText"></div>
+            <div style="padding:10px 0;"><label>Locus: </label><input id="locus" onclick="loadLocus()"
+                    class="inputText"  title="type &quot;a&quot;"></div>
             <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
 
             <button id="search" onclick="refreshMap()" class="btn btn-theme" style="
@@ -198,9 +195,10 @@
 </div>
 <div id="insertContent" style="width: 100%">
 <div class="pricing-box-alt cont" style="margin-left:38%">
-<div style="padding:10px;"><label>Name:</label> <input></div>
+<div style="padding:10px;"><label>Name:</label> <input id="insertName"></div>
+<div style="padding:10px;"><label>Identification Number:</label> <input type=number id="insertIdentificationNumber"></div>
 <div style="padding:10px;"><label>Country Code:</label>
-<select>
+<select id="insertCountry">
 <option value="AF">Afghanistan</option>
 <option value="AX">Åland Islands</option>
 <option value="AL">Albania</option>
@@ -451,21 +449,25 @@
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option>
 </select></div>
-<div style="padding:10px;"><label>Date of birth:</label> <input type="date" name="birthDay"></div>
-<div style="padding:10px;"><label>Date of diagnosis:</label> <input type="date" name="diagnosticDay"></div>
-<div style="padding:10px;"><label>Date of death:</label> <input type="date" name="deathDay"></div>
-<div style="padding:10px;"><label>Gender:</label> <input style="height: auto;width: auto" type="radio" name="sex"
+<div style="padding:10px;"><label>Date of birth:</label> <input id="insertBirthDate" type="date" name="birthDay"></div>
+<div style="padding:10px;"><label>Date of diagnosis:</label> <input id="insertDiagnosisDate" type="date" name="diagnosticDay"></div>
+<div style="padding:10px;"><label>Date of death:</label> <input id="insertDeathDate" type="date" name="deathDay"></div>
+<div style="padding:10px;"><label>Gender:</label> <input id="insertGender" style="height: auto;width: auto" type="radio" name="sex"
                                                          value="M" checked> Male <input type="radio"
                                                                                         style="height: auto; width: auto;"
                                                                                         name="sex" value="F"> Female
     <br></div>
-<div style="padding:10px;"><label>ProfessionalExposure: </label><select id="profestionalExposure"></select> from: <input
-        type="date" name="startDay"> to <input
+<div style="padding:10px;"><label>ProfessionalExposure: </label><select id="insertProfestionalExposure"></select> from: <input id="insertStartDate"
+        type="date" name="startDay"> to <input id="insertEndDate"
         type="date" name="endDay"></div>
-<div style="padding:10px;"><label>Physician: </label><input class="inputText"></div>
-<div style="padding:10px;"><label>Mutation:</label> <input class="inputText"> <label>Locus: </label><input
-        class="inputText"> <label>Disorder: </label><input></div>
-<div style="padding:10px;"><label>Details:</label> <textarea style="height:50px;min-width:425px;"></textarea></div>
+<div style="padding:10px;"><label>Physician: </label><input id="insertPhisician" class="inputText"></div>
+<div style="padding:10px;"><label>Mutation:</label> <input id="insertMutation" onclick ="loadInsertNames()" class="inputText">
+
+    <label>Locus: </label>
+    <input id="insertLocus" onclick = "loadInsertLocus()"  class="inputText">
+
+    <label>Disorder: </label><input id="insertDisorder" onclick="loadInsertDisorders()"></div>
+<div style="padding:10px;"><label>Details:</label> <textarea id="insertDetails" style="height:50px;min-width:425px;"></textarea></div>
 <div style="padding:10px; margin-left: 85%;">
     <button id="save" onclick="saveEntry()" class="btn btn-theme">Save</button>
 </div>
