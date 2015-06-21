@@ -41,30 +41,30 @@ public class CSVFileWriter {
 
             //Write a new student object list to the CSV file
 
-            for(ExportEntityDTO trainingModelDTO: trainingModelDTOs){
-                fileWriter.append(trainingModelDTO.getName());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(trainingModelDTO.getIdentificationNumber());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(trainingModelDTO.getCountryCode());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(utilsService.getMutationCodes(trainingModelDTO.getMutationentries()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(utilsService.getMutationDisorders(trainingModelDTO.getMutationentries()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(utilsService.getProfessionalExposure(trainingModelDTO.getProfessionalExposures()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(trainingModelDTO.getGender());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
-                fileWriter.append(NEW_LINE_SEPARATOR);
-            }
+//            for(ExportEntityDTO trainingModelDTO: trainingModelDTOs){
+//                fileWriter.append(trainingModelDTO.getName());
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(trainingModelDTO.getIdentificationNumber());
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(trainingModelDTO.getCountryCode());
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(utilsService.getMutationCodes(trainingModelDTO.getMutationentries()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(utilsService.getMutationDisorders(trainingModelDTO.getMutationentries()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(utilsService.getProfessionalExposure(trainingModelDTO.getProfessionalExposures()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(trainingModelDTO.getGender());
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
+//                fileWriter.append(COMMA_DELIMITER);
+//                fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
+//                fileWriter.append(NEW_LINE_SEPARATOR);
+//            }
 
             System.out.println("CSV file was created successfully !!!");
 

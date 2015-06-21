@@ -9,11 +9,14 @@ CREATE TABLE Entries (
     dateOfDiagnosis timestamp,
     dateOfDeath timestamp,
     gender text,
-    professionalExposures text,
+    professionalExposure text,
+    professionaExposureTime text,
     details text,
-    mutationEntries text,
+    mutation text,
+    locus text,
+    disorder text,
     physician text,
-    PRIMARY KEY (identificationNumber, mutationEntries, countryCode)
+    PRIMARY KEY (identificationNumber, mutation, countryCode)
 ) WITH
     comment='Patients with discovered entries' AND
     caching = 'NONE' AND
@@ -29,6 +32,16 @@ CREATE TABLE Genes (
 CREATE INDEX Entries
    ON Entries_Space.Entries (countryCode);
 
+   CREATE INDEX Entries
+      ON Entries_Space.Entries (gender);
+
+      CREATE INDEX Entries
+         ON Entries_Space.Entries (mutationEntries);
+
 
 select count(*) from entries_space.entries;
 $ ./cqlsh 127.0.0.1 9042
+
+select * from Entries_Space.Entries where countryCode = 255 and gender = 'F';
+
+drop keyspace Entries;

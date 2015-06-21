@@ -20,9 +20,6 @@ public class EntryService {
 
     private EntryDAO entryDAO = new EntryDAO();
 
-    public List<EntryDTO> getAllEntries() throws Exception {
-        return entryDAO.getAllEntries();
-    }
 
     public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
         return entryDAO.getBasicEntitiesDto();
@@ -41,9 +38,9 @@ public class EntryService {
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
-                              String dateOfDeath, String gender, String professionalExposure, String details, String mutationEntries, String physitian) throws Exception {
+                              String dateOfDeath, String gender, String professionalExposure,String professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {
         return entryDAO.insertEntry(name, identificationNumber, countryCode, dateOfBirth, dateOfDiagnosis,
-                dateOfDeath, gender, professionalExposure, details, mutationEntries, physitian);
+                dateOfDeath, gender, professionalExposure,professionalExposureTime, details, mutation, locus, disorder, physitian);
     }
 
     public String insertGene(String code, String name) throws Exception {

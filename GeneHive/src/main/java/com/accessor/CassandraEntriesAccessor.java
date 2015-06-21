@@ -26,11 +26,11 @@ public class CassandraEntriesAccessor {
 
     private static final Logger LOG = LoggerFactory.getLogger(CassandraEntriesAccessor.class);
 
-    public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutationentries from Entries_Space.Entries";
+    public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutation from Entries_Space.Entries";
 
-    public static final String FIND_ALL_MUTATIONS = "select mutationentries from Entries_Space.Entries";
+    public static final String FIND_ALL_MUTATIONS = "select mutation from Entries_Space.Entries";
 
-    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select name,identificationNumber,countryCode,mutationentries,professionalExposures,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries";
+    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select name,identificationNumber,countryCode,mutation,professionalExposure,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries";
 
     private UtilsService utilsService = new UtilsService();
 
@@ -68,47 +68,6 @@ public class CassandraEntriesAccessor {
 
     }
 
-    public List<? extends Entity> readEntries() throws SQLException {
-        if (!active) {
-            LOG.error("CasandraEventsAccessor is not active");
-        }
-        List<Entry> results = new ArrayList<Entry>();
-        ResultSet resultSet = session.execute(FIND_ALL_ENTRIES);
-        Iterator<Row> iter = resultSet.iterator();
-        while (iter.hasNext()) {
-            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
-                resultSet.fetchMoreResults();
-            Row row = iter.next();
-            String identificationNumber = row.getString(0);
-            String mutation = row.getString(1);
-            String countryCode = row.getString(2);
-            Entry entry = utilsService.convertToEntity(identificationNumber, countryCode, mutation);
-            results.add(entry);
-
-        }
-        return results;
-    }
-
-    public List<? extends Entity> countEntries() throws SQLException {
-        if (!active) {
-            LOG.error("CasandraEventsAccessor is not active");
-        }
-        List<Entry> results = new ArrayList<Entry>();
-        ResultSet resultSet = session.execute(FIND_ALL_ENTRIES);
-        Iterator<Row> iter = resultSet.iterator();
-        while (iter.hasNext()) {
-            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
-                resultSet.fetchMoreResults();
-            Row row = iter.next();
-            String identificationNumber = row.getString(0);
-            String mutation = row.getString(1);
-            String countryCode = row.getString(2);
-            Entry entry = utilsService.convertToEntity(identificationNumber, countryCode, mutation);
-            results.add(entry);
-
-        }
-        return results;
-    }
 
     public List<ExportEntityDTO> getCSVEntries() throws SQLException {
         if (!active) {
@@ -135,7 +94,7 @@ public class CassandraEntriesAccessor {
             if (dateOfDeath != null) {
                 dateOfDeathAge = DateUtils.getAge(dateOfDeath);
             }
-            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name,identificationNumber,countryCode, mutationentries,professionalExposures, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutationentries, professionalExposures, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }
@@ -143,7 +102,7 @@ public class CassandraEntriesAccessor {
     }
 
     public List<BasicEntityDTO> readMutationByContry(String countryCode) throws SQLException {
-        String query = "select mutationentries from Entries_Space.Entries where countryCode = '" + countryCode + "';";
+        String query = "select mutation from Entries_Space.Entries where countryCode = '" + countryCode + "';";
         List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
         ResultSet resultSet = session.execute(query);
         Iterator<Row> iter = resultSet.iterator();
@@ -153,7 +112,7 @@ public class CassandraEntriesAccessor {
             Row row = iter.next();
             ;
             String mutations = row.getString(0);
-            BasicEntityDTO basicEntityDTO = utilsService.convertToBasicEntityDTO(countryCode, mutations);
+            BasicEntityDTO basicEntityDTO = new BasicEntityDTO(countryCode, 1);
             results.add(basicEntityDTO);
         }
         return results;
@@ -185,7 +144,7 @@ public class CassandraEntriesAccessor {
     }
 
     public List<BasicEntityDTO> readMutationByGender(String gender) throws SQLException {
-        String query = "select countryCode,mutationentries from Entries_Space.Entries where gender = '" + gender + "';";
+        String query = "select countryCode,mutation from Entries_Space.Entries where gender = '" + gender + "';";
         List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
         ResultSet resultSet = session.execute(query);
         Iterator<Row> iter = resultSet.iterator();
@@ -194,8 +153,7 @@ public class CassandraEntriesAccessor {
                 resultSet.fetchMoreResults();
             Row row = iter.next();
             String countryCode = row.getString(0);
-            String mutations = row.getString(1);
-            BasicEntityDTO basicEntityDTO = utilsService.convertToBasicEntityDTO(countryCode, mutations);
+            BasicEntityDTO basicEntityDTO = new BasicEntityDTO(countryCode, 1);
             results.add(basicEntityDTO);
         }
         return results;
@@ -206,19 +164,14 @@ public class CassandraEntriesAccessor {
             LOG.error("CasandraEventsAccessor is not active");
         }
         List<String> results = new ArrayList<String>();
-        ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS);
+        ResultSet resultSet = session.execute("Select disorder from Entries_Space.Entries");
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             Row row = iter.next();
-            String mutations = row.getString(0);
-            List<String> mutationList = utilsService.convertToDiagnstics(mutations);
-            for (String mut : mutationList) {
-                if (!results.contains(mut)) {
-                    results.add(mut);
-                }
-            }
+            String disorder = row.getString(0);
+            results.add(disorder);
         }
         return results;
     }

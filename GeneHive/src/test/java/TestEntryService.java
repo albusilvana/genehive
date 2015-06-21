@@ -26,10 +26,11 @@ public class TestEntryService {
     }
 
     @Test
+    @Ignore
     public void testInsertEntries() throws Exception {
-        System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes()+ ":"+ new Date().getSeconds());
-        System.out.print("Now it is inserting: "+ 10000 + " results");
-        for (int i = 0; i < 10000; i++) {
+        System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
+        System.out.print("Now it is inserting: " + 10000 + " results");
+        for (int i = 0; i < 1000; i++) {
             Utils utils = new Utils();
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
@@ -39,21 +40,25 @@ public class TestEntryService {
             Integer dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
             String gender = utils.getRandomGender();
             String professionalExposure = utils.getProfessionalExposures();
+            String professionalExposureTime = utils.getRandomExposureTime(professionalExposure);
             String mutationEntries = utils.getRandomMutation();
-            String physitian = utils.getRandomName();
+            String locus = utils.getRandomLocus();
+            String disorder = utils.getRandomDisorder();
+            String physician = utils.getRandomName();
 
-            String result ;
+            String result;
             if (dateOfDeath > 0) {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        dateOfDeath + "", gender, professionalExposure, "''", mutationEntries, physitian);
+                        dateOfDeath + "", gender, professionalExposure, professionalExposureTime, "''", mutationEntries, locus, disorder, physician);
             } else {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        "''", gender, professionalExposure, "''", mutationEntries, physitian);
+                        "''", gender, professionalExposure, professionalExposureTime, "''", mutationEntries, locus, disorder, physician);
             }
+
 
             assertEquals(result, "The entry was successfully inserted.");
         }
-        System.out.println("Time after insert " + new Date().getHours() + ":" + new Date().getMinutes()+ ":"+ new Date().getSeconds());
+        System.out.println("Time after insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
 
     }
 

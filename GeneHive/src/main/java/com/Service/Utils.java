@@ -60,40 +60,49 @@ public class Utils {
         String[] exposures = ProfessionalExposureUtils.getCategories();
         int i = rand.nextInt(exposures.length);
         if (i % 2 == 0) {
-            return "'" + exposures[i] + "_" + getRandomExposureTime() + "'";
+            return "'" + exposures[i] + "'";
         } else {
             return "''";
         }
     }
 
-    public String getRandomMutation() {
-        String mutation = "'";
-
-        //genes
-        String[] genes = GeneUtils.getGenes();
-        int k = rand.nextInt(833);
-        String gene = genes[k];
-
+    public String getRandomLocus() {
         //locus
         String[] locus = LocusUtils.getLocuses();
         int m = rand.nextInt(locus.length);
         String locus_pos = locus[m];
 
+        return "'" + locus_pos +"'" ;
+    }
+
+    public String getRandomDisorder() {
         //disorders
         String[] disorders = DisorderUtils.getDisorders();
         int i = rand.nextInt(disorders.length);
         String[] disorderString = disorders[i].split(",");
-        for (String aDisorderString : disorderString) {
-            if (mutation != "'") {
-                mutation = mutation.concat(",");
-            }
-            mutation = mutation.concat(gene + "_" + locus_pos + "_" + aDisorderString);
-        }
-        return mutation + "'";
+        int j = rand.nextInt(disorderString.length);
+        return "'"  + disorderString[j] + "'" ;
     }
 
-    public String getRandomExposureTime() {
-        return "" + rand.nextInt(1080000000 - 360000000) + 360000000;
+    public String getRandomMutation() {
+        String mutation;
+
+        //genes
+        String[] genes = GeneUtils.getGenes();
+        int k = rand.nextInt(genes.length);
+        mutation = genes[k];
+
+        return "'" + mutation + "'";
+    }
+
+    public String getRandomExposureTime( String proffesionalExposure) {
+        if (!proffesionalExposure.equals("")){
+            int i = rand.nextInt(1080000000 - 360000000) + 360000000;
+            return "'" + i  + "'" ;
+        }else {
+            return "";
+        }
+
     }
 
     //    INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender,
@@ -106,14 +115,14 @@ public class Utils {
             String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
             Integer dateOfBirth = utils.getRandomDateOfBirth();
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
-            if(dateOfDeath>0){
+            if (dateOfDeath > 0) {
                 s = s.concat(utils.getRandomName() + "," + utils.getRandomCnp() + "," + utils.getRandomCountryCode() + ","
                         + dateOfBirth + "," + utils.getRandomDateOfDiagnosis(dateOfBirth) + "," + dateOfDeath
                         + "," + utils.getRandomGender() + "," + utils.getProfessionalExposures() + ",''," + utils.getRandomMutation() + "," + utils.getRandomName() + ");");
-            }else{
+            } else {
                 s = s.concat(utils.getRandomName() + "," + utils.getRandomCnp() + "," + utils.getRandomCountryCode() + ","
                         + dateOfBirth + "," + utils.getRandomDateOfDiagnosis(dateOfBirth) + ",'',"
-                         + utils.getRandomGender() + "," + utils.getProfessionalExposures() + ",''," + utils.getRandomMutation() + "," + utils.getRandomName() + ");");
+                        + utils.getRandomGender() + "," + utils.getProfessionalExposures() + ",''," + utils.getRandomMutation() + "," + utils.getRandomName() + ");");
             }
 
             System.out.println(s);

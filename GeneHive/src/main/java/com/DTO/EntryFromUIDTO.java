@@ -1,7 +1,5 @@
 package com.DTO;
 
-import com.Model.Entry;
-
 /**
  * Created by silvana.albert on 5/20/15.
  */
@@ -14,16 +12,22 @@ public class EntryFromUIDTO {
     String dateOfDeath;
     String gender;
     String professionalExposure;
+    String professionalExposureTime;
     String details;
-    String mutationEntries;
-    String physitian;
+    String mutation;
+    String locus;
+    String disorder;
+    String physician;
 
 
     public EntryFromUIDTO(){
 
     }
 
-    public EntryFromUIDTO(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis, String dateOfDeath, String gender, String professionalExposure, String details, String mutationEntries, String physitian) {
+    public EntryFromUIDTO(String name, String identificationNumber, String countryCode, String dateOfBirth,
+                          String dateOfDiagnosis, String dateOfDeath, String gender, String professionalExposure,
+                          String professionalExposureTime, String details, String mutation, String locus,
+                          String disorder, String physician) {
         this.name = name;
         this.identificationNumber = identificationNumber;
         this.countryCode = countryCode;
@@ -32,9 +36,37 @@ public class EntryFromUIDTO {
         this.dateOfDeath = dateOfDeath;
         this.gender = gender;
         this.professionalExposure = professionalExposure;
+        this.professionalExposureTime = professionalExposureTime;
         this.details = details;
-        this.mutationEntries = mutationEntries;
-        this.physitian = physitian;
+        this.mutation = mutation;
+        this.locus = locus;
+        this.disorder = disorder;
+        this.physician = physician;
+    }
+
+
+    public String getProfessionalExposureTime() {
+        return professionalExposureTime;
+    }
+
+    public void setProfessionalExposureTime(String professionalExposureTime) {
+        this.professionalExposureTime = professionalExposureTime;
+    }
+
+    public String getLocus() {
+        return locus;
+    }
+
+    public void setLocus(String locus) {
+        this.locus = locus;
+    }
+
+    public String getDisorder() {
+        return disorder;
+    }
+
+    public void setDisorder(String disorder) {
+        this.disorder = disorder;
     }
 
     public String getName() {
@@ -109,19 +141,19 @@ public class EntryFromUIDTO {
         this.details = details;
     }
 
-    public String getMutationEntries() {
-        return mutationEntries;
+    public String getMutation() {
+        return mutation;
     }
 
-    public void setMutationEntries(String mutationEntries) {
-        this.mutationEntries = mutationEntries;
+    public void setMutation(String mutation) {
+        this.mutation = mutation;
     }
 
-    public String getPhysitian() {
-        return physitian;
+    public String getPhysician() {
+        return physician;
     }
 
-    public void setPhysitian(String physitian) {
-        this.physitian = physitian;
+    public void setPhysician(String physician) {
+        this.physician = physician;
     }
 }

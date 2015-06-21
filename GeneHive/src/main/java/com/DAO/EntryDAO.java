@@ -20,13 +20,6 @@ public class EntryDAO {
 
     EntryDTOConvertor entryDTOConvertor = new EntryDTOConvertor();
 
-    public List<EntryDTO> getAllEntries() throws Exception {
-        cassandraEntriesAccessor.activate();
-        List<Entry> entities = (List<Entry>) cassandraEntriesAccessor.readEntries();
-
-        return entryDTOConvertor.toDTOList(entities);
-    }
-
     public List<ExportEntityDTO> getAllTrainingModels() throws Exception {
         cassandraEntriesAccessor.activate();
         List<ExportEntityDTO> entities = cassandraEntriesAccessor.getCSVEntries();
@@ -105,14 +98,14 @@ public class EntryDAO {
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
-                              String dateOfDeath, String gender, String professionalExposure, String details, String mutationEntries, String physitian) throws Exception {
+                              String dateOfDeath, String gender, String professionalExposure, String professionalExposureTime, String details, String mutation, String locus, String disorder, String physician) throws Exception {
         cassandraEntriesAccessor.activate();
-        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
+        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionaExposureTime, details, mutation,locus, disorder, physician)VALUES(";
 
         s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
                 + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath
-                + "," + gender + "," + professionalExposure + "," + details + "," + mutationEntries + "," + physitian + ");");
-
+                + "," + gender + "," + professionalExposure + "," + professionalExposureTime + "," + details + "," + mutation + "," + locus + "," + disorder + "," + physician + ");");
+        System.out.println(s);
         boolean result = cassandraEntriesAccessor.insertEntry(s);
 
         if (result) {

@@ -7,11 +7,6 @@
     <script src="js/external/jquery/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="utils.js"></script>
-    <!--<link href="genesUtils.js" rel="stylesheet"/>-->
-
-</head>
-
-
 
     <script src="js/html5.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -33,7 +28,6 @@
     <link href="css/flexslider.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="utils.css" rel="stylesheet"/>
-
     <link rel="icon"
           type="image/png"
           href="img/icon.png">
@@ -41,10 +35,8 @@
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet"/>
 
-    <style type="text/css">
+    
 
-    </style>
-F
     <style type="text/css">
         ${demo.css}
     </style>
@@ -113,7 +105,7 @@ F
                     <h3>Prediction Engine</h3>
 
                     <p>GeneHive has an integrated prediction engine.</p>
-                    <a href="statistics.html" onclick="showStatistics()"  class="btn btn-theme">Learn More</a>
+                    <a href="statistics.html" onclick="showStatistics()" class="btn btn-theme">Learn More</a>
                 </div>
             </li>
             <li>
@@ -148,8 +140,8 @@ F
             <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
             <br>
             <!--<div class="ui-widget">-->
-                <!--<label for="tags">Tags: </label>-->
-                <!--<input id="tags">-->
+            <!--<label for="tags">Tags: </label>-->
+            <!--<input id="tags">-->
             <!--</div>-->
 
             <div style="padding:10px 0;"><label>Date of birth:</label> <input type="date" name="birthDay"></div>
@@ -176,7 +168,7 @@ F
 
             <div style="padding:10px 0;"><label>Locus: </label><input
                     class="inputText"></div>
-            <div style="padding:10px 0;"><label>Disorder: </label><input></div>
+            <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
 
             <button id="search" onclick="refreshMap()" class="btn btn-theme" style="
     margin-left: 340px;width:250px;   margin-bottom: 10px;">Search in current entries

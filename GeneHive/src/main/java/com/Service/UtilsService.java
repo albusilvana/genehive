@@ -14,88 +14,88 @@ import java.util.List;
 public class UtilsService {
     private static final MutationService mutationService = new MutationService();
 
-    public Entry convertToEntity(String identificationNumber, String mutations, String countryCode) {
+//    public Entry convertToEntity(String identificationNumber, String mutations, String countryCode) {
+//
+//        Entry entity = new Entry(identificationNumber, countryCode, mutationService.convertToMutation(mutations));
+//
+//        return entity;
+//    }
 
-        Entry entity = new Entry(identificationNumber, countryCode, mutationService.convertToMutation(mutations));
+//    public List<String> convertToMutations(String mutations) {
+//        List<String> mutationCodes = new ArrayList<String>();
+//        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
+//        for (MutationEntry mutationEntry : mutationList) {
+//            if (!mutationCodes.contains(mutationEntry.getGene().getGeneCode())) {
+//                mutationCodes.add(mutationEntry.getGene().getGeneCode());
+//            }
+//        }
+//
+//        return mutationCodes;
+//    }
 
-        return entity;
-    }
+//    public String getMutationCodes(String mutations) {
+//        String mutationCodes = "";
+//        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
+//        for (MutationEntry mutationEntry : mutationList) {
+//            if (!mutationCodes.contains(mutationEntry.getGene().getGeneCode())) {
+//                if (mutationCodes != "") {
+//                    mutationCodes = mutationCodes + ";" + mutationEntry.getGene().getGeneCode();
+//                } else {
+//                    mutationCodes = mutationCodes + mutationEntry.getGene().getGeneCode();
+//                }
+//
+//            }
+//        }
+//        return mutationCodes;
+//    }
+//
+//    public String getMutationDisorders(String mutations) {
+//        String mutationDiseases = "";
+//        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
+//        for (MutationEntry mutationEntry : mutationList) {
+//            if (!mutationDiseases.contains(mutationEntry.getDisease().getName())) {
+//                if (mutationDiseases != "") {
+//                    mutationDiseases = mutationDiseases + ";" + mutationEntry.getDisease().getName();
+//                } else {
+//                    mutationDiseases = mutationDiseases + mutationEntry.getDisease().getName();
+//                }
+//
+//            }
+//        }
+//        return mutationDiseases;
+//    }
 
-    public List<String> convertToMutations(String mutations) {
-        List<String> mutationCodes = new ArrayList<String>();
-        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
-        for (MutationEntry mutationEntry : mutationList) {
-            if (!mutationCodes.contains(mutationEntry.getGene().getGeneCode())) {
-                mutationCodes.add(mutationEntry.getGene().getGeneCode());
-            }
-        }
+//    public String getProfessionalExposure(String exposures) {
+//        String mutationDiseases = "";
+//        List<String> exposure = mutationService.convertToExposure(exposures);
+//        for (String exp : exposure) {
+//
+//            if (mutationDiseases != "") {
+//                mutationDiseases = mutationDiseases + ";" + exp;
+//            } else {
+//                mutationDiseases = mutationDiseases + exp;
+//            }
+//
+//
+//        }
+//        return mutationDiseases;
+//    }
 
-        return mutationCodes;
-    }
-
-    public String getMutationCodes(String mutations) {
-        String mutationCodes = "";
-        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
-        for (MutationEntry mutationEntry : mutationList) {
-            if (!mutationCodes.contains(mutationEntry.getGene().getGeneCode())) {
-                if (mutationCodes != "") {
-                    mutationCodes = mutationCodes + ";" + mutationEntry.getGene().getGeneCode();
-                } else {
-                    mutationCodes = mutationCodes + mutationEntry.getGene().getGeneCode();
-                }
-
-            }
-        }
-        return mutationCodes;
-    }
-
-    public String getMutationDisorders(String mutations) {
-        String mutationDiseases = "";
-        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
-        for (MutationEntry mutationEntry : mutationList) {
-            if (!mutationDiseases.contains(mutationEntry.getDisease().getName())) {
-                if (mutationDiseases != "") {
-                    mutationDiseases = mutationDiseases + ";" + mutationEntry.getDisease().getName();
-                } else {
-                    mutationDiseases = mutationDiseases + mutationEntry.getDisease().getName();
-                }
-
-            }
-        }
-        return mutationDiseases;
-    }
-
-    public String getProfessionalExposure(String exposures) {
-        String mutationDiseases = "";
-        List<String> exposure = mutationService.convertToExposure(exposures);
-        for (String exp : exposure) {
-
-            if (mutationDiseases != "") {
-                mutationDiseases = mutationDiseases + ";" + exp;
-            } else {
-                mutationDiseases = mutationDiseases + exp;
-            }
-
-
-        }
-        return mutationDiseases;
-    }
-
-    public BasicEntityDTO convertToBasicEntityDTO(String countryCode, String mutations) {
-        int count = mutations.split(",").length;
-        BasicEntityDTO basicEntityDTO = new BasicEntityDTO(countryCode, count);
-        return basicEntityDTO;
-    }
-
-    public List<String> convertToDiagnstics(String mutations) {
-        List<String> mutationCodes = new ArrayList<String>();
-        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
-        for (MutationEntry mutationEntry : mutationList) {
-            if (!mutationCodes.contains(mutationEntry.getDisease().getName())) {
-                mutationCodes.add(mutationEntry.getDisease().getName());
-            }
-        }
-
-        return mutationCodes;
-    }
+//    public BasicEntityDTO convertToBasicEntityDTO(String countryCode, String mutations) {
+//        int count = mutations.split(",").length;
+//        BasicEntityDTO basicEntityDTO = new BasicEntityDTO(countryCode, count);
+//        return basicEntityDTO;
+//    }
+//
+//    public List<String> convertToDiagnstics(String mutations) {
+//        List<String> mutationCodes = new ArrayList<String>();
+//        List<MutationEntry> mutationList = mutationService.convertToMutation(mutations);
+//        for (MutationEntry mutationEntry : mutationList) {
+//            if (!mutationCodes.contains(mutationEntry.getDisease().getName())) {
+//                mutationCodes.add(mutationEntry.getDisease().getName());
+//            }
+//        }
+//
+//        return mutationCodes;
+//    }
 }

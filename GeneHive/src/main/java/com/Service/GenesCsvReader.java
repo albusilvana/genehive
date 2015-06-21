@@ -34,9 +34,14 @@ public class GenesCsvReader {
                 // use comma as separator
                 String[] gene = line.split(cvsSplitBy);
                 String[] disorders = gene[2].split(";");
+                for(int i=0;i<disorders.length; i++){
+                    if(i<=2){
+                        System.out.println("\""+disorders[i].trim()+"\",");
+                    }
+
+                }
                 GeneDTO geneDTO = new GeneDTO(gene[0], gene[1], disorders);
                 geneNames.add(gene[0]);
-                System.out.println("\""+gene[1]+"\",");
                 geneDTOList.add(geneDTO);
             }
 
