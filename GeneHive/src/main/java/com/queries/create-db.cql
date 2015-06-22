@@ -32,16 +32,27 @@ CREATE TABLE Genes (
 CREATE INDEX Entries
    ON Entries_Space.Entries (countryCode);
 
-   CREATE INDEX Entries
-      ON Entries_Space.Entries (gender);
+CREATE INDEX GenderIndex
+   ON Entries_Space.Entries (gender);
 
-      CREATE INDEX Entries
-         ON Entries_Space.Entries (mutationEntries);
+CREATE INDEX MutationIndex
+   ON Entries_Space.Entries (mutation);
+
+CREATE INDEX disorderIndex
+   ON Entries_Space.Entries (disorder);
+
+CREATE INDEX professionalExposureIndex
+   ON Entries_Space.Entries (professionalExposure);
+
+CREATE INDEX locusIndex
+   ON Entries_Space.Entries (locus);
+
+
 
 
 select count(*) from entries_space.entries;
 $ ./cqlsh 127.0.0.1 9042
 
-select * from Entries_Space.Entries where countryCode = 255 and gender = 'F';
+select count(*) from Entries_Space.Entries where countryCode = 'RO' and gender = 'F' ALLOW FILTERING;
 
 drop keyspace Entries;

@@ -6,6 +6,7 @@ import com.DAO.EntryDAO;
 import com.DTO.BasicEntityDTO;
 import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.EntryDTO;
+import com.DTO.SearchOptionsDTO;
 import com.Model.Entry;
 import com.accessor.CassandraEntriesAccessor;
 
@@ -36,6 +37,14 @@ public class EntryService {
     public List<BasicEntityDTO> getAllEntitiesByGender(String gender) throws Exception {
         return entryDAO.getBasicEntitiesDtoByGender(gender);
     }
+
+    public List<BasicEntityDTO> getEntitiesFiltered(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
+    }
+
+//    public List<EnhancedBasicEntityDTO> getEnhancedEntitiesFiltered(SearchOptionsDTO searchOptionsDTO) throws Exception {
+//        return entryDAO.getEnhancedBasicEntitiesDto();
+//    }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
                               String dateOfDeath, String gender, String professionalExposure,String professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {

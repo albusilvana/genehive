@@ -90,4 +90,13 @@ public class EntryEndpoint {
         return resp;
     }
 
+    @POST
+    @Path("filtered")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicEntityDTO> createEntry(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        List<BasicEntityDTO>  resp = entryService.getEntitiesFiltered(searchOptionsDTO);
+        return resp;
+    }
+
 }

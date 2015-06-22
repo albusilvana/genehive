@@ -141,10 +141,10 @@
             <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
             <br>
 
-            <div style="padding:10px 0;"><label>Date of birth:</label> <input type="date" name="birthDay"></div>
-            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <input type="date" name="diagnosticDay">
+            <div style="padding:10px 0;"><label>Date of birth:</label> <select id="operatorBirthDate"></select> <input type="date" name="birthDay"></div>
+            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select id="operatorDiagnosisDate"></select><input type="date" name="diagnosticDay">
             </div>
-            <div style="padding:10px 0;"><label>Date of death:</label> <input type="date" name="deathDay"></div>
+            <div style="padding:10px 0;"><label>Date of death:</label> <input id="operatorDeathDate" type="date" name="deathDay"></div>
             <div style="padding:10px 0;"><label>Gender:</label> <input style="height: auto;width: auto" type="radio"
                                                                        name="sex"
                                                                        value="M" checked> Male <input type="radio"
@@ -155,10 +155,11 @@
                 <br></div>
             <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
                     id="profestionalExposure"></select>
-                from: <input style="width:100px"
-                             type="date" name="startDay"> to <input style="width:100px"
-                                                                    type="date" name="endDay"></div>
-            <div style="padding:10px 0;"><label>Physician: </label><input class="inputText"></div>
+                for: <select id="professionalExposureOperator"></select>
+                <!--<input style="width:100px"-->
+                             <!--type="date" name="startDay"> to <input style="width:100px"-->
+                                                                    <!--type="date" name="endDay">-->
+            </div>
             <div style="padding:10px 0;"><label>Mutation:</label>
                 <input id="geneName" onclick="loadNames()" title="type &quot;a&quot;">
             </div>

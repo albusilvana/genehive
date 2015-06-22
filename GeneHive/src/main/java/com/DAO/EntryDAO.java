@@ -78,6 +78,19 @@ public class EntryDAO {
         return returnList;
     }
 
+    public List<BasicEntityDTO> getFilteredBasicEntitiesDto(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        cassandraEntriesAccessor.activate();
+
+        List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
+        String[] countries = Locale.getISOCountries();
+        for (String country : countries) {
+            BasicEntityDTO newEntityDTO = new BasicEntityDTO(country, 0);
+            newEntityDTO.setZ((int) cassandraEntriesAccessor.readMutationByCountryFiltered(country, searchOptionsDTO));
+            returnList.add(newEntityDTO);
+        }
+        return returnList;
+    }
+
     public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
         cassandraEntriesAccessor.activate();
         List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);

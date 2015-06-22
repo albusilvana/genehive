@@ -6,6 +6,21 @@ function insertProfesionalExposure() {
 
     }
 }
+
+function insertOperators() {
+    var operators = "<,>,<=,>=,=".split(",");
+    for (var i = 0; i < operators.length; i++) {
+        $("#operatorBirthDate").append($("<option />").val(operators[i]).text(operators[i]));
+        $("#operatorDiagnosisDate").append($("<option />").val(operators[i]).text(operators[i]));
+        $("#operatorDeathDate").append($("<option />").val(operators[i]).text(operators[i]));
+    }
+    var profExposure =  $("#professionalExposureOperator");
+    profExposure.append($("<option />").val("31536000000").text("Under 1 Year"));
+    profExposure.append($("<option />").val("157766400000").text("Between 1 and 5 years"));
+    profExposure.append($("<option />").val("315532800000").text("Between 5 and 10 years"));
+    profExposure.append($("<option />").val("631152000000").text("Between 10 and 20 years"));
+    profExposure.append($("<option />").val("662688000000").text("Over 20 years"));
+}
 function showInsert() {
     $("#insertContent").show();
     $("#statisticsContent").hide()
@@ -145,14 +160,15 @@ $(document).ready(function () {
         $("#currentEntriesCount").text(data);
     });
     insertProfesionalExposure();
+    insertOperators();
     refreshWithAll();
 });
 function loadHighLightData(url) {
 
     $.getJSON(url, function (data) {
-        $.each(data, function () {
-            this.flag = this.code.replace('UK', 'GB').toLowerCase();
-        });
+//        $.each(data, function () {
+//            this.flag = this.code.replace('UK', 'GB').toLowerCase();
+//        });
 
         // Initiate the chart
         $('#container').highcharts('Map', {

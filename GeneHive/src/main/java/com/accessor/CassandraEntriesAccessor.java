@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.DTO.BasicEntityDTO;
 import com.DTO.ExportEntityDTO;
+import com.DTO.SearchOptionsDTO;
 import com.Service.DateUtils;
 import com.Model.Entity;
 import com.Service.UtilsService;
@@ -99,6 +100,49 @@ public class CassandraEntriesAccessor {
 
         }
         return results;
+    }
+
+    public long readMutationByCountryFiltered(String countryCode, SearchOptionsDTO searchOptionsDTO) {
+        long no = 0;
+        String query = "select count(*) from Entries_Space.Entries where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO) ;
+        ResultSet resultSet = session.execute(query);
+        for (Row aResultSet : resultSet) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            no = aResultSet.getLong(0);
+        }
+        return no;
+    }
+
+    private String getQueryToAppend(SearchOptionsDTO searchOptionsDTO) {
+        boolean noCondition = true;
+        String queryChunk = "";
+        if (!searchOptionsDTO.getMutation().equals("")) {
+            queryChunk = queryChunk + " AND mutation = '" + searchOptionsDTO.getMutation() + "'";
+            noCondition = false;
+        }
+        if (!searchOptionsDTO.getDisorder().equals("")) {
+            queryChunk = queryChunk + " AND disorder = '" + searchOptionsDTO.getDisorder() + "'";
+            noCondition = false;
+        }
+        if (!searchOptionsDTO.getLocus().equals("")) {
+            queryChunk = queryChunk + " AND locus = '" + searchOptionsDTO.getLocus() + "'";
+            noCondition = false;
+        }
+        if (!searchOptionsDTO.getGender().equals("")) {
+            queryChunk = queryChunk + " AND gender = '" + searchOptionsDTO.getGender() + "'";
+            noCondition = false;
+        }
+        if (!searchOptionsDTO.getProfessionalExposure().equals("")) {
+            queryChunk = queryChunk + " AND professionalExposure = '" + searchOptionsDTO.getProfessionalExposure() + "'";
+            noCondition = false;
+        }
+
+        if (noCondition) {
+            return ";";
+        } else {
+            return queryChunk + " ALLOW FILTERING ;";
+        }
     }
 
     public List<BasicEntityDTO> readMutationByContry(String countryCode) throws SQLException {
