@@ -9,6 +9,11 @@ import com.google.inject.Inject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -99,4 +104,33 @@ public class EntryEndpoint {
         return resp;
     }
 
+    @POST
+    @Path("export/csv")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<BasicEntityDTO> exportToCsv(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        List<BasicEntityDTO>  resp = entryService.getEntitiesFiltered(searchOptionsDTO);
+        return resp;
+    }
+
+    @POST
+    @Path("export/pdf")
+    @Produces({"application/ms-excel"})
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response exportToPdf(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        String fileLoc = entryService.getCSVExportLocation(searchOptionsDTO);
+        File file=new File(fileLoc);
+        return Response.ok(fileLoc,"application/ms-excel")
+                .header("Content-Disposition", "attachment;filename=MutationData.csv")
+                .build();
+    }
+
+
+    private StreamingOutput getOut(final byte[] excelBytes) {
+        return new StreamingOutput() {
+            @Override
+            public void write(OutputStream out) throws IOException, WebApplicationException {
+                out.write(excelBytes);
+            }
+        };
+    }
 }

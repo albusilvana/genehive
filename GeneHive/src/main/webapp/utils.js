@@ -1,5 +1,21 @@
+$(document).ready(function () {
+    if (!localStorage.getItem("isUserLoggedIn")) {
+        localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
+        window.location = "http://localhost:9095/hh/login.html";
+    }
+    showHome();
+    $.ajax({
+        url: "http://localhost:9095/hh/API/v1/entries/total/all?token=dsf"
+    }).then(function (data) {
+        $("#currentEntriesCount").text(data);
+    });
+    insertProfesionalExposure();
+    insertOperators();
+    refreshWithAll();
+});
+
 function insertProfesionalExposure() {
-    var exposures = "Arsenic,Asbestos,Asphalt fumes,Benzene,Beryllium,1-Bromopropane,13-Butadiene,Cadmium,Chromium,Diacetyl,Diesel exhaust,Ethylene oxide,Formaldehyde,Hexavalent chromium,Hydrogen sulfide,Isocyanates,Lead,Mercury,Metals toxic,Metalworking fluids,Methylene chloride,SilicaCrystalline,Solvents,Synthetic mineral fibers,Toluene".split(",");
+    var exposures = ",Arsenic,Asbestos,Asphalt fumes,Benzene,Beryllium,1-Bromopropane,13-Butadiene,Cadmium,Chromium,Diacetyl,Diesel exhaust,Ethylene oxide,Formaldehyde,Hexavalent chromium,Hydrogen sulfide,Isocyanates,Lead,Mercury,Metals toxic,Metalworking fluids,Methylene chloride,SilicaCrystalline,Solvents,Synthetic mineral fibers,Toluene".split(",");
     for (var i = 0; i < exposures.length; i++) {
         $("#insertProfestionalExposure").append($("<option />").val(exposures[i]).text(exposures[i]));
         $("#profestionalExposure").append($("<option />").val(exposures[i]).text(exposures[i]));
@@ -14,7 +30,7 @@ function insertOperators() {
         $("#operatorDiagnosisDate").append($("<option />").val(operators[i]).text(operators[i]));
         $("#operatorDeathDate").append($("<option />").val(operators[i]).text(operators[i]));
     }
-    var profExposure =  $("#professionalExposureOperator");
+    var profExposure = $("#professionalExposureOperator");
     profExposure.append($("<option />").val("31536000000").text("Under 1 Year"));
     profExposure.append($("<option />").val("157766400000").text("Between 1 and 5 years"));
     profExposure.append($("<option />").val("315532800000").text("Between 5 and 10 years"));
@@ -52,44 +68,24 @@ function showStatistics() {
 function refreshWithAll() {
     var selectedVal = $('input[name=mapType]:checked').val();
     if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/all?token=' + localStorage.getItem("token"));
+        var data = $.getJSON('http://localhost:9095/hh/API/v1/entries/count/all?token=' + localStorage.getItem("token"), function (data) {
+            loadClusterData(data);
+        });
     } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/all?token=' + localStorage.getItem("token"));
+        var data = $.getJSON('http://localhost:9095/hh/API/v1/entries/count/enhanced/all?token=' + localStorage.getItem("token"), function (data) {
+            loadHighLightData(data);
+        });
     }
     $("#all").addClass("selected");
     $("#women").removeClass("selected");
     $("#men").removeClass("selected");
 }
-function refreshWithMen() {
 
-    $("#all").removeClass("selected");
-    $("#women").removeClass("selected");
-    $("#men").addClass("selected");
-
-    var selectedVal = $('input[name=mapType]:checked').val();
-    if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=M&token=' + localStorage.getItem("token"));
-    } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=M&token=' + localStorage.getItem("token"));
-    }
-
-}
-function refreshWithWomen() {
-
-    $("#all").removeClass("selected");
-    $("#women").addClass("selected");
-    $("#men").removeClass("selected");
-
-    var selectedVal = $('input[name=mapType]:checked').val();
-    if (selectedVal == "cluster") {
-        loadClusterData('http://localhost:9095/hh/API/v1/entries/count/byGender?gender=F&token=' + localStorage.getItem("token"));
-    } else {
-        loadHighLightData('http://localhost:9095/hh/API/v1/entries/count/enhanced/byGender?gender=F&token=' + localStorage.getItem("token"));
-    }
+function refreshMapWithPrediction(){
 
 }
 
-function getResults() {
+function computeSearchJsonData(){
     var jsonData = {};
 
     var bdate = new Date($("#birthDay").val());
@@ -113,13 +109,20 @@ function getResults() {
     jsonData.mutation = $("#geneName").val();
     jsonData.locus = $("#locus").val();
     jsonData.disorder = $("#disprderName").val();
-
+    return jsonData;
+}
+function getResults() {
+    var selectedVal = $('input[name=mapType]:checked').val();
     $.ajax({
         contentType: 'application/json',
-        data: JSON.stringify(jsonData),
+        data: JSON.stringify(computeSearchJsonData()),
         dataType: 'json',
         success: function (data) {
-            alert("You have successfully executed the query.");
+            if (selectedVal == "cluster") {
+                loadClusterData(data);
+            } else {
+                loadHighLightData(data);
+            }
         },
         error: function () {
             alert("Error");
@@ -128,8 +131,34 @@ function getResults() {
         type: 'POST',
         url: "http://localhost:9095/hh/API/v1/entries/filtered"
     });
+}
+
+function downloadCsv(format){
+    var url;
+    if(format == "csv"){
+        url = "http://localhost:9095/hh/API/v1/entries/export/csv";
+    }else{
+        url =  "http://localhost:9095/hh/API/v1/entries/export/pdf"
+    }
+    $.ajax({
+        contentType: 'application/json',
+        data: JSON.stringify(computeSearchJsonData()),
+        dataType: 'json',
+        success: function (data) {
+        },
+        error: function () {
+            alert("Error");
+        },
+        processData: false,
+        type: 'POST',
+        url: url
+    });
+}
+
+function downloadPdf(){
 
 }
+
 function saveEntry() {
     var jsonData = {};
 
@@ -154,7 +183,7 @@ function saveEntry() {
     jsonData.dateOfDeath = demilliseconds;
     jsonData.gender = "'" + $("#insertGender").val() + "'";
     jsonData.professionalExposure = $("#insertProfestionalExposure").val();
-    jsonData.professionalExposureTime = "'" +pemilliseconds+"'" ;
+    jsonData.professionalExposureTime = "'" + pemilliseconds + "'";
     jsonData.details = "'" + $("#insertDetails").val() + "'";
     jsonData.mutation = "'" + $("#insertMutation").val() + "'";
     jsonData.locus = "'" + $("#insertLocus").val() + "'";
@@ -181,144 +210,119 @@ function saveEntry() {
 
 }
 
-$(document).ready(function () {
-    if (!localStorage.getItem("isUserLoggedIn")) {
-        localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
-        window.location = "http://localhost:9095/hh/login.html";
-    }
-    showHome();
-    $.ajax({
-        url: "http://localhost:9095/hh/API/v1/entries/total/all?token=dsf"
-    }).then(function (data) {
-        $("#currentEntriesCount").text(data);
-    });
-    insertProfesionalExposure();
-    insertOperators();
-    refreshWithAll();
-});
-function loadHighLightData(url) {
+function loadHighLightData(data) {
 
-    $.getJSON(url, function (data) {
-//        $.each(data, function () {
-//            this.flag = this.code.replace('UK', 'GB').toLowerCase();
-//        });
 
-        // Initiate the chart
-        $('#container').highcharts('Map', {
+    // Initiate the chart
+    $('#container').highcharts('Map', {
 
+        title: {
+            text: 'Disorders by country'
+        },
+
+        legend: {
             title: {
-                text: 'Disorders by country'
-            },
-
-            legend: {
-                title: {
-                    text: 'Mutations number',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                    }
+                text: 'Mutations number',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
                 }
-            },
-
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-
-            tooltip: {
-                backgroundColor: 'none',
-                borderWidth: 0,
-                shadow: false,
-                useHTML: true,
-                padding: 0,
-                pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>'
-                    + ' {point.name}: <b>{point.value}</b>',
-                positioner: function () {
-                    return { x: 0, y: 250 };
-                }
-            },
-
-            colorAxis: {
-                min: 1,
-                max: 1000,
-                type: 'logarithmic'
-            },
-
-            series: [
-                {
-                    data: data,
-                    mapData: Highcharts.maps['custom/world'],
-                    joinBy: ['iso-a2', 'code'],
-                    name: 'Mutation count',
-                    states: {
-                        hover: {
-                            color: '#BADA55'
-                        }
-                    }
-                }
-            ]
-        });
-    })
-}
-function loadClusterData(url) {
-
-    $.getJSON(url, function (data) {
-
-        var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
-
-        // Correct UK to GB in data
-        $.each(data, function () {
-            if (this.code === 'UK') {
-                this.code = 'GB';
             }
-        });
+        },
 
-        $('#container').highcharts('Map', {
-            chart: {
-                borderWidth: 1
-            },
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
 
-            title: {
-                text: 'Disorders by country'
-            },
+        tooltip: {
+            backgroundColor: 'none',
+            borderWidth: 0,
+            shadow: false,
+            useHTML: true,
+            padding: 0,
+            pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>'
+                + ' {point.name}: <b>{point.value}</b>',
+            positioner: function () {
+                return { x: 0, y: 250 };
+            }
+        },
 
-            subtitle: {
-                text: 'Click to see more details'
-            },
+        colorAxis: {
+            min: 1,
+            max: 1000,
+            type: 'logarithmic'
+        },
 
-            legend: {
-                enabled: false
-            },
-
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-
-            series: [
-                {
-                    name: 'Countries',
-                    mapData: mapData,
-                    color: '#E0E0E0',
-                    enableMouseTracking: false
-                },
-                {
-                    type: 'mapbubble',
-                    mapData: mapData,
-                    name: 'Mutation count',
-                    joinBy: ['iso-a2', 'code'],
-                    data: data,
-                    minSize: 4,
-                    maxSize: '12%',
-                    tooltip: {
-                        pointFormat: '{point.code}: {point.z} '
+        series: [
+            {
+                data: data,
+                mapData: Highcharts.maps['custom/world'],
+                joinBy: ['iso-a2', 'code'],
+                name: 'Mutation count',
+                states: {
+                    hover: {
+                        color: '#BADA55'
                     }
                 }
-            ]
-        });
+            }
+        ]
+    });
+}
+function loadClusterData(data) {
+    var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
 
+    // Correct UK to GB in data
+    $.each(data, function () {
+        if (this.code === 'UK') {
+            this.code = 'GB';
+        }
+    });
+
+    $('#container').highcharts('Map', {
+        chart: {
+            borderWidth: 1
+        },
+
+        title: {
+            text: 'Disorders by country'
+        },
+
+        subtitle: {
+            text: 'Click to see more details'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        series: [
+            {
+                name: 'Countries',
+                mapData: mapData,
+                color: '#E0E0E0',
+                enableMouseTracking: false
+            },
+            {
+                type: 'mapbubble',
+                mapData: mapData,
+                name: 'Mutation count',
+                joinBy: ['iso-a2', 'code'],
+                data: data,
+                minSize: 4,
+                maxSize: '12%',
+                tooltip: {
+                    pointFormat: '{point.code}: {point.z} '
+                }
+            }
+        ]
     });
 }

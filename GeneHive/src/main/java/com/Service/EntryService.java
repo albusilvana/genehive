@@ -3,10 +3,7 @@ package com.Service;
 import com.Convertor.core.EntityBaseDTOs;
 import com.Convertor.core.EntryDTOConvertor;
 import com.DAO.EntryDAO;
-import com.DTO.BasicEntityDTO;
-import com.DTO.EnhancedBasicEntityDTO;
-import com.DTO.EntryDTO;
-import com.DTO.SearchOptionsDTO;
+import com.DTO.*;
 import com.Model.Entry;
 import com.accessor.CassandraEntriesAccessor;
 
@@ -20,6 +17,7 @@ import java.util.List;
 public class EntryService {
 
     private EntryDAO entryDAO = new EntryDAO();
+    private CSVFileWriter csvFileWriter = new CSVFileWriter();
 
 
     public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
@@ -42,14 +40,14 @@ public class EntryService {
         return entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
     }
 
-//    public List<EnhancedBasicEntityDTO> getEnhancedEntitiesFiltered(SearchOptionsDTO searchOptionsDTO) throws Exception {
-//        return entryDAO.getEnhancedBasicEntitiesDto();
-//    }
+    public String getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return csvFileWriter.writeCsvFile("exportCsv.csv", entryDAO.getExportData(searchOptionsDTO));
+    }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
-                              String dateOfDeath, String gender, String professionalExposure,String professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {
+                              String dateOfDeath, String gender, String professionalExposure, String professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {
         return entryDAO.insertEntry(name, identificationNumber, countryCode, dateOfBirth, dateOfDiagnosis,
-                dateOfDeath, gender, professionalExposure,professionalExposureTime, details, mutation, locus, disorder, physitian);
+                dateOfDeath, gender, professionalExposure, professionalExposureTime, details, mutation, locus, disorder, physitian);
     }
 
     public String insertGene(String code, String name) throws Exception {

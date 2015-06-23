@@ -27,6 +27,11 @@ public class EntryDAO {
         return entities;
     }
 
+    public List<ExportEntityDTO> getExportData(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        cassandraEntriesAccessor.activate();
+        return cassandraEntriesAccessor.getExportData(searchOptionsDTO);
+    }
+
     public List<BasicEntityDTO> getBasicEntitiesDto() throws Exception {
         cassandraEntriesAccessor.activate();
 

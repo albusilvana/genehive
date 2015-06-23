@@ -18,10 +18,9 @@ public class CSVFileWriter {
 
     private static final String NEW_LINE_SEPARATOR = "\n";
 
-    private static final String FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Disorder,Professional Exposure,Gender,Age,Age At Diagnosis,Age Of Death,Physician";
-//    "select name,identificationNumber,countryCode,mutationentries,professionalExposures,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries";
+    private static final String FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
 
-    public static void writeCsvFile(String fileName, List<ExportEntityDTO> trainingModelDTOs) {
+    public String writeCsvFile(String fileName, List<ExportEntityDTO> trainingModelDTOs) {
 
         UtilsService utilsService = new UtilsService();
 
@@ -41,30 +40,34 @@ public class CSVFileWriter {
 
             //Write a new student object list to the CSV file
 
-//            for(ExportEntityDTO trainingModelDTO: trainingModelDTOs){
-//                fileWriter.append(trainingModelDTO.getName());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getIdentificationNumber());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getCountryCode());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(utilsService.getMutationCodes(trainingModelDTO.getMutationentries()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(utilsService.getMutationDisorders(trainingModelDTO.getMutationentries()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(utilsService.getProfessionalExposure(trainingModelDTO.getProfessionalExposures()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getGender());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
-//                fileWriter.append(NEW_LINE_SEPARATOR);
-//            }
+            for(ExportEntityDTO trainingModelDTO: trainingModelDTOs){
+                fileWriter.append(trainingModelDTO.getName());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getIdentificationNumber());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getCountryCode());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getMutation());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getLocus());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getDisorder());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getProfessionalExposure());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(trainingModelDTO.getGender());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
+                fileWriter.append(NEW_LINE_SEPARATOR);
+            }
 
             System.out.println("CSV file was created successfully !!!");
 
@@ -91,7 +94,7 @@ public class CSVFileWriter {
             }
 
         }
-        return;
+        return fileName;
 
     }
 

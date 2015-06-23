@@ -77,6 +77,47 @@ public class CassandraEntriesAccessor {
         List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
         ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS_FOR_CSV);
         Iterator<Row> iter = resultSet.iterator();
+//        while (iter.hasNext()) {
+//            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+//                resultSet.fetchMoreResults();
+//            Row row = iter.next();
+//            String name = row.getString(0);
+//            String identificationNumber = row.getString(1);
+//            String countryCode = row.getString(2);
+//            String mutationentries = row.getString(3);
+//            String professionalExposures = row.getString(4);
+//            String gender = row.getString(5);
+//            Date dateOfBirth = row.getDate(6);
+//            Date dateOfDiagnosis = row.getDate(7);
+//            Date dateOfDeath = row.getDate(8);
+//            String physician = row.getString(9);
+//            int dateOfDeathAge = 100;
+//            if (dateOfDeath != null) {
+//                dateOfDeathAge = DateUtils.getAge(dateOfDeath);
+//            }
+//            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutationentries, professionalExposures, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
+//            results.add(trainingModelDTO);
+//
+//        }
+        return results;
+    }
+
+    public List<ExportEntityDTO> getExportData( SearchOptionsDTO searchOptionsDTO) throws SQLException {
+        if (!active) {
+            LOG.error("CasandraEventsAccessor is not active");
+        }
+        List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
+        String query;
+        if (!getQueryToAppend(searchOptionsDTO).equals( ";")){
+            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime gender, dateOfBirth," +
+                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries where" + getQueryToAppend(searchOptionsDTO).substring(4);
+        } else{
+            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime gender, dateOfBirth," +
+                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries;";
+        }
+
+        ResultSet resultSet = session.execute(query);
+        Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
@@ -84,18 +125,21 @@ public class CassandraEntriesAccessor {
             String name = row.getString(0);
             String identificationNumber = row.getString(1);
             String countryCode = row.getString(2);
-            String mutationentries = row.getString(3);
-            String professionalExposures = row.getString(4);
-            String gender = row.getString(5);
-            Date dateOfBirth = row.getDate(6);
-            Date dateOfDiagnosis = row.getDate(7);
-            Date dateOfDeath = row.getDate(8);
-            String physician = row.getString(9);
+            String mutation = row.getString(3);
+            String locus = row.getString(4);
+            String disorder = row.getString(5);
+            String professionalExposure = row.getString(6);
+            Date professionalExposureTime = row.getDate(7);
+            String gender = row.getString(8);
+            Date dateOfBirth = row.getDate(9);
+            Date dateOfDiagnosis = row.getDate(10);
+            Date dateOfDeath = row.getDate(11);
+            String physician = row.getString(12);
             int dateOfDeathAge = 100;
             if (dateOfDeath != null) {
                 dateOfDeathAge = DateUtils.getAge(dateOfDeath);
             }
-            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutationentries, professionalExposures, gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, DateUtils.getAge(professionalExposureTime), gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }
@@ -138,17 +182,17 @@ public class CassandraEntriesAccessor {
             noCondition = false;
         }
 
-        if (!searchOptionsDTO.getDateOfBirth().equals("") && searchOptionsDTO.getDateOfBirth() != null) {
+        if ( searchOptionsDTO.getDateOfBirth() != null) {
             queryChunk = queryChunk + " AND dateOfBirth " + searchOptionsDTO.getDateOfBirthOperator() + " '" + searchOptionsDTO.getDateOfBirth() + "'";
             noCondition = false;
         }
 
-        if (!searchOptionsDTO.getDateOfDiagnosis().equals("") && searchOptionsDTO.getDateOfDiagnosis() != null) {
+        if ( searchOptionsDTO.getDateOfDiagnosis() != null) {
             queryChunk = queryChunk + " AND dateOfDiagnosis " + searchOptionsDTO.getDateOfDiagnosisOperator() + " '" + searchOptionsDTO.getDateOfDiagnosis() + "'";
             noCondition = false;
         }
 
-        if (!searchOptionsDTO.getDateOfDeath().equals("") && searchOptionsDTO.getDateOfDeath() != null) {
+        if ( searchOptionsDTO.getDateOfDeath() != null) {
             queryChunk = queryChunk + " AND dateOfDeath " + searchOptionsDTO.getDateOfDeathOperator() + " '" + searchOptionsDTO.getDateOfDeath() + "'";
             noCondition = false;
         }
@@ -174,8 +218,6 @@ public class CassandraEntriesAccessor {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             Row row = iter.next();
-            ;
-            String mutations = row.getString(0);
             BasicEntityDTO basicEntityDTO = new BasicEntityDTO(countryCode, 1);
             results.add(basicEntityDTO);
         }

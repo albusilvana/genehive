@@ -21,7 +21,6 @@
 
     <script src="js/animate.js"></script>
     <script src="js/custom.js"></script>
-    <script src="utils.js"></script>
     <script src="autocompleteUtils.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -128,19 +127,14 @@
 
     <div style="display:inline; width:40%; float:left;margin-left: 30px;padding-bottom:20px; ">
         <div style="margin-bottom: 20px">
+            <h4 style="color:#68a4c4">Filter</span> results</h4>
 
-
-            <label>View</label><input type="radio" value="cluster" onchange="refreshWithAll()" name="mapType"
+            <label>Choose map type:</label><input type="radio" value="cluster" onchange="refreshWithAll()" name="mapType"
                                       style="height: auto;width: auto"> Cluster
             <input type="radio" checked="" value="highlight" onchange="refreshWithAll()" name="mapType"
                    style="height: auto; width: auto;"> Highlight
-            <br><br>
-            <label><span>Filter</span> by gender</label>
-            <button id="all" onclick="refreshWithAll()" class="btn btn-theme">All</button>
-            <button id="women" onclick="refreshWithWomen()" class="btn btn-theme">Only Women</button>
-            <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
-            <br>
-            <div style="padding:10px;"><label>Gender:</label> <input id="gender" style="height: auto;width: auto" type="radio" name="sex"
+
+            <div style="padding:10px 0;"><label>Gender:</label> <input id="gender" style="height: auto;width: auto" type="radio" name="sex"
                                                                      value="M" checked> Male <input type="radio"
                                                                                                     style="height: auto; width: auto;"
                                                                                                     name="sex" value="F"> Female
@@ -182,8 +176,8 @@
     </div>
     <div style="display:inline;float:right">
         <br>
-        <button class="btn btn-theme" onclick="refreshMap()">Download results as csv</button>
-        <button class="btn btn-theme" onclick="refreshMap()">Download results as pdf</button>
+        <button class="btn btn-theme" onclick="downloadCsv()">Download results as csv</button>
+        <button class="btn btn-theme" onclick="downloadPdf()">Download results as pdf</button>
     </div>
 
 </div>
