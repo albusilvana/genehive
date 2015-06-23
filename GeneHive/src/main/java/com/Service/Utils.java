@@ -95,20 +95,16 @@ public class Utils {
         return "'" + mutation + "'";
     }
 
-    public String getRandomExposureTime( String proffesionalExposure) {
+    public Integer getRandomExposureTime( String proffesionalExposure) {
         if (!proffesionalExposure.equals("")){
             int i = rand.nextInt(1080000000 - 360000000) + 360000000;
-            return "'" + i  + "'" ;
+            return i;
         }else {
-            return "";
+            return 0;
         }
 
     }
 
-    //    INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender,
-//                         professionalExposures,details, mutationEntries,physician)
-//    VALUES('Albert Silvana','2920129203415','RO',1428670355,1428670355,1428670355,'F',
-//                   'radiation_10000','details','A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer','Oltean Marin');
     public static void main(String[] args) {
         Utils utils = new Utils();
         for (int i = 0; i < 10000; i++) {

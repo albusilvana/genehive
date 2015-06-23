@@ -40,7 +40,7 @@ public class TestEntryService {
             Integer dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
             String gender = utils.getRandomGender();
             String professionalExposure = utils.getProfessionalExposures();
-            String professionalExposureTime = utils.getRandomExposureTime(professionalExposure);
+            Integer professionalExposureTime = utils.getRandomExposureTime(professionalExposure);
             String mutationEntries = utils.getRandomMutation();
             String locus = utils.getRandomLocus();
             String disorder = utils.getRandomDisorder();
@@ -49,10 +49,10 @@ public class TestEntryService {
             String result;
             if (dateOfDeath > 0) {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        dateOfDeath + "", gender, professionalExposure, professionalExposureTime, "''", mutationEntries, locus, disorder, physician);
+                        dateOfDeath + "", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
             } else {
                 result = entryService.insertEntry(name, identificationNumber, countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        "''", gender, professionalExposure, professionalExposureTime, "''", mutationEntries, locus, disorder, physician);
+                        "''", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
             }
 
 

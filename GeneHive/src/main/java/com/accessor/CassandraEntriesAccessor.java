@@ -104,7 +104,7 @@ public class CassandraEntriesAccessor {
 
     public long readMutationByCountryFiltered(String countryCode, SearchOptionsDTO searchOptionsDTO) {
         long no = 0;
-        String query = "select count(*) from Entries_Space.Entries where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO) ;
+        String query = "select count(*) from Entries_Space.Entries where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO);
         ResultSet resultSet = session.execute(query);
         for (Row aResultSet : resultSet) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
@@ -117,24 +117,44 @@ public class CassandraEntriesAccessor {
     private String getQueryToAppend(SearchOptionsDTO searchOptionsDTO) {
         boolean noCondition = true;
         String queryChunk = "";
-        if (!searchOptionsDTO.getMutation().equals("")) {
+        if (!searchOptionsDTO.getMutation().equals("") && searchOptionsDTO.getMutation() != null) {
             queryChunk = queryChunk + " AND mutation = '" + searchOptionsDTO.getMutation() + "'";
             noCondition = false;
         }
-        if (!searchOptionsDTO.getDisorder().equals("")) {
+        if (!searchOptionsDTO.getDisorder().equals("") && searchOptionsDTO.getDisorder() != null) {
             queryChunk = queryChunk + " AND disorder = '" + searchOptionsDTO.getDisorder() + "'";
             noCondition = false;
         }
-        if (!searchOptionsDTO.getLocus().equals("")) {
+        if (!searchOptionsDTO.getLocus().equals("") && searchOptionsDTO.getLocus() != null) {
             queryChunk = queryChunk + " AND locus = '" + searchOptionsDTO.getLocus() + "'";
             noCondition = false;
         }
-        if (!searchOptionsDTO.getGender().equals("")) {
+        if (!searchOptionsDTO.getGender().equals("") && searchOptionsDTO.getGender() != null) {
             queryChunk = queryChunk + " AND gender = '" + searchOptionsDTO.getGender() + "'";
             noCondition = false;
         }
-        if (!searchOptionsDTO.getProfessionalExposure().equals("")) {
+        if (!searchOptionsDTO.getProfessionalExposure().equals("") && searchOptionsDTO.getProfessionalExposure() != null) {
             queryChunk = queryChunk + " AND professionalExposure = '" + searchOptionsDTO.getProfessionalExposure() + "'";
+            noCondition = false;
+        }
+
+        if (!searchOptionsDTO.getDateOfBirth().equals("") && searchOptionsDTO.getDateOfBirth() != null) {
+            queryChunk = queryChunk + " AND dateOfBirth " + searchOptionsDTO.getDateOfBirthOperator() + " '" + searchOptionsDTO.getDateOfBirth() + "'";
+            noCondition = false;
+        }
+
+        if (!searchOptionsDTO.getDateOfDiagnosis().equals("") && searchOptionsDTO.getDateOfDiagnosis() != null) {
+            queryChunk = queryChunk + " AND dateOfDiagnosis " + searchOptionsDTO.getDateOfDiagnosisOperator() + " '" + searchOptionsDTO.getDateOfDiagnosis() + "'";
+            noCondition = false;
+        }
+
+        if (!searchOptionsDTO.getDateOfDeath().equals("") && searchOptionsDTO.getDateOfDeath() != null) {
+            queryChunk = queryChunk + " AND dateOfDeath " + searchOptionsDTO.getDateOfDeathOperator() + " '" + searchOptionsDTO.getDateOfDeath() + "'";
+            noCondition = false;
+        }
+
+        if (!searchOptionsDTO.getProfessionalExposureTime().equals("") && searchOptionsDTO.getProfessionalExposureTime() != null) {
+            queryChunk = queryChunk + " AND professionaExposureTime <= '" + searchOptionsDTO.getProfessionalExposureTime() + "'";
             noCondition = false;
         }
 

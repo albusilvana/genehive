@@ -10,7 +10,7 @@ CREATE TABLE Entries (
     dateOfDeath timestamp,
     gender text,
     professionalExposure text,
-    professionaExposureTime text,
+    professionaExposureTime timestamp,
     details text,
     mutation text,
     locus text,
@@ -29,7 +29,7 @@ CREATE TABLE Genes (
 );
 
 
-CREATE INDEX Entries
+CREATE INDEX CountryIndex
    ON Entries_Space.Entries (countryCode);
 
 CREATE INDEX GenderIndex
@@ -49,6 +49,8 @@ CREATE INDEX locusIndex
 
 
 
+// Userfull queries
+DROP TABLE Entries_Space.Entries;
 
 select count(*) from entries_space.entries;
 $ ./cqlsh 127.0.0.1 9042

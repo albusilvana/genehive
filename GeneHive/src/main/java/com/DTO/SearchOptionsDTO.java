@@ -5,13 +5,16 @@ package com.DTO;
  */
 public class SearchOptionsDTO {
     String countryCode;
-//    String dateOfBirth;
-//    String dateOfDiagnosis;
-//    String dateOfDeath;
+    String dateOfBirthOperator;
+    String dateOfDiagnosisOperator;
+    String dateOfDeathOperator;
+    String dateOfBirth;
+    String dateOfDiagnosis;
+    String dateOfDeath;
     String gender;
     String professionalExposure;
-//    String professionalExposureTime;
-//    String details;
+    String professionalExposureTime;
+    String professionalExposureTimeOperator;
     String mutation;
     String locus;
     String disorder;
@@ -19,11 +22,21 @@ public class SearchOptionsDTO {
     public SearchOptionsDTO() {
     }
 
-    public SearchOptionsDTO(String countryCode, String gender, String professionalExposure,  String mutation, String locus, String disorder) {
+    public SearchOptionsDTO(String countryCode, String dateOfBirthOperator, String dateOfDiagnosisOperator,
+                            String dateOfDeathOperator, String dateOfBirth, String dateOfDiagnosis, String dateOfDeath,
+                            String gender, String professionalExposure, String professionalExposureTime,
+                            String professionalExposureTimeOperator, String mutation, String locus, String disorder) {
         this.countryCode = countryCode;
+        this.dateOfBirthOperator = dateOfBirthOperator;
+        this.dateOfDiagnosisOperator = dateOfDiagnosisOperator;
+        this.dateOfDeathOperator = dateOfDeathOperator;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfDiagnosis = dateOfDiagnosis;
+        this.dateOfDeath = dateOfDeath;
         this.gender = gender;
         this.professionalExposure = professionalExposure;
-//        this.details = details;
+        this.professionalExposureTime = professionalExposureTime;
+        this.professionalExposureTimeOperator = professionalExposureTimeOperator;
         this.mutation = mutation;
         this.locus = locus;
         this.disorder = disorder;
@@ -75,6 +88,70 @@ public class SearchOptionsDTO {
 
     public void setDisorder(String disorder) {
         this.disorder = disorder;
+    }
+
+    public String getDateOfBirthOperator() {
+        return dateOfBirthOperator;
+    }
+
+    public void setDateOfBirthOperator(String dateOfBirthOperator) {
+        this.dateOfBirthOperator = dateOfBirthOperator;
+    }
+
+    public String getDateOfDiagnosisOperator() {
+        return dateOfDiagnosisOperator;
+    }
+
+    public void setDateOfDiagnosisOperator(String dateOfDiagnosisOperator) {
+        this.dateOfDiagnosisOperator = dateOfDiagnosisOperator;
+    }
+
+    public String getDateOfDeathOperator() {
+        return dateOfDeathOperator;
+    }
+
+    public void setDateOfDeathOperator(String dateOfDeathOperator) {
+        this.dateOfDeathOperator = dateOfDeathOperator;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getDateOfDiagnosis() {
+        return dateOfDiagnosis;
+    }
+
+    public void setDateOfDiagnosis(String dateOfDiagnosis) {
+        this.dateOfDiagnosis = dateOfDiagnosis;
+    }
+
+    public String getDateOfDeath() {
+        return dateOfDeath;
+    }
+
+    public void setDateOfDeath(String dateOfDeath) {
+        this.dateOfDeath = dateOfDeath;
+    }
+
+    public String getProfessionalExposureTime() {
+        return professionalExposureTime;
+    }
+
+    public void setProfessionalExposureTime(String professionalExposureTime) {
+        this.professionalExposureTime = professionalExposureTime;
+    }
+
+    public String getProfessionalExposureTimeOperator() {
+        return professionalExposureTimeOperator;
+    }
+
+    public void setProfessionalExposureTimeOperator(String professionalExposureTimeOperator) {
+        this.professionalExposureTimeOperator = professionalExposureTimeOperator;
     }
 }
 

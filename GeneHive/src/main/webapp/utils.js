@@ -88,6 +88,48 @@ function refreshWithWomen() {
     }
 
 }
+
+function getResults() {
+    var jsonData = {};
+
+    var bdate = new Date($("#birthDay").val());
+    var bmilliseconds = bdate.getTime();
+
+    var ddate = new Date($("#diagnosticDay").val());
+    var dmilliseconds = ddate.getTime();
+
+    var dedate = new Date($("#deathDay").val());
+    var demilliseconds = dedate.getTime();
+
+    jsonData.dateOfBirthOperator = $("#operatorBirthDate").val();
+    jsonData.dateOfDiagnosisOperator = $("#operatorDiagnosisDate").val();
+    jsonData.dateOfDeathOperator = $("#operatorDeathDate").val();
+    jsonData.dateOfBirth = bmilliseconds;
+    jsonData.dateOfDiagnosis = dmilliseconds;
+    jsonData.dateOfDeath = demilliseconds;
+    jsonData.gender = $("#gender").val();
+    jsonData.professionalExposure = $("#profestionalExposure").val();
+    jsonData.professionalExposureTime = $("#professionalExposureOperator").val();
+    jsonData.mutation = $("#geneName").val();
+    jsonData.locus = $("#locus").val();
+    jsonData.disorder = $("#disprderName").val();
+
+    $.ajax({
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData),
+        dataType: 'json',
+        success: function (data) {
+            alert("You have successfully executed the query.");
+        },
+        error: function () {
+            alert("Error");
+        },
+        processData: false,
+        type: 'POST',
+        url: "http://localhost:9095/hh/API/v1/entries/filtered"
+    });
+
+}
 function saveEntry() {
     var jsonData = {};
 
@@ -111,7 +153,7 @@ function saveEntry() {
     jsonData.dateOfDiagnosis = dmilliseconds;
     jsonData.dateOfDeath = demilliseconds;
     jsonData.gender = "'" + $("#insertGender").val() + "'";
-    jsonData.professionalExposure = "'" + $("#insertProfestionalExposure").val() + "'";
+    jsonData.professionalExposure = $("#insertProfestionalExposure").val();
     jsonData.professionalExposureTime = "'" +pemilliseconds+"'" ;
     jsonData.details = "'" + $("#insertDetails").val() + "'";
     jsonData.mutation = "'" + $("#insertMutation").val() + "'";
@@ -119,15 +161,6 @@ function saveEntry() {
     jsonData.disorder = "'" + $("#insertDisorder").val() + "'";
     jsonData.physician = "'" + $("#insertPhisician").val() + "'";
 
-
-
-
-
-    $.ajax({
-        url: "http://localhost:9095/hh/API/v1/entries/create"
-    }).then(function (data) {
-        alert("You have successfully created a new entry!")
-    });
 
     $.ajax({
         contentType: 'application/json',

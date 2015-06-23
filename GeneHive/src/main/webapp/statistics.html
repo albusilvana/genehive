@@ -140,25 +140,18 @@
             <button id="women" onclick="refreshWithWomen()" class="btn btn-theme">Only Women</button>
             <button id="men" onclick="refreshWithMen()" class="btn btn-theme">Only Men</button>
             <br>
-
-            <div style="padding:10px 0;"><label>Date of birth:</label> <select id="operatorBirthDate"></select> <input type="date" name="birthDay"></div>
-            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select id="operatorDiagnosisDate"></select><input type="date" name="diagnosticDay">
-            </div>
-            <div style="padding:10px 0;"><label>Date of death:</label> <input id="operatorDeathDate" type="date" name="deathDay"></div>
-            <div style="padding:10px 0;"><label>Gender:</label> <input style="height: auto;width: auto" type="radio"
-                                                                       name="sex"
-                                                                       value="M" checked> Male <input type="radio"
-                                                                                                      style="height: auto; width: auto;"
-                                                                                                      name="sex"
-                                                                                                      value="F">
-                Female
+            <div style="padding:10px;"><label>Gender:</label> <input id="gender" style="height: auto;width: auto" type="radio" name="sex"
+                                                                     value="M" checked> Male <input type="radio"
+                                                                                                    style="height: auto; width: auto;"
+                                                                                                    name="sex" value="F"> Female
                 <br></div>
+            <div style="padding:10px 0;"><label>Date of birth:</label> <select id="operatorBirthDate"></select> <input type="date" id="birthDay"></div>
+            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select id="operatorDiagnosisDate"></select><input type="date" id="diagnosticDay">
+            </div>
+            <div style="padding:10px 0;"><label>Date of death:</label>  <select id="operatorDeathDate"></select><input type="date" id="deathDay"></div>
             <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
                     id="profestionalExposure"></select>
                 for: <select id="professionalExposureOperator"></select>
-                <!--<input style="width:100px"-->
-                             <!--type="date" name="startDay"> to <input style="width:100px"-->
-                                                                    <!--type="date" name="endDay">-->
             </div>
             <div style="padding:10px 0;"><label>Mutation:</label>
                 <input id="geneName" onclick="loadNames()" title="type &quot;a&quot;">
@@ -168,7 +161,7 @@
                     class="inputText"  title="type &quot;a&quot;"></div>
             <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
 
-            <button id="search" onclick="refreshMap()" class="btn btn-theme" style="
+            <button id="search" onclick="getResults()" class="btn btn-theme" style="
     margin-left: 340px;width:250px;   margin-bottom: 10px;">Search in current entries
             </button>
 
