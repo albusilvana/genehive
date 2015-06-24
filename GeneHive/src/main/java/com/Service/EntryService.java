@@ -6,6 +6,7 @@ import com.DAO.EntryDAO;
 import com.DTO.*;
 import com.Model.Entry;
 import com.accessor.CassandraEntriesAccessor;
+import org.apache.poi.ss.usermodel.Workbook;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,8 +41,8 @@ public class EntryService {
         return entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
     }
 
-    public String getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        return csvFileWriter.writeCsvFile("exportCsv.csv", entryDAO.getExportData(searchOptionsDTO));
+    public Workbook getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return csvFileWriter.writeExcelFile(entryDAO.getExportData(searchOptionsDTO));
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,

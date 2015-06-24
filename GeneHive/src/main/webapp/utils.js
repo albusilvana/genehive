@@ -103,7 +103,7 @@ function computeSearchJsonData(){
     jsonData.dateOfBirth = bmilliseconds;
     jsonData.dateOfDiagnosis = dmilliseconds;
     jsonData.dateOfDeath = demilliseconds;
-    jsonData.gender = $("#gender").val();
+    jsonData.gender = $('input[name=sex]:checked').val();
     jsonData.professionalExposure = $("#profestionalExposure").val();
     jsonData.professionalExposureTime = $("#professionalExposureOperator").val();
     jsonData.mutation = $("#geneName").val();
@@ -145,9 +145,11 @@ function downloadCsv(format){
         data: JSON.stringify(computeSearchJsonData()),
         dataType: 'json',
         success: function (data) {
+
+            window.open("mutations.xls");
         },
         error: function () {
-            alert("Error");
+
         },
         processData: false,
         type: 'POST',

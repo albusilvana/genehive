@@ -102,17 +102,17 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
-    public List<ExportEntityDTO> getExportData( SearchOptionsDTO searchOptionsDTO) throws SQLException {
+    public List<ExportEntityDTO> getExportData(SearchOptionsDTO searchOptionsDTO) throws SQLException {
         if (!active) {
             LOG.error("CasandraEventsAccessor is not active");
         }
         List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
         String query;
-        if (!getQueryToAppend(searchOptionsDTO).equals( ";")){
-            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime gender, dateOfBirth," +
+        if (!getQueryToAppend(searchOptionsDTO).equals(";")) {
+            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionaExposureTime, gender, dateOfBirth," +
                     "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries where" + getQueryToAppend(searchOptionsDTO).substring(4);
-        } else{
-            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime gender, dateOfBirth," +
+        } else {
+            query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionaExposureTime, gender, dateOfBirth," +
                     "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries;";
         }
 
@@ -179,28 +179,27 @@ public class CassandraEntriesAccessor {
         }
         if (!searchOptionsDTO.getProfessionalExposure().equals("") && searchOptionsDTO.getProfessionalExposure() != null) {
             queryChunk = queryChunk + " AND professionalExposure = '" + searchOptionsDTO.getProfessionalExposure() + "'";
+            if (!searchOptionsDTO.getProfessionalExposureTime().equals("") && searchOptionsDTO.getProfessionalExposureTime() != null) {
+                queryChunk = queryChunk + " AND professionaExposureTime <= '" + searchOptionsDTO.getProfessionalExposureTime() + "'";
+            }
             noCondition = false;
         }
 
-        if ( searchOptionsDTO.getDateOfBirth() != null) {
+        if (searchOptionsDTO.getDateOfBirth() != null) {
             queryChunk = queryChunk + " AND dateOfBirth " + searchOptionsDTO.getDateOfBirthOperator() + " '" + searchOptionsDTO.getDateOfBirth() + "'";
             noCondition = false;
         }
 
-        if ( searchOptionsDTO.getDateOfDiagnosis() != null) {
+        if (searchOptionsDTO.getDateOfDiagnosis() != null) {
             queryChunk = queryChunk + " AND dateOfDiagnosis " + searchOptionsDTO.getDateOfDiagnosisOperator() + " '" + searchOptionsDTO.getDateOfDiagnosis() + "'";
             noCondition = false;
         }
 
-        if ( searchOptionsDTO.getDateOfDeath() != null) {
+        if (searchOptionsDTO.getDateOfDeath() != null) {
             queryChunk = queryChunk + " AND dateOfDeath " + searchOptionsDTO.getDateOfDeathOperator() + " '" + searchOptionsDTO.getDateOfDeath() + "'";
             noCondition = false;
         }
 
-        if (!searchOptionsDTO.getProfessionalExposureTime().equals("") && searchOptionsDTO.getProfessionalExposureTime() != null) {
-            queryChunk = queryChunk + " AND professionaExposureTime <= '" + searchOptionsDTO.getProfessionalExposureTime() + "'";
-            noCondition = false;
-        }
 
         if (noCondition) {
             return ";";

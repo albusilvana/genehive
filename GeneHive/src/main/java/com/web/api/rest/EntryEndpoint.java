@@ -6,7 +6,9 @@ import com.DTO.EntryDTO;
 import com.DTO.EntryFromUIDTO;
 import com.Service.EntryService;
 import com.google.inject.Inject;
+import org.apache.poi.ss.usermodel.Workbook;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -107,21 +109,25 @@ public class EntryEndpoint {
     @POST
     @Path("export/csv")
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<BasicEntityDTO> exportToCsv(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-        List<BasicEntityDTO>  resp = entryService.getEntitiesFiltered(searchOptionsDTO);
-        return resp;
+    public Response exportToCsv(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
+        return Response.ok(workbook).header("Content-Disposition", "attachment; filename=" + "Mutations.xls").build();
     }
 
     @POST
     @Path("export/pdf")
-    @Produces({"application/ms-excel"})
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response exportToPdf(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-        String fileLoc = entryService.getCSVExportLocation(searchOptionsDTO);
-        File file=new File(fileLoc);
-        return Response.ok(fileLoc,"application/ms-excel")
-                .header("Content-Disposition", "attachment;filename=MutationData.csv")
-                .build();
+    public javax.ws.rs.core.Response exportToPdf(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
+
+        String FILE_PATH = "/Users/salbu/Desktop/itshappening/GeneHive/mutations.xls";
+
+        File file = new File(FILE_PATH);
+
+        Response.ResponseBuilder response = Response.ok((Object) file);
+        response.header("Content-Disposition",
+                "attachment; filename=new-excel-file.xls");
+        return response.build();
     }
 
 

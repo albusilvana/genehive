@@ -28,11 +28,10 @@ CREATE TABLE Genes (
     PRIMARY KEY (geneCode)
 );
 
-
 CREATE INDEX CountryIndex
    ON Entries_Space.Entries (countryCode);
 
-CREATE INDEX GenderIndex
+CREATE INDEX GenderIndex1
    ON Entries_Space.Entries (gender);
 
 CREATE INDEX MutationIndex

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>GeneHive</title>
@@ -134,11 +134,13 @@
             <input type="radio" checked="" value="highlight" onchange="refreshWithAll()" name="mapType"
                    style="height: auto; width: auto;"> Highlight
 
-            <div style="padding:10px 0;"><label>Gender:</label> <input id="gender" style="height: auto;width: auto" type="radio" name="sex"
-                                                                     value="M" checked> Male <input type="radio"
-                                                                                                    style="height: auto; width: auto;"
-                                                                                                    name="sex" value="F"> Female
-                <br></div>
+            <div style="padding:10px 0;">
+                <label>Gender:</label>
+                <input type="radio"style="height: auto;width: auto"  name="sex" value="M" checked> Male</input>
+                <input type="radio"style="height: auto; width: auto;" name="sex" value="F"> Female </input>
+                <input type="radio"style="height: auto; width: auto;" name="sex" value=""> All </input>
+                <br>
+            </div>
             <div style="padding:10px 0;"><label>Date of birth:</label> <select id="operatorBirthDate"></select> <input type="date" id="birthDay"></div>
             <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select id="operatorDiagnosisDate"></select><input type="date" id="diagnosticDay">
             </div>
