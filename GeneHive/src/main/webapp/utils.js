@@ -31,11 +31,11 @@ function insertOperators() {
         $("#operatorDeathDate").append($("<option />").val(operators[i]).text(operators[i]));
     }
     var profExposure = $("#professionalExposureOperator");
-    profExposure.append($("<option />").val("31536000000").text("Under 1 Year"));
-    profExposure.append($("<option />").val("157766400000").text("Between 1 and 5 years"));
-    profExposure.append($("<option />").val("315532800000").text("Between 5 and 10 years"));
-    profExposure.append($("<option />").val("631152000000").text("Between 10 and 20 years"));
-    profExposure.append($("<option />").val("662688000000").text("Over 20 years"));
+    profExposure.append($("<option />").val(31536000000).text("Under 1 Year"));
+    profExposure.append($("<option />").val(157766400000).text("Between 1 and 5 years"));
+    profExposure.append($("<option />").val(315532800000).text("Between 5 and 10 years"));
+    profExposure.append($("<option />").val(631152000000).text("Between 10 and 20 years"));
+    profExposure.append($("<option />").val(662688000000).text("Over 20 years"));
 }
 function showInsert() {
     $("#insertContent").show();
@@ -81,11 +81,11 @@ function refreshWithAll() {
     $("#men").removeClass("selected");
 }
 
-function refreshMapWithPrediction(){
+function refreshMapWithPrediction() {
 
 }
 
-function computeSearchJsonData(){
+function computeSearchJsonData() {
     var jsonData = {};
 
     var bdate = new Date($("#birthDay").val());
@@ -105,10 +105,11 @@ function computeSearchJsonData(){
     jsonData.dateOfDeath = demilliseconds;
     jsonData.gender = $('input[name=sex]:checked').val();
     jsonData.professionalExposure = $("#profestionalExposure").val();
-    jsonData.professionalExposureTime = $("#professionalExposureOperator").val();
+    jsonData.professionalExposureTime = parseInt($("#professionalExposureOperator").val());
     jsonData.mutation = $("#geneName").val();
     jsonData.locus = $("#locus").val();
     jsonData.disorder = $("#disprderName").val();
+    console.log(jsonData);
     return jsonData;
 }
 function getResults() {
@@ -132,21 +133,51 @@ function getResults() {
         url: "http://localhost:9095/hh/API/v1/entries/filtered"
     });
 }
+$(document).on("submit", "form.fileDownloadForm", function (e) {
+    var bdate = new Date($("#birthDay").val());
+    var bmilliseconds = bdate.getTime();
 
-function downloadCsv(format){
+    var ddate = new Date($("#diagnosticDay").val());
+    var dmilliseconds = ddate.getTime();
+
+    var dedate = new Date($("#deathDay").val());
+    var demilliseconds = dedate.getTime();
+
+    var url = "http://localhost:9095/hh/API/v1/entries/export/csv?dateOfBirthOperator='" + encodeURIComponent($("#operatorBirthDate").val()) +
+        "'&dateOfDiagnosisOperator='" + encodeURIComponent( $("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent( $("#operatorDeathDate").val())
+        + "&dateOfBirth=" + bmilliseconds + "&dateOfDiagnosis=" + dmilliseconds + "&dateOfDeath=" + demilliseconds + "&gender=" +
+        $('input[name=sex]:checked').val() + "&professionalExposure="+$("#profestionalExposure").val()+"&professionalExposureTime="+
+        parseInt($("#professionalExposureOperator").val()) + "&mutation=" + $("#geneName").val() + "&locus=" + $("#locus").val() +
+        "&disorder=" + $("#disprderName").val();
+    $.fileDownload(url, {
+        preparingMessageHtml: "We are preparing your report, please wait...",
+        failMessageHtml: "There was a problem generating your report, please try again.",
+        httpMethod: "GET"
+    });
+    e.preventDefault(); //otherwise a normal form submit would occur
+});
+$(document).on("submit", "form.fileDownloadFormPdf", function (e) {
+    $.fileDownload($(this).prop('action'), {
+        preparingMessageHtml: "We are preparing your report, please wait...",
+        failMessageHtml: "There was a problem generating your report, please try again.",
+        httpMethod: "GET"
+    });
+    e.preventDefault(); //otherwise a normal form submit would occur
+});
+function downloadCsv(format) {
     var url;
-    if(format == "csv"){
-        url = "http://localhost:9095/hh/API/v1/entries/export/csv";
-    }else{
-        url =  "http://localhost:9095/hh/API/v1/entries/export/pdf"
-    }
+//    if(format == "csv"){
+    url = "http://localhost:9095/hh/API/v1/entries/export/csv";
+//    }else{
+//        url =  "http://localhost:9095/hh/API/v1/entries/export/pdf"
+//    }
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(computeSearchJsonData()),
         dataType: 'json',
         success: function (data) {
 
-            window.open("mutations.xls");
+
         },
         error: function () {
 
@@ -157,7 +188,7 @@ function downloadCsv(format){
     });
 }
 
-function downloadPdf(){
+function downloadPdf() {
 
 }
 

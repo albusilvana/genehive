@@ -11,100 +11,41 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.*;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by silvana.albert on 5/23/15.
  */
 public class CSVFileWriter {
-    //Delimiter used in CSV file
-
-    private static final String COMMA_DELIMITER = ",";
-
-    private static final String NEW_LINE_SEPARATOR = "\n";
 
     private static final String[] FILE_HEADER = {"Name", "Identification Number", "Country Code", "Mutation", "Locus",
             "Disorder", "Professional Exposure", "Professional Exposure Time", "Gender", "Age", "Age At Diagnosis",
             "Age Of Death", "Physician"};
 
-    public String writeCsvFile(String fileName, List<ExportEntityDTO> trainingModelDTOs) {
+    private static final String CSV_FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
 
-        UtilsService utilsService = new UtilsService();
 
-        FileWriter fileWriter = null;
+    public StringBuilder writeCsvFile(List<ExportEntityDTO> trainingModelDTOs) {
+        StringBuilder result = new StringBuilder();
+        result.append(CSV_FILE_HEADER + System.lineSeparator());
 
-//        try {
-//
-//            fileWriter = new FileWriter(fileName);
-//
-//            //Write the CSV file header
-//
-//            fileWriter.append(FILE_HEADER);
-//
-//            //Add a new line separator after the header
-//
-//            fileWriter.append(NEW_LINE_SEPARATOR);
-//
-//            //Write a new student object list to the CSV file
-//
-//            for (ExportEntityDTO trainingModelDTO : trainingModelDTOs) {
-//                fileWriter.append(trainingModelDTO.getName());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getIdentificationNumber());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getCountryCode());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getMutation());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getLocus());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getDisorder());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getProfessionalExposure());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(trainingModelDTO.getGender());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
-//                fileWriter.append(NEW_LINE_SEPARATOR);
-//            }
-//
-//            System.out.println("CSV file was created successfully !!!");
-//
-//        } catch (Exception e) {
-//
-//            System.out.println("Error in CsvFileWriter !!!");
-//
-//            e.printStackTrace();
-//
-//        } finally {
-//
-//            try {
-//
-//                fileWriter.flush();
-//
-//                fileWriter.close();
-//
-//            } catch (IOException e) {
-//
-//                System.out.println("Error while flushing/closing fileWriter !!!");
-//
-//                e.printStackTrace();
-//
-//            }
-//
-//        }
-        return fileName;
+
+        for (ExportEntityDTO trainingModelDTO : trainingModelDTOs) {
+            String gender = trainingModelDTO.getGender().equals("F")?"Female":"Male";
+            String country = new Locale("", trainingModelDTO.getCountryCode()).getDisplayCountry();
+            result.append(trainingModelDTO.getName() + "," + trainingModelDTO.getIdentificationNumber() + ","
+                    + country + "," + trainingModelDTO.getMutation() + ","
+                    + trainingModelDTO.getLocus() + "," + trainingModelDTO.getDisorder() + "," + trainingModelDTO.getProfessionalExposure() +
+                    "," + trainingModelDTO.getProfessionalExposureTime() + "," + gender +
+                    "," + trainingModelDTO.getAge() + "," + trainingModelDTO.getAgeOfDiagnosis() + "," + trainingModelDTO.getAgeOfDeath()
+                    + "," + trainingModelDTO.getPhysician() + System.lineSeparator());
+        }
+
+        return result;
 
     }
 
-    public Workbook writeExcelFile( List<ExportEntityDTO> trainingModelDTOs) throws IOException {
+    public Workbook writeExcelFile(List<ExportEntityDTO> trainingModelDTOs) throws IOException {
 
         Workbook wb = new HSSFWorkbook();
         FileOutputStream fileInputStream = new FileOutputStream("mutations.xls");
@@ -151,9 +92,9 @@ public class CSVFileWriter {
             cell.setCellValue(trainingModelDTO.getProfessionalExposureTime());
 
             cell = row.createCell(cellNum++);
-            if(trainingModelDTO.getGender().equals('F')){
+            if (trainingModelDTO.getGender().equals('F')) {
                 cell.setCellValue("Female");
-            }else{
+            } else {
                 cell.setCellValue("Male");
             }
 
@@ -171,9 +112,9 @@ public class CSVFileWriter {
 
             rownum++;
 
-            }
+        }
 
-            System.out.println("Excel file was created successfully !!!");
+        System.out.println("Excel file was created successfully !!!");
         wb.write(fileInputStream);
         fileInputStream.close();
         return wb;

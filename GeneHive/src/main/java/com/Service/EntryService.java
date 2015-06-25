@@ -41,8 +41,8 @@ public class EntryService {
         return entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
     }
 
-    public Workbook getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        return csvFileWriter.writeExcelFile(entryDAO.getExportData(searchOptionsDTO));
+    public StringBuilder getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return csvFileWriter.writeCsvFile( entryDAO.getExportData(searchOptionsDTO));
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,

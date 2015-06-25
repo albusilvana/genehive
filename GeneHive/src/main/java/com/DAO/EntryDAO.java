@@ -118,7 +118,7 @@ public class EntryDAO {
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
                               String dateOfDeath, String gender, String professionalExposure, String professionalExposureTime, String details, String mutation, String locus, String disorder, String physician) throws Exception {
         cassandraEntriesAccessor.activate();
-        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionaExposureTime, details, mutation,locus, disorder, physician)VALUES(";
+        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionalExposureTime, details, mutation,locus, disorder, physician)VALUES(";
 
         s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
                 + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath

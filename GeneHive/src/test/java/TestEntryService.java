@@ -26,7 +26,6 @@ public class TestEntryService {
     }
 
     @Test
-    @Ignore
     public void testInsertEntries() throws Exception {
         System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
         System.out.print("Now it is inserting: " + 10000 + " results");

@@ -10,7 +10,7 @@ CREATE TABLE Entries (
     dateOfDeath timestamp,
     gender text,
     professionalExposure text,
-    professionaExposureTime timestamp,
+    professionalExposureTime timestamp,
     details text,
     mutation text,
     locus text,
@@ -21,12 +21,6 @@ CREATE TABLE Entries (
     comment='Patients with discovered entries' AND
     caching = 'NONE' AND
     compression={'sstable_compression': 'SnappyCompressor'};
-
-CREATE TABLE Genes (
-    geneCode text,
-    geneName text,
-    PRIMARY KEY (geneCode)
-);
 
 CREATE INDEX CountryIndex
    ON Entries_Space.Entries (countryCode);

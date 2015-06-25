@@ -1,9 +1,6 @@
 package com.web.api.rest;
 
-import com.DTO.BasicEntityDTO;
-import com.DTO.EnhancedBasicEntityDTO;
-import com.DTO.EntryDTO;
-import com.DTO.EntryFromUIDTO;
+import com.DTO.*;
 import com.Service.EntryService;
 import com.google.inject.Inject;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -102,29 +99,36 @@ public class EntryEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<BasicEntityDTO> getFilteredEntries(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-        List<BasicEntityDTO>  resp = entryService.getEntitiesFiltered(searchOptionsDTO);
+        List<BasicEntityDTO> resp = entryService.getEntitiesFiltered(searchOptionsDTO);
         return resp;
     }
 
-    @POST
+    @GET
     @Path("export/csv")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response exportToCsv(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
-        return Response.ok(workbook).header("Content-Disposition", "attachment; filename=" + "Mutations.xls").build();
+    @Produces("text/plain")
+    public Response exportToCsv(@QueryParam("dateOfBirthOperator") String dateOfBirthOperator, @QueryParam("dateOfDiagnosisOperator") String dateOfDiagnosisOperator,
+                                @QueryParam("dateOfDeathOperator") String dateOfDeathOperator, @QueryParam("dateOfBirth") String dateOfBirth,
+                                @QueryParam("dateOfDiagnosis") String dateOfDiagnosis, @QueryParam("dateOfDeath") String dateOfDeath,
+                                @QueryParam("gender") String gender, @QueryParam("professionalExposure") String professionalExposure,
+                                @QueryParam("professionalExposureTime") String professionalExposureTime, @QueryParam("mutation") String mutation,
+                                @QueryParam("locus") String locus, @QueryParam("disorder") String disorder) throws Exception {
+        StringBuilder sb = entryService.getCSVExportLocation(new SearchOptionsDTO());
+
+        return Response.ok(sb.toString()).header("Content-Disposition", "attachment; filename=" + "mutations.csv").build();
     }
 
     @POST
     @Path("export/pdf")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/vnd.ms-excel")
     public javax.ws.rs.core.Response exportToPdf(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
-
+//        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
+//
         String FILE_PATH = "/Users/salbu/Desktop/itshappening/GeneHive/mutations.xls";
+//
+//        File file = new File(FILE_PATH);
 
-        File file = new File(FILE_PATH);
-
-        Response.ResponseBuilder response = Response.ok((Object) file);
+        Response.ResponseBuilder response = Response.ok(null);
         response.header("Content-Disposition",
                 "attachment; filename=new-excel-file.xls");
         return response.build();
