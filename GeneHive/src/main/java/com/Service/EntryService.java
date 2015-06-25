@@ -19,6 +19,7 @@ public class EntryService {
 
     private EntryDAO entryDAO = new EntryDAO();
     private CSVFileWriter csvFileWriter = new CSVFileWriter();
+    private PDFFileWriter pdfFileWriter = new PDFFileWriter();
 
 
     public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
@@ -42,7 +43,12 @@ public class EntryService {
     }
 
     public StringBuilder getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        return csvFileWriter.writeCsvFile( entryDAO.getExportData(searchOptionsDTO));
+        return csvFileWriter.writeCsvFile(entryDAO.getExportData(searchOptionsDTO));
+    }
+
+    public String getPDFExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        pdfFileWriter.createPdf("mutations.pdf", entryDAO.getExportData(searchOptionsDTO));
+        return "/Users/silvana.albert/Desktop/itshappening/exportData.pdf";
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,

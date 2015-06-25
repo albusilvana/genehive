@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by silvana.albert on 6/7/15.
@@ -35,75 +36,61 @@ public class PDFFileWriter {
      * @throws    DocumentException
      * @throws    IOException
      */
-    public static void createPdf(String filename, List<ExportEntityDTO> trainingModelDTOs)
+    public boolean createPdf(String filename, List<ExportEntityDTO> trainingModelDTOs)
             throws DocumentException, IOException {
         // step 1
-        Document document = new Document();
+        Document document = new Document(PageSize.A3.rotate(), 0, 0, 0, 0);
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
         // step 3
         document.open();
 
-        String RESOURCE = "/Users/silvana.albert/Desktop/itshappening/HealthHarvester/src/main/java/com/Utils/logo.png";
+        String RESOURCE = "/Users/salbu/Desktop/itshappening/GeneHive/src/main/java/com/Service/logo.png";
         com.itextpdf.text.Image img;
         java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
         img = com.itextpdf.text.Image.getInstance(awtImage, null);
 
         document.add(img);
         // step 4
-        document.add(new Paragraph("List of patients with mutations"));
-        // step 5
 
         document.add(createTable(trainingModelDTOs));
 
         document.close();
+        return true;
     }
 
     public static PdfPTable createTable(List<ExportEntityDTO> trainingModelDTOs) {
         // a table with three columns
-        PdfPTable table = new PdfPTable(11);
+        PdfPTable table = new PdfPTable(13);
+        table.setWidthPercentage(90);
+        table.setSpacingBefore(10);
+        table.setSpacingAfter(10);
         // the cell object
         PdfPCell cell;
 
-        String[] header ="Name, Identification Number,Country Code,Mutation,Disorder,Professional Exposure,Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
+        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
         for(int i=0; i<header.length; i++){
-            cell = new PdfPCell(new Phrase(header[i]));
-            cell.setColspan(1);
-            table.addCell(cell);
+            table.addCell(header[i]);
         }
-        // we add a cell with colspan 3
 
+        for (ExportEntityDTO trainingModelDTO : trainingModelDTOs) {
+            String gender = trainingModelDTO.getGender().equals("F") ? "Female" : "Male";
+            String country = new Locale("", trainingModelDTO.getCountryCode()).getDisplayCountry();
 
-        // we add the four remaining cells with addCell()
-//        table.addCell("row 1; cell 1");
-//        table.addCell("row 1; cell 2");
-//        table.addCell("row 2; cell 1");
-//        table.addCell("row 2; cell 2");
-
-//        for(ExportEntityDTO trainingModelDTO: trainingModelDTOs){
-//            fileWriter.append(trainingModelDTO.getName());
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(trainingModelDTO.getIdentificationNumber());
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(trainingModelDTO.getCountryCode());
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(utilsService.getMutationCodes(trainingModelDTO.getMutationentries()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(utilsService.getMutationDisorders(trainingModelDTO.getMutationentries()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(utilsService.getProfessionalExposure(trainingModelDTO.getProfessionalExposures()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(trainingModelDTO.getGender());
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(String.valueOf(trainingModelDTO.getAge()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(String.valueOf(trainingModelDTO.getAgeOfDeath()));
-//            fileWriter.append(COMMA_DELIMITER);
-//            fileWriter.append(String.valueOf(trainingModelDTO.getPhysician()));
-//            fileWriter.append(NEW_LINE_SEPARATOR);
-//        }
+            table.addCell(trainingModelDTO.getName());
+            table.addCell(trainingModelDTO.getIdentificationNumber());
+            table.addCell(country);
+            table.addCell(trainingModelDTO.getMutation());
+            table.addCell(trainingModelDTO.getLocus());
+            table.addCell(trainingModelDTO.getDisorder());
+            table.addCell(trainingModelDTO.getProfessionalExposure());
+            table.addCell(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
+            table.addCell(gender);
+            table.addCell(String.valueOf(trainingModelDTO.getAge()));
+            table.addCell(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
+            table.addCell(String.valueOf(trainingModelDTO.getAgeOfDeath()));
+            table.addCell(trainingModelDTO.getPhysician());
+        }
         return table;
     }
 }

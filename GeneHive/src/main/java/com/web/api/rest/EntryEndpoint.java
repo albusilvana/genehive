@@ -112,25 +112,88 @@ public class EntryEndpoint {
                                 @QueryParam("gender") String gender, @QueryParam("professionalExposure") String professionalExposure,
                                 @QueryParam("professionalExposureTime") String professionalExposureTime, @QueryParam("mutation") String mutation,
                                 @QueryParam("locus") String locus, @QueryParam("disorder") String disorder) throws Exception {
-        StringBuilder sb = entryService.getCSVExportLocation(new SearchOptionsDTO());
+
+        SearchOptionsDTO searchOptionsDTO = new SearchOptionsDTO();
+        if (!mutation.equals("")) {
+            searchOptionsDTO.setMutation(mutation);
+        }
+        if (!locus.equals("")) {
+            searchOptionsDTO.setLocus(locus);
+        }
+        if (!disorder.equals("")) {
+            searchOptionsDTO.setDisorder(disorder);
+        }
+        if (!gender.equals("")) {
+            searchOptionsDTO.setGender(gender);
+        }
+        if (!professionalExposure.equals("")) {
+            searchOptionsDTO.setProfessionalExposure(professionalExposure);
+            searchOptionsDTO.setProfessionalExposureTime(professionalExposureTime);
+        }
+        if (dateOfBirth != null && !dateOfBirth.equals("NaN")) {
+            searchOptionsDTO.setDateOfBirth(dateOfBirth);
+            searchOptionsDTO.setDateOfBirthOperator(dateOfBirthOperator);
+        }
+        if (dateOfDiagnosis != null && !dateOfDiagnosis.equals("NaN")) {
+            searchOptionsDTO.setDateOfDiagnosis(dateOfDiagnosis);
+            searchOptionsDTO.setDateOfDiagnosisOperator(dateOfDiagnosisOperator);
+        }
+        if (dateOfDeath != null && !dateOfDeath.equals("NaN")) {
+            searchOptionsDTO.setDateOfDeath(dateOfDeath);
+            searchOptionsDTO.setDateOfDeathOperator(dateOfDeathOperator);
+        }
+
+        StringBuilder sb = entryService.getCSVExportLocation(searchOptionsDTO);
 
         return Response.ok(sb.toString()).header("Content-Disposition", "attachment; filename=" + "mutations.csv").build();
     }
 
-    @POST
+    @GET
     @Path("export/pdf")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces("application/vnd.ms-excel")
-    public javax.ws.rs.core.Response exportToPdf(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
-//        Workbook workbook = entryService.getCSVExportLocation(searchOptionsDTO);
-//
-        String FILE_PATH = "/Users/salbu/Desktop/itshappening/GeneHive/mutations.xls";
-//
-//        File file = new File(FILE_PATH);
+    @Produces("application/pdf")
+    public javax.ws.rs.core.Response exportToPdf(@QueryParam("dateOfBirthOperator") String dateOfBirthOperator, @QueryParam("dateOfDiagnosisOperator") String dateOfDiagnosisOperator,
+                                                 @QueryParam("dateOfDeathOperator") String dateOfDeathOperator, @QueryParam("dateOfBirth") String dateOfBirth,
+                                                 @QueryParam("dateOfDiagnosis") String dateOfDiagnosis, @QueryParam("dateOfDeath") String dateOfDeath,
+                                                 @QueryParam("gender") String gender, @QueryParam("professionalExposure") String professionalExposure,
+                                                 @QueryParam("professionalExposureTime") String professionalExposureTime, @QueryParam("mutation") String mutation,
+                                                 @QueryParam("locus") String locus, @QueryParam("disorder") String disorder) throws Exception {
 
-        Response.ResponseBuilder response = Response.ok(null);
+        SearchOptionsDTO searchOptionsDTO = new SearchOptionsDTO();
+        if (!mutation.equals("")) {
+            searchOptionsDTO.setMutation(mutation);
+        }
+        if (!locus.equals("")) {
+            searchOptionsDTO.setLocus(locus);
+        }
+        if (!disorder.equals("")) {
+            searchOptionsDTO.setDisorder(disorder);
+        }
+        if (!gender.equals("")) {
+            searchOptionsDTO.setGender(gender);
+        }
+        if (!professionalExposure.equals("")) {
+            searchOptionsDTO.setProfessionalExposure(professionalExposure);
+            searchOptionsDTO.setProfessionalExposureTime(professionalExposureTime);
+        }
+        if (dateOfBirth != null && !dateOfBirth.equals("NaN")) {
+            searchOptionsDTO.setDateOfBirth(dateOfBirth);
+            searchOptionsDTO.setDateOfBirthOperator(dateOfBirthOperator);
+        }
+        if (dateOfDiagnosis != null && !dateOfDiagnosis.equals("NaN")) {
+            searchOptionsDTO.setDateOfDiagnosis(dateOfDiagnosis);
+            searchOptionsDTO.setDateOfDiagnosisOperator(dateOfDiagnosisOperator);
+        }
+        if (dateOfDeath != null && !dateOfDeath.equals("NaN")) {
+            searchOptionsDTO.setDateOfDeath(dateOfDeath);
+            searchOptionsDTO.setDateOfDeathOperator(dateOfDeathOperator);
+        }
+
+        String fileName = entryService.getPDFExportLocation(searchOptionsDTO);
+        File file = new File(fileName);
+
+        Response.ResponseBuilder response = Response.ok((Object) file);
         response.header("Content-Disposition",
-                "attachment; filename=new-excel-file.xls");
+                "attachment; filename=mutations.pdf");
         return response.build();
     }
 

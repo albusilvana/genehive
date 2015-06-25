@@ -15,17 +15,18 @@ public class ExportDataGeneratorService {
 //        CSVFileWriter.writeCsvFile("exportData.csv", entryDAO.getAllTrainingModels());
 //    }
 
-    public static void generatePDF() throws Exception {
-        PDFFileWriter.createPdf("exportData.pdf", null);
-    }
-
-    public static void main(String[] args) throws Exception {
-        ExportDataGeneratorService.generatePDF();
-        return;
-    }
-
-    public void exportDataToCsv(SearchOptionsDTO searchOptionsDTO){
-
-
-    }
+//    public static void generatePDF() throws Exception {
+//
+//        PDFFileWriter.createPdf("exportData.pdf", entryDAO.getExportData(new SearchOptionsDTO()));
+//    }
+//
+//    public static void main(String[] args) throws Exception {
+//        ExportDataGeneratorService.generatePDF();
+//        return;
+//    }
+//
+//    public void exportDataToCsv(SearchOptionsDTO searchOptionsDTO){
+//
+//
+//    }
 }

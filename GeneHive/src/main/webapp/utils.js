@@ -157,7 +157,22 @@ $(document).on("submit", "form.fileDownloadForm", function (e) {
     e.preventDefault(); //otherwise a normal form submit would occur
 });
 $(document).on("submit", "form.fileDownloadFormPdf", function (e) {
-    $.fileDownload($(this).prop('action'), {
+    var bdate = new Date($("#birthDay").val());
+    var bmilliseconds = bdate.getTime();
+
+    var ddate = new Date($("#diagnosticDay").val());
+    var dmilliseconds = ddate.getTime();
+
+    var dedate = new Date($("#deathDay").val());
+    var demilliseconds = dedate.getTime();
+
+    var url = "http://localhost:9095/hh/API/v1/entries/export/pdf?dateOfBirthOperator='" + encodeURIComponent($("#operatorBirthDate").val()) +
+        "'&dateOfDiagnosisOperator='" + encodeURIComponent( $("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent( $("#operatorDeathDate").val())
+        + "&dateOfBirth=" + bmilliseconds + "&dateOfDiagnosis=" + dmilliseconds + "&dateOfDeath=" + demilliseconds + "&gender=" +
+        $('input[name=sex]:checked').val() + "&professionalExposure="+$("#profestionalExposure").val()+"&professionalExposureTime="+
+        parseInt($("#professionalExposureOperator").val()) + "&mutation=" + $("#geneName").val() + "&locus=" + $("#locus").val() +
+        "&disorder=" + $("#disprderName").val();
+    $.fileDownload(url, {
         preparingMessageHtml: "We are preparing your report, please wait...",
         failMessageHtml: "There was a problem generating your report, please try again.",
         httpMethod: "GET"
