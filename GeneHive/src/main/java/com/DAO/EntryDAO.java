@@ -123,7 +123,7 @@ public class EntryDAO {
         s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
                 + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath
                 + "," + gender + "," + professionalExposure + "," + professionalExposureTime + "," + details + "," + mutation + "," + locus + "," + disorder + "," + physician + ");");
-        System.out.println(s);
+//        System.out.println(s);
         boolean result = cassandraEntriesAccessor.insertEntry(s);
 
         if (result) {

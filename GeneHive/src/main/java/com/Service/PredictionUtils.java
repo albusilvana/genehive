@@ -1,22 +1,23 @@
 package com.Service;
 
+//import weka.classifiers.Classifier;
+//import weka.classifiers.Evaluation;
+//import weka.classifiers.evaluation.NominalPrediction;
+//import weka.classifiers.meta.FilteredClassifier;
+//import weka.classifiers.trees.J48;
+//import weka.core.FastVector;
+//import weka.core.Instances;
+//import weka.filters.unsupervised.attribute.Remove;
+//
 //import java.io.BufferedReader;
 //import java.io.FileNotFoundException;
 //import java.io.FileReader;
 //import java.util.Random;
-//import weka.classifiers.Classifier;
-//import weka.classifiers.Evaluation;
-//import weka.classifiers.evaluation.NominalPrediction;
-//import weka.classifiers.trees.J48;
-//import weka.core.FastVector;
-//import weka.classifiers.meta.FilteredClassifier;
-//import weka.core.Instances;
-//import weka.filters.unsupervised.attribute.Remove;
-
-/**
- * Created by silvana.albert on 5/24/15.
- */
-public class PredictionUtils {
+//
+///**
+// * Created by silvana.albert on 5/24/15.
+// */
+//public class PredictionUtils {
 //    public static BufferedReader readDataFile(String filename) {
 //        BufferedReader inputReader = null;
 //
@@ -29,7 +30,7 @@ public class PredictionUtils {
 //        return inputReader;
 //    }
 //    public static void main(String[] args) throws Exception {
-//        BufferedReader datafile = readDataFile("/Users/silvana.albert/Desktop/itshappening/HealthHarvester/src/main/java/com/defectPrediction.arff");
+//        BufferedReader datafile = readDataFile("/Users/salbu/Desktop/itshappening/GeneHive/src/main/java/com/defectPrediction.arff");
 //
 //        Instances data = new Instances(datafile);
 //        Random rand = new Random();
@@ -105,4 +106,4 @@ public class PredictionUtils {
 //
 //        return 100 * correct / predictions.size();
 //    }
-}
+//}

@@ -1,21 +1,23 @@
 package com.accessor;
 
-import java.sql.SQLException;
-import java.util.*;
-
 import com.DTO.BasicEntityDTO;
 import com.DTO.ExportEntityDTO;
 import com.DTO.SearchOptionsDTO;
 import com.Service.DateUtils;
-import com.Model.Entity;
 import com.Service.UtilsService;
-import com.datastax.driver.core.*;
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
+import com.datastax.driver.core.Session;
+import com.google.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.Model.Entry;
-
-import com.google.inject.Singleton;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -140,7 +142,7 @@ public class CassandraEntriesAccessor {
             if (dateOfDeath != null) {
                 dateOfDeathAge = DateUtils.getAge(dateOfDeath);
             }
-            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, DateUtils.getAge(professionalExposureTime), gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, disorder, locus, professionalExposure, DateUtils.getAge(professionalExposureTime), gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }

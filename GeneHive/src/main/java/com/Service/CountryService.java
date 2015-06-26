@@ -18,9 +18,8 @@ public class CountryService {
         String[] countries = Locale.getISOCountries();
 
         // print countries
-        System.out.println("Countries are:");
         for (int i = 0; i < countries.length; i++) {
-            System.out.println(i + ":" + countries[i]);
+            System.out.print(countries[i] + ",");
         }
 
         CountryService.getCountryNameByCode("RO");

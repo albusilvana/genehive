@@ -51,3 +51,6 @@ $ ./cqlsh 127.0.0.1 9042
 select count(*) from Entries_Space.Entries where countryCode = 'RO' and gender = 'F' ALLOW FILTERING;
 
 drop keyspace Entries;
+
+truncate system_traces.events;
+truncate system_traces.sessions;
