@@ -1,15 +1,14 @@
 package com.Service;
 
 import com.DTO.ExportEntityDTO;
-import com.DTO.TrainingModelDTO;
-import com.Service.UtilsService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,7 +21,7 @@ public class CSVFileWriter {
             "Disorder", "Professional Exposure", "Professional Exposure Time", "Gender", "Age", "Age At Diagnosis",
             "Age Of Death", "Physician"};
 
-    private static final String CSV_FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
+    private static final String CSV_FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
 
 
     public StringBuilder writeCsvFile(List<ExportEntityDTO> trainingModelDTOs) {
@@ -36,7 +35,7 @@ public class CSVFileWriter {
             result.append(trainingModelDTO.getName() + "," + trainingModelDTO.getIdentificationNumber() + ","
                     + country + "," + trainingModelDTO.getMutation() + ","
                     + trainingModelDTO.getLocus() + "," + trainingModelDTO.getDisorder() + "," + trainingModelDTO.getProfessionalExposure() +
-                    "," + trainingModelDTO.getProfessionalExposureTime() + "," + gender +
+                    "," + gender +
                     "," + trainingModelDTO.getAge() + "," + trainingModelDTO.getAgeOfDiagnosis() + "," + trainingModelDTO.getAgeOfDeath()
                     + "," + trainingModelDTO.getPhysician() + System.lineSeparator());
         }

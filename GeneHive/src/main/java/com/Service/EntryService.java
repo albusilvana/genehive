@@ -58,7 +58,7 @@ public class EntryService {
 
     public String getPDFExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
         pdfFileWriter.createPdf("mutations.pdf", entryDAO.getExportData(searchOptionsDTO));
-        return "/Users/silvana.albert/Desktop/itshappening/exportData.pdf";
+        return "/Users/salbu/Desktop/itshappening/GeneHive/mutations.pdf";
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,

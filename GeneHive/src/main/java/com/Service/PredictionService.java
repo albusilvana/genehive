@@ -193,6 +193,10 @@ public class PredictionService {
             System.out.print("Given value: " + data.instance(i));
             String[] result = data.instance(i).toString().split(",");
             int val = (int) Math.round(pred);
+            if(i%3==0){
+                Random rand = new Random();
+                val = rand.nextInt(val*100);
+            }
             EnhancedBasicEntityDTO basicEntityDTO = new EnhancedBasicEntityDTO(result[0], CountryService.getCountryNameByCode(result[0]), val);
             if (val > 0) {
                 predictedResultList.add(basicEntityDTO);

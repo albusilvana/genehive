@@ -236,7 +236,7 @@ public class CassandraEntriesAccessor {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             Row row = iter.next();
-            ;
+
             no = row.getLong(0);
         }
         return no;

@@ -1,13 +1,14 @@
 package com.Service;
 
 import com.DTO.ExportEntityDTO;
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.awt.*;
-import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -61,14 +62,14 @@ public class PDFFileWriter {
 
     public static PdfPTable createTable(List<ExportEntityDTO> trainingModelDTOs) {
         // a table with three columns
-        PdfPTable table = new PdfPTable(13);
+        PdfPTable table = new PdfPTable(12);
         table.setWidthPercentage(90);
         table.setSpacingBefore(10);
         table.setSpacingAfter(10);
         // the cell object
         PdfPCell cell;
 
-        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
+        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
         for(int i=0; i<header.length; i++){
             table.addCell(header[i]);
         }
@@ -84,7 +85,7 @@ public class PDFFileWriter {
             table.addCell(trainingModelDTO.getLocus());
             table.addCell(trainingModelDTO.getDisorder());
             table.addCell(trainingModelDTO.getProfessionalExposure());
-            table.addCell(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
+//            table.addCell(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
             table.addCell(gender);
             table.addCell(String.valueOf(trainingModelDTO.getAge()));
             table.addCell(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));

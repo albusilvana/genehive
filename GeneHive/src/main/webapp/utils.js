@@ -13,6 +13,9 @@ $(document).ready(function () {
     insertProfesionalExposure();
     insertOperators();
     refreshWithAll();
+    $("#loadingSearch").hide();
+    $("#loadingPredict").hide();
+    $("#loadingInsert").hide();
 });
 
 function insertProfesionalExposure() {
@@ -49,6 +52,7 @@ function showInsert() {
 }
 
 function showHome() {
+
     $("#homeContent").show();
     $("#statisticsContent").hide();
     $("#insertContent").hide();
@@ -83,6 +87,7 @@ function refreshWithAll() {
 }
 
 function refreshMapWithPrediction() {
+    $("#loadingPredict").show();
     var selectedVal = $('input[name=mapType]:checked').val();
     var bdate = new Date($("#predDay").val());
     var bmilliseconds = bdate.getTime();
@@ -102,9 +107,9 @@ function refreshMapWithPrediction() {
             } else {
                 loadHighLightData(data);
             }
+            $("#loadingPredict").hide();
         },
         error: function () {
-            alert("Error");
         },
         processData: false,
         type: 'POST',
@@ -140,6 +145,7 @@ function computeSearchJsonData() {
     return jsonData;
 }
 function getResults() {
+    $("#loadingSearch").show();
     var selectedVal = $('input[name=mapType]:checked').val();
     var url = "";
     if (selectedVal == "cluster") {
@@ -157,9 +163,10 @@ function getResults() {
             } else {
                 loadHighLightData(data);
             }
+            $("#loadingSearch").hide();
         },
         error: function () {
-            alert("Error");
+
         },
         processData: false,
         type: 'POST',
@@ -212,35 +219,9 @@ $(document).on("submit", "form.fileDownloadFormPdf", function (e) {
     });
     e.preventDefault(); //otherwise a normal form submit would occur
 });
-function downloadCsv(format) {
-    var url;
-//    if(format == "csv"){
-    url = "http://localhost:9095/hh/API/v1/entries/export/csv";
-//    }else{
-//        url =  "http://localhost:9095/hh/API/v1/entries/export/pdf"
-//    }
-    $.ajax({
-        contentType: 'application/json',
-        data: JSON.stringify(computeSearchJsonData()),
-        dataType: 'json',
-        success: function (data) {
-
-
-        },
-        error: function () {
-
-        },
-        processData: false,
-        type: 'POST',
-        url: url
-    });
-}
-
-function downloadPdf() {
-
-}
 
 function saveEntry() {
+    $("#loadingInsert").show();
     var jsonData = {};
 
     var bdate = new Date($("#insertBirthDate").val());
@@ -263,7 +244,7 @@ function saveEntry() {
     jsonData.dateOfDiagnosis = dmilliseconds;
     jsonData.dateOfDeath = demilliseconds;
     jsonData.gender = "'" + $("#insertGender").val() + "'";
-    jsonData.professionalExposure = $("#insertProfestionalExposure").val();
+    jsonData.professionalExposure =  "'" + $("#insertProfestionalExposure").val()+  "'";
     jsonData.professionalExposureTime = "'" + pemilliseconds + "'";
     jsonData.details = "'" + $("#insertDetails").val() + "'";
     jsonData.mutation = "'" + $("#insertMutation").val() + "'";
@@ -271,22 +252,21 @@ function saveEntry() {
     jsonData.disorder = "'" + $("#insertDisorder").val() + "'";
     jsonData.physician = "'" + $("#insertPhisician").val() + "'";
 
-
+    $("#loadingInsert").hide();
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(jsonData),
         dataType: 'json',
         success: function (data) {
+
             alert("You have successfully created a new entry.");
         },
         error: function () {
-            alert("The entry could not be saved.");
         },
         processData: false,
         type: 'POST',
         url: "http://localhost:9095/hh/API/v1/entries/create"
     });
-    console.log(jsonData);
 
 
 }
@@ -298,7 +278,7 @@ function loadHighLightData(data) {
     $('#container').highcharts('Map', {
 
         title: {
-            text: 'Disorders by country'
+            text: 'Entries by country'
         },
 
         legend: {
@@ -367,7 +347,7 @@ function loadClusterData(data) {
         },
 
         title: {
-            text: 'Disorders by country'
+            text: 'Entries by country'
         },
 
         subtitle: {
