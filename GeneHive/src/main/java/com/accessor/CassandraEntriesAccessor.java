@@ -153,6 +153,7 @@ public class CassandraEntriesAccessor {
         long no = 0;
         String query = "select count(*) from Entries_Space.Entries where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO);
         ResultSet resultSet = session.execute(query);
+        System.out.println(query);
         for (Row aResultSet : resultSet) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();

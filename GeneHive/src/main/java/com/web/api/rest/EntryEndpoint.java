@@ -1,11 +1,12 @@
 package com.web.api.rest;
 
-import com.DTO.*;
+import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
+import com.DTO.EntryFromUIDTO;
+import com.DTO.SearchOptionsDTO;
 import com.Service.EntryService;
 import com.google.inject.Inject;
-import org.apache.poi.ss.usermodel.Workbook;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -102,6 +103,34 @@ public class EntryEndpoint {
         List<BasicEntityDTO> resp = entryService.getEntitiesFiltered(searchOptionsDTO);
         return resp;
     }
+
+    @POST
+    @Path("filtered/highlight")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<EnhancedBasicEntityDTO> getHighlightFilteredEntries(com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        List<EnhancedBasicEntityDTO> resp = entryService.getEnhancedEntitiesFiltered(searchOptionsDTO);
+        return resp;
+    }
+
+    @POST
+    @Path("predicted")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicEntityDTO> getFilteredPredictedEntries(@QueryParam("dateOfPrediction") String dateOfPrediction,com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        List<BasicEntityDTO> resp = entryService.getPredictedResults(searchOptionsDTO, dateOfPrediction);
+        return resp;
+    }
+
+    @POST
+    @Path("predicted/highlight")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<EnhancedBasicEntityDTO> getFilteredPredictedHighlightEntries(@QueryParam("dateOfPrediction") String dateOfPrediction,com.DTO.SearchOptionsDTO searchOptionsDTO) throws Exception {
+        List<EnhancedBasicEntityDTO> resp = entryService.getEnhancedPredictedResults(searchOptionsDTO, dateOfPrediction);
+        return resp;
+    }
+
 
     @GET
     @Path("export/csv")

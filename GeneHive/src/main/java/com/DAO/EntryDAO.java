@@ -1,12 +1,13 @@
 package com.DAO;
 
 import com.Convertor.core.EntryDTOConvertor;
-import com.DTO.*;
-import com.Model.Entry;
+import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
+import com.DTO.ExportEntityDTO;
+import com.DTO.SearchOptionsDTO;
 import com.Service.CountryService;
 import com.accessor.CassandraEntriesAccessor;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -95,6 +96,25 @@ public class EntryDAO {
         }
         return returnList;
     }
+
+    public List<EnhancedBasicEntityDTO> getFilteredEnhancedEntitiesDto(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        cassandraEntriesAccessor.activate();
+
+        List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
+        String[] countries = Locale.getISOCountries();
+        for (String country : countries) {
+            EnhancedBasicEntityDTO newEntityDTO = new EnhancedBasicEntityDTO();
+            newEntityDTO.setCode(country);
+            newEntityDTO.setName(CountryService.getCountryNameByCode(country));
+            int val = (int) cassandraEntriesAccessor.readMutationByCountryFiltered(country, searchOptionsDTO);
+            newEntityDTO.setValue(val);
+            if(val>0){
+                returnList.add(newEntityDTO);
+            }
+        }
+        return returnList;
+    }
+
 
     public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
         cassandraEntriesAccessor.activate();

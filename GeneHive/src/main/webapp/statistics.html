@@ -139,13 +139,13 @@
                 <label>Gender:</label>
                 <input type="radio"style="height: auto;width: auto"  name="sex" value="M" checked> Male</input>
                 <input type="radio"style="height: auto; width: auto;" name="sex" value="F"> Female </input>
-                <input type="radio"style="height: auto; width: auto;" name="sex" value=""> All </input>
+                <input type="radio"style="height: auto; width: auto;" id = "allChecked" name="sex" value=""> All </input>
                 <br>
             </div>
-            <div style="padding:10px 0;"><label>Date of birth:</label> <select id="operatorBirthDate"></select> <input type="date" id="birthDay"></div>
-            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select id="operatorDiagnosisDate"></select><input type="date" id="diagnosticDay">
+            <div style="padding:10px 0;"><label>Date of birth:</label> <select style="margin-right: 5px;" id="operatorBirthDate"></select> <input type="date" id="birthDay"></div>
+            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select style="margin-right: 5px;" id="operatorDiagnosisDate"></select><input type="date" id="diagnosticDay">
             </div>
-            <div style="padding:10px 0;"><label>Date of death:</label>  <select id="operatorDeathDate"></select><input type="date" id="deathDay"></div>
+            <div style="padding:10px 0;"><label>Date of death:</label>  <select id="operatorDeathDate" style="margin-right: 5px;"></select><input type="date" id="deathDay"></div>
             <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
                     id="profestionalExposure"></select>
                 for: <select id="professionalExposureOperator"></select>
@@ -163,7 +163,7 @@
             </button>
 
             <div style="width: 650px;padding-top:30px;border-top: 1px solid #68a4c4">
-                <div><label>Select date:</label> <input type="date" name="birthDay">
+                <div><label>Select date:</label> <input type="date" id="predDay">
                     <button class="btn btn-theme" style="width:250px" onclick="refreshMapWithPrediction()">Search in
                         predicted results
                     </button>

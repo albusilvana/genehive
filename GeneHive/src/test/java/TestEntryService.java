@@ -26,7 +26,7 @@ public class TestEntryService {
     }
 
     @Test
-
+    @Ignore
     public void testInsertEntries() throws Exception {
         System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
         System.out.print("Now it is inserting: " + 10000 + " results");
@@ -36,10 +36,11 @@ public class TestEntryService {
             Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
             String name = utils.getRandomName();
             String identificationNumber = utils.getRandomCnp();
-//            String countryCode = utils.getRandomCountryCode();
+            String countryCode = utils.getRandomCountryCode();
             Integer dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
             String gender = utils.getRandomGender();
-            String professionalExposure = utils.getProfessionalExposures();
+//            String professionalExposure = utils.getProfessionalExposures();
+            String professionalExposure = "'Arsenic'";
             Integer professionalExposureTime = utils.getRandomExposureTime(professionalExposure);
             String mutationEntries = utils.getRandomMutation();
             String locus = utils.getRandomLocus();
@@ -48,10 +49,10 @@ public class TestEntryService {
 
             String result;
             if (dateOfDeath > 0) {
-                result = entryService.insertEntry(name, identificationNumber, "'RO'", dateOfBirth + "", dateOfDiagnosis + "",
+                result = entryService.insertEntry(name, identificationNumber,countryCode, dateOfBirth + "", dateOfDiagnosis + "",
                         dateOfDeath + "", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
             } else {
-                result = entryService.insertEntry(name, identificationNumber, "'RO'", dateOfBirth + "", dateOfDiagnosis + "",
+                result = entryService.insertEntry(name, identificationNumber,countryCode, dateOfBirth + "", dateOfDiagnosis + "",
                         "''", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
             }
 

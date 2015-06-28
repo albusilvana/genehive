@@ -1,15 +1,10 @@
 package com.Service;
 
-import com.Convertor.core.EntityBaseDTOs;
-import com.Convertor.core.EntryDTOConvertor;
 import com.DAO.EntryDAO;
-import com.DTO.*;
-import com.Model.Entry;
-import com.accessor.CassandraEntriesAccessor;
-import org.apache.poi.ss.usermodel.Workbook;
+import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
+import com.DTO.SearchOptionsDTO;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +15,7 @@ public class EntryService {
     private EntryDAO entryDAO = new EntryDAO();
     private CSVFileWriter csvFileWriter = new CSVFileWriter();
     private PDFFileWriter pdfFileWriter = new PDFFileWriter();
+    private PredictionService predictionService = new PredictionService();
 
 
     public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
@@ -42,8 +38,22 @@ public class EntryService {
         return entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
     }
 
+    public List<EnhancedBasicEntityDTO> getEnhancedEntitiesFiltered(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return entryDAO.getFilteredEnhancedEntitiesDto(searchOptionsDTO);
+    }
+
     public StringBuilder getCSVExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {
         return csvFileWriter.writeCsvFile(entryDAO.getExportData(searchOptionsDTO));
+    }
+
+    public List<BasicEntityDTO> getPredictedResults(SearchOptionsDTO searchOptionsDTO, String date) throws Exception {
+        List<BasicEntityDTO> basicEntityDTOs = entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
+        return predictionService.getPredictedResult(basicEntityDTOs, date);
+    }
+
+    public List<EnhancedBasicEntityDTO> getEnhancedPredictedResults(SearchOptionsDTO searchOptionsDTO, String date) throws Exception {
+        List<BasicEntityDTO> basicEntityDTOs = entryDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
+        return predictionService.getHighlightPredictedResult(basicEntityDTOs, date);
     }
 
     public String getPDFExportLocation(SearchOptionsDTO searchOptionsDTO) throws Exception {

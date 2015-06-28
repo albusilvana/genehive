@@ -9,6 +9,7 @@ $(document).ready(function () {
     }).then(function (data) {
         $("#currentEntriesCount").text(data);
     });
+    $("#allChecked").prop("checked", true)
     insertProfesionalExposure();
     insertOperators();
     refreshWithAll();
@@ -82,7 +83,33 @@ function refreshWithAll() {
 }
 
 function refreshMapWithPrediction() {
-
+    var selectedVal = $('input[name=mapType]:checked').val();
+    var bdate = new Date($("#predDay").val());
+    var bmilliseconds = bdate.getTime();
+    var url;
+    if (selectedVal == "cluster") {
+        url = "http://localhost:9095/hh/API/v1/entries/predicted?dateOfPrediction="+bmilliseconds;
+    }else{
+        url = "http://localhost:9095/hh/API/v1/entries/predicted/highlight?dateOfPrediction="+bmilliseconds;
+    }
+    $.ajax({
+        contentType: 'application/json',
+        data: JSON.stringify(computeSearchJsonData()),
+        dataType: 'json',
+        success: function (data) {
+            if (selectedVal == "cluster") {
+                loadClusterData(data);
+            } else {
+                loadHighLightData(data);
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+        processData: false,
+        type: 'POST',
+        url: url
+    });
 }
 
 function computeSearchJsonData() {
@@ -114,6 +141,12 @@ function computeSearchJsonData() {
 }
 function getResults() {
     var selectedVal = $('input[name=mapType]:checked').val();
+    var url = "";
+    if (selectedVal == "cluster") {
+        url = "http://localhost:9095/hh/API/v1/entries/filtered";
+    }else{
+        url = "http://localhost:9095/hh/API/v1/entries/filtered/highlight";
+    }
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(computeSearchJsonData()),
@@ -130,7 +163,7 @@ function getResults() {
         },
         processData: false,
         type: 'POST',
-        url: "http://localhost:9095/hh/API/v1/entries/filtered"
+        url: url
     });
 }
 $(document).on("submit", "form.fileDownloadForm", function (e) {
