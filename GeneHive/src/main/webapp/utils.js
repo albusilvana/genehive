@@ -82,9 +82,6 @@ function refreshWithAll() {
             loadHighLightData(data);
         });
     }
-    $("#all").addClass("selected");
-    $("#women").removeClass("selected");
-    $("#men").removeClass("selected");
 }
 
 function refreshMapWithPrediction() {
@@ -258,7 +255,7 @@ function saveEntry() {
     jsonData.disorder = "'" + $("#insertDisorder").val() + "'";
     jsonData.physician = "'" + $("#insertPhisician").val() + "'";
 
-
+    $("#loadingInsert").hide();
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(jsonData),

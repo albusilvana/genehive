@@ -69,7 +69,7 @@ public class PDFFileWriter {
         // the cell object
         PdfPCell cell;
 
-        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
+        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time (in years), Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
         for(int i=0; i<header.length; i++){
             table.addCell(header[i]);
         }
@@ -90,7 +90,7 @@ public class PDFFileWriter {
             String age = trainingModelDTO.getAge()>0 ? String.valueOf(trainingModelDTO.getAge()) : "N/A";
             table.addCell(age);
             table.addCell(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-            String ageD = trainingModelDTO.getAgeOfDeath()>=100 ? String.valueOf(trainingModelDTO.getAgeOfDeath()) : "N/A";
+            String ageD = trainingModelDTO.getAgeOfDeath()<100 ? String.valueOf(trainingModelDTO.getAgeOfDeath()) : "N/A";
             table.addCell(ageD);
             table.addCell(trainingModelDTO.getPhysician());
         }

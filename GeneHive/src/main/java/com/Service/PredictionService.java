@@ -193,7 +193,7 @@ public class PredictionService {
             System.out.print("Given value: " + data.instance(i));
             String[] result = data.instance(i).toString().split(",");
             int val = (int) Math.round(pred);
-            if(i%3==0){
+            if(i%3==0 && val>0){
                 Random rand = new Random();
                 val = rand.nextInt(val*100);
             }

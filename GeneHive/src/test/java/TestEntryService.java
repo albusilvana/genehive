@@ -26,11 +26,12 @@ public class TestEntryService {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void testInsertEntries() throws Exception {
         System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
-        System.out.print("Now it is inserting: " + 10000 + " results");
-        for (int i = 0; i < 1000; i++) {
+        int counter = 1000;
+        System.out.print("Now it is inserting: " + counter + " results");
+        for (int i = 0; i < counter; i++) {
             Utils utils = new Utils();
             Long dateOfBirth = utils.getRandomDateOfBirth();
 
@@ -40,8 +41,8 @@ public class TestEntryService {
             Long dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
             Long dateOfDeath = utils.getRandomDateOfDeath(dateOfDiagnosis);
             String gender = utils.getRandomGender();
-            String professionalExposure = utils.getProfessionalExposures();
-//            String professionalExposure = "'Arsenic'";
+//            String professionalExposure = utils.getProfessionalExposures();
+            String professionalExposure = "'Arsenic'";
             Integer professionalExposureTime = utils.getRandomExposureTime(professionalExposure, dateOfBirth, dateOfDeath);
             String mutationEntries = utils.getRandomMutation();
             String locus = utils.getRandomLocus();

@@ -138,9 +138,9 @@ public class CassandraEntriesAccessor {
             Date dateOfDiagnosis = row.getDate(10);
             Date dateOfDeath = row.getDate(11);
             String physician = row.getString(12);
-            int dateOfDeathAge = 100;
+            int dateOfDeathAge = 101;
             int dateOfBirthAge = 0;
-            if (DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime())) < 100) {
+            if (dateOfDeath != null && DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime())) < 100) {
                 dateOfDeathAge =  DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime()));
             }else{
                 dateOfBirthAge = DateUtils.getAgeFromMilliseconds(String.valueOf(dateOfBirth.getTime()));

@@ -158,7 +158,7 @@
             <div style="padding:10px 0;"><label>Locus: </label><input id="locus" onclick="loadLocus()"
                     class="inputText"  title="type &quot;a&quot;"></div>
             <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
-            <button class="btn btn-theme" style="  margin-left: 140px;  width: 250px; margin-bottom: 10px;" onclick="resetFilters()">Reset filters
+            <button class="btn btn-theme" style="  margin-left: 100px;  width: 250px; margin-bottom: 10px;" onclick="resetFilters()">Reset filters
             </button>
             <button id="search" onclick="getResults()" class="btn btn-theme" style=" width:250px;   margin-bottom: 10px;">Search in current entries
             </button>    <i id="loadingSearch" style="vertical-align: middle;"  class="fa fa-spinner fa-pulse fa-2x"></i>
@@ -171,14 +171,14 @@
                 </div>
 
             </div>
-        </div>x
+        </div>
     </div>
     <div style="display:inline; width:60%">
         <div id="container"
-             style="height: 600px;width:650px; min-width: 810px; max-width: 100px; margin: 0 auto;position:absolute;margin-left:700px;margin-top: 80px;">
+             style="height: 600px;width:650px; min-width: 810px; max-width: 100px; position:absolute;margin: 80px auto 0 700px;">
         </div>
     </div>
-    <div style="display:inline;float:right">
+    <div style="display:inline;float:right;  margin-right: 20px;">
         <br>
         <form style="display:inline" action="http://localhost:9095/hh/API/v1/entries/export/csv" class="fileDownloadForm" method="post">
             <button  class="btn btn-theme" type="submit">Download results as csv</button>
