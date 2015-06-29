@@ -35,11 +35,11 @@ function insertOperators() {
         $("#operatorDeathDate").append($("<option />").val(operators[i]).text(operators[i]));
     }
     var profExposure = $("#professionalExposureOperator");
-    profExposure.append($("<option />").val(31536000000).text("Under 1 Year"));
-    profExposure.append($("<option />").val(157766400000).text("Between 1 and 5 years"));
-    profExposure.append($("<option />").val(315532800000).text("Between 5 and 10 years"));
-    profExposure.append($("<option />").val(631152000000).text("Between 10 and 20 years"));
-    profExposure.append($("<option />").val(662688000000).text("Over 20 years"));
+    profExposure.append($("<option />").val(1).text("Under 1 Year"));
+    profExposure.append($("<option />").val(5).text("Between 1 and 5 years"));
+    profExposure.append($("<option />").val(10).text("Between 5 and 10 years"));
+    profExposure.append($("<option />").val(20).text("Between 10 and 20 years"));
+    profExposure.append($("<option />").val(25).text("Over 20 years"));
 }
 function showInsert() {
     $("#insertContent").show();
@@ -71,6 +71,7 @@ function showStatistics() {
 }
 
 function refreshWithAll() {
+    resetFilters();
     var selectedVal = $('input[name=mapType]:checked').val();
     if (selectedVal == "cluster") {
         var data = $.getJSON('http://localhost:9095/hh/API/v1/entries/count/all?token=' + localStorage.getItem("token"), function (data) {
@@ -93,9 +94,9 @@ function refreshMapWithPrediction() {
     var bmilliseconds = bdate.getTime();
     var url;
     if (selectedVal == "cluster") {
-        url = "http://localhost:9095/hh/API/v1/entries/predicted?dateOfPrediction="+bmilliseconds;
-    }else{
-        url = "http://localhost:9095/hh/API/v1/entries/predicted/highlight?dateOfPrediction="+bmilliseconds;
+        url = "http://localhost:9095/hh/API/v1/entries/predicted?dateOfPrediction=" + bmilliseconds;
+    } else {
+        url = "http://localhost:9095/hh/API/v1/entries/predicted/highlight?dateOfPrediction=" + bmilliseconds;
     }
     $.ajax({
         contentType: 'application/json',
@@ -116,7 +117,15 @@ function refreshMapWithPrediction() {
         url: url
     });
 }
-
+function resetFilters(){
+    $("#birthDay").val("");
+    $("#diagnosticDay").val("");
+    $("#deathDay").val("");
+    $("#profestionalExposure").val("");
+    $("#geneName").val("");
+    $("#locus").val("");
+    $("#disprderName").val("")
+}
 function computeSearchJsonData() {
     var jsonData = {};
 
@@ -150,7 +159,7 @@ function getResults() {
     var url = "";
     if (selectedVal == "cluster") {
         url = "http://localhost:9095/hh/API/v1/entries/filtered";
-    }else{
+    } else {
         url = "http://localhost:9095/hh/API/v1/entries/filtered/highlight";
     }
     $.ajax({
@@ -184,9 +193,9 @@ $(document).on("submit", "form.fileDownloadForm", function (e) {
     var demilliseconds = dedate.getTime();
 
     var url = "http://localhost:9095/hh/API/v1/entries/export/csv?dateOfBirthOperator='" + encodeURIComponent($("#operatorBirthDate").val()) +
-        "'&dateOfDiagnosisOperator='" + encodeURIComponent( $("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent( $("#operatorDeathDate").val())
+        "'&dateOfDiagnosisOperator='" + encodeURIComponent($("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent($("#operatorDeathDate").val())
         + "&dateOfBirth=" + bmilliseconds + "&dateOfDiagnosis=" + dmilliseconds + "&dateOfDeath=" + demilliseconds + "&gender=" +
-        $('input[name=sex]:checked').val() + "&professionalExposure="+$("#profestionalExposure").val()+"&professionalExposureTime="+
+        $('input[name=sex]:checked').val() + "&professionalExposure=" + $("#profestionalExposure").val() + "&professionalExposureTime=" +
         parseInt($("#professionalExposureOperator").val()) + "&mutation=" + $("#geneName").val() + "&locus=" + $("#locus").val() +
         "&disorder=" + $("#disprderName").val();
     $.fileDownload(url, {
@@ -207,9 +216,9 @@ $(document).on("submit", "form.fileDownloadFormPdf", function (e) {
     var demilliseconds = dedate.getTime();
 
     var url = "http://localhost:9095/hh/API/v1/entries/export/pdf?dateOfBirthOperator='" + encodeURIComponent($("#operatorBirthDate").val()) +
-        "'&dateOfDiagnosisOperator='" + encodeURIComponent( $("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent( $("#operatorDeathDate").val())
+        "'&dateOfDiagnosisOperator='" + encodeURIComponent($("#operatorDiagnosisDate").val()) + "'&dateOfDeathOperator=" + encodeURIComponent($("#operatorDeathDate").val())
         + "&dateOfBirth=" + bmilliseconds + "&dateOfDiagnosis=" + dmilliseconds + "&dateOfDeath=" + demilliseconds + "&gender=" +
-        $('input[name=sex]:checked').val() + "&professionalExposure="+$("#profestionalExposure").val()+"&professionalExposureTime="+
+        $('input[name=sex]:checked').val() + "&professionalExposure=" + $("#profestionalExposure").val() + "&professionalExposureTime=" +
         parseInt($("#professionalExposureOperator").val()) + "&mutation=" + $("#geneName").val() + "&locus=" + $("#locus").val() +
         "&disorder=" + $("#disprderName").val();
     $.fileDownload(url, {
@@ -233,9 +242,6 @@ function saveEntry() {
     var dedate = new Date($("#insertDeathDate").val());
     var demilliseconds = dedate.getTime();
 
-    var sdate = new Date($("#insertStartDate").val());
-    var edate = new Date($("#insertEndDate").val());
-    var pemilliseconds = edate.getTime() - sdate.getTime();
 
     jsonData.name = "'" + $("#insertName").val() + "'";
     jsonData.identificationNumber = "'" + $("#insertIdentificationNumber").val() + "'";
@@ -244,31 +250,30 @@ function saveEntry() {
     jsonData.dateOfDiagnosis = dmilliseconds;
     jsonData.dateOfDeath = demilliseconds;
     jsonData.gender = "'" + $("#insertGender").val() + "'";
-    jsonData.professionalExposure =  "'" + $("#insertProfestionalExposure").val()+  "'";
-    jsonData.professionalExposureTime = "'" + pemilliseconds + "'";
+    jsonData.professionalExposure = "'" + $("#insertProfestionalExposure").val() + "'";
+    jsonData.professionalExposureTime = $("#insertProfessionalExposureTime").val();
     jsonData.details = "'" + $("#insertDetails").val() + "'";
     jsonData.mutation = "'" + $("#insertMutation").val() + "'";
     jsonData.locus = "'" + $("#insertLocus").val() + "'";
     jsonData.disorder = "'" + $("#insertDisorder").val() + "'";
     jsonData.physician = "'" + $("#insertPhisician").val() + "'";
 
-    $("#loadingInsert").hide();
+
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(jsonData),
         dataType: 'json',
-        success: function (data) {
-
-            alert("You have successfully created a new entry.");
-        },
-        error: function () {
-        },
+        success:  alert("You have successfully created a new entry."),
+//            console.log(data);
+//            $("#loadingInsert").hide();
+//
+//        },
+//        error: function () {
+//        },
         processData: false,
         type: 'POST',
         url: "http://localhost:9095/hh/API/v1/entries/create"
-    });
-
-
+    })
 }
 
 function loadHighLightData(data) {

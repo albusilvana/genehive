@@ -62,14 +62,14 @@ public class PDFFileWriter {
 
     public static PdfPTable createTable(List<ExportEntityDTO> trainingModelDTOs) {
         // a table with three columns
-        PdfPTable table = new PdfPTable(12);
+        PdfPTable table = new PdfPTable(13);
         table.setWidthPercentage(90);
         table.setSpacingBefore(10);
         table.setSpacingAfter(10);
         // the cell object
         PdfPCell cell;
 
-        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
+        String[] header = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician".split(",");
         for(int i=0; i<header.length; i++){
             table.addCell(header[i]);
         }
@@ -85,11 +85,13 @@ public class PDFFileWriter {
             table.addCell(trainingModelDTO.getLocus());
             table.addCell(trainingModelDTO.getDisorder());
             table.addCell(trainingModelDTO.getProfessionalExposure());
-//            table.addCell(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
+            table.addCell(String.valueOf(trainingModelDTO.getProfessionalExposureTime()));
             table.addCell(gender);
-            table.addCell(String.valueOf(trainingModelDTO.getAge()));
+            String age = trainingModelDTO.getAge()>0 ? String.valueOf(trainingModelDTO.getAge()) : "N/A";
+            table.addCell(age);
             table.addCell(String.valueOf(trainingModelDTO.getAgeOfDiagnosis()));
-            table.addCell(String.valueOf(trainingModelDTO.getAgeOfDeath()));
+            String ageD = trainingModelDTO.getAgeOfDeath()>=100 ? String.valueOf(trainingModelDTO.getAgeOfDeath()) : "N/A";
+            table.addCell(ageD);
             table.addCell(trainingModelDTO.getPhysician());
         }
         return table;

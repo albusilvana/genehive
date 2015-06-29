@@ -132,17 +132,20 @@ public class CassandraEntriesAccessor {
             String locus = row.getString(4);
             String disorder = row.getString(5);
             String professionalExposure = row.getString(6);
-            Date professionalExposureTime = row.getDate(7);
+            int professionalExposureTime = (int) row.getLong(7);
             String gender = row.getString(8);
             Date dateOfBirth = row.getDate(9);
             Date dateOfDiagnosis = row.getDate(10);
             Date dateOfDeath = row.getDate(11);
             String physician = row.getString(12);
             int dateOfDeathAge = 100;
-            if (dateOfDeath != null) {
-                dateOfDeathAge = DateUtils.getAge(dateOfDeath);
+            int dateOfBirthAge = 0;
+            if (DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime())) < 100) {
+                dateOfDeathAge =  DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime()));
+            }else{
+                dateOfBirthAge = DateUtils.getAgeFromMilliseconds(String.valueOf(dateOfBirth.getTime()));
             }
-            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, disorder, locus, professionalExposure, DateUtils.getAge(professionalExposureTime), gender, DateUtils.getAge(dateOfBirth), DateUtils.getAge(dateOfDiagnosis), dateOfDeathAge, physician);
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, disorder, locus, professionalExposure, professionalExposureTime, gender,  dateOfBirthAge, DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()),String.valueOf(dateOfDiagnosis.getTime())), dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }
@@ -183,8 +186,8 @@ public class CassandraEntriesAccessor {
         }
         if ( searchOptionsDTO.getProfessionalExposure() != null && !searchOptionsDTO.getProfessionalExposure().equals("")) {
             queryChunk = queryChunk + " AND professionalExposure = '" + searchOptionsDTO.getProfessionalExposure() + "'";
-            if (!searchOptionsDTO.getProfessionalExposureTime().equals("") && searchOptionsDTO.getProfessionalExposureTime() != null) {
-                queryChunk = queryChunk + " AND professionalExposureTime <= '" + searchOptionsDTO.getProfessionalExposureTime() + "'";
+            if (searchOptionsDTO.getProfessionalExposureTime()> 0 ) {
+                queryChunk = queryChunk + " AND professionalExposureTime <= " + searchOptionsDTO.getProfessionalExposureTime();
             }
             noCondition = false;
         }

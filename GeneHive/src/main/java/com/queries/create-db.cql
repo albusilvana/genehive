@@ -10,7 +10,7 @@ CREATE TABLE Entries (
     dateOfDeath timestamp,
     gender text,
     professionalExposure text,
-    professionalExposureTime timestamp,
+    professionalExposureTime bigint,
     details text,
     mutation text,
     locus text,

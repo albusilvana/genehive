@@ -26,35 +26,33 @@ public class TestEntryService {
     }
 
     @Test
-    @Ignore
+//    @Ignore
     public void testInsertEntries() throws Exception {
         System.out.println("Time before insert " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
         System.out.print("Now it is inserting: " + 10000 + " results");
         for (int i = 0; i < 1000; i++) {
             Utils utils = new Utils();
-            Integer dateOfBirth = utils.getRandomDateOfBirth();
-            Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
+            Long dateOfBirth = utils.getRandomDateOfBirth();
+
             String name = utils.getRandomName();
             String identificationNumber = utils.getRandomCnp();
             String countryCode = utils.getRandomCountryCode();
-            Integer dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
+            Long dateOfDiagnosis = utils.getRandomDateOfDiagnosis(dateOfBirth);
+            Long dateOfDeath = utils.getRandomDateOfDeath(dateOfDiagnosis);
             String gender = utils.getRandomGender();
-//            String professionalExposure = utils.getProfessionalExposures();
-            String professionalExposure = "'Arsenic'";
-            Integer professionalExposureTime = utils.getRandomExposureTime(professionalExposure);
+            String professionalExposure = utils.getProfessionalExposures();
+//            String professionalExposure = "'Arsenic'";
+            Integer professionalExposureTime = utils.getRandomExposureTime(professionalExposure, dateOfBirth, dateOfDeath);
             String mutationEntries = utils.getRandomMutation();
             String locus = utils.getRandomLocus();
             String disorder = utils.getRandomDisorder();
             String physician = utils.getRandomName();
 
             String result;
-            if (dateOfDeath > 0) {
+
                 result = entryService.insertEntry(name, identificationNumber,countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        dateOfDeath + "", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
-            } else {
-                result = entryService.insertEntry(name, identificationNumber,countryCode, dateOfBirth + "", dateOfDiagnosis + "",
-                        "''", gender, professionalExposure, professionalExposureTime + "", "''", mutationEntries, locus, disorder, physician);
-            }
+                        dateOfDeath + "", gender, professionalExposure, professionalExposureTime , "''", mutationEntries, locus, disorder, physician);
+
 
 
             assertEquals(result, "The entry was successfully inserted.");

@@ -21,7 +21,7 @@ public class CSVFileWriter {
             "Disorder", "Professional Exposure", "Professional Exposure Time", "Gender", "Age", "Age At Diagnosis",
             "Age Of Death", "Physician"};
 
-    private static final String CSV_FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
+    private static final String CSV_FILE_HEADER = "Name, Identification Number,Country Code,Mutation,Locus,Disorder,Professional Exposure,Professional Exposure Time, Gender,Age,Age At Diagnosis,Age Of Death,Physician";
 
 
     public StringBuilder writeCsvFile(List<ExportEntityDTO> trainingModelDTOs) {
@@ -32,11 +32,13 @@ public class CSVFileWriter {
         for (ExportEntityDTO trainingModelDTO : trainingModelDTOs) {
             String gender = trainingModelDTO.getGender().equals("F")?"Female":"Male";
             String country = new Locale("", trainingModelDTO.getCountryCode()).getDisplayCountry();
+            String age = trainingModelDTO.getAge()>0 ? String.valueOf(trainingModelDTO.getAge()) : "N/A";
+            String ageD = trainingModelDTO.getAgeOfDeath()>=100 ? String.valueOf(trainingModelDTO.getAgeOfDeath()) : "N/A";
             result.append(trainingModelDTO.getName() + "," + trainingModelDTO.getIdentificationNumber() + ","
                     + country + "," + trainingModelDTO.getMutation() + ","
-                    + trainingModelDTO.getLocus() + "," + trainingModelDTO.getDisorder() + "," + trainingModelDTO.getProfessionalExposure() +
+                    + trainingModelDTO.getLocus() + "," + trainingModelDTO.getDisorder() + "," + trainingModelDTO.getProfessionalExposure() + "," + trainingModelDTO.getProfessionalExposureTime()+
                     "," + gender +
-                    "," + trainingModelDTO.getAge() + "," + trainingModelDTO.getAgeOfDiagnosis() + "," + trainingModelDTO.getAgeOfDeath()
+                    "," + age + "," + trainingModelDTO.getAgeOfDiagnosis() + "," + ageD
                     + "," + trainingModelDTO.getPhysician() + System.lineSeparator());
         }
 
@@ -98,13 +100,15 @@ public class CSVFileWriter {
             }
 
             cell = row.createCell(cellNum++);
-            cell.setCellValue(trainingModelDTO.getAge());
+            String age = trainingModelDTO.getAge()>0 ? String.valueOf(trainingModelDTO.getAge()) : "N/A";
+            cell.setCellValue(age);
 
             cell = row.createCell(cellNum++);
             cell.setCellValue(trainingModelDTO.getAgeOfDiagnosis());
 
             cell = row.createCell(cellNum++);
-            cell.setCellValue(trainingModelDTO.getAgeOfDeath());
+            String ageD = trainingModelDTO.getAgeOfDeath()>0 ? String.valueOf(trainingModelDTO.getAgeOfDeath()) : "N/A";
+            cell.setCellValue(ageD);
 
             cell = row.createCell(cellNum++);
             cell.setCellValue(trainingModelDTO.getPhysician());

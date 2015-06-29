@@ -62,7 +62,7 @@ public class EntryService {
     }
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
-                              String dateOfDeath, String gender, String professionalExposure, String professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {
+                              String dateOfDeath, String gender, String professionalExposure, int professionalExposureTime, String details, String mutation, String locus, String disorder, String physitian) throws Exception {
         return entryDAO.insertEntry(name, identificationNumber, countryCode, dateOfBirth, dateOfDiagnosis,
                 dateOfDeath, gender, professionalExposure, professionalExposureTime, details, mutation, locus, disorder, physitian);
     }

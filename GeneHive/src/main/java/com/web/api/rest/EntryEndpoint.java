@@ -85,14 +85,15 @@ public class EntryEndpoint {
     @POST
     @Path("create")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String createEntry(EntryFromUIDTO entryFromUIDTO, @QueryParam("token") String token) throws Exception {
+    public Response createEntry(EntryFromUIDTO entryFromUIDTO, @QueryParam("token") String token) throws Exception {
         String resp = entryService.insertEntry(entryFromUIDTO.getName(), entryFromUIDTO.getIdentificationNumber(),
                 entryFromUIDTO.getCountryCode(), entryFromUIDTO.getDateOfBirth(), entryFromUIDTO.getDateOfDiagnosis(),
                 entryFromUIDTO.getDateOfDeath(), entryFromUIDTO.getGender(), entryFromUIDTO.getProfessionalExposure(),
                 entryFromUIDTO.getProfessionalExposureTime(),
                 entryFromUIDTO.getDetails(), entryFromUIDTO.getMutation(), entryFromUIDTO.getLocus(),
                 entryFromUIDTO.getDisorder(), entryFromUIDTO.getPhysician());
-        return resp;
+        Response.ResponseBuilder response = Response.ok(resp);
+        return response.build();
     }
 
     @POST
@@ -139,7 +140,7 @@ public class EntryEndpoint {
                                 @QueryParam("dateOfDeathOperator") String dateOfDeathOperator, @QueryParam("dateOfBirth") String dateOfBirth,
                                 @QueryParam("dateOfDiagnosis") String dateOfDiagnosis, @QueryParam("dateOfDeath") String dateOfDeath,
                                 @QueryParam("gender") String gender, @QueryParam("professionalExposure") String professionalExposure,
-                                @QueryParam("professionalExposureTime") String professionalExposureTime, @QueryParam("mutation") String mutation,
+                                @QueryParam("professionalExposureTime") int professionalExposureTime, @QueryParam("mutation") String mutation,
                                 @QueryParam("locus") String locus, @QueryParam("disorder") String disorder) throws Exception {
 
         SearchOptionsDTO searchOptionsDTO = new SearchOptionsDTO();
@@ -184,7 +185,7 @@ public class EntryEndpoint {
                                                  @QueryParam("dateOfDeathOperator") String dateOfDeathOperator, @QueryParam("dateOfBirth") String dateOfBirth,
                                                  @QueryParam("dateOfDiagnosis") String dateOfDiagnosis, @QueryParam("dateOfDeath") String dateOfDeath,
                                                  @QueryParam("gender") String gender, @QueryParam("professionalExposure") String professionalExposure,
-                                                 @QueryParam("professionalExposureTime") String professionalExposureTime, @QueryParam("mutation") String mutation,
+                                                 @QueryParam("professionalExposureTime") int professionalExposureTime, @QueryParam("mutation") String mutation,
                                                  @QueryParam("locus") String locus, @QueryParam("disorder") String disorder) throws Exception {
 
         SearchOptionsDTO searchOptionsDTO = new SearchOptionsDTO();

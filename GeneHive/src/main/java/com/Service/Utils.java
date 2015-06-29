@@ -1,5 +1,6 @@
 package com.Service;
 
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
@@ -30,20 +31,32 @@ public class Utils {
         return "'" + names[rand.nextInt(names.length)] + "'";
     }
 
-    public Integer getRandomDateOfBirth() {
-        return rand.nextInt(1420070462 - 157766462) + 157766462;
+    public Long getRandomDateOfBirth() {
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(rand.nextInt((2014+1) - 1950) + 1950,Calendar.JANUARY, 1);
+        return cal.getTimeInMillis();
     }
 
-    public Integer getRandomDateOfDiagnosis(Integer dateOfBirth) {
-        return rand.nextInt(1420070462 - dateOfBirth) + dateOfBirth;
+    public Long getRandomDateOfDiagnosis(Long dateOfBirth) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(dateOfBirth);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(rand.nextInt((2014+1) - cal1.get(Calendar.YEAR)) + cal1.get(Calendar.YEAR),Calendar.JANUARY, 1);
+        return cal.getTimeInMillis();
     }
 
-    public Integer getRandomDateOfDeath(Integer dateOfBirth) {
-        int randomDateOfDeath = rand.nextInt(1420070462 - dateOfBirth) + dateOfBirth;
-        if (randomDateOfDeath - dateOfBirth >= 631152000) {
-            return randomDateOfDeath;
-        } else {
-            return 0;
+    public Long getRandomDateOfDeath(Long dateOfDiagnosis) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(dateOfDiagnosis);
+        Calendar cal = Calendar.getInstance();
+        int year = rand.nextInt((2014+1) - cal1.get(Calendar.YEAR)) + cal1.get(Calendar.YEAR);
+        cal.set(year,Calendar.JANUARY, 1);
+        if(year%3==0){
+            return Long.valueOf("4125330000000");
+        }else{
+            return cal.getTimeInMillis();
         }
     }
 
@@ -95,22 +108,46 @@ public class Utils {
         return "'" + mutation + "'";
     }
 
-    public Integer getRandomExposureTime( String proffesionalExposure) {
-        if (!proffesionalExposure.equals("")){
-            int i = rand.nextInt(1080000000 - 360000000) + 360000000;
-            return i;
-        }else {
+    public Integer getRandomExposureTime( String proffesionalExposure, Long dateOfBirth, Long dateOfDeath) {
+
+
+        if (!proffesionalExposure.equals("")) {
+            Calendar cal = Calendar.getInstance();
+
+            cal.setTimeInMillis(dateOfBirth);
+
+            Calendar calNow = Calendar.getInstance();
+
+            calNow.setTimeInMillis(dateOfDeath);
+
+//calculate age in years.
+            int ageYr = (calNow.get(Calendar.YEAR) - cal.get(Calendar.YEAR));
+// calculate additional age in months, possibly adjust years.
+            int ageMo = (calNow.get(Calendar.MONTH) - cal.get(Calendar.MONTH));
+            if (ageMo < 0) {
+//adjust years by subtracting one
+                ageYr--;
+            }
+
+            int exp = ageYr - 10;
+            if (exp > 0) {
+                return rand.nextInt(exp);
+
+            } else {
+                return 0;
+            }
+
+        }else{
             return 0;
         }
-
     }
 
     public static void main(String[] args) {
         Utils utils = new Utils();
         for (int i = 0; i < 10000; i++) {
             String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposures,details, mutationEntries,physician)VALUES(";
-            Integer dateOfBirth = utils.getRandomDateOfBirth();
-            Integer dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
+            Long dateOfBirth = utils.getRandomDateOfBirth();
+            Long dateOfDeath = utils.getRandomDateOfDeath(dateOfBirth);
             if (dateOfDeath > 0) {
                 s = s.concat(utils.getRandomName() + "," + utils.getRandomCnp() + "," + utils.getRandomCountryCode() + ","
                         + dateOfBirth + "," + utils.getRandomDateOfDiagnosis(dateOfBirth) + "," + dateOfDeath

@@ -13,14 +13,35 @@ public class DateUtils {
         // create a calendar
         Calendar cal = Calendar.getInstance();
 
-        cal.setTimeInMillis(Integer.parseInt(millisecond));
+        cal.setTimeInMillis(Long.valueOf(millisecond));
 
         Calendar calNow = Calendar.getInstance();
-        calNow.setTime(new java.util.Date());
+
 //calculate age in years.
         int ageYr = (calNow.get(Calendar.YEAR) - cal.get(Calendar.YEAR));
 // calculate additional age in months, possibly adjust years.
         int ageMo = (calNow.get(Calendar.MONTH) - cal.get(Calendar.MONTH));
+        if (ageMo < 0) {
+//adjust years by subtracting one
+            ageYr--;
+        }
+        return ageYr;
+    }
+
+    public static int getAgeOfDeath(String dateOfBirth, String dateOfDeath) {
+        // create a calendar
+        Calendar calBirth = Calendar.getInstance();
+
+        calBirth.setTimeInMillis(Long.valueOf(dateOfBirth));
+
+        Calendar calDeath = Calendar.getInstance();
+        calDeath.setTimeInMillis(Long.valueOf(dateOfDeath));
+
+
+//calculate age in years.
+        int ageYr = (calDeath.get(Calendar.YEAR) - calBirth.get(Calendar.YEAR));
+// calculate additional age in months, possibly adjust years.
+        int ageMo = (calDeath.get(Calendar.MONTH) - calBirth.get(Calendar.MONTH));
         if (ageMo < 0) {
 //adjust years by subtracting one
             ageYr--;
@@ -35,7 +56,6 @@ public class DateUtils {
         cal.setTime(date);
 
         Calendar calNow = Calendar.getInstance();
-        calNow.setTime(new java.util.Date());
 //calculate age in years.
         int ageYr = (calNow.get(Calendar.YEAR) - cal.get(Calendar.YEAR));
 // calculate additional age in months, possibly adjust years.

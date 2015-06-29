@@ -12,7 +12,7 @@ public class EntryFromUIDTO {
     String dateOfDeath;
     String gender;
     String professionalExposure;
-    String professionalExposureTime;
+    int professionalExposureTime;
     String details;
     String mutation;
     String locus;
@@ -26,7 +26,7 @@ public class EntryFromUIDTO {
 
     public EntryFromUIDTO(String name, String identificationNumber, String countryCode, String dateOfBirth,
                           String dateOfDiagnosis, String dateOfDeath, String gender, String professionalExposure,
-                          String professionalExposureTime, String details, String mutation, String locus,
+                          int professionalExposureTime, String details, String mutation, String locus,
                           String disorder, String physician) {
         this.name = name;
         this.identificationNumber = identificationNumber;
@@ -45,11 +45,11 @@ public class EntryFromUIDTO {
     }
 
 
-    public String getProfessionalExposureTime() {
+    public int getProfessionalExposureTime() {
         return professionalExposureTime;
     }
 
-    public void setProfessionalExposureTime(String professionalExposureTime) {
+    public void setProfessionalExposureTime(int professionalExposureTime) {
         this.professionalExposureTime = professionalExposureTime;
     }
 

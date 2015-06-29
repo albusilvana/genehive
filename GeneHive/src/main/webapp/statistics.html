@@ -158,21 +158,20 @@
             <div style="padding:10px 0;"><label>Locus: </label><input id="locus" onclick="loadLocus()"
                     class="inputText"  title="type &quot;a&quot;"></div>
             <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
-
-            <button id="search" onclick="getResults()" class="btn btn-theme" style="
-    margin-left: 340px;width:250px;   margin-bottom: 10px;">Search in current entries
-            </button>    <i id="loadingSearch" class="fa fa-spinner fa-pulse fa-2x"></i>
+            <button class="btn btn-theme" style="  margin-left: 140px;  width: 250px; margin-bottom: 10px;" onclick="resetFilters()">Reset filters
+            </button>
+            <button id="search" onclick="getResults()" class="btn btn-theme" style=" width:250px;   margin-bottom: 10px;">Search in current entries
+            </button>    <i id="loadingSearch" style="vertical-align: middle;"  class="fa fa-spinner fa-pulse fa-2x"></i>
 
             <div style="width: 650px;padding-top:30px;border-top: 1px solid #68a4c4">
                 <div><label>Select date:</label> <input type="date" id="predDay">
-
                     <button class="btn btn-theme" style="width:250px" onclick="refreshMapWithPrediction()">Search in
                         predicted results
-                    </button> <i id="loadingPredict" class="fa fa-spinner fa-pulse fa-2x"></i>
+                    </button> <i id="loadingPredict" style="vertical-align: middle;"  class="fa fa-spinner fa-pulse fa-2x"></i>
                 </div>
 
             </div>
-        </div>
+        </div>x
     </div>
     <div style="display:inline; width:60%">
         <div id="container"
@@ -453,9 +452,9 @@
                                                                                         style="height: auto; width: auto;"
                                                                                         name="sex" value="F"> Female
     <br></div>
-<div style="padding:10px;"><label>ProfessionalExposure: </label><select id="insertProfestionalExposure"></select> from: <input id="insertStartDate"
-        type="date" name="startDay"> to <input id="insertEndDate"
-        type="date" name="endDay"></div>
+<div style="padding:10px;"><label>ProfessionalExposure: </label><select id="insertProfestionalExposure"></select> for:
+    <input id="insertProfessionalExposureTime"
+        type="number"> years</div>
 <div style="padding:10px;"><label>Physician: </label><input id="insertPhisician" class="inputText"></div>
 <div style="padding:10px;"><label>Mutation:</label> <input id="insertMutation" onclick ="loadInsertNames()" class="inputText">
 
@@ -464,8 +463,8 @@
 
     <label>Disorder: </label><input id="insertDisorder" onclick="loadInsertDisorders()"></div>
 <div style="padding:10px;"><label>Details:</label> <textarea id="insertDetails" style="height:50px;min-width:475px;"></textarea></div>
-<div style="padding:10px; margin-left: 70%;">
-    <i id="loadingInsert" class="fa fa-spinner fa-pulse fa-2x"></i> <button id="save" onclick="saveEntry()" class="btn btn-theme">Save</button>
+<div style="padding:10px; margin-left: 77%;">
+    <i id="loadingInsert" style="vertical-align: middle;" class="fa fa-spinner fa-pulse fa-2x"></i> <button id="save" onclick="saveEntry()" class="btn btn-theme">Save</button>
 </div>
 </div>
 

@@ -13,7 +13,7 @@ public class SearchOptionsDTO {
     String dateOfDeath;
     String gender;
     String professionalExposure;
-    String professionalExposureTime;
+    int professionalExposureTime;
     String professionalExposureTimeOperator;
     String mutation;
     String locus;
@@ -24,7 +24,7 @@ public class SearchOptionsDTO {
 
     public SearchOptionsDTO(String countryCode, String dateOfBirthOperator, String dateOfDiagnosisOperator,
                             String dateOfDeathOperator, String dateOfBirth, String dateOfDiagnosis, String dateOfDeath,
-                            String gender, String professionalExposure, String professionalExposureTime,
+                            String gender, String professionalExposure, int professionalExposureTime,
                             String professionalExposureTimeOperator, String mutation, String locus, String disorder) {
         this.countryCode = countryCode;
         this.dateOfBirthOperator = dateOfBirthOperator;
@@ -138,11 +138,11 @@ public class SearchOptionsDTO {
         this.dateOfDeath = dateOfDeath;
     }
 
-    public String getProfessionalExposureTime() {
+    public int getProfessionalExposureTime() {
         return professionalExposureTime;
     }
 
-    public void setProfessionalExposureTime(String professionalExposureTime) {
+    public void setProfessionalExposureTime(int professionalExposureTime) {
         this.professionalExposureTime = professionalExposureTime;
     }
 
