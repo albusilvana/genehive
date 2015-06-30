@@ -71,11 +71,10 @@
                     <li id="insertLi"><a id="insertTab" onclick="showInsert()" href="#">Insert Entry</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0"
-                           data-close-others="false">My account <b class=" icon-angle-down"></b></a>
+                        <a href="#" class="dropdown-toggle " href="login.html"  data-toggle="dropdown" onclick="redirectToLogin()" data-hover="dropdown" data-delay="0"
+                           data-close-others="false">Log out <b class=" icon-angle-down"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" href="login.html">Log
-                                out</a></li>
+                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" onclick="redirectToLogin()">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -97,7 +96,7 @@
                     </h3>
 
                     <p>GeneHive relies on big data for providing mutation analytics</p>
-                    <a href="statistics.html" onclick="showStatistics()" class="btn btn-theme">Learn More</a>
+                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
                 </div>
             </li>
             <li>
@@ -107,7 +106,7 @@
                     <h3>Prediction Engine</h3>
 
                     <p>GeneHive has an integrated prediction engine.</p>
-                    <a href="statistics.html" onclick="showStatistics()" class="btn btn-theme">Learn More</a>
+                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
                 </div>
             </li>
             <li>
@@ -117,7 +116,7 @@
                     <h3>Clean & Fast UI</h3>
 
                     <p>Access medical data from an easy to use, minimalist interface. </p>
-                    <a href="statistics.html" onclick="showStatistics()" class="btn btn-theme">Learn More</a>
+                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
                 </div>
             </li>
 

@@ -17,7 +17,9 @@ $(document).ready(function () {
     $("#loadingPredict").hide();
     $("#loadingInsert").hide();
 });
-
+function redirectToLogin(){
+    window.location = "http://localhost:9095/hh/login.html";
+}
 function insertProfesionalExposure() {
     var exposures = ",Arsenic,Asbestos,Asphalt fumes,Benzene,Beryllium,1-Bromopropane,13-Butadiene,Cadmium,Chromium,Diacetyl,Diesel exhaust,Ethylene oxide,Formaldehyde,Hexavalent chromium,Hydrogen sulfide,Isocyanates,Lead,Mercury,Metals toxic,Metalworking fluids,Methylene chloride,SilicaCrystalline,Solvents,Synthetic mineral fibers,Toluene".split(",");
     for (var i = 0; i < exposures.length; i++) {
