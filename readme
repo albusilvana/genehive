@@ -1,9 +1,17 @@
 This project is a proof of concept for displaying genetic mutations on the world map based on their frequency.
 
 
+// Requirements
+
+- Cassandra version 3.10
+- Datastax driver version 3.1.0
+- Java 8
+- Maven version 3.3.9 
+
+
 // Installation:
 
-Create cassandra database:
+Create cassandra database by running the cql statements directly in the cqlsh terminal:
 
 CREATE KEYSPACE Entries_Space with replication ={'class':'SimpleStrategy', 'replication_factor':2};
 USE Entries_Space;
@@ -27,9 +35,6 @@ CREATE TABLE Entries1 (
 ) WITH
     comment='Patients with discovered entries' AND
     caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'};
-
-
-
 
 CREATE INDEX CountryIndex
    ON Entries_Space.Entries1 (countryCode);
