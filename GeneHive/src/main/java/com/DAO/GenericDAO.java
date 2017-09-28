@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import sun.misc.Sort;
 
 /**
  * Generic DAO
@@ -54,7 +53,7 @@ public interface GenericDAO<E, K> {
      */
     public List<E> findAllByMultipleConditions(Class<E> entityClazz, int itemsPerPage, int page);
 
-    public List<E> findAllByMultipleConditionsSorted(Class<E> entityClazz, Map<String, Object> conditions, List<Sort> sortOptions, int itemsPerPage, int page);
+    public List<E> findAllByMultipleConditionsSorted(Class<E> entityClazz, Map<String, Object> conditions, List<?> sortOptions, int itemsPerPage, int page);
 
     /**
      * @param entityClazz  the class of the entity
@@ -63,7 +62,7 @@ public interface GenericDAO<E, K> {
      * @param pageNr       the page number to start counting the items per page, starts from 0
      * @return a paginated view for the sorted entities, or empty list if none found
      */
-    List<E> findAllSorted(Class<E> entityClazz, List<Sort> sortOptions, int itemsPerPage, int pageNr);
+    List<E> findAllSorted(Class<E> entityClazz, List<?> sortOptions, int itemsPerPage, int pageNr);
 
     List<E> findAllByNamedQuery(Class<E> entityClazz, String namedQuery, Map<String, Object> params);
 

@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    if (!localStorage.getItem("isUserLoggedIn")) {
-        localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
-        window.location = "http://localhost:9095/hh/login.html";
-    }
-    showHome();
+    // if (!localStorage.getItem("isUserLoggedIn")) {
+    //     localStorage.setItem("errorMessage", "You have to log in in order to access this page.");
+    //     window.location = "http://localhost:9095/hh/login.html";
+    // }
+    showStatistics();
     $.ajax({
         url: "http://localhost:9095/hh/API/v1/entries/total/all?token=dsf"
     }).then(function (data) {
@@ -16,6 +16,7 @@ $(document).ready(function () {
     $("#loadingSearch").hide();
     $("#loadingPredict").hide();
     $("#loadingInsert").hide();
+    $("#container").css({"margin": "0px auto 0 500px"});
 });
 function redirectToLogin(){
     window.location = "http://localhost:9095/hh/login.html";
@@ -373,8 +374,10 @@ function loadClusterData(data) {
             {
                 name: 'Countries',
                 mapData: mapData,
-                color: '#E0E0E0',
-                enableMouseTracking: false
+                enabled:true,
+                color: '#2419e0',
+                enableMouseTracking: false,
+                format: '{point.value}'
             },
             {
                 type: 'mapbubble',
@@ -382,12 +385,14 @@ function loadClusterData(data) {
                 name: 'Mutation count',
                 joinBy: ['iso-a2', 'code'],
                 data: data,
-                minSize: 4,
-                maxSize: '12%',
+                minSize: 0,
+                maxSize: 100,
                 tooltip: {
                     pointFormat: '{point.code}: {point.z} '
                 }
             }
         ]
     });
+
+    $("#container").css({"margin": "0px auto 0 500px"});
 }

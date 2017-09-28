@@ -1,12 +1,8 @@
 package com.DAO.core;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public class DefaultGenericDAO<E> {
-    public static final Logger LOG = LoggerFactory.getLogger(DefaultGenericDAO.class);
 
     protected static final String ENTITY = " e ";
     protected static final String FIND_ALL_TEMPLATE = " FROM %s " + ENTITY;

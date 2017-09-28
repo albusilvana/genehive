@@ -1,46 +1,74 @@
 package com.Service;
 
-import com.Model.*;
+import com.DAO.MutationDAO;
+import com.DTO.BasicEntityDTO;
+import com.DTO.EnhancedBasicEntityDTO;
+import com.DTO.SearchOptionsDTO;
+import com.Model.Mutation;
+import com.google.inject.Inject;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by silvana.albert on 4/10/15.
+ * Created by silvana.albert on 04/10/15.
  */
 public class MutationService {
+    private static MutationDAO mutationDAO;
+    private static PredictionService predictionService;
 
-//    public List<MutationEntry> convertToMutation(String mutation) {
-//        List<MutationEntry> mutationEntryList = new ArrayList<MutationEntry>();
-//        String[] mutationArray = mutation.split(",");
-//        for (int i = 0; i < mutationArray.length; i++) {
-////            A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer
-//            String[] pieces = mutationArray[i].split("_");
-//            String gene = pieces[0];
-//            String locus = pieces[1];
-//            String disorder = pieces[2];
-//            MutationEntry mutationEntry = new MutationEntry(new Gene(gene), new Locus(locus), new Disease(disorder));
-//            mutationEntryList.add(mutationEntry);
-//        }
-//        return mutationEntryList;
-//    }
+    @Inject
+    public MutationService(MutationDAO mutationDAO, PredictionService predictionService){
+        MutationService.mutationDAO = mutationDAO;
+        MutationService.predictionService = predictionService;
+    }
 
-//    public List<String> convertToExposure(String exposure) {
-//        List<String> mutationEntryList = new ArrayList<String>();
-//        String[] mutationArray = exposure.split(",");
-//        for (int i = 0; i < mutationArray.length; i++) {
-////            A2M_12p13.31_Alzheimers Disease,AACS_12q24.31_Traheal Cancer
-//            String[] pieces = mutationArray[i].split("_");
-//            String name = pieces[0];
-//
-//            mutationEntryList.add(name);
-//        }
-//        return mutationEntryList;
-//
-//    }
+    /**
+     * @return a list containing all mutations in the database
+     */
+    public List<BasicEntityDTO> getAllBasicEntitiesDTO() throws Exception {
+        return mutationDAO.getBasicEntitiesDto();
+    }
+
+
+    /**
+     * @param gender has values "F" of "M"
+     * @return a list containing all mutations for the given gender in the database
+     */
+    public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
+        return mutationDAO.getEnhancedBasicEntitiesDtoByGender(gender);
+    }
+
+    /**
+     * @param searchOptionsDTO  advanced filter object containing filters like professional exposure, locus and disorder
+     * @return a list containing the mutations that match the filters
+     */
+    public List<BasicEntityDTO> getEntitiesFiltered(SearchOptionsDTO searchOptionsDTO) throws Exception {
+        return mutationDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
+    }
+
+    /**
+     * @param searchOptionsDTO advanced filter object containing filters like professional exposure, locus and disorder
+     * @param predictionDate value used for predicting the mutations (ex: 12/12/2020 - how many mutations that match the filters will exist in 2020)
+     * @return a list containing the predicted mutations that match the filters
+     */
+    public List<BasicEntityDTO> getPredictedResults(SearchOptionsDTO searchOptionsDTO, String predictionDate) throws Exception {
+        List<BasicEntityDTO> basicEntityDTOs = mutationDAO.getFilteredBasicEntitiesDto(searchOptionsDTO);
+        return predictionService.getPredictedResult(basicEntityDTOs, predictionDate);
+    }
+
+    /**
+     * @param mutation the mutation object that needs to be persisted
+     * @return the created mutation
+     */
+    public Mutation createMutation(Mutation mutation) {
+        return mutationDAO.insertMutation(mutation);
+    }
+
+    /**
+     * @return the number of mutations in the database
+     */
+    public long getMutationCount() throws Exception {
+        return mutationDAO.getMutationCount();
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.DTO;
 
 /**
- * Created by silvana.albert on 6/22/15.
+ * Created by silvana.albert on 4/22/15.
  */
 public class SearchOptionsDTO {
     String countryCode;

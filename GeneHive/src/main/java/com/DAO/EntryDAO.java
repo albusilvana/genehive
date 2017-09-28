@@ -5,7 +5,9 @@ import com.DTO.BasicEntityDTO;
 import com.DTO.EnhancedBasicEntityDTO;
 import com.DTO.ExportEntityDTO;
 import com.DTO.SearchOptionsDTO;
+import com.Model.Mutation;
 import com.Service.CountryService;
+import com.accessor.CassandraAccessorFactory;
 import com.accessor.CassandraEntriesAccessor;
 
 import java.util.ArrayList;
@@ -17,27 +19,33 @@ import java.util.Locale;
  */
 public class EntryDAO {
 
-    CassandraEntriesAccessor cassandraEntriesAccessor = new CassandraEntriesAccessor();
+    CassandraEntriesAccessor cassandraEntriesAccessor = CassandraAccessorFactory.getInstance();
 
     EntryDTOConvertor entryDTOConvertor = new EntryDTOConvertor();
 
     public List<ExportEntityDTO> getAllTrainingModels() throws Exception {
-        cassandraEntriesAccessor.activate();
         List<ExportEntityDTO> entities = cassandraEntriesAccessor.getCSVEntries();
 
         return entities;
     }
 
     public List<ExportEntityDTO> getExportData(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        cassandraEntriesAccessor.activate();
         return cassandraEntriesAccessor.getExportData(searchOptionsDTO);
     }
 
+    public int getDataByCountryAndExposure(String exposure, String countryCode) throws Exception {
+        SearchOptionsDTO searchOptionsDTO = new SearchOptionsDTO();
+        searchOptionsDTO.setProfessionalExposure(exposure);
+        return (int) cassandraEntriesAccessor.readMutationByCountryFiltered(countryCode, searchOptionsDTO);
+
+    }
+
     public List<BasicEntityDTO> getBasicEntitiesDto() throws Exception {
-        cassandraEntriesAccessor.activate();
 
         List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
+        System.out.println("Current time before: " + System.currentTimeMillis());
+
         for (String country : countries) {
             List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByContry(country);
             BasicEntityDTO newEntityDTO = new BasicEntityDTO(country, 0);
@@ -46,11 +54,13 @@ public class EntryDAO {
             }
             returnList.add(newEntityDTO);
         }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Current time after: " + System.currentTimeMillis());
+
         return returnList;
     }
 
     public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDto() throws Exception {
-        cassandraEntriesAccessor.activate();
 
         List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
@@ -68,7 +78,7 @@ public class EntryDAO {
     }
 
     public List<BasicEntityDTO> getBasicEntitiesDtoByGender(String gender) throws Exception {
-        cassandraEntriesAccessor.activate();
+        System.out.println("Current time before: " + System.currentTimeMillis());
         List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);
         List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
@@ -81,11 +91,11 @@ public class EntryDAO {
             }
             returnList.add(newEntityDTO);
         }
+        System.out.println("Current time after: " + System.currentTimeMillis());
         return returnList;
     }
 
     public List<BasicEntityDTO> getFilteredBasicEntitiesDto(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        cassandraEntriesAccessor.activate();
 
         List<BasicEntityDTO> returnList = new ArrayList<BasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
@@ -98,9 +108,9 @@ public class EntryDAO {
     }
 
     public List<EnhancedBasicEntityDTO> getFilteredEnhancedEntitiesDto(SearchOptionsDTO searchOptionsDTO) throws Exception {
-        cassandraEntriesAccessor.activate();
 
         List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
+        System.out.println("Before: " + System.currentTimeMillis());
         String[] countries = Locale.getISOCountries();
         for (String country : countries) {
             EnhancedBasicEntityDTO newEntityDTO = new EnhancedBasicEntityDTO();
@@ -108,16 +118,16 @@ public class EntryDAO {
             newEntityDTO.setName(CountryService.getCountryNameByCode(country));
             int val = (int) cassandraEntriesAccessor.readMutationByCountryFiltered(country, searchOptionsDTO);
             newEntityDTO.setValue(val);
-            if(val>0){
+            if (val > 0) {
                 returnList.add(newEntityDTO);
             }
         }
+        System.out.println("After: " + System.currentTimeMillis());
         return returnList;
     }
 
 
     public List<EnhancedBasicEntityDTO> getEnhancedBasicEntitiesDtoByGender(String gender) throws Exception {
-        cassandraEntriesAccessor.activate();
         List<BasicEntityDTO> basicEntityDTOList = cassandraEntriesAccessor.readMutationByGender(gender);
         List<EnhancedBasicEntityDTO> returnList = new ArrayList<EnhancedBasicEntityDTO>();
         String[] countries = Locale.getISOCountries();
@@ -137,13 +147,11 @@ public class EntryDAO {
 
     public String insertEntry(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
                               String dateOfDeath, String gender, String professionalExposure, int professionalExposureTime, String details, String mutation, String locus, String disorder, String physician) throws Exception {
-        cassandraEntriesAccessor.activate();
-        String s = "INSERT INTO entries (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionalExposureTime, details, mutation,locus, disorder, physician)VALUES(";
+        String s = "INSERT INTO Entries_Space.Entries1 (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionalExposureTime, details, mutation,locus, disorder, physician)VALUES(";
 
         s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
                 + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath
                 + "," + gender + "," + professionalExposure + "," + professionalExposureTime + "," + details + "," + mutation + "," + locus + "," + disorder + "," + physician + ");");
-//        System.out.println(s);
         boolean result = cassandraEntriesAccessor.insertEntry(s);
 
         if (result) {
@@ -153,8 +161,34 @@ public class EntryDAO {
         }
     }
 
+    public String getQuery(String name, String identificationNumber, String countryCode, String dateOfBirth, String dateOfDiagnosis,
+                           String dateOfDeath, String gender, String professionalExposure, int professionalExposureTime, String details, String mutation, String locus, String disorder, String physician) throws Exception {
+        String s = "INSERT INTO entries1 (name,identificationNumber, countryCode,dateOfBirth,dateOfDiagnosis,dateOfDeath,gender, professionalExposure, professionalExposureTime, details, mutation,locus, disorder, physician)VALUES(";
+
+        s = s.concat(name + "," + identificationNumber + "," + countryCode + ","
+                + dateOfBirth + "," + dateOfDiagnosis + "," + dateOfDeath
+                + "," + gender + "," + professionalExposure + "," + professionalExposureTime + "," + details + "," + mutation + "," + locus + "," + disorder + "," + physician + ");");
+        return s;
+    }
+
+    public String bulkInsertEntry(List<String> queries) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        sb.append("BEGIN UNLOGGED  BATCH\n");
+        for (String q : queries) {
+            sb.append(q);
+        }
+        sb.append("APPLY BATCH;");
+
+        boolean result = cassandraEntriesAccessor.insertEntry(sb.toString());
+
+        if (result) {
+            return "The entry was successfully inserted.";
+        } else {
+            return "The entry could not be inserted.";
+        }
+    }
+
     public String insertGene(String geneCode, String name) throws Exception {
-        cassandraEntriesAccessor.activate();
         String s = "INSERT INTO genes (genecode,genename)VALUES(";
 
         s = s.concat(geneCode + "," + name + ");");
@@ -170,8 +204,11 @@ public class EntryDAO {
 
 
     public long getMutationCount() throws Exception {
-        cassandraEntriesAccessor.activate();
         return cassandraEntriesAccessor.readMutationCount();
+    }
+
+    public Mutation insertMutation(Mutation mutation) {
+        return mutation;
     }
 
 

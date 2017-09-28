@@ -63,20 +63,21 @@
             </div>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
-                    <li id="homeLi" class="active"><a id="homeTab" onclick="showHome()" href="#">Home</a></li>
+                    <!--<li id="homeLi" class="active"><a id="homeTab" onclick="showHome()" href="#">Home</a></li>-->
                     <li id="statsLi"><a href="#"
+                                        lass="active"
                                         id="statisticsTab" class="dropdown-toggle "
                                         onclick="showStatistics()">Statistics</a>
                     </li>
                     <li id="insertLi"><a id="insertTab" onclick="showInsert()" href="#">Insert Entry</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle " href="login.html"  data-toggle="dropdown" onclick="redirectToLogin()" data-hover="dropdown" data-delay="0"
-                           data-close-others="false">Log out <b class=" icon-angle-down"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a style="margin-top:-40px !important; margin-left: 20px !important" onclick="redirectToLogin()">Log out</a></li>
-                        </ul>
-                    </li>
+                    <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle " href="login.html"  data-toggle="dropdown" onclick="redirectToLogin()" data-hover="dropdown" data-delay="0"-->
+                           <!--data-close-others="false">Log out <b class=" icon-angle-down"></b></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a style="margin-top:-40px !important; margin-left: 20px !important" onclick="redirectToLogin()">Log out</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
                 </ul>
 
             </div>
@@ -85,53 +86,56 @@
 </header>
 
 
-<div id="homeContent" style="height: 820px">
-    <div id="main-slider" class="flexslider">
-        <ul class="slides">
-            <li>
-                <img src="img/slides/1.jpg" alt="" style="width: 100%; height: 450px;"/>
+<!--<div id="homeContent" style="height: 820px">-->
+    <!--<div id="main-slider" class="flexslider">-->
+        <!--<ul class="slides">-->
+            <!--<li>-->
+                <!--<img src="img/slides/1.jpg" alt="" style="width: 100%; height: 450px;"/>-->
 
-                <div class="flex-caption">
-                    <h3>Performance and Scalability
-                    </h3>
+                <!--<div class="flex-caption">-->
+                    <!--<h3>Performance and Scalability-->
+                    <!--</h3>-->
 
-                    <p>GeneHive relies on big data for providing mutation analytics</p>
-                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
-                </div>
-            </li>
-            <li>
-                <img src="img/slides/2.jpg" alt="" style="width: 100%; height: 450px;"/>
+                    <!--<p>GeneHive relies on big data for providing mutation analytics</p>-->
+                    <!--<a onclick="showStatistics()" class="btn btn-theme">Learn More</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<img src="img/slides/2.jpg" alt="" style="width: 100%; height: 450px;"/>-->
 
-                <div class="flex-caption">
-                    <h3>Prediction Engine</h3>
+                <!--<div class="flex-caption">-->
+                    <!--<h3>Prediction Engine</h3>-->
 
-                    <p>GeneHive has an integrated prediction engine.</p>
-                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
-                </div>
-            </li>
-            <li>
-                <img src="img/slides/3.jpg" alt="" style="width: 100%; height: 450px;"/>
+                    <!--<p>GeneHive has an integrated prediction engine.</p>-->
+                    <!--<a onclick="showStatistics()" class="btn btn-theme">Learn More</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<img src="img/slides/3.jpg" alt="" style="width: 100%; height: 450px;"/>-->
 
-                <div class="flex-caption">
-                    <h3>Clean & Fast UI</h3>
+                <!--<div class="flex-caption">-->
+                    <!--<h3>Clean & Fast UI</h3>-->
 
-                    <p>Access medical data from an easy to use, minimalist interface. </p>
-                    <a onclick="showStatistics()" class="btn btn-theme">Learn More</a>
-                </div>
-            </li>
+                    <!--<p>Access medical data from an easy to use, minimalist interface. </p>-->
+                    <!--<a onclick="showStatistics()" class="btn btn-theme">Learn More</a>-->
+                <!--</div>-->
+            <!--</li>-->
 
-        </ul>
-    </div>
-    <h2>There are <span style="color:#68a4c4" id="currentEntriesCount"></span> entries in the database right now.</h2>
-</div>
+        <!--</ul>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+
 <div id="statisticsContent" style="width:100%; padding-top:50px; height:820px;">
 
     <div style="display:inline; width:40%; float:left;margin-left: 30px;padding-bottom:20px; ">
         <div style="margin-bottom: 20px">
-            <h4 style="color:#68a4c4">Filter</span> results</h4>
+            <h5>There are <span style="color:#68a4c4" id="currentEntriesCount"></span> entries in the database right now.</h5>
+            <!--<h4 style="color:#68a4c4">Filter</span> results</h4>-->
 
             <label>Choose map type:</label><input type="radio" value="cluster" onchange="refreshWithAll()" name="mapType"
-                                      style="height: auto;width: auto"> Cluster
+                                      style="height: auto;width: auto; margin-left: 2px"> Cluster
             <input type="radio" checked="" value="highlight" onchange="refreshWithAll()" name="mapType"
                    style="height: auto; width: auto;"> Highlight
 
@@ -142,33 +146,41 @@
                 <input type="radio"style="height: auto; width: auto;" id = "allChecked" name="sex" value=""> All </input>
                 <br>
             </div>
-            <div style="padding:10px 0;"><label>Date of birth:</label> <select style="margin-right: 5px;" id="operatorBirthDate"></select> <input type="date" id="birthDay"></div>
-            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select style="margin-right: 5px;" id="operatorDiagnosisDate"></select><input type="date" id="diagnosticDay">
+            <div style="padding:10px 0;"><label>Date of birth:</label> <select style="margin-right: 5px;" id="operatorBirthDate"></select> <input  style=" width:135px" type="date" id="birthDay"></div>
+            <div style="padding:10px 0;"><label>Date of diagnosis:</label> <select style="margin-right: 5px;" id="operatorDiagnosisDate"></select><input style=" width:135px" type="date" id="diagnosticDay">
             </div>
-            <div style="padding:10px 0;"><label>Date of death:</label>  <select id="operatorDeathDate" style="margin-right: 5px;"></select><input type="date" id="deathDay"></div>
-            <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select
-                    id="profestionalExposure"></select>
-                for: <select id="professionalExposureOperator"></select>
+            <div style="padding:10px 0;"><label>Date of death:</label>  <select id="operatorDeathDate" style="margin-right: 5px;"></select><input  style=" width:135px" type="date" id="deathDay"></div>
+            <div style="padding:10px 0;"><label>ProfessionalExposure: </label><select style="margin-left:4px; width:175px"
+                    id="profestionalExposure"></select><br>
+
+            </div>
+            <div style="padding:10px 0;"><label>Exposure time:</label>
+                <select id="professionalExposureOperator" style=" width:175px"></select>
             </div>
             <div style="padding:10px 0;"><label>Mutation:</label>
-                <input id="geneName" onclick="loadNames()" title="type &quot;a&quot;">
+                <input id="geneName" style=" min-width:175px" onclick="loadNames()" title="type &quot;a&quot;">
             </div>
 
-            <div style="padding:10px 0;"><label>Locus: </label><input id="locus" onclick="loadLocus()"
+            <div style="padding:10px 0;"><label>Locus: </label><input id="locus" style="margin-left:3px; width:175px" onclick="loadLocus()"
                     class="inputText"  title="type &quot;a&quot;"></div>
-            <div style="padding:10px 0;"><label>Disorder: </label> <input id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
-            <button class="btn btn-theme" style="  margin-left: 100px;  width: 250px; margin-bottom: 10px;" onclick="resetFilters()">Reset filters
+            <div style="padding:10px 0;"><label>Disorder: </label> <input style=" width:175px" id="disprderName" onclick="loadDisorders()" title="type &quot;a&quot;"></div>
+            <button class="btn btn-theme" style=" margin-bottom: 10px;" onclick="resetFilters()">Reset
             </button>
-            <button id="search" onclick="getResults()" class="btn btn-theme" style=" width:250px;   margin-bottom: 10px;">Search in current entries
+            <button id="search" onclick="getResults()" class="btn btn-theme" style="   margin-bottom: 10px;">Search
             </button>    <i id="loadingSearch" style="vertical-align: middle;"  class="fa fa-spinner fa-pulse fa-2x"></i>
 
             <div style="width: 650px;padding-top:30px;border-top: 1px solid #68a4c4">
-                <div><label>Select date:</label> <input type="date" id="predDay">
+               <label>Select date:</label> <input type="date" id="predDay">
                     <button class="btn btn-theme" style="width:250px" onclick="refreshMapWithPrediction()">Search in
                         predicted results
                     </button> <i id="loadingPredict" style="vertical-align: middle;"  class="fa fa-spinner fa-pulse fa-2x"></i>
-                </div>
 
+                <form style="display:inline; margin-top:10px" action="http://localhost:9095/hh/API/v1/entries/export/csv" class="fileDownloadForm" method="post">
+                    <button  style="margin-top:10px" class="btn btn-theme" type="submit">Download results as csv</button>
+                </form>
+                <form style="display:inline; margin-top:10px" action="http://localhost:9095/hh/API/v1/entries/export/pdf" class="fileDownloadFormPdf" method="post">
+                    <button   style="margin-top:10px" class="btn btn-theme" type="submit">Download results as pdf</button>
+                </form>
             </div>
         </div>
     </div>
@@ -177,18 +189,10 @@
              style="height: 600px;width:650px; min-width: 810px; max-width: 100px; position:absolute;margin: 80px auto 0 700px;">
         </div>
     </div>
-    <div style="display:inline;float:right;  margin-right: 20px;">
-        <br>
-        <form style="display:inline" action="http://localhost:9095/hh/API/v1/entries/export/csv" class="fileDownloadForm" method="post">
-            <button  class="btn btn-theme" type="submit">Download results as csv</button>
-        </form>
-        <form style="display:inline" action="http://localhost:9095/hh/API/v1/entries/export/pdf" class="fileDownloadFormPdf" method="post">
-            <button  class="btn btn-theme" type="submit">Download results as pdf</button>
-        </form>
-    </div>
+
 </div>
 <div id="insertContent" style="width: 100%">
-<div class="pricing-box-alt cont" style="margin-left:38%">
+<div class="pricing-box-alt cont" style="margin-left:30%">
 <div style="padding:10px;"><label>Name:</label> <input id="insertName"></div>
 <div style="padding:10px;"><label>Identification Number:</label> <input type=number id="insertIdentificationNumber"></div>
 <div style="padding:10px;"><label>Country Code:</label>

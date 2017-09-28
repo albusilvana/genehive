@@ -3,15 +3,19 @@ package com.accessor;
 import com.DTO.BasicEntityDTO;
 import com.DTO.ExportEntityDTO;
 import com.DTO.SearchOptionsDTO;
+import com.Model.Mutation;
 import com.Service.DateUtils;
 import com.Service.UtilsService;
 import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.LocalDate;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.datastax.driver.core.SimpleStatement;
+import com.datastax.driver.core.SocketOptions;
 import com.google.inject.Singleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,13 +31,11 @@ import java.util.List;
 public class CassandraEntriesAccessor {
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(CassandraEntriesAccessor.class);
+    public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutation from Entries_Space.Entries1";
 
-    public static final String FIND_ALL_ENTRIES = "select identificationNumber,countrycode,mutation from Entries_Space.Entries";
+    public static final String FIND_ALL_MUTATIONS = "select mutation from Entries_Space.Entries1";
 
-    public static final String FIND_ALL_MUTATIONS = "select mutation from Entries_Space.Entries";
-
-    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select name,identificationNumber,countryCode,mutation,professionalExposure,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries";
+    public static final String FIND_ALL_MUTATIONS_FOR_CSV = "select name,identificationNumber,countryCode,mutation,professionalExposure,gender,dateOfBirth,dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries1";
 
     private UtilsService utilsService = new UtilsService();
 
@@ -49,7 +51,7 @@ public class CassandraEntriesAccessor {
 
 
     public void activate() throws Exception {
-        LOG.trace("Activating CasandraEventsAccessor");
+
         if (active || activating) {
             return;
         }
@@ -60,6 +62,9 @@ public class CassandraEntriesAccessor {
         Cluster cluster = new Cluster.Builder()
                 .addContactPoints("127.0.0.1")
                 .withPort(9042)
+                .withSocketOptions(
+                        new SocketOptions()
+                                .setConnectTimeoutMillis(200000))
                 .build();
 
         String keyspace = "entries_space";
@@ -68,15 +73,13 @@ public class CassandraEntriesAccessor {
 
         active = true;
         activating = false;
-        LOG.debug("CasandraEventsAccessor is activated");
+
 
     }
 
 
     public List<ExportEntityDTO> getCSVEntries() throws SQLException {
-        if (!active) {
-            LOG.error("CasandraEventsAccessor is not active");
-        }
+
         List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
         ResultSet resultSet = session.execute(FIND_ALL_MUTATIONS_FOR_CSV);
         Iterator<Row> iter = resultSet.iterator();
@@ -106,17 +109,15 @@ public class CassandraEntriesAccessor {
     }
 
     public List<ExportEntityDTO> getExportData(SearchOptionsDTO searchOptionsDTO) throws SQLException {
-        if (!active) {
-            LOG.error("CasandraEventsAccessor is not active");
-        }
+
         List<ExportEntityDTO> results = new ArrayList<ExportEntityDTO>();
         String query;
         if (!getQueryToAppend(searchOptionsDTO).equals(";")) {
             query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime, gender, dateOfBirth," +
-                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries where" + getQueryToAppend(searchOptionsDTO).substring(4);
+                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries1 where" + getQueryToAppend(searchOptionsDTO).substring(4);
         } else {
             query = "select name, identificationNumber, countryCode, mutation, locus, disorder, professionalExposure, professionalExposureTime, gender, dateOfBirth," +
-                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries;";
+                    "dateOfDiagnosis,dateOfDeath,physician from Entries_Space.Entries1;";
         }
 
         ResultSet resultSet = session.execute(query);
@@ -134,35 +135,82 @@ public class CassandraEntriesAccessor {
             String professionalExposure = row.getString(6);
             int professionalExposureTime = (int) row.getLong(7);
             String gender = row.getString(8);
-            Date dateOfBirth = row.getDate(9);
-            Date dateOfDiagnosis = row.getDate(10);
-            Date dateOfDeath = row.getDate(11);
+
+            String dateOfBirth = "1987-11-12";
+            String dateOfDiagnosis = "2005-11-12";
+            String dateOfDeath = "2017-11-12";
             String physician = row.getString(12);
             int dateOfDeathAge = 101;
             int dateOfBirthAge = 0;
-            if (dateOfDeath != null && DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime())) < 100) {
-                dateOfDeathAge =  DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime()));
-            }else{
-                dateOfBirthAge = DateUtils.getAgeFromMilliseconds(String.valueOf(dateOfBirth.getTime()));
-            }
-            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, disorder, locus, professionalExposure, professionalExposureTime, gender,  dateOfBirthAge, DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()),String.valueOf(dateOfDiagnosis.getTime())), dateOfDeathAge, physician);
+//            if (dateOfDeath != null && DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime())) < 100) {
+//                dateOfDeathAge =  DateUtils.getAgeOfDeath(String.valueOf(dateOfBirth.getTime()), String.valueOf(dateOfDeath.getTime()));
+//            }else{
+//                dateOfBirthAge = DateUtils.getAgeFromMilliseconds(String.valueOf(dateOfBirth.getTime()));
+//            }
+            ExportEntityDTO trainingModelDTO = new ExportEntityDTO(name, identificationNumber, countryCode, mutation, disorder, locus, professionalExposure, professionalExposureTime, gender,  dateOfBirthAge, 30, dateOfDeathAge, physician);
             results.add(trainingModelDTO);
 
         }
         return results;
     }
 
-    public long readMutationByCountryFiltered(String countryCode, SearchOptionsDTO searchOptionsDTO) {
+    public long readMutationByCountryFiltered(String countryCode, SearchOptionsDTO searchOptionsDTO) throws Exception {
+        this.activate();
         long no = 0;
-        String query = "select count(*) from Entries_Space.Entries where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO);
-        ResultSet resultSet = session.execute(query);
-        System.out.println(query);
+        String query = "select count(*) from Entries_Space.Entries1 where countryCode = '" + countryCode + "'" + this.getQueryToAppend(searchOptionsDTO);
+        ResultSet resultSet =  session.execute(
+                new SimpleStatement(query).setReadTimeoutMillis(650000));
+//        System.out.println(query);
         for (Row aResultSet : resultSet) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
                 resultSet.fetchMoreResults();
             no = aResultSet.getLong(0);
         }
         return no;
+    }
+
+//    public long readInBatch(){
+//        PreparedStatement statement = session.prepare("SELECT * FROM visit where enterprise_id = ? and id = ?");
+//
+//        List<ResultSetFuture> futures = new ArrayList<>();
+//        for (int i = 1; i < 4; i++) {
+//            ResultSetFuture resultSetFuture = session.executeAsync(statement.bind(i, i));
+//            futures.add(resultSetFuture);
+//        }
+//
+//        List<String> results = new ArrayList<>();
+//        for (ResultSetFuture future : futures){
+//            ResultSet rows = future.getUninterruptibly();
+//            Row row = rows.one();
+//            results.add(row.getString("name"));
+//        }
+//        return results;
+//    }
+
+    public List<BasicEntityDTO> readMutationFiltered( SearchOptionsDTO searchOptionsDTO) {
+        long no = 0;
+        String query = "select count(*) from Entries_Space.Entries1 where countryCode = '20'" + this.getQueryToAppend(searchOptionsDTO);
+        ResultSet resultSet = session.execute(query);
+//        System.out.println(query);
+        for (Row aResultSet : resultSet) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            no = aResultSet.getLong(0);
+        }
+        return null;
+    }
+
+    public List<BasicEntityDTO> readMutationForGender(String gender) {
+        long no = 0;
+        String query = "select count(*) from Entries_Space.Entries1 where countryCode = '20'";
+        ResultSet resultSet = session.execute(query);
+//        System.out.println(query);
+        for (Row aResultSet : resultSet) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            no = aResultSet.getLong(0);
+        }
+        return null;
     }
 
     private String getQueryToAppend(SearchOptionsDTO searchOptionsDTO) {
@@ -209,16 +257,20 @@ public class CassandraEntriesAccessor {
 
 
         if (noCondition) {
-            return ";";
+            return " limit 1000000;";
         } else {
-            return queryChunk + " ALLOW FILTERING ;";
+            return queryChunk + " ALLOW FILTERING  limit 1000000;";
         }
     }
 
-    public List<BasicEntityDTO> readMutationByContry(String countryCode) throws SQLException {
-        String query = "select mutation from Entries_Space.Entries where countryCode = '" + countryCode + "';";
+    public List<BasicEntityDTO> readMutationByContry(String countryCode) throws Exception {
+        this.activate();
+        String query = "select mutation from Entries_Space.Entries1 where countryCode = '" + countryCode + "';";
         List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
+//        System.out.println("Current time before: " + System.currentTimeMillis());
         ResultSet resultSet = session.execute(query);
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("Current time after: " + System.currentTimeMillis());
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
@@ -230,9 +282,31 @@ public class CassandraEntriesAccessor {
         return results;
     }
 
+    public List<BasicEntityDTO> readAllMutations() throws SQLException {
+        String query = "select mutation from Entries_Space.Entries1 where countryCode = '20';";
+        List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
+        ResultSet resultSet = session.execute(query);
+        Iterator<Row> iter = resultSet.iterator();
+        while (iter.hasNext()) {
+            if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
+                resultSet.fetchMoreResults();
+            Row row = iter.next();
+            BasicEntityDTO basicEntityDTO = new BasicEntityDTO("RO", 1);
+            results.add(basicEntityDTO);
+        }
+        return results;
+    }
+
     public long readMutationCount() throws SQLException {
-        String query = "select count(*) from Entries_Space.Entries;";
+        String query = "select count(*) from Entries_Space.Entries1;";
         long no = 0;
+        if(session == null){
+            try {
+                this.activate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         ResultSet resultSet = session.execute(query);
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
@@ -247,6 +321,13 @@ public class CassandraEntriesAccessor {
 
     public boolean insertEntry(String query) throws SQLException {
         boolean success = true;
+        if(session == null){
+            try {
+                this.activate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         try {
             session.execute(query);
         } catch (Exception e) {
@@ -256,9 +337,10 @@ public class CassandraEntriesAccessor {
     }
 
     public List<BasicEntityDTO> readMutationByGender(String gender) throws SQLException {
-        String query = "select countryCode,mutation from Entries_Space.Entries where gender = '" + gender + "';";
+        String query = "select countryCode,mutation from Entries_Space.Entries1 where gender = '" + gender + "';";
         List<BasicEntityDTO> results = new ArrayList<BasicEntityDTO>();
         ResultSet resultSet = session.execute(query);
+
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
@@ -272,11 +354,8 @@ public class CassandraEntriesAccessor {
     }
 
     public List<String> readDiagnostics() throws SQLException {
-        if (!active) {
-            LOG.error("CasandraEventsAccessor is not active");
-        }
         List<String> results = new ArrayList<String>();
-        ResultSet resultSet = session.execute("Select disorder from Entries_Space.Entries");
+        ResultSet resultSet = session.execute("Select disorder from Entries_Space.Entries1");
         Iterator<Row> iter = resultSet.iterator();
         while (iter.hasNext()) {
             if (resultSet.getAvailableWithoutFetching() == 100 && !resultSet.isFullyFetched())
@@ -286,6 +365,10 @@ public class CassandraEntriesAccessor {
             results.add(disorder);
         }
         return results;
+    }
+
+    public Mutation insertMutation(Mutation mutation){
+        return null;
     }
 }
 

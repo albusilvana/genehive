@@ -6,7 +6,7 @@ package com.Service;
 public class AuthenticationService {
     public static final String user = "admin";
     public static final String password = "admin";
-    TokenGenerator tokenGenerator = new TokenGenerator();
+
     public String authenticate(String username, String password){
         if(username.equals(user) && password.equals(password)){
             return TokenGenerator.getToken(username);
@@ -14,4 +14,9 @@ public class AuthenticationService {
             return "";
         }
     }
+
+    public boolean isUserAuthenticated(String token) {
+        return true;
+    }
+
 }

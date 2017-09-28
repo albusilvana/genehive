@@ -21,7 +21,7 @@ public class Connector {
     }
 
     public static ResultSet cassQuery(String query) throws SQLException {
-        Statement statement = null;
+        Statement statement;
         try {
             System.out.println(" " + query);
             statement = connectionCass.createStatement();
@@ -31,13 +31,5 @@ public class Connector {
             System.out.print(ex);
         }
         return rs;
-    }
-
-    public static void main(String[] args) throws Exception {
-        connectToCass();
-        ResultSet resultSet = cassQuery("select identificationNumber,countrycode,mutationentries  from Entries_Space.Entries");
-
-        System.out.print(resultSet);
-
     }
 }

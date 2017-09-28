@@ -17,6 +17,7 @@ public class ExportEntityDTO {
     private  int ageOfDiagnosis;
     private  int ageOfDeath;
     private String physician;
+    private int countForCountryAndExposure;
 
     public ExportEntityDTO(String name, String identificationNumber, String countryCode, String mutation,
                            String disorder, String locus, String professionalExposure, int professionalExposureTime,
@@ -137,6 +138,14 @@ public class ExportEntityDTO {
 
     public void setPhysician(String physician) {
         this.physician = physician;
+    }
+
+    public int getCountForCountryAndExposure() {
+        return countForCountryAndExposure;
+    }
+
+    public void setCountForCountryAndExposure(int countForCountryAndExposure) {
+        this.countForCountryAndExposure = countForCountryAndExposure;
     }
 }
 

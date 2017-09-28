@@ -25,7 +25,7 @@ public class EntryEndpoint {
 
     @Inject
     public EntryEndpoint(EntryService entryService) {
-        this.entryService = entryService;
+        EntryEndpoint.entryService = entryService;
     }
 
     @GET
@@ -225,15 +225,5 @@ public class EntryEndpoint {
         response.header("Content-Disposition",
                 "attachment; filename=mutations.pdf");
         return response.build();
-    }
-
-
-    private StreamingOutput getOut(final byte[] excelBytes) {
-        return new StreamingOutput() {
-            @Override
-            public void write(OutputStream out) throws IOException, WebApplicationException {
-                out.write(excelBytes);
-            }
-        };
     }
 }

@@ -12,7 +12,6 @@ import java.util.List;
  * Created by silvana.albert on 4/13/15.
  */
 public class UtilsService {
-    private static final MutationService mutationService = new MutationService();
 
 //    public Entry convertToEntity(String identificationNumber, String mutations, String countryCode) {
 //
