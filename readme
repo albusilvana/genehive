@@ -1,0 +1,60 @@
+This project is a proof of concept for displaying genetic mutations on the world map based on their frequency.
+
+
+// Installation:
+
+Create cassandra database:
+
+CREATE KEYSPACE Entries_Space with replication ={'class':'SimpleStrategy', 'replication_factor':2};
+USE Entries_Space;
+
+CREATE TABLE Entries1 (
+    name text,
+    identificationNumber text,
+    countryCode text,
+    dateOfBirth timestamp,
+    dateOfDiagnosis timestamp,
+    dateOfDeath timestamp,
+    gender text,
+    professionalExposure text,
+    professionalExposureTime bigint,
+    details text,
+    mutation text,
+    locus text,
+    disorder text,
+    physician text,
+    PRIMARY KEY (identificationNumber, mutation, countryCode)
+) WITH
+    comment='Patients with discovered entries' AND
+    caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+
+
+
+CREATE INDEX CountryIndex
+   ON Entries_Space.Entries1 (countryCode);
+
+CREATE INDEX GenderIndex1
+   ON Entries_Space.Entries1 (gender);
+
+CREATE INDEX MutationIndex
+   ON Entries_Space.Entries1 (mutation);
+
+CREATE INDEX disorderIndex
+   ON Entries_Space.Entries1 (disorder);
+
+CREATE INDEX professionalExposureIndex
+   ON Entries_Space.Entries1 (professionalExposure);
+
+CREATE INDEX locusIndex
+   ON Entries_Space.Entries1 (locus);
+   
+ //  Populate database
+ 
+ From file TestEntryService.java: run unit test: testBulkInsertEntries by configuring the counter with the desired number of enties to insert.
+ 
+ 
+ // Run webapp
+- build maven project
+- jetty run
+- access the url: http://localhost:9095/hh/statistics.html 
