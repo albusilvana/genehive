@@ -10,6 +10,22 @@ This project is a proof of concept for displaying genetic mutations on the world
 
 
 // Installation:
+In order to boot up Cassandra, Docker must be installed and the following commands executed in the Terminal
+    docker run --name cassandra_1 -p 9042:9042 -d cassandra:3.11
+    docker run --name cassandra_2 -d --link cassandra_1:cassandra cassandra:3.11
+    docker run --name cassandra_3 -d --link cassandra_1:cassandra cassandra:3.11
+    docker run -it --link cassandra_1:cassandra --rm cassandra:3.11 cqlsh cassandra
+
+Explanation for the above commands
+    - Start cassandra_1
+    - Link cassandra_2 to cassandra_1
+    - Link cassandra_3 to cassandra_1
+    - Connect through cqlsh to cassandra_1
+
+    - Connect to casssandra_1 through localhost:9042
+      cassandra_1 is the only node which exposes an endpoint through which applications can connect.
+
+
 
 Create cassandra database by running the cql statements directly in the cqlsh terminal:
 
